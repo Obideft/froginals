@@ -1,16 +1,21 @@
-```html
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
   <title>FROGINALS — Supporting Dogecoin</title>
+  <meta name="description" content="FROGINALS! Good frogs, good Doge. Check out the FROGINALS tee and support Dogecoin.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;700;800&display=swap" rel="stylesheet">
 
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -20,25 +25,28 @@
       text-align: center;
     }
 
+    /* SINGLE HEADER */
     header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 14px;
-      padding: 20px 6%;
+      gap: 12px;
+      padding: 18px 6%;
       border-bottom: 3px solid #171717;
+      position: relative;
+      z-index: 2;
     }
 
     .logo {
       font-family: "Press Start 2P", monospace;
-      font-size: 13px;
+      font-size: clamp(10px, 1.5vw, 15px);
+      line-height: 1.8;
     }
 
     .header-actions {
       display: flex;
       align-items: center;
-      justify-content: flex-end;
-      gap: 20px;
+      gap: 18px;
     }
 
     header a {
@@ -46,49 +54,54 @@
       text-decoration: none;
       font-weight: 800;
       font-size: 12px;
+      white-space: nowrap;
+    }
+
+    header a:hover {
+      color: #fff1d6;
     }
 
     /* BIG CARTOON MUSIC BUTTON */
     .music-toggle {
-      display: inline-flex;
+      width: 68px;
+      height: 68px;
+      flex-shrink: 0;
+      display: flex;
       align-items: center;
       justify-content: center;
-      flex-shrink: 0;
-      width: 72px;
-      height: 72px;
-      padding: 0;
       border: 4px solid #171717;
-      border-radius: 24px;
-      background: #888;
+      border-radius: 20px;
+      background: #168cff;
       color: #fff;
-      font-size: 43px;
+      font-size: 39px;
       line-height: 1;
       cursor: pointer;
-      box-shadow: 6px 6px 0 #fff1d6, 6px 6px 0 4px #171717;
-      text-shadow: 2px 3px 0 #171717;
-      transition: transform .15s ease, background .2s ease;
+      box-shadow: 5px 6px 0 #171717;
+      transform: rotate(3deg);
+      transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
+      -webkit-tap-highlight-color: transparent;
     }
 
     .music-toggle:hover {
-      transform: translate(-2px, -3px) rotate(-4deg);
+      transform: rotate(-3deg) scale(1.08);
+      box-shadow: 7px 8px 0 #171717;
     }
 
     .music-toggle:active {
-      transform: translate(3px, 3px);
-      box-shadow: 2px 2px 0 #fff1d6;
-    }
-
-    .music-toggle.is-playing {
-      background: #168cff;
-      animation: music-bop .8s ease-in-out infinite alternate;
+      transform: translate(3px, 3px) rotate(0deg);
+      box-shadow: 2px 3px 0 #171717;
     }
 
     .music-toggle.is-muted {
       background: #888;
-      animation: none;
     }
 
-    @keyframes music-bop {
+    .music-toggle.is-playing {
+      background: #168cff;
+      animation: musicBounce 0.8s ease-in-out infinite alternate;
+    }
+
+    @keyframes musicBounce {
       from { transform: rotate(-4deg) scale(1); }
       to { transform: rotate(4deg) scale(1.06); }
     }
@@ -238,36 +251,78 @@
     }
 
     @media (max-width: 600px) {
-      header { padding: 15px 12px; }
-      .logo { font-size: 9px; }
-      .header-actions { gap: 12px; }
-      header a { font-size: 9px; }
+      header {
+        padding: 14px 12px;
+      }
+
+      .logo {
+        font-size: 9px;
+      }
+
+      .header-actions {
+        gap: 10px;
+      }
+
+      header a {
+        font-size: 8px;
+      }
 
       .music-toggle {
         width: 58px;
         height: 58px;
-        border-radius: 19px;
-        font-size: 35px;
-        border-width: 3px;
-        box-shadow: 4px 4px 0 #fff1d6, 4px 4px 0 3px #171717;
+        font-size: 34px;
+        border-radius: 17px;
       }
 
-      main { padding: 38px 15px 30px; }
+      main {
+        padding: 38px 15px 30px;
+      }
 
       h1 {
         letter-spacing: -3px;
         text-shadow: 3px 3px #fff1d6, 6px 6px #171717;
       }
 
-      .shipping { font-size: 8px; }
-      .buy-button { font-size: 9px; padding: 17px 12px; }
-      footer { flex-direction: column; align-items: center; }
+      .shipping {
+        font-size: 8px;
+      }
+
+      .buy-button {
+        font-size: 9px;
+        padding: 17px 12px;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    @media (max-width: 360px) {
+      .logo {
+        font-size: 8px;
+      }
+
+      header a {
+        font-size: 7px;
+      }
+
+      .header-actions {
+        gap: 7px;
+      }
+
+      .music-toggle {
+        width: 50px;
+        height: 50px;
+        font-size: 29px;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      *, *::before, *::after {
+      .shirt-image,
+      .ticker span,
+      .music-toggle.is-playing {
         animation: none !important;
-        scroll-behavior: auto !important;
       }
     }
   </style>
@@ -316,7 +371,7 @@
       <p class="price">$19.99 <small>USD</small></p>
       <p class="shipping">✦ FREE SHIPPING WORLDWIDE ✦</p>
 
-      <!-- Replace this with your actual PayPal checkout link -->
+      <!-- Replace with your actual PayPal checkout link -->
       <a
         class="buy-button"
         href="https://www.paypal.com/"
@@ -341,79 +396,74 @@
   </footer>
 
   <!-- BACKGROUND MUSIC -->
+  <!-- IMPORTANT: change the filename below if your WAV file has a different name -->
   <audio id="backgroundMusic" loop preload="auto">
     <source
-      src="./audio/LOOT%20AN%20LOOT%20BASE%20MUSIC.mp3"
-      type="audio/mpeg"
+      src="./audio/LOOT%20AN%20LOOT%20BASE%20MUSIC.wav"
+      type="audio/wav"
     >
   </audio>
 
   <script>
     document.addEventListener("DOMContentLoaded", () => {
       const music = document.getElementById("backgroundMusic");
-      const toggle = document.getElementById("musicToggle");
+      const button = document.getElementById("musicToggle");
 
-      if (!music || !toggle) {
-        console.error("FROGINALS: Music player or button is missing.");
-        return;
-      }
+      if (!music || !button) return;
 
-      music.volume = 0.4;
+      music.volume = 0.35;
 
       function updateButton(playing) {
-        toggle.classList.toggle("is-playing", playing);
-        toggle.classList.toggle("is-muted", !playing);
+        button.classList.toggle("is-muted", !playing);
+        button.classList.toggle("is-playing", playing);
+        button.textContent = playing ? "🔊" : "🎵";
 
-        toggle.textContent = playing ? "🔊" : "🎵";
-
-        toggle.setAttribute("aria-pressed", String(playing));
-        toggle.setAttribute(
+        button.setAttribute("aria-pressed", String(playing));
+        button.setAttribute(
           "aria-label",
           playing ? "Pause background music" : "Play background music"
         );
 
-        toggle.title = playing
+        button.title = playing
           ? "Pause background music"
           : "Play background music";
       }
 
-      // Keep the button in sync with the actual audio player.
-      music.addEventListener("play", () => updateButton(true));
-      music.addEventListener("pause", () => updateButton(false));
+      // Try autoplay; browsers may require a click first.
+      music.play()
+        .then(() => updateButton(true))
+        .catch(() => updateButton(false));
 
       // Clicking the cartoon button starts or pauses the music.
-      toggle.addEventListener("click", async () => {
+      button.addEventListener("click", async () => {
         if (music.paused) {
           try {
             await music.play();
+            updateButton(true);
           } catch (error) {
-            console.error("FROGINALS music playback failed:", error);
+            console.error("Music playback failed:", error);
             updateButton(false);
             alert(
-              "Music could not play. Check that your MP3 file exists in the audio folder and try again."
+              "Music could not play. Check that the WAV file exists in your audio folder and that its filename matches the HTML."
             );
           }
         } else {
           music.pause();
+          updateButton(false);
         }
       });
 
       music.addEventListener("error", () => {
         console.error(
-          "FROGINALS audio file failed to load:",
-          music.currentSrc,
-          music.error
+          "Could not load music file. Check the path and filename:",
+          music.currentSrc
         );
         updateButton(false);
       });
 
-      // Try autoplay. Browsers may block it until the visitor clicks.
-      music.play().catch(() => {
-        updateButton(false);
-      });
+      music.addEventListener("ended", () => updateButton(false));
     });
   </script>
 
 </body>
 </html>
-```
