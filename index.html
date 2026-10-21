@@ -1,34 +1,55 @@
-
 <script>
+document.addEventListener("DOMContentLoaded", () => {
   const music = document.getElementById("backgroundMusic");
   const toggle = document.getElementById("musicToggle");
 
+  if (!music || !toggle) {
+    console.error("Music setup error: audio or button is missing.");
+    return;
+  }
+
+  function updateButton(isPlaying) {
+    toggle.classList.toggle("is-muted", !isPlaying);
+    toggle.setAttribute("aria-pressed", String(isPlaying));
+    toggle.setAttribute(
+      "aria-label",
+      isPlaying ? "Pause background music" : "Play background music"
+    );
+    toggle.title = isPlaying
+      ? "Pause background music"
+      : "Play background music";
+  }
+
+  // Attempt autoplay. The browser may block sound until user interaction.
+  music.volume = 0.35;
+
+  music.play()
+    .then(() => updateButton(true))
+    .catch((error) => {
+      console.warn("Autoplay blocked or music unavailable:", error);
+      updateButton(false);
+    });
+
+  // Play/pause using the speaker button.
   toggle.addEventListener("click", async () => {
     if (music.paused) {
       try {
         await music.play();
-
-        toggle.classList.remove("is-muted");
-        toggle.setAttribute("aria-pressed", "true");
-        toggle.setAttribute("aria-label", "Mute background music");
-        toggle.title = "Mute background music";
+        updateButton(true);
       } catch (error) {
-        console.error("Unable to play background music:", error);
-        toggle.classList.add("is-muted");
-        toggle.setAttribute("aria-pressed", "false");
-        toggle.setAttribute("aria-label", "Music unavailable");
-        toggle.title = "Music unavailable — check the audio file path";
+        console.error("Music playback failed:", error);
+        updateButton(false);
       }
     } else {
       music.pause();
-      music.currentTime = 0;
-
-      toggle.classList.add("is-muted");
-      toggle.setAttribute("aria-pressed", "false");
-      toggle.setAttribute("aria-label", "Play background music");
-      toggle.title = "Play background music";
+      updateButton(false);
     }
   });
+
+  // Show an error if the audio file cannot load.
+  music.addEventListener("error", () => {
+    console.error("Could not load music file:", music.currentSrc);
+    updateButton(false);
+  });
+});
 </script>
-</body>
-</html>
