@@ -1,27 +1,11 @@
-<header>
-  <div class="logo">FROGINALS®</div>
-
-  <div class="header-actions">
-    <a href="#shop">SHOP THE TEE ↓</a>
-
-    <button
-      id="musicToggle"
-      class="music-toggle is-muted"
-      type="button"
-      aria-label="Play background music"
-      aria-pressed="false"
-      title="Play background music"
-    >
-      🔊
-    </button>
-  </div>
-</header>
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>FROGINALS — Supporting Dogecoin</title>
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;700;800&display=swap" rel="stylesheet">
 
@@ -40,6 +24,7 @@
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 14px;
       padding: 20px 6%;
       border-bottom: 3px solid #171717;
     }
@@ -49,11 +34,63 @@
       font-size: 13px;
     }
 
+    .header-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 20px;
+    }
+
     header a {
       color: #171717;
       text-decoration: none;
       font-weight: 800;
       font-size: 12px;
+    }
+
+    /* BIG CARTOON MUSIC BUTTON */
+    .music-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      width: 72px;
+      height: 72px;
+      padding: 0;
+      border: 4px solid #171717;
+      border-radius: 24px;
+      background: #888;
+      color: #fff;
+      font-size: 43px;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 6px 6px 0 #fff1d6, 6px 6px 0 4px #171717;
+      text-shadow: 2px 3px 0 #171717;
+      transition: transform .15s ease, background .2s ease;
+    }
+
+    .music-toggle:hover {
+      transform: translate(-2px, -3px) rotate(-4deg);
+    }
+
+    .music-toggle:active {
+      transform: translate(3px, 3px);
+      box-shadow: 2px 2px 0 #fff1d6;
+    }
+
+    .music-toggle.is-playing {
+      background: #168cff;
+      animation: music-bop .8s ease-in-out infinite alternate;
+    }
+
+    .music-toggle.is-muted {
+      background: #888;
+      animation: none;
+    }
+
+    @keyframes music-bop {
+      from { transform: rotate(-4deg) scale(1); }
+      to { transform: rotate(4deg) scale(1.06); }
     }
 
     main {
@@ -201,11 +238,27 @@
     }
 
     @media (max-width: 600px) {
-      header { padding: 16px; }
-      .logo { font-size: 10px; }
+      header { padding: 15px 12px; }
+      .logo { font-size: 9px; }
+      .header-actions { gap: 12px; }
       header a { font-size: 9px; }
+
+      .music-toggle {
+        width: 58px;
+        height: 58px;
+        border-radius: 19px;
+        font-size: 35px;
+        border-width: 3px;
+        box-shadow: 4px 4px 0 #fff1d6, 4px 4px 0 3px #171717;
+      }
+
       main { padding: 38px 15px 30px; }
-      h1 { letter-spacing: -3px; text-shadow: 3px 3px #fff1d6, 6px 6px #171717; }
+
+      h1 {
+        letter-spacing: -3px;
+        text-shadow: 3px 3px #fff1d6, 6px 6px #171717;
+      }
+
       .shipping { font-size: 8px; }
       .buy-button { font-size: 9px; padding: 17px 12px; }
       footer { flex-direction: column; align-items: center; }
@@ -221,9 +274,23 @@
 </head>
 
 <body>
+
+  <!-- ONE HEADER ONLY -->
   <header>
     <div class="logo">FROGINALS®</div>
-    <a href="#shop">SHOP THE TEE ↓</a>
+
+    <div class="header-actions">
+      <a href="#shop">SHOP THE TEE ↓</a>
+
+      <button
+        id="musicToggle"
+        class="music-toggle is-muted"
+        type="button"
+        aria-label="Play background music"
+        aria-pressed="false"
+        title="Play background music"
+      >🎵</button>
+    </div>
   </header>
 
   <main>
@@ -249,15 +316,13 @@
       <p class="price">$19.99 <small>USD</small></p>
       <p class="shipping">✦ FREE SHIPPING WORLDWIDE ✦</p>
 
-      <!-- Replace the URL below with your actual PayPal checkout link -->
+      <!-- Replace this with your actual PayPal checkout link -->
       <a
         class="buy-button"
         href="https://www.paypal.com/"
         target="_blank"
         rel="noopener noreferrer"
-      >
-        BUY NOW WITH PAYPAL ↗
-      </a>
+      >BUY NOW WITH PAYPAL ↗</a>
 
       <p class="payment-note">Secure checkout via PayPal</p>
     </section>
@@ -274,5 +339,81 @@
     <span>FROGINALS © 2026</span>
     <span>MADE FOR THE PACK 🐸🐕</span>
   </footer>
+
+  <!-- BACKGROUND MUSIC -->
+  <audio id="backgroundMusic" loop preload="auto">
+    <source
+      src="./audio/LOOT%20AN%20LOOT%20BASE%20MUSIC.mp3"
+      type="audio/mpeg"
+    >
+  </audio>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const music = document.getElementById("backgroundMusic");
+      const toggle = document.getElementById("musicToggle");
+
+      if (!music || !toggle) {
+        console.error("FROGINALS: Music player or button is missing.");
+        return;
+      }
+
+      music.volume = 0.4;
+
+      function updateButton(playing) {
+        toggle.classList.toggle("is-playing", playing);
+        toggle.classList.toggle("is-muted", !playing);
+
+        toggle.textContent = playing ? "🔊" : "🎵";
+
+        toggle.setAttribute("aria-pressed", String(playing));
+        toggle.setAttribute(
+          "aria-label",
+          playing ? "Pause background music" : "Play background music"
+        );
+
+        toggle.title = playing
+          ? "Pause background music"
+          : "Play background music";
+      }
+
+      // Keep the button in sync with the actual audio player.
+      music.addEventListener("play", () => updateButton(true));
+      music.addEventListener("pause", () => updateButton(false));
+
+      // Clicking the cartoon button starts or pauses the music.
+      toggle.addEventListener("click", async () => {
+        if (music.paused) {
+          try {
+            await music.play();
+          } catch (error) {
+            console.error("FROGINALS music playback failed:", error);
+            updateButton(false);
+            alert(
+              "Music could not play. Check that your MP3 file exists in the audio folder and try again."
+            );
+          }
+        } else {
+          music.pause();
+        }
+      });
+
+      music.addEventListener("error", () => {
+        console.error(
+          "FROGINALS audio file failed to load:",
+          music.currentSrc,
+          music.error
+        );
+        updateButton(false);
+      });
+
+      // Try autoplay. Browsers may block it until the visitor clicks.
+      music.play().catch(() => {
+        updateButton(false);
+      });
+    });
+  </script>
+
 </body>
 </html>
+```
