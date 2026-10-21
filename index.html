@@ -1,55 +1,278 @@
-<script>
-document.addEventListener("DOMContentLoaded", () => {
-  const music = document.getElementById("backgroundMusic");
-  const toggle = document.getElementById("musicToggle");
+<header>
+  <div class="logo">FROGINALS®</div>
 
-  if (!music || !toggle) {
-    console.error("Music setup error: audio or button is missing.");
-    return;
-  }
+  <div class="header-actions">
+    <a href="#shop">SHOP THE TEE ↓</a>
 
-  function updateButton(isPlaying) {
-    toggle.classList.toggle("is-muted", !isPlaying);
-    toggle.setAttribute("aria-pressed", String(isPlaying));
-    toggle.setAttribute(
-      "aria-label",
-      isPlaying ? "Pause background music" : "Play background music"
-    );
-    toggle.title = isPlaying
-      ? "Pause background music"
-      : "Play background music";
-  }
+    <button
+      id="musicToggle"
+      class="music-toggle is-muted"
+      type="button"
+      aria-label="Play background music"
+      aria-pressed="false"
+      title="Play background music"
+    >
+      🔊
+    </button>
+  </div>
+</header>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FROGINALS — Supporting Dogecoin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;700;800&display=swap" rel="stylesheet">
 
-  // Attempt autoplay. The browser may block sound until user interaction.
-  music.volume = 0.35;
+  <style>
+    * { box-sizing: border-box; }
 
-  music.play()
-    .then(() => updateButton(true))
-    .catch((error) => {
-      console.warn("Autoplay blocked or music unavailable:", error);
-      updateButton(false);
-    });
-
-  // Play/pause using the speaker button.
-  toggle.addEventListener("click", async () => {
-    if (music.paused) {
-      try {
-        await music.play();
-        updateButton(true);
-      } catch (error) {
-        console.error("Music playback failed:", error);
-        updateButton(false);
-      }
-    } else {
-      music.pause();
-      updateButton(false);
+    body {
+      margin: 0;
+      background: #ff7900;
+      color: #171717;
+      font-family: "Space Grotesk", sans-serif;
+      text-align: center;
     }
-  });
 
-  // Show an error if the audio file cannot load.
-  music.addEventListener("error", () => {
-    console.error("Could not load music file:", music.currentSrc);
-    updateButton(false);
-  });
-});
-</script>
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 6%;
+      border-bottom: 3px solid #171717;
+    }
+
+    .logo {
+      font-family: "Press Start 2P", monospace;
+      font-size: 13px;
+    }
+
+    header a {
+      color: #171717;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 12px;
+    }
+
+    main {
+      padding: 55px 20px 40px;
+      overflow: hidden;
+      background-image: radial-gradient(#ff9d2e 2px, transparent 2px);
+      background-size: 22px 22px;
+    }
+
+    .eyebrow {
+      font-family: "Press Start 2P", monospace;
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    h1 {
+      margin: 25px 0;
+      font-family: "Press Start 2P", monospace;
+      font-size: clamp(34px, 8vw, 100px);
+      line-height: 1.3;
+      letter-spacing: -5px;
+      overflow-wrap: anywhere;
+      text-shadow: 5px 5px #fff1d6, 9px 9px #171717;
+    }
+
+    .mission {
+      font-size: clamp(17px, 3vw, 27px);
+      font-weight: 800;
+      line-height: 1.7;
+    }
+
+    .mission strong {
+      background: #171717;
+      color: #ffd447;
+      padding: 5px 8px;
+    }
+
+    .moon {
+      font-family: "Press Start 2P", monospace;
+      font-size: clamp(11px, 2vw, 17px);
+      line-height: 1.8;
+      margin: 20px 0;
+    }
+
+    .product {
+      width: min(520px, 100%);
+      margin: 20px auto 0;
+      padding: 15px;
+    }
+
+    .shirt-image {
+      display: block;
+      width: 100%;
+      max-height: 470px;
+      object-fit: contain;
+      margin: 0 auto;
+      filter: drop-shadow(10px 12px 0 rgba(23, 23, 23, .2));
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .product-name {
+      font-family: "Press Start 2P", monospace;
+      font-size: clamp(12px, 2vw, 17px);
+      line-height: 1.8;
+      margin: 20px 0 10px;
+    }
+
+    .price {
+      font-size: 38px;
+      font-weight: 800;
+      margin: 10px 0;
+    }
+
+    .shipping {
+      font-family: "Press Start 2P", monospace;
+      font-size: 10px;
+      line-height: 2;
+      margin: 15px 0 25px;
+    }
+
+    .buy-button {
+      display: inline-block;
+      max-width: 100%;
+      padding: 20px 24px;
+      background: #171717;
+      color: #fff1d6;
+      border: 3px solid #171717;
+      box-shadow: 6px 6px #fff1d6;
+      text-decoration: none;
+      font-family: "Press Start 2P", monospace;
+      font-size: 11px;
+      line-height: 1.8;
+      transition: .2s;
+    }
+
+    .buy-button:hover {
+      transform: translate(3px, 3px);
+      box-shadow: 3px 3px #fff1d6;
+      color: #ffd447;
+    }
+
+    .payment-note {
+      font-size: 12px;
+      font-weight: 700;
+      margin: 20px 0;
+    }
+
+    .ticker {
+      background: #171717;
+      color: #ffd447;
+      border-top: 3px solid #fff1d6;
+      border-bottom: 3px solid #fff1d6;
+      padding: 17px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      font-family: "Press Start 2P", monospace;
+      font-size: 12px;
+    }
+
+    .ticker span {
+      display: inline-block;
+      animation: scroll 22s linear infinite;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 25px 6%;
+      background: #171717;
+      color: #fff1d6;
+      font-family: "Press Start 2P", monospace;
+      font-size: 9px;
+      line-height: 1.8;
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0) rotate(-1deg); }
+      50% { transform: translateY(-8px) rotate(1deg); }
+    }
+
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    @media (max-width: 600px) {
+      header { padding: 16px; }
+      .logo { font-size: 10px; }
+      header a { font-size: 9px; }
+      main { padding: 38px 15px 30px; }
+      h1 { letter-spacing: -3px; text-shadow: 3px 3px #fff1d6, 6px 6px #171717; }
+      .shipping { font-size: 8px; }
+      .buy-button { font-size: 9px; padding: 17px 12px; }
+      footer { flex-direction: column; align-items: center; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="logo">FROGINALS®</div>
+    <a href="#shop">SHOP THE TEE ↓</a>
+  </header>
+
+  <main>
+    <div class="eyebrow">GOOD FROGS. GOOD DOGE.</div>
+
+    <h1>FROGINALS!</h1>
+
+    <p class="mission">
+      FROGINAL IS SUPPORTING<br>
+      <strong>DOGECOIN</strong>
+    </p>
+
+    <p class="moon">DOGE TO THE MOON 🚀</p>
+
+    <section class="product" id="shop">
+      <img
+        class="shirt-image"
+        src="assets/FROGINALs_shirt_01.png"
+        alt="Froginals T-shirt design"
+      >
+
+      <h2 class="product-name">THE FROGINALS TEE</h2>
+      <p class="price">$19.99 <small>USD</small></p>
+      <p class="shipping">✦ FREE SHIPPING WORLDWIDE ✦</p>
+
+      <!-- Replace the URL below with your actual PayPal checkout link -->
+      <a
+        class="buy-button"
+        href="https://www.paypal.com/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        BUY NOW WITH PAYPAL ↗
+      </a>
+
+      <p class="payment-note">Secure checkout via PayPal</p>
+    </section>
+  </main>
+
+  <div class="ticker">
+    <span>
+      FROGINALS SUPPORTS DOGECOIN ✦ DOGE TO THE MOON ✦
+      FROGINALS SUPPORTS DOGECOIN ✦ DOGE TO THE MOON ✦
+    </span>
+  </div>
+
+  <footer>
+    <span>FROGINALS © 2026</span>
+    <span>MADE FOR THE PACK 🐸🐕</span>
+  </footer>
+</body>
+</html>
