@@ -29,10 +29,7 @@
       text-align: center;
     }
 
-    /* =========================
-       NAVIGATION
-    ========================= */
-
+    /* HEADER */
     header {
       display: flex;
       justify-content: space-between;
@@ -46,9 +43,6 @@
       min-height: 82px;
     }
 
-    /* Logo container reserves navbar space.
-       The actual image hangs below the black line. */
-
     .logo-link {
       position: relative;
       display: block;
@@ -60,12 +54,11 @@
       z-index: 7;
     }
 
-    /* 2.5x logo size */
-
+    /* 30% smaller than the previous 250% logo */
     .logo-image {
       position: absolute;
       display: block;
-      width: 250%;
+      width: 175%;
       max-width: none;
       height: auto;
       left: 0;
@@ -78,8 +71,7 @@
       will-change: transform;
     }
 
-    /* Horizontal movement only: no rotation */
-
+    /* Horizontal sway only */
     .logo-image.logo-settled {
       animation: logoSway 3.8s ease-in-out infinite;
     }
@@ -88,7 +80,6 @@
       0%, 100% {
         transform: translateX(-7px);
       }
-
       50% {
         transform: translateX(7px);
       }
@@ -103,7 +94,7 @@
       z-index: 8;
     }
 
-    header a.shop-link {
+    .shop-link {
       color: #171717;
       text-decoration: none;
       font-weight: 800;
@@ -111,14 +102,11 @@
       white-space: nowrap;
     }
 
-    header a.shop-link:hover {
+    .shop-link:hover {
       color: #fff1d6;
     }
 
-    /* =========================
-       CARTOON MUSIC BUTTON
-    ========================= */
-
+    /* CARTOON MUSIC BUTTON */
     .music-toggle {
       display: inline-flex;
       align-items: center;
@@ -162,10 +150,7 @@
       to { transform: scale(1.07); }
     }
 
-    /* =========================
-       CENTER-SCREEN LOGO LAUNCH
-    ========================= */
-
+    /* CENTER LOGO INTRO */
     .logo-launch {
       position: fixed;
       inset: 0;
@@ -184,22 +169,19 @@
       left: 50%;
       top: 50%;
       display: block;
-      width: min(85vw, 850px);
+      width: min(59.5vw, 595px);
       max-width: none;
       max-height: 80vh;
       height: auto;
       object-fit: contain;
       object-position: center;
-      transform: translate(-50%, -50%) scale(1);
+      transform: translate(-50%, -50%);
       image-rendering: pixelated;
       filter: drop-shadow(9px 10px 0 #171717);
-      will-change: left, top, width, transform, opacity, filter;
+      will-change: left, top, width, transform, opacity;
     }
 
-    /* =========================
-       MAIN CONTENT
-    ========================= */
-
+    /* MAIN CONTENT */
     main {
       padding: 55px 20px 40px;
       overflow: hidden;
@@ -242,10 +224,7 @@
       margin: 20px 0;
     }
 
-    /* =========================
-       PRODUCT
-    ========================= */
-
+    /* PRODUCT */
     .product {
       width: min(520px, 100%);
       margin: 20px auto 0;
@@ -309,10 +288,7 @@
       margin: 20px 0;
     }
 
-    /* =========================
-       TICKER AND FOOTER
-    ========================= */
-
+    /* TICKER AND FOOTER */
     .ticker {
       background: #171717;
       color: #ffd447;
@@ -343,8 +319,12 @@
     }
 
     @keyframes float {
-      0%, 100% { transform: translateY(0) rotate(-1deg); }
-      50% { transform: translateY(-8px) rotate(1deg); }
+      0%, 100% {
+        transform: translateY(0) rotate(-1deg);
+      }
+      50% {
+        transform: translateY(-8px) rotate(1deg);
+      }
     }
 
     @keyframes scroll {
@@ -352,10 +332,7 @@
       to { transform: translateX(-50%); }
     }
 
-    /* =========================
-       MOBILE
-    ========================= */
-
+    /* MOBILE */
     @media (max-width: 600px) {
       header {
         padding: 14px 12px;
@@ -369,14 +346,14 @@
       }
 
       .logo-image {
-        width: 250%;
+        width: 175%;
       }
 
       .header-actions {
         gap: 10px;
       }
 
-      header a.shop-link {
+      .shop-link {
         font-size: 8px;
       }
 
@@ -411,7 +388,7 @@
       }
 
       .logo-launch img {
-        width: 92vw;
+        width: 64.4vw;
       }
     }
 
@@ -429,7 +406,7 @@
         gap: 7px;
       }
 
-      header a.shop-link {
+      .shop-link {
         font-size: 7px;
       }
 
@@ -452,13 +429,12 @@
 </head>
 
 <body>
-
-  <!-- CENTER LOGO LAUNCH -->
+  <!-- CENTER LOGO INTRO -->
   <div class="logo-launch" id="logoLaunch" aria-hidden="true">
     <img src="images/Log01.png" alt="">
   </div>
 
-  <!-- SINGLE NAVIGATION BAR -->
+  <!-- SINGLE HEADER -->
   <header>
     <a class="logo-link" href="#" aria-label="FROGINALS home">
       <img
@@ -508,7 +484,7 @@
       <p class="price">$19.99 <small>USD</small></p>
       <p class="shipping">✦ FREE SHIPPING WORLDWIDE ✦</p>
 
-      <!-- Replace with your actual PayPal checkout link -->
+      <!-- Replace with your actual PayPal checkout URL -->
       <a
         class="buy-button"
         href="https://www.paypal.com/"
@@ -532,20 +508,16 @@
     <span>MADE FOR THE PACK 🐸🐕</span>
   </footer>
 
-  <!-- BACKGROUND MUSIC -->
-  <!-- Check that this exact file exists in your audio folder. -->
-  <audio id="backgroundMusic" loop preload="auto">
+  <!-- BACKGROUND MUSIC: EXACT WAV FILENAME -->
+  <audio id="backgroundMusic" loop preload="metadata">
     <source
-      src="./audio/LOOT%20AN%20LOOT%20BASE%20MUSIC.wave"
+      src="./audio/LOOT%20AN%20LOOT%20BASE%20MUSIC.wav"
       type="audio/wav"
     >
   </audio>
 
   <script>
-    /* =================================
-       CENTER LOGO FLIES INTO NAVBAR
-    ================================= */
-
+    /* LOGO INTRO: CENTER TO NAVBAR */
     window.addEventListener("load", () => {
       const launch = document.getElementById("logoLaunch");
       const launchLogo = launch?.querySelector("img");
@@ -557,19 +529,25 @@
         return;
       }
 
-      const finishLaunch = () => {
+      let finished = false;
+
+      function finishLaunch() {
+        if (finished) return;
+        finished = true;
+
         launch.remove();
         navLogo.style.opacity = "1";
         navLogo.classList.add("logo-settled");
-      };
+      }
 
-      // Respect reduced-motion settings.
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         finishLaunch();
         return;
       }
 
-      const animateLogo = () => {
+      function animateLogo() {
+        if (finished) return;
+
         const target = navLogo.getBoundingClientRect();
 
         if (!target.width || !target.height) {
@@ -577,37 +555,32 @@
           return;
         }
 
-        const startWidth = Math.min(window.innerWidth * 0.85, 850);
-        const startHeight = launchLogo.getBoundingClientRect().height;
-        const startLeft = (window.innerWidth - startWidth) / 2;
-        const startTop = (window.innerHeight - startHeight) / 2;
+        /* 30% smaller intro logo */
+        const startWidth = Math.min(window.innerWidth * 0.595, 595);
 
-        // Match the launch image to the exact navbar logo position.
-        launchLogo.style.left = startLeft + "px";
-        launchLogo.style.top = startTop + "px";
         launchLogo.style.width = startWidth + "px";
         launchLogo.style.height = "auto";
-        launchLogo.style.transform = "none";
+        launchLogo.style.maxHeight = "80vh";
+        launchLogo.style.left = "50%";
+        launchLogo.style.top = "50%";
+        launchLogo.style.transform = "translate(-50%, -50%)";
         launchLogo.style.opacity = "1";
 
-        const actualStart = launchLogo.getBoundingClientRect();
+        const startRect = launchLogo.getBoundingClientRect();
         const finalTarget = navLogo.getBoundingClientRect();
 
-        // If the image proportions differ, the logo still lands
-        // in the navbar slot using a smooth size and position change.
         const animation = launchLogo.animate([
           {
-            left: actualStart.left + "px",
-            top: actualStart.top + "px",
-            width: actualStart.width + "px",
+            left: startRect.left + "px",
+            top: startRect.top + "px",
+            width: startRect.width + "px",
             transform: "translate(0, 0)",
-            opacity: 1,
-            filter: "drop-shadow(9px 10px 0 #171717)"
+            opacity: 1
           },
           {
-            left: (window.innerWidth / 2 - actualStart.width * 0.46) + "px",
-            top: (window.innerHeight / 2 - actualStart.height * 0.46) + "px",
-            width: (actualStart.width * 1.08) + "px",
+            left: (window.innerWidth / 2 - startRect.width * 0.46) + "px",
+            top: (window.innerHeight / 2 - startRect.height * 0.46) + "px",
+            width: (startRect.width * 1.04) + "px",
             transform: "translate(0, 0)",
             opacity: 1,
             offset: 0.28
@@ -617,8 +590,7 @@
             top: finalTarget.top + "px",
             width: finalTarget.width + "px",
             transform: "translate(0, 0)",
-            opacity: 1,
-            filter: "drop-shadow(4px 5px 0 rgba(23, 23, 23, 0.2))"
+            opacity: 1
           }
         ], {
           duration: 1650,
@@ -626,8 +598,7 @@
           fill: "forwards"
         });
 
-        // Fade the orange launch screen as the logo reaches the navbar.
-        const overlayFade = launch.animate([
+        launch.animate([
           { opacity: 1 },
           { opacity: 1, offset: 0.64 },
           { opacity: 0 }
@@ -638,25 +609,18 @@
         });
 
         animation.onfinish = finishLaunch;
-        overlayFade.oncancel = () => {};
-      };
+      }
 
-      // Wait a moment so the oversized logo appears in the center first.
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
-          launchLogo.style.opacity = "1";
           window.setTimeout(animateLogo, 450);
         });
       });
 
-      // Safety fallback if an animation is interrupted.
       window.setTimeout(finishLaunch, 3000);
     });
 
-    /* =================================
-       BACKGROUND MUSIC CONTROLS
-    ================================= */
-
+    /* MUSIC CONTROLS */
     document.addEventListener("DOMContentLoaded", () => {
       const music = document.getElementById("backgroundMusic");
       const button = document.getElementById("musicToggle");
@@ -668,48 +632,60 @@
       function updateButton(playing) {
         button.classList.toggle("is-muted", !playing);
         button.classList.toggle("is-playing", playing);
+
         button.textContent = playing ? "🔊" : "🎵";
-
         button.setAttribute("aria-pressed", String(playing));
-        button.setAttribute(
-          "aria-label",
-          playing ? "Pause background music" : "Play background music"
-        );
 
-        button.title = playing
+        const label = playing
           ? "Pause background music"
           : "Play background music";
+
+        button.setAttribute("aria-label", label);
+        button.title = label;
       }
 
-      // Autoplay may be blocked by browser settings.
-      music.play()
-        .then(() => updateButton(true))
-        .catch(() => updateButton(false));
-
+      /* Do not autoplay: wait for the visitor's click */
       button.addEventListener("click", async () => {
-        if (music.paused) {
-          try {
-            await music.play();
-            updateButton(true);
-          } catch (error) {
-            console.error("Music playback failed:", error);
-            updateButton(false);
-            alert(
-              "Music could not play. Check the exact filename and path in your audio folder."
-            );
-          }
-        } else {
+        if (!music.paused) {
           music.pause();
           updateButton(false);
+          return;
+        }
+
+        button.disabled = true;
+
+        try {
+          /* Reload the source if the browser has not loaded it yet */
+          if (music.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) {
+            music.load();
+          }
+
+          await music.play();
+          updateButton(true);
+        } catch (error) {
+          console.error("Music playback failed:", error);
+          updateButton(false);
+
+          alert(
+            "Music could not play. Check that the WAV file exists in the audio folder and that its filename matches exactly."
+          );
+        } finally {
+          button.disabled = false;
         }
       });
 
+      music.addEventListener("play", () => updateButton(true));
+      music.addEventListener("pause", () => updateButton(false));
+
       music.addEventListener("error", () => {
-        console.error("Could not load audio:", music.currentSrc);
+        console.error(
+          "Audio file failed to load:",
+          music.currentSrc,
+          music.error
+        );
         updateButton(false);
       });
     });
   </script>
-
 </body>
 </html>
