@@ -25,7 +25,11 @@ export default async function handler(req, res) {
     const data = await response.json();
 
     if (!response.ok) {
-      console.error("Printful variant lookup failed:", response.status);
+      console.error(
+        "Printful variant lookup failed:",
+        response.status
+      );
+
       return res.status(response.status).json({
         error: "Printful variant lookup failed",
         details: data
@@ -33,8 +37,10 @@ export default async function handler(req, res) {
     }
 
     return res.status(200).json(data);
+
   } catch (error) {
     console.error("Variant lookup error:", error.message);
+
     return res.status(500).json({
       error: "Could not retrieve variants"
     });
