@@ -1,1 +1,381 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>FROGINALS GOOD MATE Shirt 🐸</title>
+<meta name="description" content="Get your FROGINALS GOOD MATE shirt. Choose your color and size.">
+<style>
+:root {
+  --orange: #ff8a00;
+  --orange-dark: #e66b00;
+  --cream: #fff5df;
+  --black: #17130f;
+  --green: #48e28a;
+}
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  background: var(--cream);
+  color: var(--black);
+  font-family: Arial, Helvetica, sans-serif;
+}
+button { font: inherit; cursor: pointer; }
+header {
+  background: var(--orange);
+  border-bottom: 5px solid var(--black);
+  padding: 18px 6%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+.logo {
+  font-size: clamp(18px, 3vw, 28px);
+  font-weight: 1000;
+  letter-spacing: -1px;
+  text-decoration: none;
+  color: var(--black);
+}
+.back-link { color: var(--black); font-weight: 800; }
+main {
+  max-width: 1100px;
+  margin: 42px auto;
+  padding: 0 20px;
+}
+.product {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: 42px;
+  align-items: start;
+}
+.image-panel {
+  background: #ffe1ad;
+  border: 4px solid var(--black);
+  box-shadow: 8px 8px 0 var(--black);
+  padding: 20px;
+  min-height: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.image-panel img {
+  display: block;
+  width: 100%;
+  max-width: 480px;
+  height: auto;
+  object-fit: contain;
+}
+.tag {
+  display: inline-block;
+  background: var(--green);
+  border: 2px solid var(--black);
+  padding: 7px 10px;
+  font-size: 12px;
+  font-weight: 900;
+  text-transform: uppercase;
+}
+h1 {
+  margin: 15px 0 10px;
+  font-size: clamp(30px, 5vw, 48px);
+  line-height: 1.05;
+  text-transform: uppercase;
+  letter-spacing: -1.5px;
+}
+.description { line-height: 1.65; color: #51463a; }
+.price {
+  font-size: 34px;
+  font-weight: 1000;
+  margin: 18px 0 4px;
+}
+.shipping-note { color: #655a4d; font-size: 13px; }
+.section { margin-top: 25px; }
+.section-title {
+  display: block;
+  margin-bottom: 11px;
+  font-weight: 900;
+  text-transform: uppercase;
+  font-size: 13px;
+}
+.colors, .sizes { display: flex; flex-wrap: wrap; gap: 10px; }
+.color-option, .size-option {
+  border: 3px solid var(--black);
+  background: white;
+  padding: 11px 14px;
+  font-weight: 800;
+  box-shadow: 3px 3px 0 var(--black);
+  transition: transform .1s, box-shadow .1s;
+}
+.color-option:hover, .size-option:hover:not(:disabled) {
+  transform: translate(-1px,-1px);
+  box-shadow: 4px 4px 0 var(--black);
+}
+.color-option[aria-pressed="true"],
+.size-option[aria-pressed="true"] {
+  background: var(--orange);
+  outline: 3px solid var(--black);
+  outline-offset: 2px;
+}
+.size-option:disabled {
+  opacity: .35;
+  cursor: not-allowed;
+  text-decoration: line-through;
+}
+.color-dot {
+  display: inline-block;
+  width: 13px;
+  height: 13px;
+  border: 1px solid #777;
+  border-radius: 50%;
+  margin-right: 6px;
+  vertical-align: -1px;
+}
+.black { background: #171717; }
+.orange { background: #ff7900; }
+.cornsilk { background: #fff8dc; }
+.white { background: #fff; }
+.selection {
+  margin-top: 20px;
+  background: #fff;
+  border: 2px dashed #b6a58e;
+  padding: 13px;
+  line-height: 1.7;
+  font-size: 14px;
+}
+.buy-button {
+  width: 100%;
+  border: 3px solid var(--black);
+  background: var(--orange);
+  color: var(--black);
+  padding: 17px;
+  margin-top: 20px;
+  font-weight: 1000;
+  font-size: 17px;
+  text-transform: uppercase;
+  box-shadow: 5px 5px 0 var(--black);
+}
+.buy-button:hover {
+  background: var(--green);
+  transform: translateY(-1px);
+}
+.notice {
+  display: none;
+  margin-top: 20px;
+  padding: 15px;
+  background: #fff2c9;
+  border: 2px solid var(--black);
+  overflow-wrap: anywhere;
+  line-height: 1.6;
+}
+.notice.show { display: block; }
+footer {
+  margin-top: 60px;
+  padding: 25px 20px;
+  text-align: center;
+  background: var(--black);
+  color: white;
+  font-size: 13px;
+}
+@media (max-width: 750px) {
+  main { margin-top: 25px; }
+  .product { grid-template-columns: 1fr; gap: 30px; }
+  .image-panel { min-height: 240px; }
+  header { padding: 16px 5%; }
+}
+</style>
+</head>
+<body>
+
+<header>
+  <a class="logo" href="/">🐸 FROGINALS</a>
+  <a class="back-link" href="/">← Back to store</a>
+</header>
+
+<main>
+  <div class="product">
+    <div class="image-panel">
+      <img
+        id="productImage"
+        src="https://files.cdn.printful.com/files/0b0/0b08c5c19e35dedabd3306fbd9dc14cf_preview.png"
+        alt="FROGINALS GOOD MATE shirt"
+        onerror="this.onerror=null;this.alt='FROGINALS shirt preview unavailable';this.style.minHeight='200px';"
+      >
+    </div>
+
+    <section>
+      <span class="tag">🐸 FROGINALS ORIGINAL</span>
+      <h1>GOOD MATE<br>SHIRT</h1>
+      <p class="description">
+        Represent the FROGINALS crew. Pick your favorite color,
+        choose your size, and get your GOOD MATE shirt.
+      </p>
+
+      <div class="price" id="price">$14.50 USD</div>
+      <div class="shipping-note">Shipping and applicable taxes may be extra.</div>
+
+      <div class="section">
+        <span class="section-title">1. Choose your color</span>
+        <div class="colors" id="colorOptions">
+          <button class="color-option" data-color="Black" aria-pressed="true">
+            <span class="color-dot black"></span>Black
+          </button>
+          <button class="color-option" data-color="Orange" aria-pressed="false">
+            <span class="color-dot orange"></span>Orange
+          </button>
+          <button class="color-option" data-color="Cornsilk" aria-pressed="false">
+            <span class="color-dot cornsilk"></span>Cornsilk
+          </button>
+          <button class="color-option" data-color="White" aria-pressed="false">
+            <span class="color-dot white"></span>White
+          </button>
+        </div>
+      </div>
+
+      <div class="section">
+        <span class="section-title">2. Choose your size</span>
+        <div class="sizes" id="sizeOptions">
+          <button class="size-option" data-size="L" aria-pressed="true">L</button>
+          <button class="size-option" data-size="2XL" aria-pressed="false">2XL</button>
+          <button class="size-option" data-size="4XL" aria-pressed="false">4XL</button>
+        </div>
+        <p id="availability" class="shipping-note"></p>
+      </div>
+
+      <div class="selection">
+        <strong>Your selection</strong><br>
+        Color: <span id="selectedColor">Black</span><br>
+        Size: <span id="selectedSize">L</span><br>
+        Variant ID: <span id="variantId">5586793338</span>
+      </div>
+
+      <button class="buy-button" id="buyButton">CONTINUE — COMING SOON</button>
+
+      <div class="notice" id="notice" role="status" aria-live="polite"></div>
+      <p class="shipping-note">
+        Secure checkout is not connected yet. This page does not take payment
+        or submit an order.
+      </p>
+    </section>
+  </div>
+</main>
+
+<footer>
+  🐸 FROGINALS — GOOD MATES. GOOD VIBES. <br><br>
+  Product prices are shown in USD before shipping and applicable taxes.
+</footer>
+
+<script>
+const variants = {
+  Black: {
+    L:   { id: "5586793338", externalId: "6ad8a1ec107593", price: 14.50 },
+    "2XL": { id: "5586793339", externalId: "6ad8a1ec1075b7", price: 17.00 },
+    "4XL": { id: "5586793340", externalId: "6ad8a1ec1075d1", price: 22.00 }
+  },
+  Orange: {
+    L:   { id: "5586793341", externalId: "6ad8a1ec1075f5", price: 14.50 },
+    "2XL": { id: "5586793342", externalId: "6ad8a1ec107607", price: 17.00 },
+    "4XL": { id: "5586793343", externalId: "6ad8a1ec107615", price: 22.00 }
+  },
+  Cornsilk: {
+    L:   { id: "5586793344", externalId: "6ad8a1ec107638", price: 14.50 },
+    "2XL": { id: "5586793345", externalId: "6ad8a1ec107641", price: 17.00 }
+  },
+  White: {
+    L:   { id: "5586793346", externalId: "6ad8a1ec107656", price: 14.50 },
+    "2XL": { id: "5586793347", externalId: "6ad8a1ec107663", price: 17.00 },
+    "4XL": { id: "5586793348", externalId: "6ad8a1ec107673", price: 22.00 }
+  }
+};
+
+let selectedColor = "Black";
+let selectedSize = "L";
+
+const priceEl = document.getElementById("price");
+const variantEl = document.getElementById("variantId");
+const colorEl = document.getElementById("selectedColor");
+const sizeEl = document.getElementById("selectedSize");
+const availabilityEl = document.getElementById("availability");
+const noticeEl = document.getElementById("notice");
+const buyButton = document.getElementById("buyButton");
+
+function updateProduct() {
+  const colorVariants = variants[selectedColor];
+
+  document.querySelectorAll(".color-option").forEach(button => {
+    button.setAttribute(
+      "aria-pressed",
+      String(button.dataset.color === selectedColor)
+    );
+  });
+
+  document.querySelectorAll(".size-option").forEach(button => {
+    const available = Boolean(colorVariants[button.dataset.size]);
+    button.disabled = !available;
+    button.setAttribute(
+      "aria-pressed",
+      String(button.dataset.size === selectedSize)
+    );
+  });
+
+  if (!colorVariants[selectedSize]) {
+    selectedSize = Object.keys(colorVariants)[0];
+  }
+
+  const variant = colorVariants[selectedSize];
+
+  document.querySelectorAll(".size-option").forEach(button => {
+    button.setAttribute(
+      "aria-pressed",
+      String(button.dataset.size === selectedSize)
+    );
+  });
+
+  priceEl.textContent = "$" + variant.price.toFixed(2) + " USD";
+  variantEl.textContent = variant.id;
+  colorEl.textContent = selectedColor;
+  sizeEl.textContent = selectedSize;
+
+  availabilityEl.textContent = selectedColor === "Cornsilk"
+    ? "Available sizes: L and 2XL."
+    : "Available sizes: L, 2XL and 4XL.";
+
+  noticeEl.classList.remove("show");
+}
+
+document.getElementById("colorOptions").addEventListener("click", event => {
+  const button = event.target.closest("[data-color]");
+  if (!button) return;
+  selectedColor = button.dataset.color;
+  updateProduct();
+});
+
+document.getElementById("sizeOptions").addEventListener("click", event => {
+  const button = event.target.closest("[data-size]");
+  if (!button || button.disabled) return;
+  selectedSize = button.dataset.size;
+  updateProduct();
+});
+
+buyButton.addEventListener("click", () => {
+  const variant = variants[selectedColor][selectedSize];
+
+  noticeEl.innerHTML = `
+    <strong>Your shirt selection is ready! 🐸</strong><br>
+    Color: ${selectedColor}<br>
+    Size: ${selectedSize}<br>
+    Price: $${variant.price.toFixed(2)} USD<br>
+    Printful sync variant ID: ${variant.id}<br><br>
+    <strong>Checkout is not connected yet.</strong>
+    No payment has been taken and no order has been submitted.
+    Connect a real checkout and verify payment on the server before
+    enabling order fulfillment.
+  `;
+  noticeEl.classList.add("show");
+});
+
+updateProduct();
+</script>
+</body>
+</html>
+
