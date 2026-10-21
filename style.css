@@ -40,3 +40,37 @@
     font-size: 19px;
   }
 }
+.logo-link {
+  position: relative;
+  display: block;
+  align-self: stretch;
+  width: clamp(110px, 15vw, 165px);
+  min-width: 90px;
+  flex-shrink: 0;
+  text-decoration: none;
+  z-index: 7;
+}
+
+.logo-image {
+  position: absolute;
+  display: block;
+  width: 175%;
+  max-width: none;
+  height: auto;
+  left: 0;
+  top: 2px;
+  object-fit: contain;
+  object-position: top left;
+  transform-origin: top left;
+  opacity: 1;
+  filter: drop-shadow(4px 5px 0 rgba(23, 23, 23, 0.2));
+}
+
+.logo-image.logo-settled {
+  animation: logoSway 3.8s ease-in-out infinite;
+}
+
+@keyframes logoSway {
+  0%, 100% { transform: translateX(-7px); }
+  50% { transform: translateX(7px); }
+}
