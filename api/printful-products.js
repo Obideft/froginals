@@ -25,6 +25,7 @@ export default async function handler(req, res) {
     const data = await response.json();
 
     if (!response.ok) {
+      console.error("Printful API error:", response.status);
       return res.status(response.status).json({
         error: "Printful API request failed",
         details: data
@@ -33,7 +34,7 @@ export default async function handler(req, res) {
 
     return res.status(200).json(data);
   } catch (error) {
-    console.error("Printful products error:", error.message);
+    console.error("Printful request failed:", error.message);
     return res.status(500).json({
       error: "Could not retrieve Printful products"
     });
