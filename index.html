@@ -25,7 +25,7 @@
       text-align: center;
     }
 
-    /* SINGLE HEADER */
+    /* NAVIGATION */
     header {
       display: flex;
       justify-content: space-between;
@@ -34,22 +34,83 @@
       padding: 18px 6%;
       border-bottom: 3px solid #171717;
       position: relative;
-      z-index: 2;
+      z-index: 5;
+      overflow: visible;
     }
 
-    .logo {
-      font-family: "Press Start 2P", monospace;
-      font-size: clamp(10px, 1.5vw, 15px);
-      line-height: 1.8;
+    /* LOGO SPACE */
+    .logo-link {
+      position: relative;
+      display: block;
+      align-self: stretch;
+      width: clamp(105px, 15vw, 165px);
+      min-width: 95px;
+      flex-shrink: 0;
+      text-decoration: none;
+      z-index: 6;
+    }
+
+    /* HANGING ANIMATED LOGO */
+    .logo-image {
+      position: absolute;
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 155px;
+      object-fit: contain;
+      object-position: top center;
+      left: 0;
+      top: 2px;
+      transform-origin: top center;
+      filter: drop-shadow(4px 5px 0 rgba(23, 23, 23, 0.2));
+      animation:
+        logoEntrance 1.1s cubic-bezier(.2, 1.5, .4, 1) both,
+        logoSway 3.8s ease-in-out 1.1s infinite;
+      will-change: transform, opacity;
+    }
+
+    /* START BIG AND TRANSPARENT, THEN SNAP INTO PLACE */
+    @keyframes logoEntrance {
+      0% {
+        opacity: 0;
+        transform: translateY(-24px) translateX(-12px) scale(1.65);
+      }
+
+      65% {
+        opacity: 0.85;
+        transform: translateY(4px) translateX(3px) scale(0.94);
+      }
+
+      85% {
+        opacity: 1;
+        transform: translateY(-2px) translateX(-1px) scale(1.04);
+      }
+
+      100% {
+        opacity: 1;
+        transform: translateY(0) translateX(0) scale(1);
+      }
+    }
+
+    /* GENTLE LEFT-TO-RIGHT MOVEMENT */
+    @keyframes logoSway {
+      0%, 100% {
+        transform: translateX(-5px) rotate(-2deg);
+      }
+
+      50% {
+        transform: translateX(6px) rotate(2deg);
+      }
     }
 
     .header-actions {
       display: flex;
       align-items: center;
       gap: 18px;
+      flex-shrink: 0;
     }
 
-    header a {
+    header a.shop-link {
       color: #171717;
       text-decoration: none;
       font-weight: 800;
@@ -57,11 +118,11 @@
       white-space: nowrap;
     }
 
-    header a:hover {
+    header a.shop-link:hover {
       color: #fff1d6;
     }
 
-    /* BIG CARTOON MUSIC BUTTON */
+    /* CARTOON MUSIC BUTTON */
     .music-toggle {
       width: 68px;
       height: 68px;
@@ -78,7 +139,7 @@
       cursor: pointer;
       box-shadow: 5px 6px 0 #171717;
       transform: rotate(3deg);
-      transition: transform 0.15s, box-shadow 0.15s, background 0.2s;
+      transition: transform .15s, box-shadow .15s, background .2s;
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -88,7 +149,7 @@
     }
 
     .music-toggle:active {
-      transform: translate(3px, 3px) rotate(0deg);
+      transform: translate(3px, 3px);
       box-shadow: 2px 3px 0 #171717;
     }
 
@@ -98,7 +159,7 @@
 
     .music-toggle.is-playing {
       background: #168cff;
-      animation: musicBounce 0.8s ease-in-out infinite alternate;
+      animation: musicBounce .8s ease-in-out infinite alternate;
     }
 
     @keyframes musicBounce {
@@ -106,6 +167,7 @@
       to { transform: rotate(4deg) scale(1.06); }
     }
 
+    /* MAIN CONTENT */
     main {
       padding: 55px 20px 40px;
       overflow: hidden;
@@ -148,6 +210,7 @@
       margin: 20px 0;
     }
 
+    /* PRODUCT */
     .product {
       width: min(520px, 100%);
       margin: 20px auto 0;
@@ -211,6 +274,7 @@
       margin: 20px 0;
     }
 
+    /* MOVING TICKER */
     .ticker {
       background: #171717;
       color: #ffd447;
@@ -250,28 +314,35 @@
       to { transform: translateX(-50%); }
     }
 
+    /* MOBILE */
     @media (max-width: 600px) {
       header {
         padding: 14px 12px;
+        gap: 8px;
       }
 
-      .logo {
-        font-size: 9px;
+      .logo-link {
+        width: 95px;
+        min-width: 85px;
+      }
+
+      .logo-image {
+        max-height: 120px;
       }
 
       .header-actions {
         gap: 10px;
       }
 
-      header a {
+      header a.shop-link {
         font-size: 8px;
       }
 
       .music-toggle {
-        width: 58px;
-        height: 58px;
-        font-size: 34px;
-        border-radius: 17px;
+        width: 54px;
+        height: 54px;
+        font-size: 31px;
+        border-radius: 16px;
       }
 
       main {
@@ -299,29 +370,39 @@
     }
 
     @media (max-width: 360px) {
-      .logo {
-        font-size: 8px;
+      header {
+        padding: 12px 8px;
       }
 
-      header a {
-        font-size: 7px;
+      .logo-link {
+        width: 76px;
+        min-width: 70px;
+      }
+
+      .logo-image {
+        max-height: 100px;
       }
 
       .header-actions {
         gap: 7px;
       }
 
+      header a.shop-link {
+        font-size: 7px;
+      }
+
       .music-toggle {
-        width: 50px;
-        height: 50px;
-        font-size: 29px;
+        width: 46px;
+        height: 46px;
+        font-size: 27px;
       }
     }
 
     @media (prefers-reduced-motion: reduce) {
       .shirt-image,
       .ticker span,
-      .music-toggle.is-playing {
+      .music-toggle.is-playing,
+      .logo-image {
         animation: none !important;
       }
     }
@@ -330,12 +411,19 @@
 
 <body>
 
-  <!-- ONE HEADER ONLY -->
+  <!-- SINGLE NAVIGATION HEADER -->
   <header>
-    <div class="logo">FROGINALS®</div>
+    <a class="logo-link" href="#" aria-label="FROGINALS home">
+      <img
+        class="logo-image"
+        src="images/Log01.png"
+        alt="FROGINALS logo"
+        fetchpriority="high"
+      >
+    </a>
 
     <div class="header-actions">
-      <a href="#shop">SHOP THE TEE ↓</a>
+      <a class="shop-link" href="#shop">SHOP THE TEE ↓</a>
 
       <button
         id="musicToggle"
@@ -371,7 +459,7 @@
       <p class="price">$19.99 <small>USD</small></p>
       <p class="shipping">✦ FREE SHIPPING WORLDWIDE ✦</p>
 
-      <!-- Replace with your actual PayPal checkout link -->
+      <!-- Replace this with your actual PayPal checkout link -->
       <a
         class="buy-button"
         href="https://www.paypal.com/"
@@ -396,7 +484,6 @@
   </footer>
 
   <!-- BACKGROUND MUSIC -->
-  <!-- IMPORTANT: change the filename below if your WAV file has a different name -->
   <audio id="backgroundMusic" loop preload="auto">
     <source
       src="./audio/LOOT%20AN%20LOOT%20BASE%20MUSIC.wav"
@@ -429,12 +516,11 @@
           : "Play background music";
       }
 
-      // Try autoplay; browsers may require a click first.
+      // Attempt autoplay; browsers may block audio until interaction.
       music.play()
         .then(() => updateButton(true))
         .catch(() => updateButton(false));
 
-      // Clicking the cartoon button starts or pauses the music.
       button.addEventListener("click", async () => {
         if (music.paused) {
           try {
@@ -444,7 +530,7 @@
             console.error("Music playback failed:", error);
             updateButton(false);
             alert(
-              "Music could not play. Check that the WAV file exists in your audio folder and that its filename matches the HTML."
+              "Music could not play. Check the audio folder and exact WAV filename."
             );
           }
         } else {
@@ -455,7 +541,7 @@
 
       music.addEventListener("error", () => {
         console.error(
-          "Could not load music file. Check the path and filename:",
+          "Could not load music file:",
           music.currentSrc
         );
         updateButton(false);
