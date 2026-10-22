@@ -1,3 +1,4 @@
+
 .header-actions {
   display: flex;
   align-items: center;
@@ -29,6 +30,37 @@
   background: #888;
 }
 
+/* FROGINALS NFT MINT BUTTON */
+.mint-button {
+  display: inline-block;
+  max-width: 100%;
+  margin: 18px auto 12px;
+  padding: 17px 20px;
+  background: #53ff89;
+  color: #171717;
+  border: 3px solid #171717;
+  box-shadow: 6px 6px #171717;
+  text-decoration: none;
+  font-family: "Press Start 2P", monospace;
+  font-size: clamp(9px, 1.8vw, 13px);
+  line-height: 1.9;
+  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+}
+
+.mint-button:hover {
+  background: #c3ff53;
+  color: #171717;
+  transform: translate(3px, 3px);
+  box-shadow: 3px 3px #171717;
+}
+
+.mint-note {
+  margin: 12px 0 20px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.8;
+}
+
 @media (max-width: 600px) {
   .header-actions {
     gap: 10px;
@@ -39,7 +71,14 @@
     height: 38px;
     font-size: 19px;
   }
+
+  .mint-button {
+    padding: 15px 10px;
+    font-size: 8px;
+    box-shadow: 4px 4px #171717;
+  }
 }
+
 .logo-link {
   position: relative;
   display: block;
