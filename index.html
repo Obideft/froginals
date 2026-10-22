@@ -17,6 +17,23 @@
     @media(max-width:600px){header{padding:14px 12px;min-height:72px;gap:8px}.logo-link{width:95px;min-width:75px}.logo-image{width:175%}.header-actions{gap:8px;flex-wrap:wrap;justify-content:flex-end}.shop-link{font-size:8px}.products-tab{padding:8px 7px;font-size:7px;border-width:2px;box-shadow:2px 2px #171717}.music-toggle{width:46px;height:46px;font-size:27px;border-radius:15px}main{padding:38px 15px 30px}h1{letter-spacing:-3px;text-shadow:3px 3px #fff1d6,6px 6px #171717}.shipping{font-size:8px}.buy-button{font-size:9px;padding:17px 12px}.community-section{padding:45px 0}.community-track{gap:12px;padding:10px 16px 20px}.community-card{flex-basis:86%;border-width:3px;box-shadow:5px 5px 0 rgba(23,23,23,.2)}.community-caption{padding:12px 10px 14px}.community-caption p{font-size:12px}.carousel-arrow{width:46px;height:46px}.community-cta{max-width:calc(100% - 32px);font-size:8px;padding:13px 10px}footer{flex-direction:column;align-items:center}.logo-launch img{width:64.4vw}}
     @media(max-width:360px){header{padding:12px 8px}.logo-link{width:78px;min-width:65px}.header-actions{gap:5px}.shop-link{font-size:7px}.products-tab{padding:6px 5px;font-size:6px}.music-toggle{width:42px;height:42px;font-size:24px}.community-card{flex-basis:90%}}
     @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
+
+    /* FROGINALS $1 SWAMP SPECIAL POPUP */
+    .swamp-popup-overlay{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(23,23,23,.78);opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
+    .swamp-popup-overlay.is-open{opacity:1;visibility:visible}
+    .swamp-popup{position:relative;width:min(480px,100%);padding:30px 22px 25px;background:#ff7900;color:#171717;border:4px solid #171717;box-shadow:10px 10px 0 #53ff89;transform:translateY(18px) scale(.96);transition:transform .25s;text-align:center;background-image:radial-gradient(#ff9d2e 2px,transparent 2px);background-size:18px 18px}
+    .swamp-popup-overlay.is-open .swamp-popup{transform:translateY(0) scale(1)}
+    .swamp-popup-close{position:absolute;top:7px;right:9px;width:38px;height:38px;border:3px solid #171717;background:#fff1d6;color:#171717;font-size:25px;font-weight:800;line-height:1;cursor:pointer;box-shadow:3px 3px #171717}
+    .swamp-popup-frog{font-size:56px;line-height:1.2;margin:4px 0 15px;filter:drop-shadow(3px 3px 0 #171717);animation:swampHop 1.1s ease-in-out infinite alternate}
+    .swamp-popup-kicker{margin:0 0 12px;font-family:"Press Start 2P",monospace;font-size:10px;line-height:1.9}
+    .swamp-popup h2{margin:0 0 13px;font-family:"Press Start 2P",monospace;font-size:clamp(17px,4.5vw,25px);line-height:1.6;text-shadow:2px 2px #fff1d6,4px 4px #171717}
+    .swamp-popup-copy{margin:0 auto 18px;max-width:360px;font-size:16px;font-weight:800;line-height:1.65}
+    .swamp-popup-price{display:inline-block;margin:0 0 17px;padding:8px 12px;background:#53ff89;border:3px solid #171717;font-family:"Press Start 2P",monospace;font-size:11px;line-height:1.8;box-shadow:4px 4px #171717}
+    .swamp-popup-cta{display:block;width:100%;padding:15px 10px;background:#53ff89;color:#171717;border:3px solid #171717;box-shadow:5px 5px #171717;text-decoration:none;font-family:"Press Start 2P",monospace;font-size:clamp(9px,2.5vw,12px);line-height:1.9;transition:transform .2s,box-shadow .2s,background .2s}
+    .swamp-popup-cta:hover{background:#c3ff53;transform:translate(3px,3px);box-shadow:2px 2px #171717}
+    .swamp-popup-footnote{margin:15px 0 0;font-size:10px;font-weight:700;line-height:1.6}
+    @keyframes swampHop{from{transform:translateY(0) rotate(-5deg)}to{transform:translateY(-7px) rotate(5deg)}}
+    @media(prefers-reduced-motion:reduce){.swamp-popup-frog{animation:none}.swamp-popup-overlay,.swamp-popup{transition:none}}
   </style>
 </head>
 <body>
@@ -204,5 +221,48 @@
       loadGallery();
     });
   </script>
+
+  <!-- FROGINALS $1 SWAMP SPECIAL POPUP -->
+  <div class="swamp-popup-overlay" id="swampPopupOverlay" aria-hidden="true">
+    <section class="swamp-popup" role="dialog" aria-modal="true" aria-labelledby="swampPopupTitle" aria-describedby="swampPopupCopy">
+      <button class="swamp-popup-close" id="swampPopupClose" type="button" aria-label="Close popup">×</button>
+      <div class="swamp-popup-frog" aria-hidden="true">🐸</div>
+      <p class="swamp-popup-kicker">HEY FROG! LISTEN UP...</p>
+      <h2 id="swampPopupTitle">THE $1<br>SWAMP SPECIAL</h2>
+      <p class="swamp-popup-copy" id="swampPopupCopy">Your own FROGINAL could be just about a dollar in SOL. Hop in and join the army!</p>
+      <div class="swamp-popup-price">🐸 ABOUT $1 IN SOL</div>
+      <a class="swamp-popup-cta" href="https://gravemint.io/mint/3678jb?utm_source=copy_link&amp;utm_medium=referral&amp;utm_content=collection" target="_blank" rel="noopener noreferrer">MINT YOUR FROGINAL ↗</a>
+      <p class="swamp-popup-footnote">SOL price and any platform fees may change. Check the live mint price on GraveMint.</p>
+    </section>
+  </div>
+  <script>
+    /* Show the popup once per browser tab session, after the visitor has had time to see the homepage. */
+    (() => {
+      const overlay = document.getElementById('swampPopupOverlay');
+      const closeButton = document.getElementById('swampPopupClose');
+      if (!overlay || !closeButton) return;
+      const storageKey = 'froginalsSwampPopupSeen';
+      let previousFocus = null;
+      function closePopup() {
+        overlay.classList.remove('is-open');
+        overlay.setAttribute('aria-hidden', 'true');
+        document.body.style.overflow = '';
+        if (previousFocus && typeof previousFocus.focus === 'function') previousFocus.focus();
+      }
+      function openPopup() {
+        try { if (sessionStorage.getItem(storageKey)) return; sessionStorage.setItem(storageKey, '1'); } catch (e) {}
+        previousFocus = document.activeElement;
+        overlay.classList.add('is-open');
+        overlay.setAttribute('aria-hidden', 'false');
+        document.body.style.overflow = 'hidden';
+        closeButton.focus();
+      }
+      closeButton.addEventListener('click', closePopup);
+      overlay.addEventListener('click', event => { if (event.target === overlay) closePopup(); });
+      document.addEventListener('keydown', event => { if (event.key === 'Escape' && overlay.classList.contains('is-open')) closePopup(); });
+      window.setTimeout(openPopup, 5500);
+    })();
+  </script>
+
 </body>
 </html>
