@@ -1,0 +1,677 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>THE FROGINAL THESES — FROGINALS</title>
+  <meta name="description" content="The FROGINAL THESES: a manifesto for memetic culture, DOGE, community, and the power of the swamp.">
+
+  <style>
+    :root {
+      --orange: #ff9d26;
+      --blue: #74d9ff;
+      --green: #8bff75;
+      --black: #111111;
+      --white: #fffdf4;
+      --gray: #d9d8cd;
+      --border: 4px solid var(--black);
+      --shadow: 6px 6px 0 var(--black);
+    }
+
+    * {
+      box-sizing: border-box;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--blue);
+      color: var(--black);
+      font-family: "Courier New", monospace;
+      line-height: 1.7;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    .topbar {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      padding: 14px 5%;
+      background: var(--white);
+      border-bottom: var(--border);
+    }
+
+    .brand {
+      font-weight: 900;
+      font-size: 1.05rem;
+      text-decoration: none;
+      letter-spacing: -1px;
+    }
+
+    .nav-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+
+    .pixel-button {
+      display: inline-block;
+      padding: 9px 13px;
+      background: var(--orange);
+      color: var(--black);
+      border: 3px solid var(--black);
+      box-shadow: 3px 3px 0 var(--black);
+      font: inherit;
+      font-weight: 900;
+      text-decoration: none;
+      cursor: pointer;
+      transition: transform 0.12s, box-shadow 0.12s;
+    }
+
+    .pixel-button:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px 0 var(--black);
+    }
+
+    .hero {
+      padding: 76px 6% 64px;
+      text-align: center;
+      background:
+        linear-gradient(0deg, rgba(255,255,255,.13) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,.13) 1px, transparent 1px),
+        var(--orange);
+      background-size: 24px 24px;
+      border-bottom: var(--border);
+    }
+
+    .eyebrow {
+      display: inline-block;
+      padding: 5px 12px;
+      background: var(--green);
+      border: 3px solid var(--black);
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      line-height: 1.15;
+      font-weight: 900;
+    }
+
+    h1 {
+      max-width: 1000px;
+      margin: 25px auto;
+      font-size: clamp(2.6rem, 8vw, 6.5rem);
+      letter-spacing: -5px;
+      text-transform: uppercase;
+      text-shadow: 4px 4px 0 var(--white);
+    }
+
+    .hero p {
+      max-width: 750px;
+      margin: 0 auto;
+      font-size: clamp(1rem, 2vw, 1.3rem);
+      font-weight: bold;
+    }
+
+    .hero .pixel-button {
+      margin-top: 26px;
+    }
+
+    .layout {
+      display: grid;
+      grid-template-columns: 270px minmax(0, 850px);
+      gap: 30px;
+      align-items: start;
+      justify-content: center;
+      max-width: 1250px;
+      margin: 45px auto;
+      padding: 0 22px;
+    }
+
+    .toc {
+      position: sticky;
+      top: 90px;
+      padding: 22px;
+      background: var(--green);
+      border: var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .toc h2 {
+      margin-top: 0;
+      font-size: 1.2rem;
+    }
+
+    .toc ol {
+      margin: 0;
+      padding-left: 23px;
+    }
+
+    .toc li {
+      margin: 9px 0;
+    }
+
+    .toc a {
+      font-size: .88rem;
+      font-weight: bold;
+      text-decoration-thickness: 2px;
+      text-underline-offset: 3px;
+    }
+
+    .paper {
+      min-width: 0;
+      padding: clamp(20px, 5vw, 55px);
+      background: var(--white);
+      border: var(--border);
+      box-shadow: var(--shadow);
+    }
+
+    .paper section {
+      padding: 10px 0 30px;
+      margin-bottom: 25px;
+      border-bottom: 3px dashed var(--gray);
+      scroll-margin-top: 100px;
+    }
+
+    .paper section:last-of-type {
+      border-bottom: 0;
+    }
+
+    .chapter-label {
+      display: inline-block;
+      padding: 4px 9px;
+      background: var(--blue);
+      border: 2px solid var(--black);
+      font-size: .8rem;
+      font-weight: 900;
+    }
+
+    .paper h2 {
+      margin: 15px 0;
+      font-size: clamp(1.5rem, 4vw, 2.25rem);
+      letter-spacing: -1px;
+    }
+
+    .paper h3 {
+      margin-top: 25px;
+    }
+
+    .paper p, .paper li {
+      font-size: 1rem;
+    }
+
+    .paper blockquote {
+      margin: 25px 0;
+      padding: 18px 22px;
+      background: var(--green);
+      border-left: 7px solid var(--black);
+      font-size: 1.1rem;
+      font-weight: 900;
+    }
+
+    .manifesto-card {
+      padding: 24px;
+      margin: 25px 0;
+      background: var(--orange);
+      border: var(--border);
+      box-shadow: 4px 4px 0 var(--black);
+      font-weight: 900;
+    }
+
+    .disclaimer {
+      padding: 22px;
+      background: #eeeeea;
+      border: 3px solid var(--black);
+      font-size: .9rem;
+    }
+
+    footer {
+      margin-top: 50px;
+      padding: 35px 20px;
+      text-align: center;
+      background: var(--black);
+      color: var(--white);
+      border-top: 7px solid var(--green);
+    }
+
+    footer a {
+      color: var(--green);
+    }
+
+    @media (max-width: 850px) {
+      .layout {
+        grid-template-columns: 1fr;
+      }
+
+      .toc {
+        position: static;
+      }
+
+      .toc ol {
+        columns: 2;
+        column-gap: 25px;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .topbar {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      .toc ol {
+        columns: 1;
+      }
+
+      .hero {
+        padding: 50px 20px;
+      }
+
+      .paper {
+        padding: 22px 18px;
+      }
+    }
+
+    @media print {
+      body {
+        background: white;
+        color: black;
+        font-size: 11pt;
+      }
+
+      .topbar, .toc, .hero .pixel-button, .nav-actions, footer {
+        display: none !important;
+      }
+
+      .hero {
+        padding: 25px 0;
+        background: white;
+        border-bottom: 2px solid black;
+      }
+
+      h1 {
+        font-size: 36pt;
+        text-shadow: none;
+      }
+
+      .layout {
+        display: block;
+        margin: 0;
+        padding: 0;
+      }
+
+      .paper {
+        padding: 0;
+        border: 0;
+        box-shadow: none;
+      }
+
+      .paper section {
+        break-inside: avoid;
+      }
+
+      a {
+        text-decoration: none;
+      }
+
+      .manifesto-card, .paper blockquote, .disclaimer {
+        print-color-adjust: exact;
+        -webkit-print-color-adjust: exact;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <header class="topbar">
+    <a class="brand" href="index.html">🐸 FROGINALS</a>
+
+    <div class="nav-actions">
+      <a class="pixel-button" href="index.html">← HOME</a>
+      <button class="pixel-button" onclick="window.print()">
+        PRINT / SAVE PDF
+      </button>
+    </div>
+  </header>
+
+  <section class="hero">
+    <span class="eyebrow">THE OFFICIAL FROGINALS MANIFESTO</span>
+    <h1>THE FROGINAL THESES</h1>
+    <p>A Manifesto for Memetic Culture, DOGE, and the Power of the Swamp.</p>
+    <a class="pixel-button" href="#chapter-1">ENTER THE SWAMP ↓</a>
+  </section>
+
+  <div class="layout">
+    <aside class="toc">
+      <h2>📜 THE ROADMAP</h2>
+      <ol>
+        <li><a href="#chapter-1">The Beginning of a Meme</a></li>
+        <li><a href="#chapter-2">The Memetic Equation</a></li>
+        <li><a href="#chapter-3">The Power of Fun</a></li>
+        <li><a href="#chapter-4">From DOGE to FROG-Style Culture</a></li>
+        <li><a href="#chapter-5">The Froginal Dogs Collection</a></li>
+        <li><a href="#chapter-6">NFTs as Community Tickets</a></li>
+        <li><a href="#chapter-7">Gravemint and On-Chain Collecting</a></li>
+        <li><a href="#chapter-8">Early Believers</a></li>
+        <li><a href="#chapter-9">The Mission</a></li>
+        <li><a href="#chapter-10">FROGINAL Principles</a></li>
+        <li><a href="#chapter-11">The Future Is Community</a></li>
+        <li><a href="#chapter-12">The Thesis</a></li>
+      </ol>
+    </aside>
+
+    <main class="paper">
+      <p><strong>WELCOME TO THE SWAMP.</strong></p>
+      <p>
+        This is the FROGINALS thesis: a celebration of memes, internet culture,
+        DOGE, digital collecting, and the communities that give them life.
+        It is a cultural manifesto, not a promise of financial success.
+      </p>
+
+      <section id="chapter-1">
+        <span class="chapter-label">CHAPTER 01</span>
+        <h2>THE BEGINNING OF A MEME</h2>
+        <p>
+          Every great internet movement starts somewhere. Sometimes it begins
+          with a joke, a strange image, a ridiculous idea, or a community that
+          refuses to stop having fun.
+        </p>
+        <p>
+          Dogecoin began in 2013 as a playful cryptocurrency inspired by the
+          famous Shiba Inu dog meme. What started as humor grew into a global
+          cultural phenomenon, showing that online communities can give a
+          simple joke a life far beyond its original post.
+        </p>
+        <p>
+          DOGE became more than a dog on a screen. It became a symbol of
+          internet-native culture, generosity, irreverence, and collective
+          participation.
+        </p>
+        <blockquote>
+          Never underestimate a joke that brings people together.
+        </blockquote>
+      </section>
+
+      <section id="chapter-2">
+        <span class="chapter-label">CHAPTER 02</span>
+        <h2>THE MEMETIC EQUATION</h2>
+        <p>
+          Memes spread because people choose to share them. They remix,
+          reinterpret, remix again, and make them their own. No central
+          committee can manufacture genuine participation on command.
+        </p>
+        <p>
+          FROGINALS brings together the playful spirit of DOGE, frog-style
+          internet energy, and the creativity of a community willing to build
+          something together.
+        </p>
+        <div class="manifesto-card">
+          DOGE SPIRIT + FROG ENERGY + COMMUNITY PARTICIPATION = FROGINAL CULTURE
+        </div>
+        <p>
+          This is not a mathematical formula or a prediction of success.
+          It is a creative shorthand for the culture we want to nurture:
+          open, funny, remixable, and community-driven.
+        </p>
+      </section>
+
+      <section id="chapter-3">
+        <span class="chapter-label">CHAPTER 03</span>
+        <h2>THE POWER OF FUN</h2>
+        <p>
+          The internet does not need every project to take itself seriously.
+          Sometimes the strongest contribution is a laugh, a ridiculous
+          character, or a meme that makes somebody's day a little better.
+        </p>
+        <p>
+          Fun is not the enemy of ambition. It is a reason to participate.
+          A community built around shared enjoyment has something to do
+          together even when the timeline is quiet and the market is moving
+          in the wrong direction.
+        </p>
+        <p>
+          FROGINALS puts creativity, humor, and shared experiences at the
+          center. The goal is not to eliminate the chaos of internet culture.
+          The goal is to make that chaos part of the fun.
+        </p>
+      </section>
+
+      <section id="chapter-4">
+        <span class="chapter-label">CHAPTER 04</span>
+        <h2>FROM DOGE TO FROG-STYLE CULTURE</h2>
+        <p>
+          DOGE helped demonstrate the cultural reach of a meme-native
+          cryptocurrency community. Frog culture has its own history,
+          characters, visual language, and traditions across the internet.
+        </p>
+        <p>
+          FROGINALS draws inspiration from this wider memetic landscape.
+          We celebrate the weirdness, the pixel art, the unexpected
+          characters, the inside jokes, and the creativity that happens
+          when people build on one another's ideas.
+        </p>
+        <p>
+          We are not here to claim ownership over internet culture. We are
+          here to contribute our own chapter to it.
+        </p>
+      </section>
+
+      <section id="chapter-5">
+        <span class="chapter-label">CHAPTER 05</span>
+        <h2>THE FROGINAL DOGS COLLECTION</h2>
+        <p>
+          The Froginal Dogs collection is a digital collectible project
+          inspired by the Doginal Frogs movement and the wider world of
+          on-chain meme culture.
+        </p>
+        <p>
+          The collection is envisioned around 10,069 unique digital
+          collectibles. Each character contributes to the visual identity
+          of the FROGINALS universe, giving the community characters to
+          collect, discuss, remix, and bring into its own creative work.
+        </p>
+        <p>
+          Collectibles can be cultural artifacts: snapshots of a community's
+          taste, humor, and imagination at a particular moment in internet
+          history.
+        </p>
+        <p>
+          Collection details, supply, availability, and any associated
+          features should always be checked against the project's current
+          official information.
+        </p>
+      </section>
+
+      <section id="chapter-6">
+        <span class="chapter-label">CHAPTER 06</span>
+        <h2>NFTs AS TICKETS TO THE COMMUNITY</h2>
+        <p>
+          A digital collectible can be more than an image in a wallet.
+          It can be a conversation starter, a profile identity, a personal
+          collection piece, or a way to signal participation in a shared
+          culture.
+        </p>
+        <p>
+          In the FROGINALS universe, community comes first. Any holder
+          activities, benefits, events, or access arrangements must be
+          described clearly and confirmed through official project channels.
+        </p>
+        <p>
+          Holding an NFT does not automatically guarantee future utility,
+          access, rewards, liquidity, resale demand, or financial returns.
+          A collectible should be understood for what it is and what has
+          actually been confirmed.
+        </p>
+      </section>
+
+      <section id="chapter-7">
+        <span class="chapter-label">CHAPTER 07</span>
+        <h2>GRAVEMINT AND ON-CHAIN COLLECTING</h2>
+        <p>
+          On-chain collecting connects digital items with blockchain
+          infrastructure. Depending on the collection and network,
+          blockchain records can help people verify ownership and follow
+          transactions.
+        </p>
+        <p>
+          FROGINALS uses Gravemint as part of its digital collectible
+          journey. Always verify the correct collection, mint page, network,
+          wallet prompt, and transaction details before signing or paying.
+        </p>
+        <p>
+          Blockchain transactions can be irreversible. Be cautious of
+          imitation accounts, fake mint links, suspicious messages, and
+          anyone asking for your recovery phrase or private keys.
+        </p>
+      </section>
+
+      <section id="chapter-8">
+        <span class="chapter-label">CHAPTER 08</span>
+        <h2>EARLY BELIEVERS</h2>
+        <p>
+          Every community has a beginning. Early participants help establish
+          the jokes, visual identity, traditions, and standards that future
+          members encounter.
+        </p>
+        <p>
+          Being early is not a guarantee of profit or status. Its real
+          cultural value is the opportunity to contribute while the story
+          is still being written.
+        </p>
+        <p>
+          FROGINALS celebrates the people who create memes, welcome new
+          members, share ideas, make art, build tools, and help keep the
+          community enjoyable.
+        </p>
+        <blockquote>
+          Build with the community, not just for the attention.
+        </blockquote>
+      </section>
+
+      <section id="chapter-9">
+        <span class="chapter-label">CHAPTER 09</span>
+        <h2>THE MISSION</h2>
+        <p>
+          The FROGINALS mission is simple: celebrate DOGE-inspired memetic
+          culture, grow a recognizable Froginal universe, and make the
+          internet a little more fun through community creativity.
+        </p>
+        <ul>
+          <li>Spread humor and original memes.</li>
+          <li>Encourage community-made art and stories.</li>
+          <li>Explore digital collecting and on-chain culture responsibly.</li>
+          <li>Welcome people who enjoy the culture, not only market activity.</li>
+          <li>Build patiently, transparently, and together.</li>
+        </ul>
+        <p>
+          This mission is a direction, not a guarantee of future milestones.
+          The community's actions will help shape what FROGINALS becomes.
+        </p>
+      </section>
+
+      <section id="chapter-10">
+        <span class="chapter-label">CHAPTER 10</span>
+        <h2>FROGINAL PRINCIPLES</h2>
+        <h3>01 — Memes Are the Language</h3>
+        <p>Creativity and humor are central to the culture.</p>
+        <h3>02 — Community Over Ego</h3>
+        <p>Give credit, share ideas, and help others participate.</p>
+        <h3>03 — Fun Without False Promises</h3>
+        <p>Never confuse cultural enthusiasm with a financial guarantee.</p>
+        <h3>04 — Build in the Open</h3>
+        <p>Communicate clearly about what exists, what is planned, and what remains uncertain.</p>
+        <h3>05 — Protect the Homies</h3>
+        <p>Encourage safe wallet habits and challenge suspicious links or impersonators.</p>
+        <h3>06 — Keep the Swamp Weird</h3>
+        <p>Make room for originality, playful experiments, and community imagination.</p>
+      </section>
+
+      <section id="chapter-11">
+        <span class="chapter-label">CHAPTER 11</span>
+        <h2>THE FUTURE IS WRITTEN BY THE COMMUNITY</h2>
+        <p>
+          No manifesto can predict every direction a community will take.
+          New artists may introduce new characters. Collectors may create
+          their own lore. Memes may travel into places nobody expected.
+        </p>
+        <p>
+          The future of FROGINALS will depend on the people who participate,
+          the quality of what they build, and how the community responds
+          to opportunities and challenges.
+        </p>
+        <p>
+          We can set a direction, keep the door open, and invite people
+          to contribute. The rest is a story still in progress.
+        </p>
+      </section>
+
+      <section id="chapter-12">
+        <span class="chapter-label">CHAPTER 12</span>
+        <h2>THE THESIS</h2>
+        <p>
+          The internet gave ordinary people a global stage for jokes,
+          art, characters, and communities. DOGE showed how a meme could
+          grow into a widely recognized cultural phenomenon. Frog culture
+          continues to add its own strange and wonderful energy to that
+          story.
+        </p>
+        <p>
+          FROGINALS is our contribution: a universe of characters,
+          collectibles, humor, and shared imagination.
+        </p>
+        <div class="manifesto-card">
+          WE ARE FROGINALS.<br><br>
+          WE BELIEVE IN THE POWER OF MEMES.<br>
+          WE BELIEVE IN THE POWER OF COMMUNITY.<br>
+          WE BELIEVE THE INTERNET COULD ALWAYS USE ANOTHER REASON TO LAUGH.
+          <br><br>
+          THE SWAMP IS OPEN.<br>
+          THE STORY IS YOURS TO HELP WRITE.
+          <br><br>
+          WELCOME TO THE FROGINALS UNIVERSE.<br>
+          🐸🐶 MEMES UNITE. CULTURE EVOLVES. JOY SPREADS.
+        </div>
+      </section>
+
+      <aside class="disclaimer">
+        <strong>IMPORTANT DISCLAIMER</strong>
+        <p>
+          This document is a cultural manifesto and is provided for
+          informational and entertainment purposes only. It is not financial,
+          investment, tax, or legal advice, and it is not an offer or
+          recommendation to buy any asset.
+        </p>
+        <p>
+          NFTs and crypto assets can be highly volatile and may lose some
+          or all of their value. No profit, liquidity, future utility,
+          benefits, or resale demand are guaranteed. Do your own research
+          and only make decisions you understand and can afford.
+        </p>
+        <p>
+          Project details and collection information may change. Refer to
+          official FROGINALS channels for current, verifiable information.
+        </p>
+      </aside>
+    </main>
+  </div>
+
+  <footer>
+    <p><strong>🐸 FROGINALS — MEMES UNITE. CULTURE EVOLVES. JOY SPREADS.</strong></p>
+    <p><a href="index.html">← RETURN TO THE FROGINALS HOME PAGE</a></p>
+  </footer>
+</body>
+</html>
