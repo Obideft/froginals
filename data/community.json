@@ -2,10 +2,10 @@
 {
   "images": [
     {
-      "image": "https://your-image-host.com/frog-art-01.png",
+      "image": "https://res.cloudinary.com/al96yvcm/image/upload/f_auto,q_auto/froginals_community_art",
       "title": "THE FROG GANG",
       "caption": "Two frogs talking fits, memes and Dogecoin.",
-      "alt": "Two dressed-up FROGINALS frogs",
+      "alt": "FROGINALS community artwork",
       "url": "https://your-community-post.com/post-01"
     },
     {
