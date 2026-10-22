@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
   <title>FROGINALS — Supporting Dogecoin</title>
-  <meta name="description" content="FROGINALS! Good frogs, good Doge. Shop the FROGINALS tee and support Dogecoin.">
+  <meta name="description" content="FROGINALS! Good frogs, good Doge. Shop the FROGINALS tee and join the community.">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -19,6 +19,7 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 20px;
     }
 
     body {
@@ -54,7 +55,6 @@
       z-index: 7;
     }
 
-    /* NAVIGATION LOGO */
     .logo-image {
       position: absolute;
       display: block;
@@ -76,12 +76,8 @@
     }
 
     @keyframes logoSway {
-      0%, 100% {
-        transform: translateX(-7px);
-      }
-      50% {
-        transform: translateX(7px);
-      }
+      0%, 100% { transform: translateX(-7px); }
+      50% { transform: translateX(7px); }
     }
 
     .header-actions {
@@ -127,7 +123,6 @@
       box-shadow: 1px 1px #171717;
     }
 
-    /* FROGINALARMY MENU TAB */
     .army-tab {
       background: #c3ff53;
       color: #171717;
@@ -135,11 +130,18 @@
 
     .army-tab:hover {
       background: #8cff9b;
-      transform: translate(2px, 2px);
-      box-shadow: 1px 1px #171717;
     }
 
-    /* CARTOON MUSIC BUTTON */
+    /* COMMUNITY NAVIGATION TAB */
+    .community-tab {
+      background: #fff1d6;
+    }
+
+    .community-tab:hover {
+      background: #ffffff;
+    }
+
+    /* MUSIC BUTTON */
     .music-toggle {
       display: inline-flex;
       align-items: center;
@@ -155,7 +157,7 @@
       line-height: 1;
       cursor: pointer;
       box-shadow: 5px 5px #171717;
-      transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+      transition: transform .2s, background .2s, box-shadow .2s;
       -webkit-tap-highlight-color: transparent;
     }
 
@@ -175,7 +177,7 @@
 
     .music-toggle.is-playing {
       background: #168cff;
-      animation: musicBounce 0.8s ease-in-out infinite alternate;
+      animation: musicBounce .8s ease-in-out infinite alternate;
     }
 
     @keyframes musicBounce {
@@ -183,7 +185,7 @@
       to { transform: scale(1.07); }
     }
 
-    /* CENTER LOGO INTRO */
+    /* LOGO INTRO */
     .logo-launch {
       position: fixed;
       inset: 0;
@@ -321,6 +323,206 @@
       margin: 20px 0;
     }
 
+    /* =====================================
+       FROGINALS COMMUNITY IMAGE CAROUSEL
+       ===================================== */
+
+    .community-section {
+      padding: 65px 0 60px;
+      background: #ffe46b;
+      border-top: 4px solid #171717;
+      border-bottom: 4px solid #171717;
+      overflow: hidden;
+      scroll-margin-top: 20px;
+      background-image: radial-gradient(
+        rgba(23, 23, 23, .09) 2px,
+        transparent 2px
+      );
+      background-size: 20px 20px;
+    }
+
+    .community-inner {
+      width: 100%;
+      margin: 0 auto;
+    }
+
+    .community-eyebrow {
+      margin: 0 15px 15px;
+      font-family: "Press Start 2P", monospace;
+      font-size: 10px;
+      line-height: 2;
+    }
+
+    .community-title {
+      margin: 0 12px 15px;
+      font-family: "Press Start 2P", monospace;
+      font-size: clamp(23px, 5vw, 48px);
+      line-height: 1.5;
+      letter-spacing: -1px;
+      text-shadow: 3px 3px #fff1d6, 5px 5px #171717;
+    }
+
+    .community-description {
+      max-width: 620px;
+      margin: 0 auto 30px;
+      padding: 0 18px;
+      font-size: clamp(14px, 2vw, 18px);
+      font-weight: 700;
+      line-height: 1.8;
+    }
+
+    /* The track reveals part of the next image */
+    .community-carousel {
+      position: relative;
+      width: 100%;
+    }
+
+    .community-track {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      padding: 12px max(20px, calc((100vw - 1000px) / 2)) 24px;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      overscroll-behavior-x: contain;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: #171717 #ffd447;
+      cursor: grab;
+    }
+
+    .community-track:active {
+      cursor: grabbing;
+    }
+
+    .community-track:focus-visible {
+      outline: 4px solid #168cff;
+      outline-offset: -4px;
+    }
+
+    .community-card {
+      position: relative;
+      flex: 0 0 min(76%, 820px);
+      min-width: 0;
+      overflow: hidden;
+      align-self: stretch;
+      background: #171717;
+      border: 4px solid #171717;
+      border-radius: 5px;
+      box-shadow: 8px 8px 0 rgba(23, 23, 23, .2);
+      scroll-snap-align: start;
+    }
+
+    .community-card img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background: #ff7900;
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .community-caption {
+      padding: 15px 14px 17px;
+      background: #171717;
+      color: #fff1d6;
+      text-align: left;
+    }
+
+    .community-caption h3 {
+      margin: 0 0 8px;
+      color: #ffd447;
+      font-family: "Press Start 2P", monospace;
+      font-size: clamp(9px, 1.5vw, 13px);
+      line-height: 1.9;
+    }
+
+    .community-caption p {
+      margin: 0;
+      font-size: 13px;
+      font-weight: 700;
+      line-height: 1.6;
+    }
+
+    /* CAROUSEL ARROWS */
+    .community-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 15px;
+      margin: 24px 15px 0;
+    }
+
+    .carousel-arrow {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      border: 3px solid #171717;
+      border-radius: 4px;
+      background: #ffd447;
+      color: #171717;
+      box-shadow: 4px 4px #171717;
+      font-size: 26px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform .18s, box-shadow .18s, background .18s;
+    }
+
+    .carousel-arrow:hover {
+      background: #c3ff53;
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px #171717;
+    }
+
+    .carousel-arrow:active {
+      transform: translate(4px, 4px);
+      box-shadow: none;
+    }
+
+    .carousel-arrow:focus-visible,
+    .community-cta:focus-visible {
+      outline: 3px solid #168cff;
+      outline-offset: 4px;
+    }
+
+    .carousel-counter {
+      min-width: 76px;
+      font-family: "Press Start 2P", monospace;
+      font-size: 10px;
+      line-height: 1.8;
+    }
+
+    .community-cta {
+      display: inline-block;
+      margin-top: 28px;
+      padding: 16px 18px;
+      border: 3px solid #171717;
+      background: #c3ff53;
+      color: #171717;
+      box-shadow: 5px 5px #171717;
+      font-family: "Press Start 2P", monospace;
+      font-size: 10px;
+      line-height: 1.9;
+      text-decoration: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .community-cta:hover {
+      transform: translate(3px, 3px);
+      box-shadow: 2px 2px #171717;
+    }
+
+    .community-note {
+      margin: 22px 16px 0;
+      font-size: 12px;
+      font-weight: 700;
+      line-height: 1.8;
+    }
+
     /* TICKER AND FOOTER */
     .ticker {
       background: #171717;
@@ -352,12 +554,8 @@
     }
 
     @keyframes float {
-      0%, 100% {
-        transform: translateY(0) rotate(-1deg);
-      }
-      50% {
-        transform: translateY(-8px) rotate(1deg);
-      }
+      0%, 100% { transform: translateY(0) rotate(-1deg); }
+      50% { transform: translateY(-8px) rotate(1deg); }
     }
 
     @keyframes scroll {
@@ -424,6 +622,40 @@
         padding: 17px 12px;
       }
 
+      .community-section {
+        padding: 45px 0;
+      }
+
+      .community-track {
+        gap: 12px;
+        padding: 10px 16px 20px;
+      }
+
+      .community-card {
+        flex-basis: 86%;
+        border-width: 3px;
+        box-shadow: 5px 5px 0 rgba(23, 23, 23, .2);
+      }
+
+      .community-caption {
+        padding: 12px 10px 14px;
+      }
+
+      .community-caption p {
+        font-size: 12px;
+      }
+
+      .carousel-arrow {
+        width: 46px;
+        height: 46px;
+      }
+
+      .community-cta {
+        max-width: calc(100% - 32px);
+        font-size: 8px;
+        padding: 13px 10px;
+      }
+
       footer {
         flex-direction: column;
         align-items: center;
@@ -462,14 +694,20 @@
         height: 42px;
         font-size: 24px;
       }
+
+      .community-card {
+        flex-basis: 90%;
+      }
     }
 
     @media (prefers-reduced-motion: reduce) {
-      .shirt-image,
-      .ticker span,
-      .music-toggle.is-playing,
-      .logo-image {
-        animation: none !important;
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation-duration: .01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: .01ms !important;
       }
     }
   </style>
@@ -505,11 +743,15 @@
         rel="noopener noreferrer"
       >FROGISWAP</a>
 
-      <!-- NEW FROGINALARMY MENU TAB -->
       <a
         class="products-tab army-tab"
         href="froginalarmy.html"
       >FROGINALARMY 🐸</a>
+
+      <!-- NEW COMMUNITY NAVIGATION -->
+      <a class="products-tab community-tab" href="#community">
+        COMMUNITY ✦
+      </a>
 
       <button
         id="musicToggle"
@@ -546,15 +788,146 @@
       <p class="price">$19.99 <small>USD</small></p>
       <p class="shipping">✦ FREE SHIPPING WORLDWIDE ✦</p>
 
-      <a
-        class="buy-button"
-        href="product.html"
-      >BUY T-SHIRT ↗</a>
+      <a class="buy-button" href="product.html">
+        BUY T-SHIRT ↗
+      </a>
 
       <p class="payment-note">Secure checkout via PayPal</p>
     </section>
   </main>
 
+  <!-- ======================================
+       FROGINALS COMMUNITY CAROUSEL
+       Add more community cards as needed.
+       ====================================== -->
+  <section
+    class="community-section"
+    id="community"
+    aria-labelledby="communityTitle"
+  >
+    <div class="community-inner">
+
+      <p class="community-eyebrow">
+        🐸 THE FROG GANG CHECK-IN 🐸
+      </p>
+
+      <h2 class="community-title" id="communityTitle">
+        FROGINALS<br>COMMUNITY!
+      </h2>
+
+      <p class="community-description">
+        Real frogs. Real outfits. Real community.
+        Slide through the FROGINALS universe and
+        check out what the pack is cooking.
+      </p>
+
+      <div class="community-carousel">
+
+        <div
+          class="community-track"
+          id="communityTrack"
+          tabindex="0"
+          aria-label="FROGINALS community image carousel. Swipe or use the arrow buttons to explore."
+        >
+
+          <!-- IMAGE 1 -->
+          <article class="community-card">
+            <img
+              src="assets/community/froginals-community-01.png"
+              alt="Two FROGINALS frogs in blue and orange streetwear chatting together"
+              loading="lazy"
+              draggable="false"
+            >
+            <div class="community-caption">
+              <h3>THE FROG GANG 🐸</h3>
+              <p>Two frogs. Fresh fits. Zero bad vibes.</p>
+            </div>
+          </article>
+
+          <!-- IMAGE 2 -->
+          <article class="community-card">
+            <img
+              src="assets/community/froginals-community-02.png"
+              alt="FROGINALS community frog artwork"
+              loading="lazy"
+              draggable="false"
+            >
+            <div class="community-caption">
+              <h3>FRESH OUT THE SWAMP</h3>
+              <p>When the fit is cleaner than your portfolio.</p>
+            </div>
+          </article>
+
+          <!-- IMAGE 3 -->
+          <article class="community-card">
+            <img
+              src="assets/community/froginals-community-03.png"
+              alt="Funny FROGINALS frog meme and community artwork"
+              loading="lazy"
+              draggable="false"
+            >
+            <div class="community-caption">
+              <h3>GOOD FROGS ONLY</h3>
+              <p>Different outfits. Same frog energy.</p>
+            </div>
+          </article>
+
+          <!-- IMAGE 4 -->
+          <article class="community-card">
+            <img
+              src="assets/community/froginals-community-04.png"
+              alt="FROGINALS community collection and frog character artwork"
+              loading="lazy"
+              draggable="false"
+            >
+            <div class="community-caption">
+              <h3>PACK REPRESENT</h3>
+              <p>Show up, support the pack, and bring the memes.</p>
+            </div>
+          </article>
+
+        </div>
+
+        <!-- CAROUSEL CONTROLS -->
+        <div class="community-controls">
+          <button
+            class="carousel-arrow"
+            id="communityPrev"
+            type="button"
+            aria-label="Previous community image"
+            title="Previous image"
+          >←</button>
+
+          <span
+            class="carousel-counter"
+            id="communityCounter"
+            aria-live="polite"
+          >01 / 04</span>
+
+          <button
+            class="carousel-arrow"
+            id="communityNext"
+            type="button"
+            aria-label="Next community image"
+            title="Next image"
+          >→</button>
+        </div>
+
+      </div>
+
+      <a
+        class="community-cta"
+        href="froginalarmy.html"
+      >JOIN THE FROGINALS ARMY 🐸</a>
+
+      <p class="community-note">
+        HOLD THE VIBE. SHARE THE MEMES. SUPPORT THE PACK.
+      </p>
+
+    </div>
+  </section>
+
+  <!-- TICKER -->
   <div class="ticker">
     <span>
       FROGINALS SUPPORTS DOGECOIN ✦ DOGE TO THE MOON ✦
@@ -562,6 +935,7 @@
     </span>
   </div>
 
+  <!-- FOOTER -->
   <footer>
     <span>FROGINALS © 2026</span>
     <span>MADE FOR THE PACK 🐸🐕</span>
@@ -576,7 +950,9 @@
   </audio>
 
   <script>
-    /* LOGO INTRO: CENTER TO NAVBAR */
+    /* =====================================
+       LOGO INTRO: CENTER TO NAVBAR
+       ===================================== */
     window.addEventListener("load", () => {
       const launch = document.getElementById("logoLaunch");
       const launchLogo = launch?.querySelector("img");
@@ -584,7 +960,12 @@
 
       if (!launch || !launchLogo || !navLogo) {
         launch?.remove();
-        if (navLogo) navLogo.style.opacity = "1";
+
+        if (navLogo) {
+          navLogo.style.opacity = "1";
+          navLogo.classList.add("logo-settled");
+        }
+
         return;
       }
 
@@ -636,8 +1017,12 @@
             opacity: 1
           },
           {
-            left: (window.innerWidth / 2 - startRect.width * 0.46) + "px",
-            top: (window.innerHeight / 2 - startRect.height * 0.46) + "px",
+            left: (
+              window.innerWidth / 2 - startRect.width * 0.46
+            ) + "px",
+            top: (
+              window.innerHeight / 2 - startRect.height * 0.46
+            ) + "px",
             width: (startRect.width * 1.04) + "px",
             transform: "translate(0, 0)",
             opacity: 1,
@@ -678,7 +1063,9 @@
       window.setTimeout(finishLaunch, 3000);
     });
 
-    /* MUSIC CONTROLS */
+    /* =====================================
+       MUSIC CONTROLS
+       ===================================== */
     document.addEventListener("DOMContentLoaded", () => {
       const music = document.getElementById("backgroundMusic");
       const button = document.getElementById("musicToggle");
@@ -702,7 +1089,6 @@
         button.title = label;
       }
 
-      /* Wait for visitor interaction before playing music */
       button.addEventListener("click", async () => {
         if (!music.paused) {
           music.pause();
@@ -713,7 +1099,9 @@
         button.disabled = true;
 
         try {
-          if (music.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) {
+          if (
+            music.networkState === HTMLMediaElement.NETWORK_NO_SOURCE
+          ) {
             music.load();
           }
 
@@ -740,8 +1128,106 @@
           music.currentSrc,
           music.error
         );
+
         updateButton(false);
       });
+    });
+
+    /* =====================================
+       COMMUNITY IMAGE CAROUSEL
+       Mouse, touch, arrows and keyboard.
+       ===================================== */
+    document.addEventListener("DOMContentLoaded", () => {
+      const track = document.getElementById("communityTrack");
+      const prevButton = document.getElementById("communityPrev");
+      const nextButton = document.getElementById("communityNext");
+      const counter = document.getElementById("communityCounter");
+
+      if (!track || !prevButton || !nextButton || !counter) return;
+
+      const cards = Array.from(
+        track.querySelectorAll(".community-card")
+      );
+
+      if (!cards.length) return;
+
+      function getCurrentIndex() {
+        const trackLeft = track.getBoundingClientRect().left;
+
+        let closestIndex = 0;
+        let closestDistance = Infinity;
+
+        cards.forEach((card, index) => {
+          const cardLeft = card.getBoundingClientRect().left;
+          const distance = Math.abs(cardLeft - trackLeft);
+
+          if (distance < closestDistance) {
+            closestDistance = distance;
+            closestIndex = index;
+          }
+        });
+
+        return closestIndex;
+      }
+
+      function updateCounter() {
+        const index = getCurrentIndex();
+
+        counter.textContent =
+          String(index + 1).padStart(2, "0") +
+          " / " +
+          String(cards.length).padStart(2, "0");
+      }
+
+      function moveCarousel(direction) {
+        const currentIndex = getCurrentIndex();
+        const targetIndex = Math.max(
+          0,
+          Math.min(cards.length - 1, currentIndex + direction)
+        );
+
+        if (targetIndex === currentIndex) return;
+
+        const card = cards[targetIndex];
+
+        track.scrollTo({
+          left: track.scrollLeft +
+            card.getBoundingClientRect().left -
+            track.getBoundingClientRect().left,
+          behavior: window.matchMedia(
+            "(prefers-reduced-motion: reduce)"
+          ).matches ? "auto" : "smooth"
+        });
+      }
+
+      prevButton.addEventListener("click", () => {
+        moveCarousel(-1);
+      });
+
+      nextButton.addEventListener("click", () => {
+        moveCarousel(1);
+      });
+
+      track.addEventListener("scroll", updateCounter, {
+        passive: true
+      });
+
+      track.addEventListener("keydown", (event) => {
+        if (event.key === "ArrowRight") {
+          event.preventDefault();
+          moveCarousel(1);
+        }
+
+        if (event.key === "ArrowLeft") {
+          event.preventDefault();
+          moveCarousel(-1);
+        }
+      });
+
+      window.addEventListener("resize", updateCounter);
+
+      /* Recalculate the counter once images and layout settle. */
+      requestAnimationFrame(updateCounter);
     });
   </script>
 </body>
