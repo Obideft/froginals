@@ -1,4 +1,486 @@
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>FROGINALS — Supporting Dogecoin</title>
+  <meta name="description" content="FROGINALS! Good frogs, good Doge. Shop the FROGINALS tee and support Dogecoin.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: #ff7900;
+      color: #171717;
+      font-family: "Space Grotesk", sans-serif;
+      text-align: center;
+    }
+
+    /* HEADER */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 6%;
+      border-bottom: 3px solid #171717;
+      position: relative;
+      z-index: 5;
+      overflow: visible;
+      min-height: 82px;
+    }
+
+    .logo-link {
+      position: relative;
+      display: block;
+      align-self: stretch;
+      width: clamp(110px, 15vw, 165px);
+      min-width: 90px;
+      flex-shrink: 0;
+      text-decoration: none;
+      z-index: 7;
+    }
+
+    /* NAVIGATION LOGO */
+    .logo-image {
+      position: absolute;
+      display: block;
+      width: 175%;
+      max-width: none;
+      height: auto;
+      left: 0;
+      top: 2px;
+      object-fit: contain;
+      object-position: top left;
+      transform-origin: top left;
+      opacity: 0;
+      filter: drop-shadow(4px 5px 0 rgba(23, 23, 23, 0.2));
+      will-change: transform;
+    }
+
+    .logo-image.logo-settled {
+      animation: logoSway 3.8s ease-in-out infinite;
+    }
+
+    @keyframes logoSway {
+      0%, 100% {
+        transform: translateX(-7px);
+      }
+      50% {
+        transform: translateX(7px);
+      }
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 8;
+    }
+
+    .shop-link {
+      color: #171717;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .shop-link:hover {
+      color: #fff1d6;
+    }
+
+    .products-tab {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 12px;
+      background: #ffd447;
+      color: #171717;
+      border: 3px solid #171717;
+      box-shadow: 3px 3px #171717;
+      text-decoration: none;
+      font-family: "Press Start 2P", monospace;
+      font-size: 9px;
+      line-height: 1.6;
+      white-space: nowrap;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .products-tab:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px #171717;
+    }
+
+    /* FROGINALARMY MENU TAB */
+    .army-tab {
+      background: #c3ff53;
+      color: #171717;
+    }
+
+    .army-tab:hover {
+      background: #8cff9b;
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px #171717;
+    }
+
+    /* CARTOON MUSIC BUTTON */
+    .music-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 58px;
+      height: 58px;
+      flex-shrink: 0;
+      border: 4px solid #171717;
+      border-radius: 19px;
+      background: #888;
+      color: white;
+      font-size: 33px;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 5px 5px #171717;
+      transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .music-toggle:hover {
+      transform: scale(1.08);
+      box-shadow: 7px 7px #171717;
+    }
+
+    .music-toggle:active {
+      transform: translate(3px, 3px);
+      box-shadow: 2px 2px #171717;
+    }
+
+    .music-toggle.is-muted {
+      background: #888;
+    }
+
+    .music-toggle.is-playing {
+      background: #168cff;
+      animation: musicBounce 0.8s ease-in-out infinite alternate;
+    }
+
+    @keyframes musicBounce {
+      from { transform: scale(1); }
+      to { transform: scale(1.07); }
+    }
+
+    /* CENTER LOGO INTRO */
+    .logo-launch {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #ff7900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      pointer-events: all;
+      opacity: 1;
+    }
+
+    .logo-launch img {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      display: block;
+      width: min(59.5vw, 595px);
+      max-width: none;
+      max-height: 80vh;
+      height: auto;
+      object-fit: contain;
+      object-position: center;
+      transform: translate(-50%, -50%);
+      image-rendering: pixelated;
+      filter: drop-shadow(9px 10px 0 #171717);
+      will-change: left, top, width, transform, opacity;
+    }
+
+    /* MAIN CONTENT */
+    main {
+      padding: 55px 20px 40px;
+      overflow: hidden;
+      background-image: radial-gradient(#ff9d2e 2px, transparent 2px);
+      background-size: 22px 22px;
+    }
+
+    .eyebrow {
+      font-family: "Press Start 2P", monospace;
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    h1 {
+      margin: 25px 0;
+      font-family: "Press Start 2P", monospace;
+      font-size: clamp(34px, 8vw, 100px);
+      line-height: 1.3;
+      letter-spacing: -5px;
+      overflow-wrap: anywhere;
+      text-shadow: 5px 5px #fff1d6, 9px 9px #171717;
+    }
+
+    .mission {
+      font-size: clamp(17px, 3vw, 27px);
+      font-weight: 800;
+      line-height: 1.7;
+    }
+
+    .mission strong {
+      background: #171717;
+      color: #ffd447;
+      padding: 5px 8px;
+    }
+
+    .moon {
+      font-family: "Press Start 2P", monospace;
+      font-size: clamp(11px, 2vw, 17px);
+      line-height: 1.8;
+      margin: 20px 0;
+    }
+
+    /* PRODUCT */
+    .product {
+      width: min(520px, 100%);
+      margin: 20px auto 0;
+      padding: 15px;
+    }
+
+    .shirt-image {
+      display: block;
+      width: 100%;
+      max-height: 470px;
+      object-fit: contain;
+      margin: 0 auto;
+      filter: drop-shadow(10px 12px 0 rgba(23, 23, 23, .2));
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .product-name {
+      font-family: "Press Start 2P", monospace;
+      font-size: clamp(12px, 2vw, 17px);
+      line-height: 1.8;
+      margin: 20px 0 10px;
+    }
+
+    .price {
+      font-size: 38px;
+      font-weight: 800;
+      margin: 10px 0;
+    }
+
+    .shipping {
+      font-family: "Press Start 2P", monospace;
+      font-size: 10px;
+      line-height: 2;
+      margin: 15px 0 25px;
+    }
+
+    .buy-button {
+      display: inline-block;
+      max-width: 100%;
+      padding: 20px 24px;
+      background: #171717;
+      color: #fff1d6;
+      border: 3px solid #171717;
+      box-shadow: 6px 6px #fff1d6;
+      text-decoration: none;
+      font-family: "Press Start 2P", monospace;
+      font-size: 11px;
+      line-height: 1.8;
+      transition: .2s;
+    }
+
+    .buy-button:hover {
+      transform: translate(3px, 3px);
+      box-shadow: 3px 3px #fff1d6;
+      color: #ffd447;
+    }
+
+    .payment-note {
+      font-size: 12px;
+      font-weight: 700;
+      margin: 20px 0;
+    }
+
+    /* TICKER AND FOOTER */
+    .ticker {
+      background: #171717;
+      color: #ffd447;
+      border-top: 3px solid #fff1d6;
+      border-bottom: 3px solid #fff1d6;
+      padding: 17px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      font-family: "Press Start 2P", monospace;
+      font-size: 12px;
+    }
+
+    .ticker span {
+      display: inline-block;
+      animation: scroll 22s linear infinite;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 25px 6%;
+      background: #171717;
+      color: #fff1d6;
+      font-family: "Press Start 2P", monospace;
+      font-size: 9px;
+      line-height: 1.8;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) rotate(-1deg);
+      }
+      50% {
+        transform: translateY(-8px) rotate(1deg);
+      }
+    }
+
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
+      header {
+        padding: 14px 12px;
+        min-height: 72px;
+        gap: 8px;
+      }
+
+      .logo-link {
+        width: 95px;
+        min-width: 75px;
+      }
+
+      .logo-image {
+        width: 175%;
+      }
+
+      .header-actions {
+        gap: 8px;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+      }
+
+      .shop-link {
+        font-size: 8px;
+      }
+
+      .products-tab {
+        padding: 8px 7px;
+        font-size: 7px;
+        border-width: 2px;
+        box-shadow: 2px 2px #171717;
+      }
+
+      .music-toggle {
+        width: 46px;
+        height: 46px;
+        font-size: 27px;
+        border-radius: 15px;
+      }
+
+      main {
+        padding: 38px 15px 30px;
+      }
+
+      h1 {
+        letter-spacing: -3px;
+        text-shadow: 3px 3px #fff1d6, 6px 6px #171717;
+      }
+
+      .shipping {
+        font-size: 8px;
+      }
+
+      .buy-button {
+        font-size: 9px;
+        padding: 17px 12px;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .logo-launch img {
+        width: 64.4vw;
+      }
+    }
+
+    @media (max-width: 360px) {
+      header {
+        padding: 12px 8px;
+      }
+
+      .logo-link {
+        width: 78px;
+        min-width: 65px;
+      }
+
+      .header-actions {
+        gap: 5px;
+      }
+
+      .shop-link {
+        font-size: 7px;
+      }
+
+      .products-tab {
+        padding: 6px 5px;
+        font-size: 6px;
+      }
+
+      .music-toggle {
+        width: 42px;
+        height: 42px;
+        font-size: 24px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .shirt-image,
+      .ticker span,
+      .music-toggle.is-playing,
+      .logo-image {
+        animation: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <!-- CENTER LOGO INTRO -->
+  <div class="logo-launch" id="logoLaunch" aria-hidden="true">
+    <img src="images/Log01.png" alt="">
+  </div>
+
   <!-- SINGLE HEADER -->
   <header>
     <a class="logo-link" href="index.html" aria-label="FROGINALS home">
@@ -39,3 +521,228 @@
       >🎵</button>
     </div>
   </header>
+
+  <!-- MAIN WEBSITE -->
+  <main>
+    <div class="eyebrow">GOOD FROGS. GOOD DOGE.</div>
+
+    <h1>FROGINALS!</h1>
+
+    <p class="mission">
+      FROGINAL IS SUPPORTING<br>
+      <strong>DOGECOIN</strong>
+    </p>
+
+    <p class="moon">DOGE TO THE MOON 🚀</p>
+
+    <section class="product" id="shop">
+      <img
+        class="shirt-image"
+        src="assets/FROGINALs_shirt_01.png"
+        alt="Froginals T-shirt design"
+      >
+
+      <h2 class="product-name">THE FROGINALS TEE</h2>
+      <p class="price">$19.99 <small>USD</small></p>
+      <p class="shipping">✦ FREE SHIPPING WORLDWIDE ✦</p>
+
+      <a
+        class="buy-button"
+        href="product.html"
+      >BUY T-SHIRT ↗</a>
+
+      <p class="payment-note">Secure checkout via PayPal</p>
+    </section>
+  </main>
+
+  <div class="ticker">
+    <span>
+      FROGINALS SUPPORTS DOGECOIN ✦ DOGE TO THE MOON ✦
+      FROGINALS SUPPORTS DOGECOIN ✦ DOGE TO THE MOON ✦
+    </span>
+  </div>
+
+  <footer>
+    <span>FROGINALS © 2026</span>
+    <span>MADE FOR THE PACK 🐸🐕</span>
+  </footer>
+
+  <!-- BACKGROUND MUSIC -->
+  <audio id="backgroundMusic" loop preload="metadata">
+    <source
+      src="./audio/LOOT%20AN%20LOOT%20BASE%20MUSIC.wav"
+      type="audio/wav"
+    >
+  </audio>
+
+  <script>
+    /* LOGO INTRO: CENTER TO NAVBAR */
+    window.addEventListener("load", () => {
+      const launch = document.getElementById("logoLaunch");
+      const launchLogo = launch?.querySelector("img");
+      const navLogo = document.getElementById("navLogo");
+
+      if (!launch || !launchLogo || !navLogo) {
+        launch?.remove();
+        if (navLogo) navLogo.style.opacity = "1";
+        return;
+      }
+
+      let finished = false;
+
+      function finishLaunch() {
+        if (finished) return;
+        finished = true;
+
+        launch.remove();
+        navLogo.style.opacity = "1";
+        navLogo.classList.add("logo-settled");
+      }
+
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        finishLaunch();
+        return;
+      }
+
+      function animateLogo() {
+        if (finished) return;
+
+        const target = navLogo.getBoundingClientRect();
+
+        if (!target.width || !target.height) {
+          finishLaunch();
+          return;
+        }
+
+        const startWidth = Math.min(window.innerWidth * 0.595, 595);
+
+        launchLogo.style.width = startWidth + "px";
+        launchLogo.style.height = "auto";
+        launchLogo.style.maxHeight = "80vh";
+        launchLogo.style.left = "50%";
+        launchLogo.style.top = "50%";
+        launchLogo.style.transform = "translate(-50%, -50%)";
+        launchLogo.style.opacity = "1";
+
+        const startRect = launchLogo.getBoundingClientRect();
+        const finalTarget = navLogo.getBoundingClientRect();
+
+        const animation = launchLogo.animate([
+          {
+            left: startRect.left + "px",
+            top: startRect.top + "px",
+            width: startRect.width + "px",
+            transform: "translate(0, 0)",
+            opacity: 1
+          },
+          {
+            left: (window.innerWidth / 2 - startRect.width * 0.46) + "px",
+            top: (window.innerHeight / 2 - startRect.height * 0.46) + "px",
+            width: (startRect.width * 1.04) + "px",
+            transform: "translate(0, 0)",
+            opacity: 1,
+            offset: 0.28
+          },
+          {
+            left: finalTarget.left + "px",
+            top: finalTarget.top + "px",
+            width: finalTarget.width + "px",
+            transform: "translate(0, 0)",
+            opacity: 1
+          }
+        ], {
+          duration: 1650,
+          easing: "cubic-bezier(.22, .75, .25, 1)",
+          fill: "forwards"
+        });
+
+        launch.animate([
+          { opacity: 1 },
+          { opacity: 1, offset: 0.64 },
+          { opacity: 0 }
+        ], {
+          duration: 1650,
+          easing: "ease-in-out",
+          fill: "forwards"
+        });
+
+        animation.onfinish = finishLaunch;
+      }
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          window.setTimeout(animateLogo, 450);
+        });
+      });
+
+      window.setTimeout(finishLaunch, 3000);
+    });
+
+    /* MUSIC CONTROLS */
+    document.addEventListener("DOMContentLoaded", () => {
+      const music = document.getElementById("backgroundMusic");
+      const button = document.getElementById("musicToggle");
+
+      if (!music || !button) return;
+
+      music.volume = 0.35;
+
+      function updateButton(playing) {
+        button.classList.toggle("is-muted", !playing);
+        button.classList.toggle("is-playing", playing);
+
+        button.textContent = playing ? "🔊" : "🎵";
+        button.setAttribute("aria-pressed", String(playing));
+
+        const label = playing
+          ? "Pause background music"
+          : "Play background music";
+
+        button.setAttribute("aria-label", label);
+        button.title = label;
+      }
+
+      /* Wait for visitor interaction before playing music */
+      button.addEventListener("click", async () => {
+        if (!music.paused) {
+          music.pause();
+          updateButton(false);
+          return;
+        }
+
+        button.disabled = true;
+
+        try {
+          if (music.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) {
+            music.load();
+          }
+
+          await music.play();
+          updateButton(true);
+        } catch (error) {
+          console.error("Music playback failed:", error);
+          updateButton(false);
+
+          alert(
+            "Music could not play. Check that the WAV file exists in the audio folder and that its filename matches exactly."
+          );
+        } finally {
+          button.disabled = false;
+        }
+      });
+
+      music.addEventListener("play", () => updateButton(true));
+      music.addEventListener("pause", () => updateButton(false));
+
+      music.addEventListener("error", () => {
+        console.error(
+          "Audio file failed to load:",
+          music.currentSrc,
+          music.error
+        );
+        updateButton(false);
+      });
+    });
+  </script>
+</body>
+</html>
