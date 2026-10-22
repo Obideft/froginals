@@ -1,35 +1,4 @@
 
-.header-actions {
-  display: flex;
-  align-items: center;
-  gap: 18px;
-}
-
-.music-toggle {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 46px;
-  height: 46px;
-  flex-shrink: 0;
-  border: 3px solid #171717;
-  border-radius: 50%;
-  background: #168cff;
-  color: white;
-  font-size: 23px;
-  cursor: pointer;
-  box-shadow: 4px 4px #fff1d6;
-  transition: transform 0.2s, background 0.2s;
-}
-
-.music-toggle:hover {
-  transform: scale(1.08);
-}
-
-.music-toggle.is-muted {
-  background: #888;
-}
-
 /* FROGINALS NFT MINT BUTTON */
 .mint-button {
   display: inline-block;
@@ -44,7 +13,7 @@
   font-family: "Press Start 2P", monospace;
   font-size: clamp(9px, 1.8vw, 13px);
   line-height: 1.9;
-  transition: transform 0.2s, box-shadow 0.2s, background 0.2s;
+  transition: transform .2s, box-shadow .2s, background .2s;
 }
 
 .mint-button:hover {
@@ -59,57 +28,4 @@
   font-size: 12px;
   font-weight: 700;
   line-height: 1.8;
-}
-
-@media (max-width: 600px) {
-  .header-actions {
-    gap: 10px;
-  }
-
-  .music-toggle {
-    width: 38px;
-    height: 38px;
-    font-size: 19px;
-  }
-
-  .mint-button {
-    padding: 15px 10px;
-    font-size: 8px;
-    box-shadow: 4px 4px #171717;
-  }
-}
-
-.logo-link {
-  position: relative;
-  display: block;
-  align-self: stretch;
-  width: clamp(110px, 15vw, 165px);
-  min-width: 90px;
-  flex-shrink: 0;
-  text-decoration: none;
-  z-index: 7;
-}
-
-.logo-image {
-  position: absolute;
-  display: block;
-  width: 175%;
-  max-width: none;
-  height: auto;
-  left: 0;
-  top: 2px;
-  object-fit: contain;
-  object-position: top left;
-  transform-origin: top left;
-  opacity: 1;
-  filter: drop-shadow(4px 5px 0 rgba(23, 23, 23, 0.2));
-}
-
-.logo-image.logo-settled {
-  animation: logoSway 3.8s ease-in-out infinite;
-}
-
-@keyframes logoSway {
-  0%, 100% { transform: translateX(-7px); }
-  50% { transform: translateX(7px); }
 }
