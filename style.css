@@ -1,5 +1,4 @@
 
-/* FROGINALS NFT MINT BUTTON */
 .mint-button {
   display: inline-block;
   max-width: 100%;
@@ -11,7 +10,7 @@
   box-shadow: 6px 6px #171717;
   text-decoration: none;
   font-family: "Press Start 2P", monospace;
-  font-size: clamp(9px, 1.8vw, 13px);
+  font-size: 13px;
   line-height: 1.9;
   transition: transform .2s, box-shadow .2s, background .2s;
 }
@@ -28,4 +27,12 @@
   font-size: 12px;
   font-weight: 700;
   line-height: 1.8;
+}
+
+@media (max-width: 600px) {
+  .mint-button {
+    padding: 15px 10px;
+    font-size: 8px;
+    box-shadow: 4px 4px #171717;
+  }
 }
