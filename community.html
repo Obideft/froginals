@@ -4,6 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#ff7900">
 
   <title>FROGINALS COMMUNITY — The Frog Gang</title>
   <meta name="description" content="Explore FROGINALS community art, frog fits, memes and legendary moments. Good frogs. Good Doge.">
@@ -22,13 +23,9 @@
       --paper: #ffe46b;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
-    html {
-      scroll-behavior: smooth;
-    }
+    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
@@ -39,15 +36,8 @@
       overflow-x: hidden;
     }
 
-    a {
-      color: inherit;
-    }
-
-    button {
-      font: inherit;
-    }
-
-    /* HEADER */
+    a { color: inherit; }
+    button { font: inherit; }
 
     header {
       position: relative;
@@ -104,16 +94,12 @@
       box-shadow: 1px 1px var(--black);
     }
 
-    .nav-tab.army {
-      background: var(--green);
-    }
+    .nav-tab.army { background: var(--green); }
 
     .nav-tab.active {
       background: var(--black);
       color: var(--yellow);
     }
-
-    /* INTRO */
 
     .hero {
       padding: 65px 20px 45px;
@@ -164,15 +150,10 @@
       line-height: 1.8;
     }
 
-    /* GALLERY */
-
     .gallery-section {
       padding: 55px 0 65px;
       background-color: var(--paper);
-      background-image: radial-gradient(
-        rgba(23,23,23,.09) 2px,
-        transparent 2px
-      );
+      background-image: radial-gradient(rgba(23,23,23,.09) 2px, transparent 2px);
       background-size: 20px 20px;
       border-top: 4px solid var(--black);
       border-bottom: 4px solid var(--black);
@@ -202,12 +183,7 @@
       line-height: 1.8;
     }
 
-    /* HORIZONTAL CAROUSEL */
-
-    .carousel {
-      width: 100%;
-      position: relative;
-    }
+    .carousel { width: 100%; position: relative; }
 
     .carousel-track {
       display: flex;
@@ -224,9 +200,7 @@
       cursor: grab;
     }
 
-    .carousel-track:active {
-      cursor: grabbing;
-    }
+    .carousel-track:active { cursor: grabbing; }
 
     .carousel-track:focus-visible {
       outline: 4px solid #168cff;
@@ -289,8 +263,6 @@
       overflow-wrap: anywhere;
     }
 
-    /* CONTROLS */
-
     .carousel-controls {
       display: flex;
       align-items: center;
@@ -334,8 +306,6 @@
       line-height: 1.8;
     }
 
-    /* EMPTY / ERROR STATE */
-
     .empty-state {
       width: min(650px, calc(100% - 36px));
       margin: 15px auto;
@@ -372,15 +342,9 @@
       box-shadow: 1px 1px var(--black);
     }
 
-    .hidden {
-      display: none !important;
-    }
+    .hidden { display: none !important; }
 
-    /* BOTTOM LINKS */
-
-    .community-bottom {
-      padding: 50px 18px 10px;
-    }
+    .community-bottom { padding: 50px 18px 10px; }
 
     .community-bottom h2 {
       margin: 0 0 15px;
@@ -413,11 +377,7 @@
       box-shadow: 2px 2px var(--black);
     }
 
-    .cta.secondary {
-      background: var(--yellow);
-    }
-
-    /* TICKER + FOOTER */
+    .cta.secondary { background: var(--yellow); }
 
     .ticker {
       padding: 17px 0;
@@ -454,18 +414,9 @@
     }
 
     @media (max-width: 700px) {
-      header {
-        padding: 13px 12px;
-        gap: 8px;
-      }
-
-      .logo-link {
-        width: 88px;
-      }
-
-      .header-actions {
-        gap: 7px;
-      }
+      header { padding: 13px 12px; gap: 8px; }
+      .logo-link { width: 88px; }
+      .header-actions { gap: 7px; }
 
       .nav-tab {
         padding: 7px 8px;
@@ -474,13 +425,8 @@
         box-shadow: 2px 2px var(--black);
       }
 
-      .hero {
-        padding: 45px 15px 35px;
-      }
-
-      .gallery-section {
-        padding: 40px 0 45px;
-      }
+      .hero { padding: 45px 15px 35px; }
+      .gallery-section { padding: 40px 0 45px; }
 
       .carousel-track {
         gap: 12px;
@@ -493,13 +439,8 @@
         box-shadow: 5px 5px 0 rgba(23,23,23,.18);
       }
 
-      .card-caption {
-        padding: 12px;
-      }
-
-      .card-caption p {
-        font-size: 12px;
-      }
+      .card-caption { padding: 12px; }
+      .card-caption p { font-size: 12px; }
 
       footer {
         flex-direction: column;
@@ -508,26 +449,16 @@
     }
 
     @media (max-width: 390px) {
-      header {
-        align-items: flex-start;
-      }
-
-      .logo-link {
-        width: 65px;
-      }
-
-      .header-actions {
-        gap: 6px;
-      }
+      header { align-items: flex-start; }
+      .logo-link { width: 65px; }
+      .header-actions { gap: 6px; }
 
       .nav-tab {
         padding: 6px;
         font-size: 6px;
       }
 
-      .gallery-card {
-        flex-basis: 90%;
-      }
+      .gallery-card { flex-basis: 90%; }
 
       .arrow-button {
         width: 45px;
@@ -548,64 +479,38 @@
 </head>
 
 <body>
-
-  <!-- HEADER -->
   <header>
-    <a class="logo-link" href="index.html" aria-label="FROGINALS home">
+    <a class="logo-link" href="./index.html" aria-label="FROGINALS home">
       <img
         class="logo-image"
-        src="images/Log01.png"
+        src="./images/Log01.png"
         alt="FROGINALS logo"
         fetchpriority="high"
       >
     </a>
 
     <nav class="header-actions" aria-label="Main navigation">
-      <a class="nav-tab" href="index.html">HOME</a>
-      <a class="nav-tab" href="product.html">PRODUCTS</a>
-
-      <a
-        class="nav-tab"
-        href="https://obideft.github.io/doge-buy/"
-        target="_blank"
-        rel="noopener noreferrer"
-      >FROGISWAP</a>
-
-      <a class="nav-tab army" href="froginalarmy.html">
-        FROGINALARMY 🐸
-      </a>
-
-      <a
-        class="nav-tab active"
-        href="community.html"
-        aria-current="page"
-      >COMMUNITY</a>
+      <a class="nav-tab" href="./index.html">HOME</a>
+      <a class="nav-tab" href="./product.html">PRODUCTS</a>
+      <a class="nav-tab" href="https://obideft.github.io/doge-buy/" target="_blank" rel="noopener noreferrer">FROGISWAP</a>
+      <a class="nav-tab army" href="./froginalarmy.html">FROGINALARMY 🐸</a>
+      <a class="nav-tab active" href="./community.html" aria-current="page">COMMUNITY</a>
     </nav>
   </header>
 
-  <!-- HERO -->
   <section class="hero">
     <p class="eyebrow">GOOD FROGS. GOOD DOGE.</p>
-
     <h1>THE FROG<br>COMMUNITY!</h1>
-
     <p class="hero-description">
       Welcome to the swamp, bro.
       <br>
       <strong>FRESH FITS. FUNNY FROGS. REAL COMMUNITY.</strong>
     </p>
-
-    <div class="hero-stamp">
-      OFFICIAL FROGINALS HANGOUT 🐸
-    </div>
+    <div class="hero-stamp">OFFICIAL FROGINALS HANGOUT 🐸</div>
   </section>
 
-  <!-- DYNAMIC GALLERY -->
   <section class="gallery-section" aria-labelledby="galleryTitle">
-
-    <h2 class="section-heading" id="galleryTitle">
-      COMMUNITY WALL
-    </h2>
+    <h2 class="section-heading" id="galleryTitle">COMMUNITY WALL</h2>
 
     <p class="section-description">
       The latest frog art, ridiculous outfits, community memes
@@ -613,15 +518,11 @@
       Swipe to explore the gallery.
     </p>
 
-    <p
-      class="gallery-status"
-      id="galleryStatus"
-      role="status"
-      aria-live="polite"
-    >Connecting to the swamp...</p>
+    <p class="gallery-status" id="galleryStatus" role="status" aria-live="polite">
+      Connecting to the swamp...
+    </p>
 
-    <div class="carousel" id="carousel">
-
+    <div class="carousel">
       <div
         class="carousel-track"
         id="carouselTrack"
@@ -629,64 +530,27 @@
         aria-label="Community image carousel. Use the arrows or swipe to browse."
       ></div>
 
-      <div class="carousel-controls" id="carouselControls">
-        <button
-          class="arrow-button"
-          id="previousButton"
-          type="button"
-          aria-label="Previous image"
-          title="Previous image"
-        >←</button>
-
-        <span
-          class="carousel-counter"
-          id="carouselCounter"
-          aria-live="polite"
-        >00 / 00</span>
-
-        <button
-          class="arrow-button"
-          id="nextButton"
-          type="button"
-          aria-label="Next image"
-          title="Next image"
-        >→</button>
+      <div class="carousel-controls hidden" id="carouselControls">
+        <button class="arrow-button" id="previousButton" type="button" aria-label="Previous image" title="Previous image">←</button>
+        <span class="carousel-counter" id="carouselCounter" aria-live="polite">00 / 00</span>
+        <button class="arrow-button" id="nextButton" type="button" aria-label="Next image" title="Next image">→</button>
       </div>
 
       <div class="empty-state hidden" id="emptyState">
         <h3 id="emptyTitle">THE SWAMP IS QUIET...</h3>
-        <p id="emptyMessage">
-          No community images have been loaded yet.
-        </p>
-        <button
-          class="retry-button"
-          id="retryButton"
-          type="button"
-        >RELOAD GALLERY ↻</button>
+        <p id="emptyMessage">No community images have been loaded yet.</p>
+        <button class="retry-button" id="retryButton" type="button">RELOAD GALLERY ↻</button>
       </div>
-
     </div>
 
     <div class="community-bottom">
       <h2>GOT FROG ART, BRO?</h2>
-
-      <p>
-        Got a funny frog, a fresh fit, or a community meme?
-        Bring it to the pack.
-      </p>
-
-      <a class="cta" href="froginalarmy.html">
-        JOIN THE FROGINALS ARMY 🐸
-      </a>
-
-      <a class="cta secondary" href="index.html">
-        BACK TO HOMEPAGE ↗
-      </a>
+      <p>Got a funny frog, a fresh fit, or a community meme? Bring it to the pack.</p>
+      <a class="cta" href="./froginalarmy.html">JOIN THE FROGINALS ARMY 🐸</a>
+      <a class="cta secondary" href="./index.html">BACK TO HOMEPAGE ↗</a>
     </div>
-
   </section>
 
-  <!-- TICKER -->
   <div class="ticker">
     <span>
       FROGINALS COMMUNITY ✦ GOOD FROGS ONLY ✦
@@ -696,7 +560,6 @@
     </span>
   </div>
 
-  <!-- FOOTER -->
   <footer>
     <span>FROGINALS © 2026</span>
     <span>MADE FOR THE PACK 🐸🐕</span>
@@ -704,39 +567,15 @@
 
   <script>
     /*
-    =====================================================
-    FROGINALS DYNAMIC COMMUNITY GALLERY
-    =====================================================
+      GitHub Pages:
+      community.html
+      data/community.json
 
-    Publish a PUBLIC JSON feed containing an array of images.
-
-    Set COMMUNITY_FEED_URL to the URL of that JSON file
-    or to an API endpoint that returns the expected JSON.
-
-    Supported response format:
-
-    {
-      "images": [
-        {
-          "image": "https://your-image-host.com/frog-01.png",
-          "title": "THE FROG GANG",
-          "caption": "Two frogs, one legendary conversation.",
-          "alt": "Two dressed-up FROGINALS frogs",
-          "url": "https://example.com/original-post"
-        }
-      ]
-    }
-
-    The feed must be publicly accessible and allow
-    cross-origin requests (CORS) from this website.
-
-    An image host alone does not provide a gallery feed.
-    It needs a public JSON endpoint or API.
-    =====================================================
+      Keep the JSON file inside the repository's data folder.
+      This relative URL works for both user and project sites.
     */
-
-    const COMMUNITY_FEED_URL =
-      "/data/community.json";
+    const COMMUNITY_FEED_URL = "./data/community.json";
+    const FETCH_TIMEOUT_MS = 12000;
 
     const track = document.getElementById("carouselTrack");
     const status = document.getElementById("galleryStatus");
@@ -752,19 +591,14 @@
     let cards = [];
     let activeIndex = 0;
     let requestNumber = 0;
+    let scrollFrame = null;
 
-    function safeExternalUrl(value) {
-      if (typeof value !== "string" || !value.trim()) {
-        return null;
-      }
+    function safeUrl(value) {
+      if (typeof value !== "string" || !value.trim()) return null;
 
       try {
-        const url = new URL(value, window.location.href);
-
-        if (url.protocol !== "https:" && url.protocol !== "http:") {
-          return null;
-        }
-
+        const url = new URL(value.trim(), document.baseURI);
+        if (!["https:", "http:"].includes(url.protocol)) return null;
         return url.href;
       } catch {
         return null;
@@ -780,39 +614,27 @@
             ? data.items
             : [];
 
-      return entries
-        .map((item) => {
-          if (typeof item === "string") {
-            return {
-              image: safeExternalUrl(item),
-              title: "FROGINALS COMMUNITY",
-              caption: "Another legendary frog moment.",
-              alt: "FROGINALS community artwork",
-              url: null
-            };
-          }
-
-          if (!item || typeof item !== "object") {
-            return null;
-          }
-
+      return entries.map((item) => {
+        if (typeof item === "string") {
           return {
-            image: safeExternalUrl(
-              item.image || item.imageUrl || item.src
-            ),
-            title: String(
-              item.title || item.name || "FROGINALS COMMUNITY"
-            ).slice(0, 140),
-            caption: String(
-              item.caption || item.description || "Another legendary frog moment."
-            ).slice(0, 500),
-            alt: String(
-              item.alt || item.title || item.name || "FROGINALS community artwork"
-            ).slice(0, 250),
-            url: safeExternalUrl(item.url || item.postUrl)
+            image: safeUrl(item),
+            title: "FROGINALS COMMUNITY",
+            caption: "Another legendary frog moment.",
+            alt: "FROGINALS community artwork",
+            url: null
           };
-        })
-        .filter((item) => item && item.image);
+        }
+
+        if (!item || typeof item !== "object") return null;
+
+        return {
+          image: safeUrl(item.image || item.imageUrl || item.src),
+          title: String(item.title || item.name || "FROGINALS COMMUNITY").slice(0, 140),
+          caption: String(item.caption || item.description || "Another legendary frog moment.").slice(0, 500),
+          alt: String(item.alt || item.title || item.name || "FROGINALS community artwork").slice(0, 250),
+          url: safeUrl(item.url || item.postUrl)
+        };
+      }).filter((item) => item && item.image);
     }
 
     function updateCounter() {
@@ -823,16 +645,12 @@
         return;
       }
 
-      const firstCard = cards[0];
       const trackLeft = track.getBoundingClientRect().left;
       let closestDistance = Infinity;
       let closestIndex = 0;
 
       cards.forEach((card, index) => {
-        const distance = Math.abs(
-          card.getBoundingClientRect().left - trackLeft
-        );
-
+        const distance = Math.abs(card.getBoundingClientRect().left - trackLeft);
         if (distance < closestDistance) {
           closestDistance = distance;
           closestIndex = index;
@@ -840,7 +658,6 @@
       });
 
       activeIndex = closestIndex;
-
       counter.textContent =
         String(activeIndex + 1).padStart(2, "0") +
         " / " +
@@ -853,41 +670,33 @@
     function goToCard(index) {
       if (!cards.length) return;
 
-      const targetIndex = Math.max(
-        0,
-        Math.min(cards.length - 1, index)
-      );
-
-      cards[targetIndex].scrollIntoView({
-        behavior: window.matchMedia(
-          "(prefers-reduced-motion: reduce)"
-        ).matches ? "auto" : "smooth",
+      const target = Math.max(0, Math.min(cards.length - 1, index));
+      cards[target].scrollIntoView({
+        behavior: window.matchMedia("(prefers-reduced-motion: reduce)").matches ? "auto" : "smooth",
         block: "nearest",
         inline: "start"
       });
 
-      activeIndex = targetIndex;
+      activeIndex = target;
       updateCounter();
     }
 
-    previousButton.addEventListener("click", () => {
-      goToCard(activeIndex - 1);
-    });
+    previousButton.addEventListener("click", () => goToCard(activeIndex - 1));
+    nextButton.addEventListener("click", () => goToCard(activeIndex + 1));
 
-    nextButton.addEventListener("click", () => {
-      goToCard(activeIndex + 1);
-    });
-
-    track.addEventListener("scroll", updateCounter, {
-      passive: true
-    });
+    track.addEventListener("scroll", () => {
+      if (scrollFrame !== null) cancelAnimationFrame(scrollFrame);
+      scrollFrame = requestAnimationFrame(() => {
+        updateCounter();
+        scrollFrame = null;
+      });
+    }, { passive: true });
 
     track.addEventListener("keydown", (event) => {
       if (event.key === "ArrowRight") {
         event.preventDefault();
         goToCard(activeIndex + 1);
       }
-
       if (event.key === "ArrowLeft") {
         event.preventDefault();
         goToCard(activeIndex - 1);
@@ -901,18 +710,17 @@
       track.classList.add("hidden");
       controls.classList.add("hidden");
       emptyState.classList.remove("hidden");
-
       emptyTitle.textContent = title;
       emptyMessage.textContent = message;
-
       status.textContent = message;
       counter.textContent = "00 / 00";
-
       previousButton.disabled = true;
       nextButton.disabled = true;
+      cards = [];
+      activeIndex = 0;
     }
 
-    function createCard(item, index) {
+    function createCard(item, index, onImageError) {
       const card = document.createElement("article");
       card.className = "gallery-card";
 
@@ -921,26 +729,13 @@
 
       const img = document.createElement("img");
       img.className = "gallery-image";
-      img.src = item.image;
       img.alt = item.alt;
       img.loading = index < 2 ? "eager" : "lazy";
       img.decoding = "async";
       img.draggable = false;
+      img.src = item.image;
 
-      img.addEventListener("error", () => {
-        card.remove();
-
-        cards = cards.filter((existing) => existing !== card);
-
-        if (!cards.length) {
-          showEmptyState(
-            "NO IMAGES FOUND",
-            "The feed loaded, but its images could not be displayed. Check the image URLs and host permissions."
-          );
-        } else {
-          updateCounter();
-        }
-      });
+      img.addEventListener("error", () => onImageError(card), { once: true });
 
       imageWrap.appendChild(img);
 
@@ -951,7 +746,6 @@
         link.target = "_blank";
         link.rel = "noopener noreferrer";
         link.setAttribute("aria-label", "Open original community post");
-
         link.appendChild(imageWrap);
         card.appendChild(link);
       } else {
@@ -975,38 +769,33 @@
 
     async function loadCommunityGallery() {
       const currentRequest = ++requestNumber;
-
-      if (
-        !COMMUNITY_FEED_URL ||
-        COMMUNITY_FEED_URL === "REPLACE_WITH_YOUR_PUBLIC_JSON_FEED_URL"
-      ) {
-        showEmptyState(
-          "THE SWAMP IS WAITING 🐸",
-          "Your gallery design is ready. Connect a public JSON feed URL in community.html to load your external images dynamically."
-        );
-        return;
-      }
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
 
       status.textContent = "FETCHING FROG ART...";
       emptyState.classList.add("hidden");
       track.classList.remove("hidden");
-      controls.classList.remove("hidden");
+      controls.classList.add("hidden");
+      track.replaceChildren();
+      cards = [];
+      activeIndex = 0;
 
       try {
-        const response = await fetch(COMMUNITY_FEED_URL, {
+        const feedUrl = new URL(COMMUNITY_FEED_URL, document.baseURI);
+        feedUrl.searchParams.set("v", String(Date.now()));
+
+        const response = await fetch(feedUrl.href, {
           method: "GET",
-          headers: {
-            "Accept": "application/json"
-          },
-          cache: "no-cache"
+          headers: { "Accept": "application/json" },
+          cache: "no-store",
+          signal: controller.signal
         });
 
         if (!response.ok) {
-          throw new Error("Feed request failed: HTTP " + response.status);
+          throw new Error("HTTP " + response.status + " while loading " + feedUrl.pathname);
         }
 
         const data = await response.json();
-
         if (currentRequest !== requestNumber) return;
 
         const images = normalizeFeed(data);
@@ -1014,47 +803,94 @@
         if (!images.length) {
           showEmptyState(
             "NO FROG ART YET",
-            "Your feed returned no valid images. Add image URLs to the public JSON feed and try again."
+            "The JSON feed loaded, but it contains no valid image URLs. Check data/community.json."
           );
           return;
         }
 
-        track.replaceChildren();
-        cards = [];
-        activeIndex = 0;
+        const failedCards = new Set();
+
+        function handleImageError(card) {
+          if (failedCards.has(card)) return;
+          failedCards.add(card);
+          card.remove();
+          cards = cards.filter((existing) => existing !== card);
+
+          if (!cards.length) {
+            showEmptyState(
+              "NO IMAGES FOUND",
+              "The JSON loaded, but every image failed. Check that each image URL opens directly in a browser."
+            );
+          } else {
+            status.textContent = cards.length + (cards.length === 1
+              ? " COMMUNITY IMAGE DISPLAYED"
+              : " COMMUNITY IMAGES DISPLAYED");
+            updateCounter();
+          }
+        }
 
         images.forEach((item, index) => {
-          const card = createCard(item, index);
+          const card = createCard(item, index, handleImageError);
           cards.push(card);
           track.appendChild(card);
         });
 
         track.scrollLeft = 0;
+        controls.classList.remove("hidden");
 
-        status.textContent =
-          images.length + (images.length === 1
-            ? " COMMUNITY IMAGE LOADED"
-            : " COMMUNITY IMAGES LOADED");
+        status.textContent = "Checking " + images.length +
+          (images.length === 1 ? " community image..." : " community images...");
 
         updateCounter();
+
+        /*
+          Image load/error events are asynchronous. This listener updates
+          the status once each image has either loaded or failed.
+        */
+        let settled = 0;
+        const settle = () => {
+          settled++;
+          if (settled >= images.length && cards.length) {
+            status.textContent = cards.length +
+              (cards.length === 1
+                ? " COMMUNITY IMAGE DISPLAYED"
+                : " COMMUNITY IMAGES DISPLAYED");
+            updateCounter();
+          }
+        };
+
+        cards.slice().forEach((card) => {
+          const img = card.querySelector("img");
+          if (!img) {
+            settle();
+            return;
+          }
+
+          if (img.complete) {
+            settle();
+          } else {
+            img.addEventListener("load", settle, { once: true });
+            img.addEventListener("error", settle, { once: true });
+          }
+        });
 
       } catch (error) {
         if (currentRequest !== requestNumber) return;
 
         console.error("FROGINALS gallery error:", error);
 
-        showEmptyState(
-          "CONNECTION LOST 🐸",
-          "Could not load the image feed. Check the feed URL, JSON format, internet connection and CORS settings, then reload."
-        );
+        const message = error.name === "AbortError"
+          ? "The request timed out. Check your connection and try again."
+          : "Could not load data/community.json. Check the deployed file path, filename capitalization and JSON syntax.";
+
+        showEmptyState("CONNECTION LOST 🐸", message);
+      } finally {
+        clearTimeout(timeout);
       }
     }
 
     retryButton.addEventListener("click", loadCommunityGallery);
-
-    /* Load the latest gallery when the page opens. */
     loadCommunityGallery();
   </script>
-
 </body>
 </html>
