@@ -1,0 +1,1060 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>FROGINALS COMMUNITY — The Frog Gang</title>
+  <meta name="description" content="Explore FROGINALS community art, frog fits, memes and legendary moments. Good frogs. Good Doge.">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --orange: #ff7900;
+      --yellow: #ffd447;
+      --cream: #fff1d6;
+      --green: #c3ff53;
+      --black: #171717;
+      --paper: #ffe46b;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      color: var(--black);
+      background: var(--orange);
+      font-family: "Space Grotesk", sans-serif;
+      text-align: center;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    /* HEADER */
+
+    header {
+      position: relative;
+      z-index: 5;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 16px;
+      min-height: 82px;
+      padding: 15px 6%;
+      border-bottom: 3px solid var(--black);
+    }
+
+    .logo-link {
+      display: block;
+      width: clamp(100px, 14vw, 155px);
+      flex-shrink: 0;
+      text-decoration: none;
+    }
+
+    .logo-image {
+      display: block;
+      width: 100%;
+      height: auto;
+      object-fit: contain;
+      filter: drop-shadow(4px 4px 0 rgba(23,23,23,.2));
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .nav-tab {
+      display: inline-flex;
+      justify-content: center;
+      align-items: center;
+      padding: 10px 12px;
+      border: 3px solid var(--black);
+      background: var(--yellow);
+      box-shadow: 3px 3px var(--black);
+      text-decoration: none;
+      font-family: "Press Start 2P", monospace;
+      font-size: 9px;
+      line-height: 1.8;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .nav-tab:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px var(--black);
+    }
+
+    .nav-tab.army {
+      background: var(--green);
+    }
+
+    .nav-tab.active {
+      background: var(--black);
+      color: var(--yellow);
+    }
+
+    /* INTRO */
+
+    .hero {
+      padding: 65px 20px 45px;
+      background-image: radial-gradient(#ff9d2e 2px, transparent 2px);
+      background-size: 22px 22px;
+    }
+
+    .eyebrow {
+      font-family: "Press Start 2P", monospace;
+      font-size: 10px;
+      line-height: 2;
+    }
+
+    h1 {
+      margin: 25px 0;
+      font-family: "Press Start 2P", monospace;
+      font-size: clamp(27px, 6.5vw, 68px);
+      line-height: 1.5;
+      letter-spacing: -2px;
+      overflow-wrap: anywhere;
+      text-shadow: 4px 4px var(--cream), 7px 7px var(--black);
+    }
+
+    .hero-description {
+      max-width: 650px;
+      margin: 0 auto;
+      font-size: clamp(15px, 2.5vw, 20px);
+      font-weight: 800;
+      line-height: 1.8;
+    }
+
+    .hero-description strong {
+      display: inline-block;
+      padding: 4px 8px;
+      background: var(--black);
+      color: var(--yellow);
+    }
+
+    .hero-stamp {
+      display: inline-block;
+      margin-top: 25px;
+      padding: 12px 15px;
+      border: 3px solid var(--black);
+      background: var(--yellow);
+      box-shadow: 4px 4px var(--black);
+      font-family: "Press Start 2P", monospace;
+      font-size: 9px;
+      line-height: 1.8;
+    }
+
+    /* GALLERY */
+
+    .gallery-section {
+      padding: 55px 0 65px;
+      background-color: var(--paper);
+      background-image: radial-gradient(
+        rgba(23,23,23,.09) 2px,
+        transparent 2px
+      );
+      background-size: 20px 20px;
+      border-top: 4px solid var(--black);
+      border-bottom: 4px solid var(--black);
+    }
+
+    .section-heading {
+      margin: 0 15px 12px;
+      font-family: "Press Start 2P", monospace;
+      font-size: clamp(18px, 4vw, 34px);
+      line-height: 1.8;
+    }
+
+    .section-description {
+      max-width: 650px;
+      margin: 0 auto 25px;
+      padding: 0 18px;
+      font-size: 15px;
+      font-weight: 700;
+      line-height: 1.8;
+    }
+
+    .gallery-status {
+      min-height: 28px;
+      margin: 15px 15px 20px;
+      font-size: 13px;
+      font-weight: 800;
+      line-height: 1.8;
+    }
+
+    /* HORIZONTAL CAROUSEL */
+
+    .carousel {
+      width: 100%;
+      position: relative;
+    }
+
+    .carousel-track {
+      display: flex;
+      gap: 18px;
+      padding: 12px max(18px, calc((100vw - 1050px) / 2)) 25px;
+      overflow-x: auto;
+      overflow-y: hidden;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+      overscroll-behavior-x: contain;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: thin;
+      scrollbar-color: var(--black) var(--yellow);
+      cursor: grab;
+    }
+
+    .carousel-track:active {
+      cursor: grabbing;
+    }
+
+    .carousel-track:focus-visible {
+      outline: 4px solid #168cff;
+      outline-offset: -4px;
+    }
+
+    .gallery-card {
+      flex: 0 0 min(76%, 850px);
+      min-width: 0;
+      align-self: stretch;
+      overflow: hidden;
+      border: 4px solid var(--black);
+      border-radius: 4px;
+      background: var(--black);
+      box-shadow: 8px 8px 0 rgba(23,23,23,.18);
+      scroll-snap-align: start;
+    }
+
+    .image-wrap {
+      position: relative;
+      overflow: hidden;
+      background: var(--orange);
+    }
+
+    .gallery-image {
+      display: block;
+      width: 100%;
+      aspect-ratio: 16 / 9;
+      object-fit: cover;
+      background: var(--orange);
+      user-select: none;
+      -webkit-user-drag: none;
+    }
+
+    .image-link {
+      display: block;
+      text-decoration: none;
+    }
+
+    .card-caption {
+      padding: 16px;
+      background: var(--black);
+      color: var(--cream);
+      text-align: left;
+    }
+
+    .card-caption h3 {
+      margin: 0 0 10px;
+      color: var(--yellow);
+      font-family: "Press Start 2P", monospace;
+      font-size: clamp(9px, 1.5vw, 13px);
+      line-height: 1.9;
+      overflow-wrap: anywhere;
+    }
+
+    .card-caption p {
+      margin: 0;
+      font-size: 14px;
+      line-height: 1.7;
+      overflow-wrap: anywhere;
+    }
+
+    /* CONTROLS */
+
+    .carousel-controls {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin: 22px 15px 0;
+    }
+
+    .arrow-button {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 52px;
+      height: 52px;
+      border: 3px solid var(--black);
+      border-radius: 4px;
+      background: var(--yellow);
+      color: var(--black);
+      box-shadow: 4px 4px var(--black);
+      font-size: 27px;
+      font-weight: 800;
+      cursor: pointer;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .arrow-button:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 2px 2px var(--black);
+      background: var(--green);
+    }
+
+    .arrow-button:disabled {
+      opacity: .4;
+      cursor: not-allowed;
+    }
+
+    .carousel-counter {
+      min-width: 85px;
+      font-family: "Press Start 2P", monospace;
+      font-size: 10px;
+      line-height: 1.8;
+    }
+
+    /* EMPTY / ERROR STATE */
+
+    .empty-state {
+      width: min(650px, calc(100% - 36px));
+      margin: 15px auto;
+      padding: 35px 20px;
+      border: 3px dashed var(--black);
+      background: rgba(255,255,255,.35);
+    }
+
+    .empty-state h3 {
+      margin: 0 0 15px;
+      font-family: "Press Start 2P", monospace;
+      font-size: 13px;
+      line-height: 2;
+    }
+
+    .empty-state p {
+      font-weight: 700;
+      line-height: 1.8;
+    }
+
+    .retry-button {
+      padding: 12px 15px;
+      border: 3px solid var(--black);
+      background: var(--green);
+      box-shadow: 3px 3px var(--black);
+      font-family: "Press Start 2P", monospace;
+      font-size: 9px;
+      line-height: 1.8;
+      cursor: pointer;
+    }
+
+    .retry-button:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px var(--black);
+    }
+
+    .hidden {
+      display: none !important;
+    }
+
+    /* BOTTOM LINKS */
+
+    .community-bottom {
+      padding: 50px 18px 10px;
+    }
+
+    .community-bottom h2 {
+      margin: 0 0 15px;
+      font-family: "Press Start 2P", monospace;
+      font-size: clamp(16px, 3vw, 26px);
+      line-height: 1.8;
+    }
+
+    .community-bottom p {
+      font-weight: 700;
+      line-height: 1.8;
+    }
+
+    .cta {
+      display: inline-block;
+      margin: 18px 5px;
+      padding: 15px 18px;
+      border: 3px solid var(--black);
+      background: var(--green);
+      box-shadow: 5px 5px var(--black);
+      text-decoration: none;
+      font-family: "Press Start 2P", monospace;
+      font-size: 9px;
+      line-height: 1.9;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .cta:hover {
+      transform: translate(3px, 3px);
+      box-shadow: 2px 2px var(--black);
+    }
+
+    .cta.secondary {
+      background: var(--yellow);
+    }
+
+    /* TICKER + FOOTER */
+
+    .ticker {
+      padding: 17px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      border-top: 3px solid var(--cream);
+      border-bottom: 3px solid var(--cream);
+      background: var(--black);
+      color: var(--yellow);
+      font-family: "Press Start 2P", monospace;
+      font-size: 11px;
+    }
+
+    .ticker span {
+      display: inline-block;
+      animation: tickerMove 22s linear infinite;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 25px 6%;
+      background: var(--black);
+      color: var(--cream);
+      font-family: "Press Start 2P", monospace;
+      font-size: 9px;
+      line-height: 1.8;
+    }
+
+    @keyframes tickerMove {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    @media (max-width: 700px) {
+      header {
+        padding: 13px 12px;
+        gap: 8px;
+      }
+
+      .logo-link {
+        width: 88px;
+      }
+
+      .header-actions {
+        gap: 7px;
+      }
+
+      .nav-tab {
+        padding: 7px 8px;
+        border-width: 2px;
+        font-size: 7px;
+        box-shadow: 2px 2px var(--black);
+      }
+
+      .hero {
+        padding: 45px 15px 35px;
+      }
+
+      .gallery-section {
+        padding: 40px 0 45px;
+      }
+
+      .carousel-track {
+        gap: 12px;
+        padding: 10px 15px 20px;
+      }
+
+      .gallery-card {
+        flex-basis: 86%;
+        border-width: 3px;
+        box-shadow: 5px 5px 0 rgba(23,23,23,.18);
+      }
+
+      .card-caption {
+        padding: 12px;
+      }
+
+      .card-caption p {
+        font-size: 12px;
+      }
+
+      footer {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    @media (max-width: 390px) {
+      header {
+        align-items: flex-start;
+      }
+
+      .logo-link {
+        width: 65px;
+      }
+
+      .header-actions {
+        gap: 6px;
+      }
+
+      .nav-tab {
+        padding: 6px;
+        font-size: 6px;
+      }
+
+      .gallery-card {
+        flex-basis: 90%;
+      }
+
+      .arrow-button {
+        width: 45px;
+        height: 45px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      *,
+      *::before,
+      *::after {
+        scroll-behavior: auto !important;
+        animation: none !important;
+        transition: none !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <a class="logo-link" href="index.html" aria-label="FROGINALS home">
+      <img
+        class="logo-image"
+        src="images/Log01.png"
+        alt="FROGINALS logo"
+        fetchpriority="high"
+      >
+    </a>
+
+    <nav class="header-actions" aria-label="Main navigation">
+      <a class="nav-tab" href="index.html">HOME</a>
+      <a class="nav-tab" href="product.html">PRODUCTS</a>
+
+      <a
+        class="nav-tab"
+        href="https://obideft.github.io/doge-buy/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >FROGISWAP</a>
+
+      <a class="nav-tab army" href="froginalarmy.html">
+        FROGINALARMY 🐸
+      </a>
+
+      <a
+        class="nav-tab active"
+        href="community.html"
+        aria-current="page"
+      >COMMUNITY</a>
+    </nav>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="eyebrow">GOOD FROGS. GOOD DOGE.</p>
+
+    <h1>THE FROG<br>COMMUNITY!</h1>
+
+    <p class="hero-description">
+      Welcome to the swamp, bro.
+      <br>
+      <strong>FRESH FITS. FUNNY FROGS. REAL COMMUNITY.</strong>
+    </p>
+
+    <div class="hero-stamp">
+      OFFICIAL FROGINALS HANGOUT 🐸
+    </div>
+  </section>
+
+  <!-- DYNAMIC GALLERY -->
+  <section class="gallery-section" aria-labelledby="galleryTitle">
+
+    <h2 class="section-heading" id="galleryTitle">
+      COMMUNITY WALL
+    </h2>
+
+    <p class="section-description">
+      The latest frog art, ridiculous outfits, community memes
+      and legendary FROGINALS moments — all in one place.
+      Swipe to explore the gallery.
+    </p>
+
+    <p
+      class="gallery-status"
+      id="galleryStatus"
+      role="status"
+      aria-live="polite"
+    >Connecting to the swamp...</p>
+
+    <div class="carousel" id="carousel">
+
+      <div
+        class="carousel-track"
+        id="carouselTrack"
+        tabindex="0"
+        aria-label="Community image carousel. Use the arrows or swipe to browse."
+      ></div>
+
+      <div class="carousel-controls" id="carouselControls">
+        <button
+          class="arrow-button"
+          id="previousButton"
+          type="button"
+          aria-label="Previous image"
+          title="Previous image"
+        >←</button>
+
+        <span
+          class="carousel-counter"
+          id="carouselCounter"
+          aria-live="polite"
+        >00 / 00</span>
+
+        <button
+          class="arrow-button"
+          id="nextButton"
+          type="button"
+          aria-label="Next image"
+          title="Next image"
+        >→</button>
+      </div>
+
+      <div class="empty-state hidden" id="emptyState">
+        <h3 id="emptyTitle">THE SWAMP IS QUIET...</h3>
+        <p id="emptyMessage">
+          No community images have been loaded yet.
+        </p>
+        <button
+          class="retry-button"
+          id="retryButton"
+          type="button"
+        >RELOAD GALLERY ↻</button>
+      </div>
+
+    </div>
+
+    <div class="community-bottom">
+      <h2>GOT FROG ART, BRO?</h2>
+
+      <p>
+        Got a funny frog, a fresh fit, or a community meme?
+        Bring it to the pack.
+      </p>
+
+      <a class="cta" href="froginalarmy.html">
+        JOIN THE FROGINALS ARMY 🐸
+      </a>
+
+      <a class="cta secondary" href="index.html">
+        BACK TO HOMEPAGE ↗
+      </a>
+    </div>
+
+  </section>
+
+  <!-- TICKER -->
+  <div class="ticker">
+    <span>
+      FROGINALS COMMUNITY ✦ GOOD FROGS ONLY ✦
+      SUPPORT DOGECOIN ✦ FRESH FITS ✦ GOOD FROGS ONLY ✦
+      FROGINALS COMMUNITY ✦ GOOD FROGS ONLY ✦
+      SUPPORT DOGECOIN ✦ FRESH FITS ✦ GOOD FROGS ONLY ✦
+    </span>
+  </div>
+
+  <!-- FOOTER -->
+  <footer>
+    <span>FROGINALS © 2026</span>
+    <span>MADE FOR THE PACK 🐸🐕</span>
+  </footer>
+
+  <script>
+    /*
+    =====================================================
+    FROGINALS DYNAMIC COMMUNITY GALLERY
+    =====================================================
+
+    Publish a PUBLIC JSON feed containing an array of images.
+
+    Set COMMUNITY_FEED_URL to the URL of that JSON file
+    or to an API endpoint that returns the expected JSON.
+
+    Supported response format:
+
+    {
+      "images": [
+        {
+          "image": "https://your-image-host.com/frog-01.png",
+          "title": "THE FROG GANG",
+          "caption": "Two frogs, one legendary conversation.",
+          "alt": "Two dressed-up FROGINALS frogs",
+          "url": "https://example.com/original-post"
+        }
+      ]
+    }
+
+    The feed must be publicly accessible and allow
+    cross-origin requests (CORS) from this website.
+
+    An image host alone does not provide a gallery feed.
+    It needs a public JSON endpoint or API.
+    =====================================================
+    */
+
+    const COMMUNITY_FEED_URL =
+      "REPLACE_WITH_YOUR_PUBLIC_JSON_FEED_URL";
+
+    const track = document.getElementById("carouselTrack");
+    const status = document.getElementById("galleryStatus");
+    const counter = document.getElementById("carouselCounter");
+    const previousButton = document.getElementById("previousButton");
+    const nextButton = document.getElementById("nextButton");
+    const controls = document.getElementById("carouselControls");
+    const emptyState = document.getElementById("emptyState");
+    const emptyTitle = document.getElementById("emptyTitle");
+    const emptyMessage = document.getElementById("emptyMessage");
+    const retryButton = document.getElementById("retryButton");
+
+    let cards = [];
+    let activeIndex = 0;
+    let requestNumber = 0;
+
+    function safeExternalUrl(value) {
+      if (typeof value !== "string" || !value.trim()) {
+        return null;
+      }
+
+      try {
+        const url = new URL(value, window.location.href);
+
+        if (url.protocol !== "https:" && url.protocol !== "http:") {
+          return null;
+        }
+
+        return url.href;
+      } catch {
+        return null;
+      }
+    }
+
+    function normalizeFeed(data) {
+      const entries = Array.isArray(data)
+        ? data
+        : Array.isArray(data?.images)
+          ? data.images
+          : Array.isArray(data?.items)
+            ? data.items
+            : [];
+
+      return entries
+        .map((item) => {
+          if (typeof item === "string") {
+            return {
+              image: safeExternalUrl(item),
+              title: "FROGINALS COMMUNITY",
+              caption: "Another legendary frog moment.",
+              alt: "FROGINALS community artwork",
+              url: null
+            };
+          }
+
+          if (!item || typeof item !== "object") {
+            return null;
+          }
+
+          return {
+            image: safeExternalUrl(
+              item.image || item.imageUrl || item.src
+            ),
+            title: String(
+              item.title || item.name || "FROGINALS COMMUNITY"
+            ).slice(0, 140),
+            caption: String(
+              item.caption || item.description || "Another legendary frog moment."
+            ).slice(0, 500),
+            alt: String(
+              item.alt || item.title || item.name || "FROGINALS community artwork"
+            ).slice(0, 250),
+            url: safeExternalUrl(item.url || item.postUrl)
+          };
+        })
+        .filter((item) => item && item.image);
+    }
+
+    function updateCounter() {
+      if (!cards.length) {
+        counter.textContent = "00 / 00";
+        previousButton.disabled = true;
+        nextButton.disabled = true;
+        return;
+      }
+
+      const firstCard = cards[0];
+      const trackLeft = track.getBoundingClientRect().left;
+      let closestDistance = Infinity;
+      let closestIndex = 0;
+
+      cards.forEach((card, index) => {
+        const distance = Math.abs(
+          card.getBoundingClientRect().left - trackLeft
+        );
+
+        if (distance < closestDistance) {
+          closestDistance = distance;
+          closestIndex = index;
+        }
+      });
+
+      activeIndex = closestIndex;
+
+      counter.textContent =
+        String(activeIndex + 1).padStart(2, "0") +
+        " / " +
+        String(cards.length).padStart(2, "0");
+
+      previousButton.disabled = activeIndex === 0;
+      nextButton.disabled = activeIndex === cards.length - 1;
+    }
+
+    function goToCard(index) {
+      if (!cards.length) return;
+
+      const targetIndex = Math.max(
+        0,
+        Math.min(cards.length - 1, index)
+      );
+
+      cards[targetIndex].scrollIntoView({
+        behavior: window.matchMedia(
+          "(prefers-reduced-motion: reduce)"
+        ).matches ? "auto" : "smooth",
+        block: "nearest",
+        inline: "start"
+      });
+
+      activeIndex = targetIndex;
+      updateCounter();
+    }
+
+    previousButton.addEventListener("click", () => {
+      goToCard(activeIndex - 1);
+    });
+
+    nextButton.addEventListener("click", () => {
+      goToCard(activeIndex + 1);
+    });
+
+    track.addEventListener("scroll", updateCounter, {
+      passive: true
+    });
+
+    track.addEventListener("keydown", (event) => {
+      if (event.key === "ArrowRight") {
+        event.preventDefault();
+        goToCard(activeIndex + 1);
+      }
+
+      if (event.key === "ArrowLeft") {
+        event.preventDefault();
+        goToCard(activeIndex - 1);
+      }
+    });
+
+    window.addEventListener("resize", updateCounter);
+
+    function showEmptyState(title, message) {
+      track.replaceChildren();
+      track.classList.add("hidden");
+      controls.classList.add("hidden");
+      emptyState.classList.remove("hidden");
+
+      emptyTitle.textContent = title;
+      emptyMessage.textContent = message;
+
+      status.textContent = message;
+      counter.textContent = "00 / 00";
+
+      previousButton.disabled = true;
+      nextButton.disabled = true;
+    }
+
+    function createCard(item, index) {
+      const card = document.createElement("article");
+      card.className = "gallery-card";
+
+      const imageWrap = document.createElement("div");
+      imageWrap.className = "image-wrap";
+
+      const img = document.createElement("img");
+      img.className = "gallery-image";
+      img.src = item.image;
+      img.alt = item.alt;
+      img.loading = index < 2 ? "eager" : "lazy";
+      img.decoding = "async";
+      img.draggable = false;
+
+      img.addEventListener("error", () => {
+        card.remove();
+
+        cards = cards.filter((existing) => existing !== card);
+
+        if (!cards.length) {
+          showEmptyState(
+            "NO IMAGES FOUND",
+            "The feed loaded, but its images could not be displayed. Check the image URLs and host permissions."
+          );
+        } else {
+          updateCounter();
+        }
+      });
+
+      imageWrap.appendChild(img);
+
+      if (item.url) {
+        const link = document.createElement("a");
+        link.className = "image-link";
+        link.href = item.url;
+        link.target = "_blank";
+        link.rel = "noopener noreferrer";
+        link.setAttribute("aria-label", "Open original community post");
+
+        link.appendChild(imageWrap);
+        card.appendChild(link);
+      } else {
+        card.appendChild(imageWrap);
+      }
+
+      const caption = document.createElement("div");
+      caption.className = "card-caption";
+
+      const title = document.createElement("h3");
+      title.textContent = item.title;
+
+      const description = document.createElement("p");
+      description.textContent = item.caption;
+
+      caption.append(title, description);
+      card.appendChild(caption);
+
+      return card;
+    }
+
+    async function loadCommunityGallery() {
+      const currentRequest = ++requestNumber;
+
+      if (
+        !COMMUNITY_FEED_URL ||
+        COMMUNITY_FEED_URL === "REPLACE_WITH_YOUR_PUBLIC_JSON_FEED_URL"
+      ) {
+        showEmptyState(
+          "THE SWAMP IS WAITING 🐸",
+          "Your gallery design is ready. Connect a public JSON feed URL in community.html to load your external images dynamically."
+        );
+        return;
+      }
+
+      status.textContent = "FETCHING FROG ART...";
+      emptyState.classList.add("hidden");
+      track.classList.remove("hidden");
+      controls.classList.remove("hidden");
+
+      try {
+        const response = await fetch(COMMUNITY_FEED_URL, {
+          method: "GET",
+          headers: {
+            "Accept": "application/json"
+          },
+          cache: "no-cache"
+        });
+
+        if (!response.ok) {
+          throw new Error("Feed request failed: HTTP " + response.status);
+        }
+
+        const data = await response.json();
+
+        if (currentRequest !== requestNumber) return;
+
+        const images = normalizeFeed(data);
+
+        if (!images.length) {
+          showEmptyState(
+            "NO FROG ART YET",
+            "Your feed returned no valid images. Add image URLs to the public JSON feed and try again."
+          );
+          return;
+        }
+
+        track.replaceChildren();
+        cards = [];
+        activeIndex = 0;
+
+        images.forEach((item, index) => {
+          const card = createCard(item, index);
+          cards.push(card);
+          track.appendChild(card);
+        });
+
+        track.scrollLeft = 0;
+
+        status.textContent =
+          images.length + (images.length === 1
+            ? " COMMUNITY IMAGE LOADED"
+            : " COMMUNITY IMAGES LOADED");
+
+        updateCounter();
+
+      } catch (error) {
+        if (currentRequest !== requestNumber) return;
+
+        console.error("FROGINALS gallery error:", error);
+
+        showEmptyState(
+          "CONNECTION LOST 🐸",
+          "Could not load the image feed. Check the feed URL, JSON format, internet connection and CORS settings, then reload."
+        );
+      }
+    }
+
+    retryButton.addEventListener("click", loadCommunityGallery);
+
+    /* Load the latest gallery when the page opens. */
+    loadCommunityGallery();
+  </script>
+
+</body>
+</html>
