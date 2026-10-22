@@ -1,0 +1,887 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101510">
+<meta name="description" content="Meet the FROGINALARMY. The holders, the frogs, the community.">
+<title>FROGINALARMY | FROGINALS</title>
+
+<style>
+:root {
+  --bg: #101510;
+  --panel: #192119;
+  --green: #8cff9b;
+  --lime: #c3ff53;
+  --white: #f5fff4;
+  --muted: #91a092;
+  --border: #304332;
+  --pink: #ff70c7;
+}
+
+* { box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--white);
+  font-family: Arial, Helvetica, sans-serif;
+  min-height: 100vh;
+}
+
+a { color: inherit; }
+
+button, input {
+  font: inherit;
+}
+
+button { cursor: pointer; }
+
+.site-header {
+  min-height: 76px;
+  padding: 16px 6%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  border-bottom: 1px solid var(--border);
+  background: #101510;
+  position: sticky;
+  top: 0;
+  z-index: 10;
+}
+
+.logo {
+  text-decoration: none;
+  font-size: 23px;
+  font-weight: 1000;
+  letter-spacing: -1px;
+}
+
+.logo span { color: var(--green); }
+
+.nav {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.nav a {
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--muted);
+}
+
+.nav a:hover { color: var(--green); }
+
+.nav .home-link {
+  background: var(--lime);
+  color: #101510;
+  padding: 11px 15px;
+  border-radius: 5px;
+}
+
+.hero {
+  text-align: center;
+  padding: 76px 20px 45px;
+  background:
+    radial-gradient(ellipse at 50% 0%, #24452b 0%, transparent 65%);
+}
+
+.eyebrow {
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 4px;
+  text-transform: uppercase;
+}
+
+.hero h1 {
+  font-size: clamp(42px, 8vw, 88px);
+  line-height: .95;
+  letter-spacing: -5px;
+  margin: 23px 0;
+  font-weight: 1000;
+}
+
+.hero h1 span {
+  color: var(--green);
+  display: block;
+}
+
+.hero p {
+  color: var(--muted);
+  max-width: 550px;
+  line-height: 1.7;
+  margin: 0 auto;
+  font-size: 15px;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 45px;
+  margin-top: 36px;
+  flex-wrap: wrap;
+}
+
+.stat strong {
+  display: block;
+  font-size: 28px;
+  color: var(--lime);
+}
+
+.stat span {
+  display: block;
+  margin-top: 5px;
+  color: var(--muted);
+  font-size: 10px;
+  letter-spacing: 2px;
+  font-weight: 800;
+}
+
+.container {
+  width: min(1180px, 90%);
+  margin: 0 auto;
+  padding-bottom: 70px;
+}
+
+.section-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  flex-wrap: wrap;
+  margin: 30px 0 24px;
+}
+
+.section-head h2 {
+  margin: 0;
+  font-size: 24px;
+  letter-spacing: -1px;
+}
+
+.section-head h2 span { color: var(--green); }
+
+.tools {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-bottom: 25px;
+}
+
+.search {
+  flex: 1;
+  min-width: 190px;
+}
+
+input {
+  width: 100%;
+  padding: 13px 14px;
+  background: #141c15;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  color: var(--white);
+  outline: none;
+}
+
+input:focus {
+  border-color: var(--green);
+}
+
+.btn {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  padding: 12px 17px;
+  border: 1px solid var(--border);
+  border-radius: 5px;
+  background: var(--panel);
+  color: var(--white);
+  text-decoration: none;
+  font-size: 12px;
+  font-weight: 900;
+  transition: .2s;
+}
+
+.btn:hover { border-color: var(--green); }
+
+.btn-green {
+  background: var(--lime);
+  color: #101510;
+  border-color: var(--lime);
+}
+
+.btn-green:hover { background: var(--green); }
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.member {
+  min-width: 0;
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  overflow: hidden;
+  transition: transform .2s, border-color .2s;
+}
+
+.member:hover {
+  transform: translateY(-4px);
+  border-color: var(--green);
+}
+
+.nft-wrap {
+  position: relative;
+  background: #263729;
+  aspect-ratio: 1 / 1;
+  overflow: hidden;
+}
+
+.nft-wrap img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.nft-placeholder {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 70px;
+  background:
+    radial-gradient(circle, #426548, #18271a 75%);
+}
+
+.member-badge {
+  position: absolute;
+  left: 12px;
+  top: 12px;
+  padding: 7px 9px;
+  border-radius: 4px;
+  background: var(--lime);
+  color: #101510;
+  font-size: 9px;
+  font-weight: 1000;
+  letter-spacing: 1px;
+}
+
+.member-body { padding: 17px; }
+
+.member-name {
+  font-size: 19px;
+  font-weight: 1000;
+  overflow-wrap: anywhere;
+  margin-bottom: 8px;
+}
+
+.member-name a {
+  text-decoration: none;
+}
+
+.member-name a:hover { color: var(--green); }
+
+.handle {
+  color: var(--green);
+  font-size: 13px;
+  font-weight: 800;
+  margin-bottom: 13px;
+}
+
+.wallet {
+  color: var(--muted);
+  font-size: 11px;
+  margin-bottom: 16px;
+  overflow-wrap: anywhere;
+}
+
+.member-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.member-actions .btn {
+  flex: 1;
+  padding: 11px 8px;
+  font-size: 10px;
+}
+
+.empty {
+  display: none;
+  text-align: center;
+  padding: 65px 20px;
+  border: 1px dashed var(--border);
+  border-radius: 9px;
+  color: var(--muted);
+}
+
+.empty strong {
+  display: block;
+  font-size: 25px;
+  color: var(--green);
+  margin-bottom: 10px;
+}
+
+.admin {
+  margin-top: 65px;
+  background: #141c15;
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: 25px;
+}
+
+.admin-header {
+  display: flex;
+  justify-content: space-between;
+  gap: 15px;
+  flex-wrap: wrap;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.admin h2 { margin: 0; }
+
+.admin h2 span { color: var(--green); }
+
+.notice {
+  color: var(--muted);
+  font-size: 12px;
+  line-height: 1.7;
+  margin-bottom: 22px;
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 16px;
+}
+
+.field label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: 1px;
+}
+
+.field.full { grid-column: 1 / -1; }
+
+.form-actions {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+#message {
+  min-height: 20px;
+  margin-top: 15px;
+  font-size: 12px;
+  color: var(--green);
+}
+
+.footer {
+  border-top: 1px solid var(--border);
+  padding: 28px 15px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+
+.footer a {
+  color: var(--green);
+  text-decoration: none;
+}
+
+@media (max-width: 850px) {
+  .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .hero h1 { letter-spacing: -3px; }
+}
+
+@media (max-width: 540px) {
+  .site-header { padding: 15px 5%; }
+  .logo { font-size: 19px; }
+  .nav { gap: 12px; }
+  .nav a { font-size: 11px; }
+  .hero { padding-top: 55px; }
+  .grid { grid-template-columns: 1fr; }
+  .container { width: 92%; }
+  .form-grid { grid-template-columns: 1fr; }
+  .field.full { grid-column: auto; }
+  .admin { padding: 18px; }
+  .stats { gap: 25px; }
+}
+</style>
+</head>
+
+<body>
+
+<header class="site-header">
+  <a class="logo" href="./index.html">
+    FROGINALS<span>®</span>
+  </a>
+
+  <nav class="nav">
+    <a href="./index.html">HOME</a>
+    <a href="./index.html#products">SHOP</a>
+    <a class="home-link" href="#army">FROGINALARMY 🐸</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="eyebrow">FROGINALS COMMUNITY</div>
+
+  <h1>
+    THE FROGINAL
+    <span>ARMY.</span>
+  </h1>
+
+  <p>
+    THE FROGS. THE HOLDERS. THE REAL ONES.
+    Meet the community behind FROGINALS.
+    Collect your frog, represent your crew, and join the army.
+  </p>
+
+  <div class="stats">
+    <div class="stat">
+      <strong id="memberCount">0</strong>
+      <span>ARMY MEMBERS</span>
+    </div>
+    <div class="stat">
+      <strong>🐸</strong>
+      <span>FROGINAL ENERGY</span>
+    </div>
+  </div>
+</section>
+
+<main class="container" id="army">
+
+  <div class="section-head">
+    <h2>MEET THE <span>ARMY</span></h2>
+    <span style="color:var(--muted);font-size:12px">
+      EVERY FROG HAS A STORY.
+    </span>
+  </div>
+
+  <div class="tools">
+    <div class="search">
+      <input
+        type="search"
+        id="search"
+        placeholder="Search X username or wallet..."
+        aria-label="Search members"
+      >
+    </div>
+    <a class="btn btn-green" href="#admin">+ ADD MEMBER</a>
+  </div>
+
+  <div class="grid" id="memberGrid"></div>
+
+  <div class="empty" id="empty">
+    <strong>NO FROGS FOUND 🐸</strong>
+    No members match your search yet.
+  </div>
+
+  <section class="admin" id="admin">
+    <div class="admin-header">
+      <h2>ARMY <span>MANAGER</span></h2>
+      <span style="font-size:11px;color:var(--muted)">
+        MEMBER ENTRY FORM
+      </span>
+    </div>
+
+    <p class="notice">
+      Add the member's X handle, public Solana wallet, and NFT image or
+      marketplace URL. This prototype saves entries in this browser only.
+      Anyone who can access this page can use this form. Do not treat it
+      as a private or secure admin panel.
+    </p>
+
+    <form id="memberForm">
+      <div class="form-grid">
+
+        <div class="field">
+          <label for="xHandle">X USERNAME *</label>
+          <input
+            id="xHandle"
+            placeholder="@frogcollector"
+            maxlength="100"
+            required
+          >
+        </div>
+
+        <div class="field">
+          <label for="walletAddress">SOLANA WALLET ADDRESS *</label>
+          <input
+            id="walletAddress"
+            placeholder="Public wallet address"
+            maxlength="100"
+            required
+          >
+        </div>
+
+        <div class="field full">
+          <label for="nftUrl">NFT IMAGE OR MARKETPLACE URL *</label>
+          <input
+            id="nftUrl"
+            type="url"
+            placeholder="https://..."
+            maxlength="2000"
+            required
+          >
+        </div>
+
+        <div class="field full">
+          <label for="displayName">DISPLAY NAME (OPTIONAL)</label>
+          <input
+            id="displayName"
+            placeholder="FROG LEGEND"
+            maxlength="80"
+          >
+        </div>
+
+      </div>
+
+      <div class="form-actions">
+        <button class="btn btn-green" type="submit">
+          ADD TO THE ARMY 🐸
+        </button>
+
+        <button class="btn" type="button" id="exportBtn">
+          EXPORT MEMBERS JSON
+        </button>
+
+        <button class="btn" type="button" id="importBtn">
+          IMPORT MEMBERS JSON
+        </button>
+
+        <input
+          id="importFile"
+          type="file"
+          accept=".json,application/json"
+          hidden
+        >
+      </div>
+
+      <div id="message" role="status" aria-live="polite"></div>
+    </form>
+  </section>
+</main>
+
+<footer class="footer">
+  FROGINALARMY © 2026 · BUILT DIFFERENT. BUILT FROGINAL.
+  <br><br>
+  <a href="./index.html">BACK TO FROGINALS</a>
+</footer>
+
+<script>
+(() => {
+  "use strict";
+
+  const STORAGE_KEY = "froginalarmy_members_v1";
+
+  const grid = document.getElementById("memberGrid");
+  const search = document.getElementById("search");
+  const form = document.getElementById("memberForm");
+  const message = document.getElementById("message");
+  const empty = document.getElementById("empty");
+
+  let members = loadMembers();
+
+  function loadMembers() {
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+      return Array.isArray(saved) ? saved.filter(isValidRecord) : [];
+    } catch {
+      return [];
+    }
+  }
+
+  function isValidRecord(member) {
+    return member &&
+      typeof member.id === "string" &&
+      typeof member.handle === "string" &&
+      typeof member.wallet === "string" &&
+      typeof member.nftUrl === "string";
+  }
+
+  function saveMembers() {
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(members));
+      return true;
+    } catch {
+      showMessage("Could not save. Browser storage may be full or disabled.", true);
+      return false;
+    }
+  }
+
+  function safeHttpUrl(value) {
+    try {
+      const url = new URL(value);
+      return ["https:", "http:"].includes(url.protocol) ? url.href : null;
+    } catch {
+      return null;
+    }
+  }
+
+  function shortWallet(wallet) {
+    if (wallet.length < 15) return wallet;
+    return wallet.slice(0, 6) + "..." + wallet.slice(-5);
+  }
+
+  function showMessage(text, error = false) {
+    message.textContent = text;
+    message.style.color = error ? "#ff70c7" : "#8cff9b";
+  }
+
+  function makeElement(tag, className, text) {
+    const element = document.createElement(tag);
+    if (className) element.className = className;
+    if (text !== undefined) element.textContent = text;
+    return element;
+  }
+
+  function makeLink(text, href, className, newTab = true) {
+    const link = makeElement("a", className, text);
+    link.href = href;
+
+    if (newTab) {
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+    }
+
+    return link;
+  }
+
+  function render() {
+    const query = search.value.trim().toLowerCase();
+
+    const visible = members.filter(member => {
+      return (
+        member.handle.toLowerCase().includes(query) ||
+        member.wallet.toLowerCase().includes(query) ||
+        (member.displayName || "").toLowerCase().includes(query)
+      );
+    });
+
+    grid.replaceChildren();
+
+    document.getElementById("memberCount").textContent = members.length;
+    empty.style.display = visible.length ? "none" : "block";
+
+    visible.forEach(member => {
+      const card = makeElement("article", "member");
+      const imageWrap = makeElement("div", "nft-wrap");
+
+      const badge = makeElement("span", "member-badge", "FROGINALARMY");
+      imageWrap.appendChild(badge);
+
+      const imageUrl = safeHttpUrl(member.nftUrl);
+
+      // A URL that points directly to an image displays it here.
+      // Marketplace pages may not expose their NFT image directly.
+      if (imageUrl) {
+        const img = document.createElement("img");
+        img.src = imageUrl;
+        img.alt = "NFT submitted for " + member.handle;
+        img.loading = "lazy";
+        img.referrerPolicy = "no-referrer";
+
+        img.addEventListener("error", () => {
+          img.remove();
+          const placeholder = makeElement("div", "nft-placeholder", "🐸");
+          imageWrap.appendChild(placeholder);
+        }, { once: true });
+
+        imageWrap.appendChild(img);
+      } else {
+        imageWrap.appendChild(makeElement("div", "nft-placeholder", "🐸"));
+      }
+
+      const body = makeElement("div", "member-body");
+
+      const displayName = member.displayName || member.handle;
+      const name = makeElement("div", "member-name");
+
+      const profileUrl = "https://x.com/" +
+        member.handle.replace(/^@/, "");
+
+      name.appendChild(makeLink(displayName, profileUrl, ""));
+
+      const handle = makeElement("div", "handle", member.handle);
+      const wallet = makeElement(
+        "div",
+        "wallet",
+        "WALLET: " + shortWallet(member.wallet)
+      );
+
+      const actions = makeElement("div", "member-actions");
+
+      actions.appendChild(
+        makeLink("VIEW X ↗", profileUrl, "btn")
+      );
+
+      if (imageUrl) {
+        actions.appendChild(
+          makeLink("VIEW NFT ↗", imageUrl, "btn btn-green")
+        );
+      }
+
+      body.append(name, handle, wallet, actions);
+      card.append(imageWrap, body);
+      grid.appendChild(card);
+    });
+  }
+
+  form.addEventListener("submit", event => {
+    event.preventDefault();
+
+    const handleInput = document.getElementById("xHandle").value.trim();
+    const wallet = document.getElementById("walletAddress").value.trim();
+    const nftUrl = document.getElementById("nftUrl").value.trim();
+    const displayName = document.getElementById("displayName").value.trim();
+
+    const handle = handleInput.startsWith("@")
+      ? handleInput
+      : "@" + handleInput;
+
+    if (!/^@[A-Za-z0-9_]{1,15}$/.test(handle)) {
+      showMessage("Enter a valid X username (letters, numbers, underscores).", true);
+      return;
+    }
+
+    if (wallet.length < 32 || wallet.length > 100) {
+      showMessage("Check the wallet address length.", true);
+      return;
+    }
+
+    const validNftUrl = safeHttpUrl(nftUrl);
+
+    if (!validNftUrl) {
+      showMessage("Enter a valid HTTP or HTTPS NFT URL.", true);
+      return;
+    }
+
+    const duplicate = members.some(member =>
+      member.wallet.toLowerCase() === wallet.toLowerCase()
+    );
+
+    if (duplicate) {
+      showMessage("This wallet is already listed.", true);
+      return;
+    }
+
+    members.unshift({
+      id: createId(),
+      handle,
+      wallet,
+      nftUrl: validNftUrl,
+      displayName: displayName.slice(0, 80),
+      addedAt: new Date().toISOString()
+    });
+
+    if (!saveMembers()) {
+      members.shift();
+      return;
+    }
+
+    form.reset();
+    search.value = "";
+    render();
+    showMessage("Member added to this browser's directory! 🐸");
+  });
+
+  function createId() {
+    if (crypto.randomUUID) return crypto.randomUUID();
+    return Date.now().toString(36) + Math.random().toString(36).slice(2);
+  }
+
+  search.addEventListener("input", render);
+
+  document.getElementById("exportBtn").addEventListener("click", () => {
+    const blob = new Blob(
+      [JSON.stringify(members, null, 2)],
+      { type: "application/json" }
+    );
+
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "froginalarmy-members.json";
+    link.click();
+    URL.revokeObjectURL(url);
+
+    showMessage("Member data exported.");
+  });
+
+  document.getElementById("importBtn").addEventListener("click", () => {
+    document.getElementById("importFile").click();
+  });
+
+  document.getElementById("importFile").addEventListener("change", async event => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    try {
+      const imported = JSON.parse(await file.text());
+
+      if (!Array.isArray(imported) || imported.length > 10000) {
+        throw new Error("Invalid member file.");
+      }
+
+      const cleaned = imported.filter(member =>
+        isValidRecord(member) &&
+        member.handle.length <= 100 &&
+        member.wallet.length <= 100 &&
+        member.displayName?.length <= 80 &&
+        safeHttpUrl(member.nftUrl)
+      );
+
+      if (!confirm("Import " + cleaned.length +
+        " members? Existing records will be kept unless their wallet matches.")) {
+        return;
+      }
+
+      const byWallet = new Map(
+        members.map(member => [member.wallet.toLowerCase(), member])
+      );
+
+      cleaned.forEach(member => {
+        byWallet.set(member.wallet.toLowerCase(), member);
+      });
+
+      const previous = members;
+      members = Array.from(byWallet.values());
+
+      if (!saveMembers()) {
+        members = previous;
+        return;
+      }
+
+      render();
+      showMessage("Import complete. " + members.length + " members listed.");
+    } catch {
+      showMessage("Could not import this file. Check the JSON format.", true);
+    } finally {
+      event.target.value = "";
+    }
+  });
+
+  render();
+})();
+</script>
+
+</body>
+</html>
