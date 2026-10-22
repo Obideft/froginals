@@ -2,17 +2,11 @@
 {
   "images": [
     {
-      "image": "https://res.cloudinary.com/al96yvcm/image/upload/f_auto,q_auto/froginals_community_art",
+      "image": "https://res.cloudinary.com/al96yvcm/image/upload/froginals_community_art.png",
       "title": "THE FROG GANG",
       "caption": "Two frogs talking fits, memes and Dogecoin.",
       "alt": "FROGINALS community artwork",
-      "url": "https://your-community-post.com/post-01"
-    },
-    {
-      "image": "https://your-image-host.com/frog-art-02.png",
-      "title": "SWAMP DRIP",
-      "caption": "Fresh outfit. Questionable financial decisions.",
-      "alt": "A FROGINALS frog wearing streetwear"
+      "url": "https://gravemint.io/mint/3678jb"
     }
   ]
 }
