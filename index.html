@@ -1,309 +1,241 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#ff7900">
-  <title>FROGINALS — Supporting Dogecoin</title>
-  <meta name="description" content="FROGINALS! Good frogs, good Doge. Shop the FROGINALS tee and join the community.">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;700;800&display=swap" rel="stylesheet">
-  <style>
-    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:20px}body{margin:0;background:#ff7900;color:#171717;font-family:"Space Grotesk",sans-serif;text-align:center}header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 6%;border-bottom:3px solid #171717;position:relative;z-index:5;overflow:visible;min-height:82px}.logo-link{position:relative;display:block;align-self:stretch;width:clamp(110px,15vw,165px);min-width:90px;flex-shrink:0;text-decoration:none;z-index:7}.logo-image{position:absolute;display:block;width:175%;max-width:none;height:auto;left:0;top:2px;object-fit:contain;object-position:top left;transform-origin:top left;opacity:0;filter:drop-shadow(4px 5px 0 rgba(23,23,23,.2));will-change:transform}.logo-image.logo-settled{animation:logoSway 3.8s ease-in-out infinite}@keyframes logoSway{0%,100%{transform:translateX(-7px)}50%{transform:translateX(7px)}}.header-actions{display:flex;align-items:center;gap:18px;flex-shrink:0;position:relative;z-index:8}.shop-link{color:#171717;text-decoration:none;font-weight:800;font-size:12px;white-space:nowrap}.shop-link:hover{color:#fff1d6}.whitepaper-tab{background:#ff63c7;color:#171717}.whitepaper-tab:hover{background:#ffb0e4}.mint-button{display:inline-block;max-width:100%;margin:18px auto 12px;padding:17px 20px;background:#53ff89;color:#171717;border:3px solid #171717;box-shadow:6px 6px #171717;text-decoration:none;font-family:"Press Start 2P",monospace;font-size:clamp(9px,1.8vw,13px);line-height:1.9;transition:transform .2s,box-shadow .2s,background .2s}.mint-button:hover{background:#c3ff53;color:#171717;transform:translate(3px,3px);box-shadow:3px 3px #171717}.mint-note{margin:12px 0 20px;font-size:12px;font-weight:700;line-height:1.8}
-    .nft-tab{background:#ffd447;color:#171717;border-color:#171717}.nft-tab:hover{background:#53ff89}
-    .products-tab{display:inline-flex;align-items:center;justify-content:center;padding:10px 12px;background:#ffd447;color:#171717;border:3px solid #171717;box-shadow:3px 3px #171717;text-decoration:none;font-family:"Press Start 2P",monospace;font-size:9px;line-height:1.6;white-space:nowrap;transition:transform .2s,box-shadow .2s}.products-tab:hover{transform:translate(2px,2px);box-shadow:1px 1px #171717}.army-tab{background:#c3ff53}.army-tab:hover{background:#8cff9b}.community-tab{background:#fff1d6}.community-tab:hover{background:#fff}.music-toggle{display:inline-flex;align-items:center;justify-content:center;width:58px;height:58px;flex-shrink:0;border:4px solid #171717;border-radius:19px;background:#888;color:white;font-size:33px;line-height:1;cursor:pointer;box-shadow:5px 5px #171717;transition:transform .2s,background .2s,box-shadow .2s;-webkit-tap-highlight-color:transparent}.music-toggle:hover{transform:scale(1.08);box-shadow:7px 7px #171717}.music-toggle.is-muted{background:#888}.music-toggle.is-playing{background:#168cff;animation:musicBounce .8s ease-in-out infinite alternate}@keyframes musicBounce{from{transform:scale(1)}to{transform:scale(1.07)}}.logo-launch{position:fixed;inset:0;z-index:9999;background:#ff7900;display:flex;align-items:center;justify-content:center;overflow:hidden;pointer-events:all;opacity:1}.logo-launch img{position:absolute;left:50%;top:50%;display:block;width:min(59.5vw,595px);max-width:none;max-height:80vh;height:auto;object-fit:contain;object-position:center;transform:translate(-50%,-50%);image-rendering:pixelated;filter:drop-shadow(9px 10px 0 #171717);will-change:left,top,width,transform,opacity}main{padding:55px 20px 40px;overflow:hidden;background-image:radial-gradient(#ff9d2e 2px,transparent 2px);background-size:22px 22px}.eyebrow{font-family:"Press Start 2P",monospace;font-size:11px;line-height:1.8}h1{margin:25px 0;font-family:"Press Start 2P",monospace;font-size:clamp(34px,8vw,100px);line-height:1.3;letter-spacing:-5px;overflow-wrap:anywhere;text-shadow:5px 5px #fff1d6,9px 9px #171717}.mission{font-size:clamp(17px,3vw,27px);font-weight:800;line-height:1.7}.mission strong{background:#171717;color:#ffd447;padding:5px 8px}.moon{font-family:"Press Start 2P",monospace;font-size:clamp(11px,2vw,17px);line-height:1.8;margin:20px 0}.product{width:min(520px,100%);margin:20px auto 0;padding:15px}.shirt-image{display:block;width:100%;max-height:470px;object-fit:contain;margin:0 auto;filter:drop-shadow(10px 12px 0 rgba(23,23,23,.2));animation:float 4s ease-in-out infinite}.product-name{font-family:"Press Start 2P",monospace;font-size:clamp(12px,2vw,17px);line-height:1.8;margin:20px 0 10px}.price{font-size:38px;font-weight:800;margin:10px 0}.shipping{font-family:"Press Start 2P",monospace;font-size:10px;line-height:2;margin:15px 0 25px}.buy-button{display:inline-block;max-width:100%;padding:20px 24px;background:#171717;color:#fff1d6;border:3px solid #171717;box-shadow:6px 6px #fff1d6;text-decoration:none;font-family:"Press Start 2P",monospace;font-size:11px;line-height:1.8;transition:.2s}.buy-button:hover{transform:translate(3px,3px);box-shadow:3px 3px #fff1d6;color:#ffd447}.payment-note{font-size:12px;font-weight:700;margin:20px 0}
-    .community-section{padding:65px 0 60px;background:#ffe46b;border-top:4px solid #171717;border-bottom:4px solid #171717;overflow:hidden;scroll-margin-top:20px;background-image:radial-gradient(rgba(23,23,23,.09) 2px,transparent 2px);background-size:20px 20px}.community-inner{width:100%;margin:0 auto}.community-eyebrow{margin:0 15px 15px;font-family:"Press Start 2P",monospace;font-size:10px;line-height:2}.community-title{margin:0 12px 15px;font-family:"Press Start 2P",monospace;font-size:clamp(23px,5vw,48px);line-height:1.5;letter-spacing:-1px;text-shadow:3px 3px #fff1d6,5px 5px #171717}.community-description{max-width:620px;margin:0 auto 30px;padding:0 18px;font-size:clamp(14px,2vw,18px);font-weight:700;line-height:1.8}.community-status{min-height:24px;margin:12px 15px 20px;font-size:13px;font-weight:800;line-height:1.8}.community-carousel{position:relative;width:100%}.community-track{display:flex;gap:18px;overflow-x:auto;overflow-y:hidden;padding:12px max(20px,calc((100vw - 1000px)/2)) 24px;scroll-snap-type:x mandatory;scroll-behavior:smooth;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:#171717 #ffd447;cursor:grab}.community-track:active{cursor:grabbing}.community-track:focus-visible{outline:4px solid #168cff;outline-offset:-4px}.community-card{position:relative;flex:0 0 min(76%,820px);min-width:0;overflow:hidden;align-self:stretch;background:#171717;border:4px solid #171717;border-radius:5px;box-shadow:8px 8px 0 rgba(23,23,23,.2);scroll-snap-align:start}.community-card img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#ff7900;user-select:none;-webkit-user-drag:none}.community-card .image-link{display:block;text-decoration:none}.community-caption{padding:15px 14px 17px;background:#171717;color:#fff1d6;text-align:left}.community-caption h3{margin:0 0 8px;color:#ffd447;font-family:"Press Start 2P",monospace;font-size:clamp(9px,1.5vw,13px);line-height:1.9;overflow-wrap:anywhere}.community-caption p{margin:0;font-size:13px;font-weight:700;line-height:1.6;overflow-wrap:anywhere}.community-controls{display:flex;align-items:center;justify-content:center;gap:15px;margin:24px 15px 0}.carousel-arrow{display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border:3px solid #171717;border-radius:4px;background:#ffd447;color:#171717;box-shadow:4px 4px #171717;font-size:26px;font-weight:800;cursor:pointer;transition:transform .18s,box-shadow .18s,background .18s}.carousel-arrow:hover{background:#c3ff53;transform:translate(2px,2px);box-shadow:2px 2px #171717}.carousel-counter{min-width:76px;font-family:"Press Start 2P",monospace;font-size:10px;line-height:1.8}.community-cta{display:inline-block;margin-top:28px;padding:16px 18px;border:3px solid #171717;background:#c3ff53;color:#171717;box-shadow:5px 5px #171717;font-family:"Press Start 2P",monospace;font-size:10px;line-height:1.9;text-decoration:none;transition:transform .2s,box-shadow .2s}.community-cta:hover{transform:translate(3px,3px);box-shadow:2px 2px #171717}.community-note{margin:22px 16px 0;font-size:12px;font-weight:700;line-height:1.8}.ticker{background:#171717;color:#ffd447;border-top:3px solid #fff1d6;border-bottom:3px solid #fff1d6;padding:17px 0;overflow:hidden;white-space:nowrap;font-family:"Press Start 2P",monospace;font-size:12px}.ticker span{display:inline-block;animation:scroll 22s linear infinite}footer{display:flex;justify-content:space-between;gap:15px;padding:25px 6%;background:#171717;color:#fff1d6;font-family:"Press Start 2P",monospace;font-size:9px;line-height:1.8}@keyframes float{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-8px) rotate(1deg)}}@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#101510">
+<meta name="description" content="Meet the FROGINALARMY. Join missions, submit proof, and earn rewards.">
+<title>FROGINALARMY | FROGINALS</title>
+<style>
+:root{--bg:#101510;--panel:#192119;--green:#8cff9b;--lime:#c3ff53;--white:#f5fff4;--muted:#91a092;--border:#304332;--pink:#ff70c7;--gold:#ffd36a}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--white);font-family:Arial,Helvetica,sans-serif;min-height:100vh}a{color:inherit}button,input,select{font:inherit}button{cursor:pointer}
+.site-header{min-height:76px;padding:16px 6%;display:flex;justify-content:space-between;align-items:center;gap:20px;border-bottom:1px solid var(--border);background:#101510;position:sticky;top:0;z-index:10}.logo{text-decoration:none;font-size:23px;font-weight:1000;letter-spacing:-1px}.logo span{color:var(--green)}.nav{display:flex;gap:20px;align-items:center;flex-wrap:wrap}.nav a{text-decoration:none;font-size:13px;font-weight:800;color:var(--muted)}.nav a:hover{color:var(--green)}.nav .home-link{background:var(--lime);color:#101510;padding:11px 15px;border-radius:5px}
+.hero{text-align:center;position:relative;isolation:isolate;display:flex;flex-direction:column;align-items:center;justify-content:center;aspect-ratio:2173 / 724;min-height:360px;padding:clamp(30px,4vw,76px) 20px 38px;overflow:hidden;background-image:linear-gradient(180deg,rgba(8,12,8,.22),rgba(8,12,8,.48)),url("https://raw.githubusercontent.com/Obideft/froginals/main/images/BANNER%20FROGINALS%20ARMY.png");background-size:cover;background-position:center;background-repeat:no-repeat}.eyebrow{color:var(--lime);font-size:12px;font-weight:900;letter-spacing:4px;text-transform:uppercase;text-shadow:0 2px 8px #000}.hero h1{font-size:clamp(38px,7.3vw,88px);line-height:.98;letter-spacing:clamp(-5px,-.35vw,-1px);margin:20px 0;font-weight:1000;color:#fff8d7;text-wrap:balance;text-shadow:0 4px 0 #17100a,2px 6px 0 #17100a,0 8px 20px #000b}.hero h1 span{color:var(--lime);display:inline}.hero p{color:#fff;max-width:550px;line-height:1.7;margin:0 auto;font-size:15px;text-shadow:0 2px 7px #000;}.stats{display:flex;justify-content:center;gap:45px;margin-top:28px;flex-wrap:wrap}.hero .stat strong{color:#fff08a;text-shadow:0 2px 8px #000}.hero .stat span{color:#fff;text-shadow:0 1px 5px #000}.stat strong{display:block;font-size:28px;color:var(--lime)}.stat span{display:block;margin-top:5px;color:var(--muted);font-size:10px;letter-spacing:2px;font-weight:800}
 
-    /* $1 FROGINALS POPUP */
-    .dollar-popup-overlay{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(20,8,28,.78);backdrop-filter:blur(5px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s ease,visibility .25s ease}
-    .dollar-popup-overlay.is-visible{opacity:1;visibility:visible;pointer-events:auto}
-    .dollar-popup{position:relative;width:min( min(920px, 94vw), calc(88vh * 1.5));max-height:88vh;overflow:visible;border:4px solid #171717;border-radius:18px;background:#fff;box-shadow:0 0 0 4px #d52bff,0 0 32px rgba(213,43,255,.65),10px 12px 0 #171717;transform:translateY(18px) scale(.96);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
-    .dollar-popup-overlay.is-visible .dollar-popup{transform:translateY(0) scale(1)}
-    .dollar-popup-art{display:block;width:100%;height:auto;max-height:calc(88vh - 8px);object-fit:contain;border-radius:13px}
-    .dollar-popup-close{position:absolute;right:8px;top:8px;z-index:3;display:flex;align-items:center;justify-content:center;width:clamp(34px,5vw,52px);height:clamp(34px,5vw,52px);padding:0;border:3px solid #171717;border-radius:8px;background:#f32be8;color:#171717;box-shadow:3px 3px 0 #171717;font-size:clamp(22px,3vw,34px);font-weight:900;line-height:1;cursor:pointer}
-    .dollar-popup-close:hover{background:#fff;transform:scale(1.06)}
-    .popup-mint-button{position:absolute;left:72%;top:86.8%;transform:translate(-50%,-50%);width:45.5%;min-height:clamp(34px,6vw,74px);display:flex;align-items:center;justify-content:center;padding:clamp(5px,1vw,12px);box-sizing:border-box;background:#39ff14;color:#101010;border:3px solid #101010;border-radius:8px;box-shadow:0 0 8px #39ff14,0 0 18px #39ff14,0 0 32px rgba(57,255,20,.8),4px 4px 0 #101010;text-decoration:none;font-family:"Press Start 2P",monospace;font-size:clamp(7px,1.2vw,13px);font-weight:900;line-height:1.55;text-align:center;z-index:2;animation:popupMintGlow 1.1s ease-in-out infinite alternate}
-    @keyframes popupMintGlow{from{box-shadow:0 0 7px #39ff14,0 0 15px #39ff14,4px 4px 0 #101010;filter:brightness(1)}to{box-shadow:0 0 14px #39ff14,0 0 28px #39ff14,0 0 42px rgba(57,255,20,.95),4px 4px 0 #101010;filter:brightness(1.22)}}
-    .popup-mint-button:hover{background:#aaff00;color:#101010;transform:translate(-50%,-50%) scale(1.035)}
-    @media(max-width:600px){.dollar-popup-overlay{padding:12px}.dollar-popup{width:min(96vw,calc(84vh * 1.5));max-height:84vh;border-width:3px;border-radius:12px;box-shadow:0 0 0 3px #d52bff,0 0 20px rgba(213,43,255,.65),6px 7px 0 #171717}.dollar-popup-art{max-height:calc(84vh - 6px);border-radius:9px}.dollar-popup-close{right:5px;top:5px;width:32px;height:32px;border-width:2px;border-radius:6px;font-size:23px;box-shadow:2px 2px #171717}.popup-mint-button{left:72%;top:86.8%;width:45.5%;min-height:clamp(27px,8vw,44px);padding:4px;font-size:clamp(5px,1.65vw,8px);border-width:2px;border-radius:5px;box-shadow:0 0 7px #39ff14,0 0 15px #39ff14,2px 2px #101010}}
-    @media(prefers-reduced-motion:reduce){.dollar-popup-overlay,.dollar-popup{transition:none}.popup-mint-button{animation:none}}
+.brand-film{width:min(1180px,90%);margin:34px auto 10px;padding:clamp(20px,4vw,42px);border:1px solid #476047;border-radius:12px;background:radial-gradient(ellipse at top center,#263d28 0%,#151e16 60%,#121812 100%);box-shadow:0 18px 48px #0004;overflow:hidden}
+.brand-film-kicker{display:inline-flex;align-items:center;gap:8px;color:var(--lime);font-size:10px;font-weight:1000;letter-spacing:3px;text-transform:uppercase}
+.brand-film-kicker:before{content:"";display:block;width:22px;height:2px;background:var(--lime)}
+.brand-film-heading{text-align:center;max-width:780px;margin:0 auto 24px}
+.brand-film h2{margin:12px 0 10px;font-size:clamp(27px,4.5vw,48px);line-height:1.04;letter-spacing:-1.8px;color:#fff8d7}
+.brand-film h2 span{color:var(--lime)}
+.brand-film-intro{max-width:650px;margin:0 auto;color:#b9cbb9;font-size:14px;line-height:1.8}
+.brand-film-frame{position:relative;width:100%;max-width:940px;margin:0 auto;aspect-ratio:16/9;overflow:hidden;border:1px solid #526b51;border-radius:9px;background:#050805;box-shadow:0 16px 42px #0008}
+.brand-film-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.brand-film-bottom{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;max-width:940px;margin:18px auto 0}
+.brand-film-bottom p{margin:0;color:var(--muted);font-size:11px;line-height:1.7}
+.brand-film-bottom strong{color:var(--green)}
+@media(max-width:540px){.brand-film{width:92%;padding:20px 14px;margin-top:24px}.brand-film h2{letter-spacing:-1px}.brand-film-intro{font-size:13px}.brand-film-frame{border-radius:6px}.brand-film-bottom{align-items:stretch}.brand-film-bottom .btn{width:100%}}
 
-    @media(max-width:600px){header{padding:14px 12px;min-height:72px;gap:8px}.logo-link{width:95px;min-width:75px}.logo-image{width:175%}.header-actions{gap:8px;flex-wrap:wrap;justify-content:flex-end}.shop-link{font-size:8px}.products-tab{padding:8px 7px;font-size:7px;border-width:2px;box-shadow:2px 2px #171717}.music-toggle{width:46px;height:46px;font-size:27px;border-radius:15px}main{padding:38px 15px 30px}h1{letter-spacing:-3px;text-shadow:3px 3px #fff1d6,6px 6px #171717}.shipping{font-size:8px}.buy-button{font-size:9px;padding:17px 12px}.community-section{padding:45px 0}.community-track{gap:12px;padding:10px 16px 20px}.community-card{flex-basis:86%;border-width:3px;box-shadow:5px 5px 0 rgba(23,23,23,.2)}.community-caption{padding:12px 10px 14px}.community-caption p{font-size:12px}.carousel-arrow{width:46px;height:46px}.community-cta{max-width:calc(100% - 32px);font-size:8px;padding:13px 10px}footer{flex-direction:column;align-items:center}.logo-launch img{width:64.4vw}}
-    @media(max-width:360px){header{padding:12px 8px}.logo-link{width:78px;min-width:65px}.header-actions{gap:5px}.shop-link{font-size:7px}.products-tab{padding:6px 5px;font-size:6px}.music-toggle{width:42px;height:42px;font-size:24px}.community-card{flex-basis:90%}}
-    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
-
-    /* FROGINALS $1 SWAMP SPECIAL — RESPONSIVE IMAGE POPUP */
-    .swamp-popup-overlay{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;padding:clamp(10px,3vw,28px);background:rgba(23,23,23,.78);opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
-    .swamp-popup-overlay.is-open{opacity:1;visibility:visible}
-    .swamp-popup{position:relative;width:min( min(900px, 94vw), calc((100dvh - 36px) * 1.5));max-width:900px;line-height:0;border:4px solid #171717;border-radius:22px;overflow:hidden;background:#fff;box-shadow:10px 10px 0 #d82cff;transform:translateY(18px) scale(.96);transition:transform .25s}
-    .swamp-popup-overlay.is-open .swamp-popup{transform:translateY(0) scale(1)}
-    .swamp-popup-art{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:contain;background:#fff}
-    .swamp-popup-close{position:absolute;z-index:2;top:2.1%;right:2.1%;width:clamp(32px,5vw,48px);height:clamp(32px,5vw,48px);border:3px solid #171717;border-radius:12px;background:#ff35d4;color:#171717;font-size:clamp(20px,3vw,30px);font-weight:900;line-height:1;cursor:pointer;box-shadow:3px 3px #171717;display:grid;place-items:center}
-    .swamp-popup-cta{position:absolute;z-index:1;right:6.2%;bottom:7.1%;width:43.5%;height:12%;display:flex;align-items:center;justify-content:center;padding:0 2%;border:0;border-radius:8px;background:transparent;color:transparent;text-decoration:none;font-size:clamp(10px,1.6vw,18px);line-height:1;overflow:hidden}
-    .swamp-popup-cta:focus-visible{outline:4px solid #d82cff;outline-offset:3px;background:rgba(83,255,137,.18)}
-    @media(max-width:540px){.swamp-popup{width:min(96vw,calc((100dvh - 28px) * 1.5));border-width:3px;border-radius:14px;box-shadow:5px 5px 0 #d82cff}.swamp-popup-overlay{padding:8px}.swamp-popup-close{top:1.8%;right:1.8%;width:30px;height:30px;border-width:2px;border-radius:8px;font-size:21px;box-shadow:2px 2px #171717}.swamp-popup-cta{right:5.8%;bottom:7%;width:44%;height:12.5%;border-radius:5px}}
-    @media(prefers-reduced-motion:reduce){.swamp-popup-overlay,.swamp-popup{transition:none}}
-  </style>
+.container{width:min(1180px,90%);margin:0 auto;padding-bottom:70px}.section-head{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin:30px 0 24px}.section-head h2{margin:0;font-size:24px;letter-spacing:-1px}.section-head h2 span{color:var(--green)}.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:25px}.search{flex:1;min-width:190px}input,select{width:100%;padding:13px 14px;background:#141c15;border:1px solid var(--border);border-radius:5px;color:var(--white);outline:none}input:focus,select:focus{border-color:var(--green)}.btn{display:inline-flex;justify-content:center;align-items:center;padding:12px 17px;border:1px solid var(--border);border-radius:5px;background:var(--panel);color:var(--white);text-decoration:none;font-size:12px;font-weight:900;transition:.2s}.btn:hover{border-color:var(--green)}.btn-green{background:var(--lime);color:#101510;border-color:var(--lime)}.btn-green:hover{background:var(--green)}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.member{min-width:0;background:var(--panel);border:1px solid var(--border);border-radius:9px;overflow:hidden;transition:transform .2s,border-color .2s}.member:hover{transform:translateY(-4px);border-color:var(--green)}.nft-wrap{position:relative;background:#263729;aspect-ratio:1/1;overflow:hidden}.nft-wrap img{width:100%;height:100%;object-fit:cover;display:block}.nft-placeholder{width:100%;height:100%;display:flex;justify-content:center;align-items:center;font-size:70px;background:radial-gradient(circle,#426548,#18271a 75%)}.member-badge{position:absolute;left:12px;top:12px;padding:7px 9px;border-radius:4px;background:var(--lime);color:#101510;font-size:9px;font-weight:1000;letter-spacing:1px}.member-body{padding:17px}.member-name{font-size:19px;font-weight:1000;overflow-wrap:anywhere;margin-bottom:8px}.member-name a{text-decoration:none}.member-name a:hover{color:var(--green)}.handle{color:var(--green);font-size:13px;font-weight:800;margin-bottom:13px}.wallet{color:var(--muted);font-size:11px;margin-bottom:16px;overflow-wrap:anywhere}.member-actions{display:flex;gap:8px}.member-actions .btn{flex:1;padding:11px 8px;font-size:10px}.empty{display:none;text-align:center;padding:65px 20px;border:1px dashed var(--border);border-radius:9px;color:var(--muted)}.empty strong{display:block;font-size:25px;color:var(--green);margin-bottom:10px}
+ .missions{margin:52px 0 65px}.mission-intro{color:var(--muted);line-height:1.7;font-size:14px;max-width:720px}.mission-card{margin-top:20px;display:grid;grid-template-columns:1fr 1.1fr;gap:0;background:linear-gradient(135deg,#1a281b,#151c16);border:1px solid #476047;border-radius:12px;overflow:hidden}.mission-art{padding:26px;display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:320px;text-align:center;background:radial-gradient(circle at 25% 25%,#345a37,#18231a 65%)}.mission-preview{display:block;width:100%;max-width:440px;aspect-ratio:1/1;object-fit:cover;border:1px solid #476047;border-radius:10px;box-shadow:0 12px 38px #0008}.mission-tag{display:inline-block;padding:7px 10px;border-radius:4px;background:var(--lime);color:#101510;font-size:10px;font-weight:1000;letter-spacing:1px;margin-bottom:15px}.mission-art h3{font-size:clamp(25px,3vw,38px);line-height:1.05;letter-spacing:-1.5px;margin:17px 0 10px}.mission-art p{color:#b7c8b7;font-size:13px;line-height:1.6;margin:0}.mission-content{padding:28px}.reward-goal{display:block;text-align:center;padding:24px 16px;margin-bottom:22px;border:2px solid #bd7bff;border-radius:12px;background:linear-gradient(135deg,#38165f,#170d2d 72%);box-shadow:0 0 24px #8c3dff35,inset 0 0 20px #a34dff20;color:#fff}.reward-goal .goal-label{font-size:10px;letter-spacing:3px;font-weight:900;color:#e4c8ff;margin-bottom:10px}.reward-goal strong{display:block;color:#fff;font-size:clamp(25px,3vw,36px);line-height:1.1;font-weight:1000;letter-spacing:-1px;text-shadow:0 0 15px #d7a5ff55}.reward-goal span{display:block;margin-top:10px;color:#f4eaff;font-size:12px;font-weight:800;letter-spacing:1px}.mission-content h4{margin:20px 0 12px;font-size:13px;letter-spacing:1px}.mission-checklist{list-style:none;padding:0;margin:0;display:grid;gap:13px}.mission-checklist li{display:flex;align-items:flex-start;gap:11px;color:#f5fff4;font-size:13px;line-height:1.65}.checkmark{flex:0 0 22px;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;background:#8cff9b;color:#101510;border-radius:50%;font-weight:1000;font-size:13px;margin-top:1px}.mission-bottom{margin-top:25px;padding-top:21px;border-top:1px solid var(--border);text-align:center}.mission-bottom p{color:var(--muted);font-size:12px;line-height:1.7;margin:0 0 15px}.mission-submit{display:flex;width:100%;min-height:52px;align-items:center;justify-content:center;text-align:center;padding:15px 18px;background:linear-gradient(135deg,#c3ff53,#8cff9b);border:1px solid #c3ff53;border-radius:7px;color:#101510;text-decoration:none;font-size:13px;font-weight:1000;letter-spacing:.5px;box-shadow:0 7px 22px #8cff9b20;transition:transform .2s,filter .2s}.mission-submit:hover{transform:translateY(-2px);filter:brightness(1.06)}.mission-disclaimer{padding:12px 14px;border-left:3px solid #bd7bff;background:#20142e;color:#e8d9ff;font-size:11px;line-height:1.7;margin-top:16px;border-radius:0 5px 5px 0}
+.admin{margin-top:65px;background:#141c15;border:1px solid var(--border);border-radius:9px;padding:25px}.admin-header{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;align-items:center;margin-bottom:20px}.admin h2{margin:0}.admin h2 span{color:var(--green)}.notice{color:var(--muted);font-size:12px;line-height:1.7;margin-bottom:22px}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.field label{display:block;margin-bottom:8px;font-size:11px;font-weight:900;letter-spacing:1px}.field.full{grid-column:1/-1}.form-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}#message{min-height:20px;margin-top:15px;font-size:12px;color:var(--green)}.footer{border-top:1px solid var(--border);padding:28px 15px;text-align:center;color:var(--muted);font-size:11px;letter-spacing:1px}.footer a{color:var(--green);text-decoration:none}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{aspect-ratio:auto;min-height:430px;padding:52px 24px 36px;background-position:center}.hero h1{letter-spacing:-3px}.mission-card{grid-template-columns:1fr}.mission-art{min-height:260px}}@media(max-width:540px){.site-header{padding:15px 5%}.logo{font-size:19px}.nav{gap:10px}.nav a{font-size:10px}.hero{min-height:500px;padding:48px 18px 32px;background-position:58% center}.hero h1{font-size:clamp(37px,10vw,54px);letter-spacing:-2px;overflow-wrap:anywhere}.hero .eyebrow{letter-spacing:2px}.hero p{font-size:14px}.stats{gap:20px;margin-top:25px}.stat strong{font-size:24px}.grid{grid-template-columns:1fr}.container{width:92%}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.admin{padding:18px}.mission-content,.mission-art{padding:21px}.mission-art{min-height:230px}.mission-buttons .btn{flex:1}}
+</style>
 </head>
 <body>
-  <div class="logo-launch" id="logoLaunch" aria-hidden="true"><img src="images/Log01.png" alt=""></div>
-  <header>
-    <a class="logo-link" href="index.html" aria-label="FROGINALS home"><img class="logo-image" id="navLogo" src="images/Log01.png" alt="FROGINALS logo" fetchpriority="high"></a>
-    <div class="header-actions">
-      <a class="shop-link" href="#shop">SHOP THE TEE ↓</a>
-      <a class="products-tab" href="product.html">PRODUCTS</a>
-      <a class="products-tab nft-tab" href="https://gravemint.io/mint/3678jb?utm_source=copy_link&amp;utm_medium=referral&amp;utm_content=collection" target="_blank" rel="noopener noreferrer" aria-label="Open FROGINALS NFTs on GraveMint">NFTS 🐸</a>
-      <a class="products-tab" href="https://obideft.github.io/doge-buy/" target="_blank" rel="noopener noreferrer">FROGISWAP</a>
-      <a class="products-tab army-tab" href="froginalarmy.html">FROGINALARMY 🐸</a>
-      <a class="products-tab community-tab" href="#community">COMMUNITY ✦</a>
-      <a class="products-tab whitepaper-tab" href="froginal-theses.html">WHITEPAPER</a>
-      <button id="musicToggle" class="music-toggle is-muted" type="button" aria-label="Play background music" aria-pressed="false" title="Play background music">🎵</button>
-    </div>
-  </header>
-  <main>
-    <div class="eyebrow">GOOD FROGS. GOOD DOGE.</div>
-    <h1>FROGINALS!</h1>
-    <p class="mission">FROGINAL IS SUPPORTING<br><strong>DOGECOIN</strong></p>
-    <p class="moon">DOGE TO THE MOON 🚀</p>
-    <a class="mint-button" href="https://gravemint.io/mint/3678jb?utm_source=copy_link&amp;utm_medium=referral&amp;utm_content=collection" target="_blank" rel="noopener noreferrer">🐸 MINT FROGINALS ↗</a>
-    <p class="mint-note">YOUR FROG. YOUR WALLET. YOUR ON-CHAIN LEGACY.</p>
-    <section class="product" id="shop">
-      <img class="shirt-image" src="assets/FROGINALs_shirt_01.png" alt="Froginals T-shirt design">
-      <h2 class="product-name">THE FROGINALS TEE</h2>
-      <p class="price">$19.99 <small>USD</small></p>
-      <p class="shipping">✦ FREE SHIPPING WORLDWIDE ✦</p>
-      <a class="buy-button" href="product.html">BUY T-SHIRT ↗</a>
-      <p class="payment-note">Secure checkout via PayPal</p>
-    </section>
-  </main>
-  <section class="community-section" id="community" aria-labelledby="communityTitle">
-    <div class="community-inner">
-      <p class="community-eyebrow">🐸 THE FROG GANG CHECK-IN 🐸</p>
-      <h2 class="community-title" id="communityTitle">FROGINALS<br>COMMUNITY!</h2>
-      <p class="community-description">Real frogs. Real outfits. Real community. Slide through the FROGINALS universe and check out what the pack is cooking.</p>
-      <p class="community-status" id="communityStatus" role="status" aria-live="polite">CONNECTING TO THE SWAMP...</p>
-      <div class="community-carousel">
-        <div class="community-track" id="communityTrack" tabindex="0" aria-label="FROGINALS community image carousel. Swipe or use the arrow buttons to explore."></div>
-        <div class="community-controls">
-          <button class="carousel-arrow" id="communityPrev" type="button" aria-label="Previous community image" title="Previous image">←</button>
-          <span class="carousel-counter" id="communityCounter" aria-live="polite">00 / 00</span>
-          <button class="carousel-arrow" id="communityNext" type="button" aria-label="Next community image" title="Next image">→</button>
-        </div>
+<header class="site-header">
+  <a class="logo" href="./index.html">FROGINALS<span>®</span></a>
+  <nav class="nav">
+    <a href="./index.html">HOME</a><a href="./index.html#products">SHOP</a>
+    <a href="#brand-film">BRAND FILM</a><a class="home-link" href="#army">FROGINALARMY 🐸</a>
+    <a href="#missions">MISSIONS</a>
+  </nav>
+</header>
+<section class="hero">
+  <div class="eyebrow">FROGINALS COMMUNITY</div>
+  <h1>THE FROGINALARMY.</h1>
+  <p>THE FROGS. THE HOLDERS. THE REAL ONES. Meet the community behind FROGINALS. Collect your frog, represent your crew, complete missions, and join the army.</p>
+  <div class="stats">
+    <div class="stat"><strong id="memberCount">0</strong><span>ARMY MEMBERS</span></div>
+    <div class="stat"><strong>🐸</strong><span>FROGINAL ENERGY</span></div>
+    <div class="stat"><strong>💰</strong><span>COMMUNITY MISSIONS</span></div>
+  </div>
+</section>
+
+<section class="brand-film" id="brand-film" aria-labelledby="brand-film-title">
+  <div class="brand-film-heading">
+    <span class="brand-film-kicker">FROGINALS ORIGINAL</span>
+    <h2 id="brand-film-title">MEET THE <span>FROGINAL DOGS.</span></h2>
+    <p class="brand-film-intro">Every universe starts with a story. Hit play, meet the FROGINAL DOGS, and get a first look at the culture behind the FROGINALS Army.</p>
+  </div>
+  <div class="brand-film-frame">
+    <iframe
+      src="https://www.youtube-nocookie.com/embed/H7NPenor2fs?rel=0"
+      title="FROGINAL DOGS — Official Brand Video"
+      loading="lazy"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      allowfullscreen>
+    </iframe>
+  </div>
+  <div class="brand-film-bottom">
+    <p><strong>WATCH THE STORY. JOIN THE ARMY.</strong><br>Play the film here, then explore the members and missions below.</p>
+    <a class="btn btn-green" href="https://www.youtube.com/watch?v=H7NPenor2fs" target="_blank" rel="noopener noreferrer">WATCH ON YOUTUBE ↗</a>
+  </div>
+</section>
+
+<main class="container" id="army">
+  <div class="section-head"><h2>MEET THE <span>ARMY</span></h2><span style="color:var(--muted);font-size:12px">EVERY FROG HAS A STORY.</span></div>
+  <div class="tools"><div class="search"><input type="search" id="search" placeholder="Search X username or wallet..." aria-label="Search members"></div><a class="btn btn-green" href="#admin">+ ADD MEMBER</a></div>
+  <div class="grid" id="memberGrid"></div>
+  <div class="empty" id="empty"><strong>NO FROGS FOUND 🐸</strong>No members match your search yet.</div>
+
+  <section class="missions" id="missions">
+    <div class="section-head"><h2>ARMY <span>MISSIONS</span> & REWARDS</h2><span style="color:var(--muted);font-size:12px">PLAY IT. PROVE IT. CLAIM IT.</span></div>
+    <p class="mission-intro">Complete community challenges, submit your proof, and get your claim reviewed. New missions can be added here as the FROGINALS Army grows.</p>
+    <article class="mission-card">
+      <div class="mission-art">
+        <span class="mission-tag">MISSION #001 · AVAILABLE</span>
+        <img class="mission-preview" src="https://raw.githubusercontent.com/Obideft/froginals/main/images/TrashCanTreasure.png" alt="Trash Can Treasure game preview" loading="lazy">
+        <h3>TRASH CAN TREASURE</h3>
+        <p>Jump in, chase that high score, and show the Army what you’ve got.</p>
       </div>
-      <a class="community-cta" href="froginalarmy.html">JOIN THE FROGINALS ARMY 🐸</a>
-      <p class="community-note">HOLD THE VIBE. SHARE THE MEMES. SUPPORT THE PACK.</p>
-    </div>
+      <div class="mission-content">
+        <div class="reward-goal" aria-label="1 KM to win 1 dollar worth of DOGE">
+          <div class="goal-label">MISSION GOAL · REWARD</div>
+          <strong>1 KM TO WIN $1 WORTH OF DOGE</strong>
+          <span>COMPLETE THE CHALLENGE · CLAIM THE GLORY</span>
+        </div>
+        <h4>YOUR MISSION CHECKLIST</h4>
+        <ul class="mission-checklist">
+          <li><span class="checkmark" aria-hidden="true">✓</span><span><strong>Complete the mission:</strong> play Trash Can Treasure and reach the required score.</span></li>
+          <li><span class="checkmark" aria-hidden="true">✓</span><span><strong>Take a screenshot</strong> clearly showing your game score.</span></li>
+          <li><span class="checkmark" aria-hidden="true">✓</span><span><strong>Post it on X and tag @lootdept</strong> so the mission team can see your entry.</span></li>
+        </ul>
+        <div class="mission-bottom">
+          <a class="mission-submit enter-game" href="https://obideft.github.io/TrashCanTreasure/" target="_blank" rel="noopener noreferrer">ENTER THE GAME ↗</a>
+          <p style="margin-top:15px">Ready to enter? Click below to open an X post draft. Attach your score screenshot before publishing and make sure <strong>@lootdept</strong> is tagged.</p>
+          <a class="mission-submit" href="https://twitter.com/intent/tweet?text=I%27m%20taking%20on%20the%20Trash%20Can%20Treasure%20mission%20for%20the%20FROGINALS%20Army!%20%F0%9F%90%B8%20%40lootdept" target="_blank" rel="noopener noreferrer">SUBMIT YOUR ENTRY TO WIN ↗</a>
+        </div>
+        <div class="mission-disclaimer"><strong>REWARD NOTE:</strong> Attach your screenshot to the X post. Entries are subject to review; clicking the button opens X and does not automatically submit your screenshot or guarantee a payout.</div>
+      </div>
+    </article>
   </section>
-  <div class="ticker"><span>FROGINALS SUPPORTS DOGECOIN ✦ DOGE TO THE MOON ✦ FROGINALS SUPPORTS DOGECOIN ✦ DOGE TO THE MOON ✦</span></div>
-  <footer><span>FROGINALS © 2026</span><span>MADE FOR THE PACK 🐸🐕</span></footer>
 
-  <!-- $1 SWAMP SPECIAL POPUP -->
-  <div class="dollar-popup-overlay" id="dollarPopup" aria-hidden="true">
-    <section class="dollar-popup" role="dialog" aria-modal="true" aria-label="FROGINALS one dollar swamp special">
-      <img class="dollar-popup-art" src="images/POP_one_dollar.png" alt="FROGINALS $1 Swamp Special with a jumping purple frog">
-      <button class="dollar-popup-close" id="dollarPopupClose" type="button" aria-label="Close popup">×</button>
-      <a class="popup-mint-button" href="https://gravemint.io/mint/3678jb?utm_source=copy_link&amp;utm_medium=referral&amp;utm_content=collection" target="_blank" rel="noopener noreferrer">🐸 MINT YOUR FROGINAL ↗</a>
-    </section>
-  </div>
-  <audio id="backgroundMusic" loop preload="metadata"><source src="./audio/LOOT%20AN%20LOOT%20BASE%20MUSIC.wav" type="audio/wav"></audio>
-  <script>
-    /* LOGO INTRO: center logo animates into the navbar */
-    window.addEventListener("load", () => {
-      const launch = document.getElementById("logoLaunch");
-      const launchLogo = launch?.querySelector("img");
-      const navLogo = document.getElementById("navLogo");
-      if (!launch || !launchLogo || !navLogo) { launch?.remove(); if (navLogo) { navLogo.style.opacity = "1"; navLogo.classList.add("logo-settled"); } return; }
-      let finished = false;
-      function finishLaunch() { if (finished) return; finished = true; launch.remove(); navLogo.style.opacity = "1"; navLogo.classList.add("logo-settled"); }
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { finishLaunch(); return; }
-      function animateLogo() {
-        if (finished) return;
-        const finalTarget = navLogo.getBoundingClientRect();
-        if (!finalTarget.width || !finalTarget.height) { finishLaunch(); return; }
-        launchLogo.style.width = Math.min(window.innerWidth * .595, 595) + "px";
-        launchLogo.style.height = "auto"; launchLogo.style.maxHeight = "80vh";
-        launchLogo.style.left = "50%"; launchLogo.style.top = "50%"; launchLogo.style.transform = "translate(-50%,-50%)";
-        const startRect = launchLogo.getBoundingClientRect();
-        const animation = launchLogo.animate([
-          {left:startRect.left+"px",top:startRect.top+"px",width:startRect.width+"px",transform:"translate(0,0)",opacity:1},
-          {left:(window.innerWidth/2-startRect.width*.46)+"px",top:(window.innerHeight/2-startRect.height*.46)+"px",width:startRect.width*1.04+"px",transform:"translate(0,0)",opacity:1,offset:.28},
-          {left:finalTarget.left+"px",top:finalTarget.top+"px",width:finalTarget.width+"px",transform:"translate(0,0)",opacity:1}
-        ],{duration:1650,easing:"cubic-bezier(.22,.75,.25,1)",fill:"forwards"});
-        launch.animate([{opacity:1},{opacity:1,offset:.64},{opacity:0}],{duration:1650,easing:"ease-in-out",fill:"forwards"});
-        animation.onfinish = finishLaunch;
-      }
-      requestAnimationFrame(() => requestAnimationFrame(() => window.setTimeout(animateLogo,450)));
-      window.setTimeout(finishLaunch,3000);
+  <section class="admin" id="admin">
+    <div class="admin-header"><h2>ARMY <span>MANAGER</span></h2><span style="font-size:11px;color:var(--muted)">MEMBER ENTRY FORM</span></div>
+    <p class="notice">Add the member's X handle, public Solana wallet, and NFT image or marketplace URL. This prototype saves entries in this browser only. Anyone who can access this page can use this form. Do not treat it as a private or secure admin panel.</p>
+    <form id="memberForm"><div class="form-grid">
+      <div class="field"><label for="xHandle">X USERNAME *</label><input id="xHandle" placeholder="@frogcollector" maxlength="100" required></div>
+      <div class="field"><label for="walletAddress">SOLANA WALLET ADDRESS *</label><input id="walletAddress" placeholder="Public wallet address" maxlength="100" required></div>
+      <div class="field full"><label for="nftUrl">NFT IMAGE OR MARKETPLACE URL *</label><input id="nftUrl" type="url" placeholder="https://..." maxlength="2000" required></div>
+      <div class="field full"><label for="displayName">DISPLAY NAME (OPTIONAL)</label><input id="displayName" placeholder="FROG LEGEND" maxlength="80"></div>
+    </div>
+    <div class="form-actions"><button class="btn btn-green" type="submit">ADD TO THE ARMY 🐸</button><button class="btn" type="button" id="exportBtn">EXPORT MEMBERS JSON</button><button class="btn" type="button" id="importBtn">IMPORT MEMBERS JSON</button><input id="importFile" type="file" accept=".json,application/json" hidden></div>
+    <div id="message" role="status" aria-live="polite"></div></form>
+  </section>
+</main>
+<footer class="footer">FROGINALARMY © 2026 · BUILT DIFFERENT. BUILT FROGINAL.<br><br><a href="./index.html">BACK TO FROGINALS</a></footer>
+<script>
+(() => {
+  "use strict";
+  const STORAGE_KEY = "froginalarmy_members_v1";
+  const grid = document.getElementById("memberGrid");
+  const search = document.getElementById("search");
+  const form = document.getElementById("memberForm");
+  const message = document.getElementById("message");
+  const empty = document.getElementById("empty");
+  let members = loadMembers();
+
+  function loadMembers() {
+    try { const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"); return Array.isArray(saved) ? saved.filter(isValidRecord) : []; }
+    catch { return []; }
+  }
+  function isValidRecord(member) {
+    return member && typeof member.id === "string" && typeof member.handle === "string" && typeof member.wallet === "string" && typeof member.nftUrl === "string";
+  }
+  function saveMembers() {
+    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(members)); return true; }
+    catch { showMessage("Could not save. Browser storage may be full or disabled.", true); return false; }
+  }
+  function safeHttpUrl(value) {
+    try { const url = new URL(value); return ["https:","http:"].includes(url.protocol) ? url.href : null; }
+    catch { return null; }
+  }
+  function shortWallet(wallet) { return wallet.length < 15 ? wallet : wallet.slice(0,6) + "..." + wallet.slice(-5); }
+  function showMessage(text, error = false) { message.textContent = text; message.style.color = error ? "#ff70c7" : "#8cff9b"; }
+  function makeElement(tag, className, text) {
+    const element = document.createElement(tag);
+    if (className) element.className = className;
+    if (text !== undefined) element.textContent = text;
+    return element;
+  }
+  function makeLink(text, href, className, newTab = true) {
+    const link = makeElement("a", className, text); link.href = href;
+    if (newTab) { link.target = "_blank"; link.rel = "noopener noreferrer"; }
+    return link;
+  }
+  function render() {
+    const query = search.value.trim().toLowerCase();
+    const visible = members.filter(member => member.handle.toLowerCase().includes(query) || member.wallet.toLowerCase().includes(query) || (member.displayName || "").toLowerCase().includes(query));
+    grid.replaceChildren();
+    document.getElementById("memberCount").textContent = members.length;
+    empty.style.display = visible.length ? "none" : "block";
+    visible.forEach(member => {
+      const card = makeElement("article","member");
+      const imageWrap = makeElement("div","nft-wrap");
+      imageWrap.appendChild(makeElement("span","member-badge","FROGINALARMY"));
+      const imageUrl = safeHttpUrl(member.nftUrl);
+      if (imageUrl) {
+        const img = document.createElement("img"); img.src = imageUrl; img.alt = "NFT submitted for " + member.handle; img.loading = "lazy"; img.referrerPolicy = "no-referrer";
+        img.addEventListener("error",() => { img.remove(); imageWrap.appendChild(makeElement("div","nft-placeholder","🐸")); },{once:true});
+        imageWrap.appendChild(img);
+      } else imageWrap.appendChild(makeElement("div","nft-placeholder","🐸"));
+      const body = makeElement("div","member-body");
+      const displayName = member.displayName || member.handle;
+      const name = makeElement("div","member-name");
+      const profileUrl = "https://x.com/" + member.handle.replace(/^@/,"");
+      name.appendChild(makeLink(displayName,profileUrl,""));
+      const handle = makeElement("div","handle",member.handle);
+      const wallet = makeElement("div","wallet","WALLET: " + shortWallet(member.wallet));
+      const actions = makeElement("div","member-actions");
+      actions.appendChild(makeLink("VIEW X ↗",profileUrl,"btn"));
+      if (imageUrl) actions.appendChild(makeLink("VIEW NFT ↗",imageUrl,"btn btn-green"));
+      body.append(name,handle,wallet,actions); card.append(imageWrap,body); grid.appendChild(card);
     });
+  }
+  form.addEventListener("submit",event => {
+    event.preventDefault();
+    const handleInput = document.getElementById("xHandle").value.trim();
+    const wallet = document.getElementById("walletAddress").value.trim();
+    const nftUrl = document.getElementById("nftUrl").value.trim();
+    const displayName = document.getElementById("displayName").value.trim();
+    const handle = handleInput.startsWith("@") ? handleInput : "@" + handleInput;
+    if (!/^@[A-Za-z0-9_]{1,15}$/.test(handle)) { showMessage("Enter a valid X username (letters, numbers, underscores).",true); return; }
+    if (wallet.length < 32 || wallet.length > 100) { showMessage("Check the wallet address length.",true); return; }
+    const validNftUrl = safeHttpUrl(nftUrl);
+    if (!validNftUrl) { showMessage("Enter a valid HTTP or HTTPS NFT URL.",true); return; }
+    if (members.some(member => member.wallet.toLowerCase() === wallet.toLowerCase())) { showMessage("This wallet is already listed.",true); return; }
+    members.unshift({id:createId(),handle,wallet,nftUrl:validNftUrl,displayName:displayName.slice(0,80),addedAt:new Date().toISOString()});
+    if (!saveMembers()) { members.shift(); return; }
+    form.reset(); search.value = ""; render(); showMessage("Member added to this browser's directory! 🐸");
+  });
+  function createId() { if (crypto.randomUUID) return crypto.randomUUID(); return Date.now().toString(36) + Math.random().toString(36).slice(2); }
+  search.addEventListener("input",render);
+  document.getElementById("exportBtn").addEventListener("click",() => {
+    const blob = new Blob([JSON.stringify(members,null,2)],{type:"application/json"});
+    const url = URL.createObjectURL(blob); const link = document.createElement("a"); link.href = url; link.download = "froginalarmy-members.json"; link.click(); URL.revokeObjectURL(url); showMessage("Member data exported.");
+  });
+  document.getElementById("importBtn").addEventListener("click",() => document.getElementById("importFile").click());
+  document.getElementById("importFile").addEventListener("change",async event => {
+    const file = event.target.files[0]; if (!file) return;
+    try {
+      const imported = JSON.parse(await file.text());
+      if (!Array.isArray(imported) || imported.length > 10000) throw new Error("Invalid member file.");
+      const cleaned = imported.filter(member => isValidRecord(member) && member.handle.length <= 100 && member.wallet.length <= 100 && (member.displayName || "").length <= 80 && safeHttpUrl(member.nftUrl));
+      if (!confirm("Import " + cleaned.length + " members? Existing records will be kept unless their wallet matches.")) return;
+      const byWallet = new Map(members.map(member => [member.wallet.toLowerCase(),member]));
+      cleaned.forEach(member => byWallet.set(member.wallet.toLowerCase(),member));
+      const previous = members; members = Array.from(byWallet.values());
+      if (!saveMembers()) { members = previous; return; }
+      render(); showMessage("Import complete. " + members.length + " members listed.");
+    } catch { showMessage("Could not import this file. Check the JSON format.",true); }
+    finally { event.target.value = ""; }
+  });
 
 
-    /* $1 POPUP: show once per tab session, close by button, backdrop, or Escape */
-    document.addEventListener("DOMContentLoaded", () => {
-      const popup = document.getElementById("dollarPopup");
-      const closeButton = document.getElementById("dollarPopupClose");
-      if (!popup || !closeButton) return;
-      const closePopup = () => {
-        popup.classList.remove("is-visible");
-        popup.setAttribute("aria-hidden", "true");
-        document.body.style.overflow = "";
-        try { sessionStorage.setItem("froginalsDollarPopupClosed", "1"); } catch (_) {}
-      };
-      closeButton.addEventListener("click", closePopup);
-      popup.addEventListener("click", (event) => { if (event.target === popup) closePopup(); });
-      document.addEventListener("keydown", (event) => { if (event.key === "Escape" && popup.classList.contains("is-visible")) closePopup(); });
-      let alreadyClosed = false;
-      try { alreadyClosed = sessionStorage.getItem("froginalsDollarPopupClosed") === "1"; } catch (_) {}
-      if (!alreadyClosed) {
-        window.setTimeout(() => {
-          popup.classList.add("is-visible");
-          popup.setAttribute("aria-hidden", "false");
-          document.body.style.overflow = "hidden";
-          closeButton.focus({ preventScroll: true });
-        }, 5500);
-      }
-    });
-
-    /* BACKGROUND MUSIC */
-    document.addEventListener("DOMContentLoaded", () => {
-      const music = document.getElementById("backgroundMusic");
-      const button = document.getElementById("musicToggle");
-      if (!music || !button) return;
-      music.volume = .35;
-      function updateButton(playing) {
-        button.classList.toggle("is-muted",!playing); button.classList.toggle("is-playing",playing);
-        button.textContent = playing ? "🔊" : "🎵"; button.setAttribute("aria-pressed",String(playing));
-        const label = playing ? "Pause background music" : "Play background music";
-        button.setAttribute("aria-label",label); button.title = label;
-      }
-      button.addEventListener("click",async()=>{
-        if(!music.paused){music.pause();updateButton(false);return;}
-        button.disabled=true;
-        try { if(music.networkState===HTMLMediaElement.NETWORK_NO_SOURCE) music.load(); await music.play(); updateButton(true); }
-        catch(error){console.error("Music playback failed:",error);updateButton(false);alert("Music could not play. Check that the WAV file exists in the audio folder and its filename matches exactly.");}
-        finally{button.disabled=false;}
-      });
-      music.addEventListener("play",()=>updateButton(true)); music.addEventListener("pause",()=>updateButton(false));
-      music.addEventListener("error",()=>{console.error("Audio file failed to load:",music.currentSrc,music.error);updateButton(false);});
-    });
-
-    /* COMMUNITY GALLERY: loads the live images from data/community.json */
-    document.addEventListener("DOMContentLoaded", () => {
-      const FEED_URL = "./data/community.json";
-      const track = document.getElementById("communityTrack");
-      const prevButton = document.getElementById("communityPrev");
-      const nextButton = document.getElementById("communityNext");
-      const counter = document.getElementById("communityCounter");
-      const status = document.getElementById("communityStatus");
-      if (!track || !prevButton || !nextButton || !counter || !status) return;
-
-      let cards = [];
-      let activeIndex = 0;
-      let requestId = 0;
-      let scrollFrame = null;
-
-      function safeUrl(value) {
-        if (typeof value !== "string" || !value.trim()) return null;
-        try { const u = new URL(value.trim(), document.baseURI); return ["https:","http:"].includes(u.protocol) ? u.href : null; }
-        catch { return null; }
-      }
-      function updateCounter() {
-        if (!cards.length) { counter.textContent="00 / 00"; prevButton.disabled=true; nextButton.disabled=true; return; }
-        const left=track.getBoundingClientRect().left; let nearest=0,dist=Infinity;
-        cards.forEach((card,i)=>{const d=Math.abs(card.getBoundingClientRect().left-left);if(d<dist){dist=d;nearest=i;}});
-        activeIndex=nearest; counter.textContent=String(nearest+1).padStart(2,"0")+" / "+String(cards.length).padStart(2,"0");
-        prevButton.disabled=nearest===0; nextButton.disabled=nearest===cards.length-1;
-      }
-      function goTo(index) {
-        if(!cards.length)return; const target=Math.max(0,Math.min(cards.length-1,index));
-        cards[target].scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"nearest",inline:"start"});
-        activeIndex=target; updateCounter();
-      }
-      prevButton.addEventListener("click",()=>goTo(activeIndex-1));
-      nextButton.addEventListener("click",()=>goTo(activeIndex+1));
-      track.addEventListener("scroll",()=>{if(scrollFrame!==null)cancelAnimationFrame(scrollFrame);scrollFrame=requestAnimationFrame(()=>{updateCounter();scrollFrame=null;});},{passive:true});
-      track.addEventListener("keydown",e=>{if(e.key==="ArrowRight"){e.preventDefault();goTo(activeIndex+1);}if(e.key==="ArrowLeft"){e.preventDefault();goTo(activeIndex-1);}});
-      window.addEventListener("resize",updateCounter);
-
-      async function loadGallery() {
-        const thisRequest=++requestId; const controller=new AbortController();
-        const timeout=setTimeout(()=>controller.abort(),15000);
-        cards=[]; activeIndex=0; track.replaceChildren(); updateCounter(); status.textContent="FETCHING FROG ART...";
-        try {
-          const feedUrl=new URL(FEED_URL,window.location.href); feedUrl.searchParams.set("_",Date.now().toString());
-          const response=await fetch(feedUrl.href,{cache:"no-store",headers:{Accept:"application/json"},signal:controller.signal});
-          if(!response.ok)throw new Error("JSON returned HTTP "+response.status+" at "+feedUrl.href);
-          const data=await response.json(); if(thisRequest!==requestId)return;
-          const entries=Array.isArray(data)?data:Array.isArray(data?.images)?data.images:Array.isArray(data?.items)?data.items:[];
-          const items=entries.map(item=>typeof item==="string"?{image:item}:item).filter(item=>item&&typeof item==="object"&&safeUrl(item.image||item.imageUrl||item.src));
-          if(!items.length){status.textContent="NO VALID IMAGES FOUND — CHECK data/community.json";console.error("Community JSON contains no valid image URLs",data);return;}
-
-          let loaded=0,failed=0,settled=0; const failedCards=new Set();
-          function refreshStatus(){if(thisRequest!==requestId)return;if(settled<items.length){status.textContent="LOADING FROG ART... "+settled+" / "+items.length;return;}status.textContent=loaded?loaded+(loaded===1?" COMMUNITY IMAGE LOADED":" COMMUNITY IMAGES LOADED")+(failed?" · "+failed+" IMAGE(S) SKIPPED":""):"IMAGES COULD NOT LOAD — CHECK THE IMAGE URLS";updateCounter();}
-          function onLoaded(card){if(thisRequest!==requestId||failedCards.has(card))return;loaded++;settled++;refreshStatus();}
-          function onFailed(card){if(thisRequest!==requestId||failedCards.has(card))return;failedCards.add(card);failed++;settled++;card.remove();cards=cards.filter(c=>c!==card);refreshStatus();updateCounter();}
-
-          const prepared=items.map((item,index)=>{
-            const card=document.createElement("article");card.className="community-card";
-            const img=document.createElement("img");img.alt=String(item.alt||item.title||"FROGINALS community artwork");img.loading=index<2?"eager":"lazy";img.decoding="async";img.draggable=false;
-            const caption=document.createElement("div");caption.className="community-caption";
-            const title=document.createElement("h3");title.textContent=String(item.title||item.name||"FROGINALS COMMUNITY");
-            const desc=document.createElement("p");desc.textContent=String(item.caption||item.description||"Another legendary frog moment.");caption.append(title,desc);
-            let finished=false;function finish(ok){if(finished)return;finished=true;ok?onLoaded(card):onFailed(card);}
-            img.addEventListener("load",()=>finish(img.naturalWidth>0));img.addEventListener("error",()=>finish(false));
-            const postUrl=safeUrl(item.url||item.postUrl);let visual=img;
-            if(postUrl){const a=document.createElement("a");a.href=postUrl;a.target="_blank";a.rel="noopener noreferrer";a.className="image-link";a.setAttribute("aria-label","Open original community post");a.appendChild(img);visual=a;}
-            card.append(visual,caption);
-            return {card,img,url:safeUrl(item.image||item.imageUrl||item.src),finish};
-          });
-          prepared.forEach(({card})=>{cards.push(card);track.appendChild(card);});
-          updateCounter();status.textContent="LOADING "+items.length+(items.length===1?" COMMUNITY IMAGE...":" COMMUNITY IMAGES...");
-          prepared.forEach(({img,url,finish})=>{if(!url){finish(false);return;}img.src=url;if(img.complete)finish(img.naturalWidth>0);});
-        } catch(error) {
-          if(thisRequest!==requestId)return; console.error("FROGINALS community feed error:",error);
-          status.textContent=error.name==="AbortError"?"JSON REQUEST TIMED OUT — TRY RELOADING":"COULD NOT LOAD community.json — CHECK THE DEPLOYED FILE PATH AND CONSOLE";
-        } finally {clearTimeout(timeout);}
-      }
-      loadGallery();
-    });
-  </script>
-
-  <!-- FROGINALS $1 SWAMP SPECIAL POPUP -->
-  <div class="swamp-popup-overlay" id="swampPopupOverlay" aria-hidden="true">
-    <section class="swamp-popup" role="dialog" aria-modal="true" aria-label="FROGINALS one dollar swamp special">
-      <button class="swamp-popup-close" id="swampPopupClose" type="button" aria-label="Close popup">×</button>
-      <img class="swamp-popup-art" src="images/POP_one_dollar.png" alt="FROGINALS $1 Swamp Special — get your FROGINAL for about one dollar worth of SOL">
-      <a class="swamp-popup-cta" href="https://gravemint.io/mint/3678jb?utm_source=copy_link&amp;utm_medium=referral&amp;utm_content=collection" target="_blank" rel="noopener noreferrer" aria-label="Mint your FROGINAL on GraveMint">MINT YOUR FROGINAL</a>
-    </section>
-  </div>
-  <script>
-    /* Show once per browser tab session after 5.5 seconds. */
-    (() => {
-      const overlay = document.getElementById('swampPopupOverlay');
-      const closeButton = document.getElementById('swampPopupClose');
-      if (!overlay || !closeButton) return;
-      const storageKey = 'froginalsSwampPopupSeen';
-      let previousFocus = null;
-      function closePopup() {
-        overlay.classList.remove('is-open');
-        overlay.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-        if (previousFocus && typeof previousFocus.focus === 'function') previousFocus.focus();
-      }
-      function openPopup() {
-        try { if (sessionStorage.getItem(storageKey)) return; sessionStorage.setItem(storageKey, '1'); } catch (e) {}
-        previousFocus = document.activeElement;
-        overlay.classList.add('is-open');
-        overlay.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-        closeButton.focus();
-      }
-      closeButton.addEventListener('click', closePopup);
-      overlay.addEventListener('click', event => { if (event.target === overlay) closePopup(); });
-      document.addEventListener('keydown', event => { if (event.key === 'Escape' && overlay.classList.contains('is-open')) closePopup(); });
-      window.setTimeout(openPopup, 5500);
-    })();
-  </script>
-
+  render();
+})();
+</script>
 </body>
 </html>
