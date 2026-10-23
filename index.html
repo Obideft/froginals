@@ -44,6 +44,45 @@
     .swamp-popup-cta:focus-visible{outline:4px solid #d82cff;outline-offset:3px;background:rgba(83,255,137,.18)}
     @media(max-width:540px){.swamp-popup{width:min(96vw,calc((100dvh - 28px) * 1.5));border-width:3px;border-radius:14px;box-shadow:5px 5px 0 #d82cff}.swamp-popup-overlay{padding:8px}.swamp-popup-close{top:1.8%;right:1.8%;width:30px;height:30px;border-width:2px;border-radius:8px;font-size:21px;box-shadow:2px 2px #171717}.swamp-popup-cta{right:5.8%;bottom:7%;width:44%;height:12.5%;border-radius:5px}}
     @media(prefers-reduced-motion:reduce){.swamp-popup-overlay,.swamp-popup{transition:none}}
+
+    /* Compact navigation: keep three key links visible and place the rest in a dropdown. */
+    header{align-items:center;gap:clamp(10px,2vw,24px)}
+    .logo-link{flex:0 0 clamp(105px,14vw,165px);width:clamp(105px,14vw,165px);min-width:0;min-height:62px}
+    .header-actions{display:flex;align-items:center;justify-content:flex-end;gap:clamp(8px,1.2vw,16px);flex:1 1 auto;min-width:0}
+    .nav-primary{display:grid;grid-template-columns:repeat(3,minmax(0,max-content));align-items:center;justify-content:end;gap:8px}
+    .nav-primary .shop-link{padding:9px 8px;text-align:center;white-space:normal;line-height:1.5}
+    .nav-primary .products-tab,.nav-dropdown .products-tab{max-width:100%;white-space:normal;text-align:center;overflow-wrap:anywhere}
+    .nav-more{position:relative;flex:0 0 auto;z-index:20}
+    .nav-more summary{display:flex;align-items:center;justify-content:center;gap:6px;min-height:38px;padding:9px 10px;border:3px solid #171717;background:#fff1d6;color:#171717;box-shadow:3px 3px #171717;font-family:"Press Start 2P",monospace;font-size:8px;line-height:1.6;cursor:pointer;list-style:none}
+    .nav-more summary::-webkit-details-marker{display:none}
+    .nav-more summary:hover,.nav-more[open] summary{background:#ffd447}
+    .nav-dropdown{position:absolute;top:calc(100% + 10px);right:0;display:grid;grid-template-columns:repeat(2,minmax(125px,1fr));gap:9px;width:min(360px,calc(100vw - 24px));padding:12px;background:#ff7900;border:3px solid #171717;box-shadow:5px 5px #171717}
+    .nav-dropdown .products-tab{min-width:0;font-size:8px;padding:9px 7px;white-space:normal}
+    .nav-more[open] .nav-dropdown{animation:navDropIn .16s ease-out}
+    @keyframes navDropIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:760px){
+      header{padding:14px 3%;gap:10px;align-items:center}
+      .logo-link{flex-basis:clamp(82px,18vw,125px);width:clamp(82px,18vw,125px);min-height:54px}
+      .header-actions{gap:8px;flex-wrap:wrap}
+      .nav-primary{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;flex:1 1 100%;order:1}
+      .nav-primary .shop-link,.nav-primary .products-tab{min-width:0;font-size:7px;padding:7px 6px;line-height:1.5}
+      .nav-more{order:2}
+      .nav-more summary{font-size:7px;padding:8px 7px;border-width:2px}
+      .nav-dropdown{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;padding:9px}
+      .nav-dropdown .products-tab{font-size:7px;padding:8px 5px;border-width:2px;line-height:1.5}
+      .music-toggle{order:3;width:42px;height:42px;font-size:24px;border-width:3px;border-radius:13px;box-shadow:3px 3px #171717}
+    }
+    @media(max-width:420px){
+      header{padding:12px 8px;gap:7px}
+      .logo-link{flex-basis:70px;width:70px;min-height:48px}
+      .header-actions{gap:6px}
+      .nav-primary{gap:5px}
+      .nav-primary .shop-link,.nav-primary .products-tab{font-size:6px;padding:6px 4px;border-width:2px}
+      .nav-more summary{font-size:6px;padding:7px 5px}
+      .nav-dropdown{right:-48px;width:min(320px,calc(100vw - 16px))}
+      .music-toggle{width:37px;height:37px;font-size:21px}
+    }
+    @media(prefers-reduced-motion:reduce){.nav-more[open] .nav-dropdown{animation:none}}
   </style>
 </head>
 <body>
@@ -51,13 +90,20 @@
   <header>
     <a class="logo-link" href="index.html" aria-label="FROGINALS home"><img class="logo-image" id="navLogo" src="images/Log01.png" alt="FROGINALS logo" fetchpriority="high"></a>
     <div class="header-actions">
-      <a class="shop-link" href="#shop">SHOP THE TEE ↓</a>
-      <a class="products-tab" href="product.html">PRODUCTS</a>
-      <a class="products-tab nft-tab" href="https://gravemint.io/mint/3678jb?utm_source=copy_link&amp;utm_medium=referral&amp;utm_content=collection" target="_blank" rel="noopener noreferrer" aria-label="Open FROGINALS NFTs on GraveMint">NFTS 🐸</a>
-      <a class="products-tab" href="https://obideft.github.io/doge-buy/" target="_blank" rel="noopener noreferrer">FROGISWAP</a>
-      <a class="products-tab army-tab" href="froginalarmy.html">FROGINALARMY 🐸</a>
-      <a class="products-tab community-tab" href="#community">COMMUNITY ✦</a>
-      <a class="products-tab whitepaper-tab" href="froginal-theses.html">WHITEPAPER</a>
+      <nav class="nav-primary" aria-label="Main navigation">
+        <a class="shop-link" href="#shop">SHOP THE TEE ↓</a>
+        <a class="products-tab" href="product.html">PRODUCTS</a>
+        <a class="products-tab nft-tab" href="https://gravemint.io/mint/3678jb?utm_source=copy_link&amp;utm_medium=referral&amp;utm_content=collection" target="_blank" rel="noopener noreferrer" aria-label="Open FROGINALS NFTs on GraveMint">NFTS 🐸</a>
+      </nav>
+      <details class="nav-more">
+        <summary aria-label="Show more navigation links">MORE MENU <span aria-hidden="true">▾</span></summary>
+        <nav class="nav-dropdown" aria-label="More navigation">
+          <a class="products-tab" href="https://obideft.github.io/doge-buy/" target="_blank" rel="noopener noreferrer">FROGISWAP</a>
+          <a class="products-tab army-tab" href="froginalarmy.html">FROGINALARMY 🐸</a>
+          <a class="products-tab community-tab" href="#community">COMMUNITY ✦</a>
+          <a class="products-tab whitepaper-tab" href="froginal-theses.html">WHITEPAPER</a>
+        </nav>
+      </details>
       <button id="musicToggle" class="music-toggle is-muted" type="button" aria-label="Play background music" aria-pressed="false" title="Play background music">🎵</button>
     </div>
   </header>
@@ -236,6 +282,17 @@
           const data=await response.json(); if(thisRequest!==requestId)return;
           const entries=Array.isArray(data)?data:Array.isArray(data?.images)?data.images:Array.isArray(data?.items)?data.items:[];
           const items=entries.map(item=>typeof item==="string"?{image:item}:item).filter(item=>item&&typeof item==="object"&&safeUrl(item.image||item.imageUrl||item.src));
+          const featuredImage="https://res.cloudinary.com/al96yvcm/image/upload/v1792767463/FROGINALS.png";
+          const featuredEntry={
+            image:featuredImage,
+            title:"FROGINALS",
+            caption:"Meet the FROGINALS — good frogs, good Doge, one legendary community.",
+            alt:"FROGINALS community artwork"
+          };
+          /* Keep this featured image as the third carousel card without duplicating it if it is already in the feed. */
+          const featuredIndex=items.findIndex(item=>safeUrl(item.image||item.imageUrl||item.src)===featuredImage);
+          if(featuredIndex!==-1)items.splice(featuredIndex,1);
+          items.splice(Math.min(2,items.length),0,featuredEntry);
           if(!items.length){status.textContent="NO VALID IMAGES FOUND — CHECK data/community.json";console.error("Community JSON contains no valid image URLs",data);return;}
 
           let loaded=0,failed=0,settled=0; const failedCards=new Set();
