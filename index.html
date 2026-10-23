@@ -557,6 +557,56 @@
       .doge-market-track { animation: none; }
     }
 
+  
+
+    /* Responsive navigation with a working expandable menu */
+    header{align-items:center;gap:clamp(10px,2vw,24px);overflow:visible}
+    .header-actions{display:flex;align-items:center;justify-content:flex-end;gap:clamp(8px,1.2vw,16px);flex:1 1 auto;min-width:0;position:relative;z-index:20}
+    .nav-primary{display:grid;grid-template-columns:repeat(3,minmax(0,max-content));align-items:center;justify-content:end;gap:8px}
+    .nav-primary .shop-link{padding:9px 8px;text-align:center;white-space:normal;line-height:1.5}
+    .nav-primary .products-tab,.nav-dropdown .products-tab{max-width:100%;white-space:normal;text-align:center;overflow-wrap:anywhere}
+    .nft-tab{background:#ffd447}
+    .army-tab{background:#c3ff53}
+    .community-tab{background:#fff1d6}
+    .whitepaper-tab{background:#ff63c7}
+    .nav-more{position:relative;flex:0 0 auto;z-index:30}
+    .nav-more summary{display:flex;align-items:center;justify-content:center;gap:6px;min-height:38px;padding:9px 10px;border:3px solid #171717;background:#fff1d6;color:#171717;box-shadow:3px 3px #171717;font-family:"Press Start 2P",monospace;font-size:8px;line-height:1.6;cursor:pointer;list-style:none;white-space:nowrap}
+    .nav-more summary::-webkit-details-marker{display:none}
+    .nav-more summary:hover,.nav-more[open] summary{background:#ffd447}
+    .nav-dropdown{position:absolute;top:calc(100% + 10px);right:0;display:grid;grid-template-columns:repeat(2,minmax(125px,1fr));gap:9px;width:min(360px,calc(100vw - 24px));padding:12px;background:#ff7900;border:3px solid #171717;box-shadow:5px 5px #171717}
+    .nav-dropdown .products-tab{min-width:0;font-size:8px;padding:9px 7px;line-height:1.6}
+    .nav-more[open] .nav-dropdown{animation:navDropIn .16s ease-out}
+    @keyframes navDropIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
+
+    /* Letter-by-letter repeating wave for the centered FROGINALS! title */
+    h1{color:#171717;text-align:center;overflow-wrap:normal;word-break:normal}
+    h1 .wave-letter{display:inline-block;white-space:pre;transform-origin:50% 85%;animation:frogTitleWave 1.65s ease-in-out infinite;animation-delay:calc(var(--letter-index) * 0.085s);will-change:transform}
+    @keyframes frogTitleWave{0%,100%{transform:translateY(0) rotate(0deg)}18%{transform:translateY(-13px) rotate(-5deg)}36%{transform:translateY(0) rotate(0deg)}52%{transform:translateY(3px) rotate(2deg)}}
+    @media(max-width:760px){
+      header{padding:14px 3%;gap:10px;align-items:center}
+      .logo-link{width:clamp(82px,18vw,125px);min-width:0;flex:0 0 clamp(82px,18vw,125px);min-height:54px}
+      .header-actions{gap:8px;flex-wrap:wrap}
+      .nav-primary{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;flex:1 1 100%;order:1}
+      .nav-primary .shop-link,.nav-primary .products-tab{min-width:0;font-size:7px;padding:7px 6px;line-height:1.5}
+      .nav-more{order:2}
+      .nav-more summary{font-size:7px;padding:8px 7px;border-width:2px}
+      .nav-dropdown{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;padding:9px}
+      .nav-dropdown .products-tab{font-size:7px;padding:8px 5px;border-width:2px;line-height:1.5}
+      .music-toggle{order:3;width:42px;height:42px;font-size:24px;border-width:3px;border-radius:13px;box-shadow:3px 3px #171717}
+    }
+    @media(max-width:420px){
+      header{padding:12px 8px;gap:7px}
+      .logo-link{flex-basis:70px;width:70px;min-height:48px}
+      .header-actions{gap:6px}
+      .nav-primary{gap:5px}
+      .nav-primary .shop-link,.nav-primary .products-tab{font-size:6px;padding:6px 4px;border-width:2px}
+      .nav-more summary{font-size:6px;padding:7px 5px}
+      .nav-dropdown{right:-48px;width:min(320px,calc(100vw - 16px))}
+      .music-toggle{width:37px;height:37px;font-size:21px}
+      h1{letter-spacing:-2px}
+    }
+    @media(prefers-reduced-motion:reduce){h1 .wave-letter{animation:none;will-change:auto}.nav-more[open] .nav-dropdown{animation:none}}
+
   </style>
 </head>
 
@@ -579,10 +629,20 @@
     </a>
 
     <div class="header-actions">
-      <a class="shop-link" href="#shop">SHOP THE TEE ↓</a>
-      <a class="products-tab" href="product.html">PRODUCTS</a>
-      <a class="products-tab" href="https://obideft.github.io/doge-buy/" target="_blank" rel="noopener noreferrer">FROGISWAP</a>
-
+      <nav class="nav-primary" aria-label="Main navigation">
+        <a class="shop-link" href="#shop">SHOP THE TEE ↓</a>
+        <a class="products-tab" href="product.html">PRODUCTS</a>
+        <a class="products-tab nft-tab" href="https://gravemint.io/mint/3678jb?utm_source=copy_link&amp;utm_medium=referral&amp;utm_content=collection" target="_blank" rel="noopener noreferrer">NFTS 🐸</a>
+      </nav>
+      <details class="nav-more">
+        <summary aria-label="Show more navigation links">MORE MENU <span aria-hidden="true">▾</span></summary>
+        <nav class="nav-dropdown" aria-label="More navigation">
+          <a class="products-tab" href="https://obideft.github.io/doge-buy/" target="_blank" rel="noopener noreferrer">FROGISWAP</a>
+          <a class="products-tab army-tab" href="froginalarmy.html">FROGINALARMY 🐸</a>
+          <a class="products-tab community-tab" href="#community">COMMUNITY ✦</a>
+          <a class="products-tab whitepaper-tab" href="froginal-theses.html">WHITEPAPER</a>
+        </nav>
+      </details>
       <button
         id="musicToggle"
         class="music-toggle is-muted"
@@ -627,7 +687,7 @@
   <main>
     <div class="eyebrow">GOOD FROGS. GOOD DOGE.</div>
 
-    <h1>FROGINALS!</h1>
+    <h1 id="froginalsTitle" aria-label="FROGINALS!">FROGINALS!</h1>
 
     <p class="mission">
       FROGINAL IS SUPPORTING<br>
@@ -677,6 +737,37 @@
   </audio>
 
   <script>
+
+    /* Animate each title character in a repeating wave without changing its accessible name. */
+    (() => {
+      const title = document.getElementById("froginalsTitle");
+      if (!title || title.dataset.waveReady === "true") return;
+      const label = title.textContent;
+      title.textContent = "";
+      Array.from(label).forEach((character, index) => {
+        const letter = document.createElement("span");
+        letter.className = "wave-letter";
+        letter.style.setProperty("--letter-index", index);
+        letter.setAttribute("aria-hidden", "true");
+        letter.textContent = character;
+        title.appendChild(letter);
+      });
+      title.dataset.waveReady = "true";
+
+      // Close the dropdown after choosing a destination or clicking elsewhere.
+      const menu = document.querySelector(".nav-more");
+      if (!menu) return;
+      menu.querySelectorAll(".nav-dropdown a").forEach(link => {
+        link.addEventListener("click", () => { menu.open = false; });
+      });
+      document.addEventListener("click", event => {
+        if (menu.open && !menu.contains(event.target)) menu.open = false;
+      });
+      document.addEventListener("keydown", event => {
+        if (event.key === "Escape") menu.open = false;
+      });
+    })();
+
     /* LOGO INTRO: CENTER TO NAVBAR */
     window.addEventListener("load", () => {
       const launch = document.getElementById("logoLaunch");
