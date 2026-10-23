@@ -45,7 +45,7 @@
     @media(max-width:540px){.swamp-popup{width:min(96vw,calc((100dvh - 28px) * 1.5));border-width:3px;border-radius:14px;box-shadow:5px 5px 0 #d82cff}.swamp-popup-overlay{padding:8px}.swamp-popup-close{top:1.8%;right:1.8%;width:30px;height:30px;border-width:2px;border-radius:8px;font-size:21px;box-shadow:2px 2px #171717}.swamp-popup-cta{right:5.8%;bottom:7%;width:44%;height:12.5%;border-radius:5px}}
     @media(prefers-reduced-motion:reduce){.swamp-popup-overlay,.swamp-popup{transition:none}}
 
-    /* DOGE RELIGION DEPARTMENT — satirical swamp lore */
+    /* FROG SACRED PART DEPARTMENT — satirical swamp lore */
     .doge-religion{position:relative;isolation:isolate;overflow:hidden;padding:clamp(44px,7vw,88px) 18px;background:#171717;color:#fff1d6;border-top:5px solid #ffd447;scroll-margin-top:20px}
     .doge-religion:before,.doge-religion:after{content:"✦  🐸  ✦  🐕  ✦";position:absolute;z-index:-1;color:#ff7900;opacity:.14;font-family:"Press Start 2P",monospace;font-size:clamp(20px,4vw,42px);white-space:nowrap;pointer-events:none}
     .doge-religion:before{top:30px;left:-18px;transform:rotate(-8deg)}.doge-religion:after{right:-22px;bottom:25px;transform:rotate(8deg)}
@@ -56,6 +56,16 @@
     .frogther-copy h3{margin:0 0 10px;color:#ffd447;font:clamp(17px,3vw,25px)/1.6 "Press Start 2P",monospace}.frogther-title{margin:0 0 18px;color:#c3ff53;font:11px/1.9 "Press Start 2P",monospace}.frogther-copy p{font-size:16px;font-weight:700;line-height:1.8}.frogther-scripture{padding:14px 16px;border-left:5px solid #ff7900;background:#171717;color:#fff1d6;font-weight:700;font-style:italic}
     .doge-action-row{display:flex;flex-wrap:wrap;justify-content:center;gap:12px;margin:24px auto 0}.doge-action{min-height:52px;padding:14px 17px;border:3px solid #171717;background:#ffd447;color:#171717;box-shadow:4px 4px #ff7900;font:10px/1.8 "Press Start 2P",monospace;cursor:pointer;text-decoration:none;transition:transform .15s,box-shadow .15s,background .15s}.doge-action:hover{transform:translate(2px,2px);box-shadow:2px 2px #ff7900;background:#c3ff53}.doge-prophecy{max-width:750px;min-height:72px;margin:18px auto 0;padding:18px;border:2px dashed #ff7900;color:#ffd447;font-weight:800;font-size:clamp(14px,2.4vw,19px);line-height:1.7}
     .confession-panel{max-width:850px;margin:48px auto 0;padding:clamp(18px,4vw,34px);border:4px solid #ff7900;background:#fff1d6;color:#171717;box-shadow:9px 9px 0 #ffd447;text-align:left}.confession-panel h3{margin:0 0 12px;text-align:center;font:clamp(17px,3vw,25px)/1.6 "Press Start 2P",monospace}.confession-intro{text-align:center;font-weight:700;line-height:1.7}.confession-question{margin:22px 0;padding:16px;border:2px solid #171717;background:#fff}.confession-question legend{padding:0 5px;font-weight:800;line-height:1.6}.confession-option{display:flex;align-items:flex-start;gap:10px;margin:12px 0;padding:9px;border:2px solid transparent;font-weight:700;line-height:1.5;cursor:pointer}.confession-option:hover{border-color:#ffd447;background:#fff9e7}.confession-option input{width:18px;height:18px;margin-top:2px;accent-color:#ff7900;flex:0 0 auto}.confession-submit{display:block;width:100%;margin-top:15px;padding:16px 12px;border:3px solid #171717;background:#53ff89;color:#171717;box-shadow:5px 5px #171717;font:10px/1.8 "Press Start 2P",monospace;cursor:pointer}.confession-result{display:none;margin-top:22px;padding:18px;border:3px solid #171717;background:#ffd447;text-align:center}.confession-result.is-visible{display:block}.confession-result h4{margin:0 0 12px;font:clamp(13px,2.6vw,20px)/1.8 "Press Start 2P",monospace}.confession-result p{font-weight:700;line-height:1.7}.doge-disclaimer{max-width:760px;margin:25px auto 0;color:#c6c6c6;font-size:11px;line-height:1.8}
+    .sacred-faq{max-width:760px;margin:20px auto 16px;text-align:left}
+    .sacred-faq details{margin:8px 0;border:2px solid #ffd447;background:#262626;box-shadow:3px 3px 0 #ff7900}
+    .sacred-faq summary{position:relative;padding:13px 42px 13px 15px;color:#ffd447;font-weight:800;line-height:1.5;cursor:pointer;list-style:none}
+    .sacred-faq summary::-webkit-details-marker{display:none}
+    .sacred-faq summary:after{content:'+';position:absolute;right:15px;top:50%;transform:translateY(-50%);font:20px/1 monospace;color:#53ff89}
+    .sacred-faq details[open] summary:after{content:'−'}
+    .sacred-faq details p{margin:0;padding:0 15px 14px;color:#fff1d6;font-size:14px;font-weight:700;line-height:1.7}
+    .sacred-dept-image-wrap{width:min(620px,100%);margin:0 auto 30px;padding:10px;border:3px solid #ffd447;background:#262626;box-shadow:7px 7px 0 #ff7900}
+    .sacred-dept-image{display:block;width:auto;height:auto;max-width:100%;max-height: min(80vh,1000px);margin:0 auto;object-fit:contain;object-position:center}
+    @media(max-width:650px){.sacred-faq summary{padding:12px 36px 12px 11px;font-size:14px}.sacred-faq details p{font-size:13px}.sacred-dept-image-wrap{padding:6px;box-shadow:4px 4px 0 #ff7900}}
     @media(max-width:650px){.frogther-card{grid-template-columns:1fr;text-align:center}.frogther-art{min-height:215px}.frogther-copy p{text-align:left}.doge-action{width:100%;font-size:9px}.confession-question{padding:12px}.doge-religion:before,.doge-religion:after{font-size:18px}}
 
   </style>
@@ -113,23 +123,26 @@
   <section class="doge-religion" id="doge-religion" aria-labelledby="dogeReligionTitle">
     <div class="doge-inner">
       <p class="doge-kicker">✦ EST. IN THE SWAMP ✦ NO SACRED CHARTS REQUIRED ✦</p>
-      <h2 class="doge-heading" id="dogeReligionTitle">THE DOGE RELIGION DEPARTMENT</h2>
+      <h2 class="doge-heading" id="dogeReligionTitle">THE FROG SACRED PART DEPARTMENT</h2>
       <p class="doge-subtitle">IN DOGE WE TRUST. IN FROGS WE BELIEVE.</p>
 
-      <article class="frogther-card" aria-labelledby="frogtherName">
-        <div class="frogther-art" role="img" aria-label="A fictional frog-billionaire parody character wearing a crown and holding a golden Doge coin">
-          <span class="frogther-crown" aria-hidden="true">👑</span>
-          <span class="frogther-frog" aria-hidden="true">🐸</span>
-          <span class="frogther-coin" aria-hidden="true">Ð</span>
-        </div>
-        <div class="frogther-copy">
-          <h3 id="frogtherName">ELON FROSK</h3>
-          <p class="frogther-title">THE FROGTHER OF DOGE</p>
-          <p>Part tech-bro parody. Part swamp prophet. 100% fictional FROGINALS lore.</p>
-          <p class="frogther-scripture">“One small hop for a frog. One giant meme for frog-kind.”</p>
-          <p>Have you committed the sin of paper hands? Abandoned your fellow frogs for a shiny new coin? Checked your portfolio 47 times today?</p>
-        </div>
-      </article>
+      <div class="sacred-faq" aria-label="Frog Sacred Part Department questions">
+        <details>
+          <summary>WHAT IS THE FROG SACRED PART DEPARTMENT?</summary>
+          <p>A fictional corner of the FROGINALS swamp dedicated to frog lore, Doge memes, and extremely unserious wisdom.</p>
+        </details>
+        <details>
+          <summary>WHO LEADS THE SWAMP?</summary>
+          <p>The Frogther, naturally. His teachings are made of memes, patience, and the occasional reminder to touch grass.</p>
+        </details>
+        <details>
+          <summary>DO I NEED TO CONNECT A WALLET?</summary>
+          <p>Nope. This is just for fun. Never share your seed phrase or connect a wallet just to read the swamp lore.</p>
+        </details>
+      </div>
+      <figure class="sacred-dept-image-wrap">
+        <img class="sacred-dept-image" src="https://raw.githubusercontent.com/Obideft/froginals/main/images/DOGE-SECRET-PART-DEPT.png" alt="FROGINALS Doge Secret Part Department artwork" loading="lazy" decoding="async">
+      </figure>
 
       <div class="doge-action-row">
         <button class="doge-action" id="frogtherProphecyButton" type="button">HEAR THE FROGTHER'S PROPHECY 🐸</button>
@@ -386,7 +399,7 @@
   </script>
 
   <script>
-    /* DOGE RELIGION DEPARTMENT: fictional prophecies + local-only confession quiz */
+    /* FROG SACRED PART DEPARTMENT: fictional prophecies + local-only confession quiz */
     (() => {
       const prophecyButton = document.getElementById('frogtherProphecyButton');
       const prophecyOutput = document.getElementById('frogtherProphecy');
