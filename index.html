@@ -89,24 +89,27 @@
 
     /* Mobile header: centered logo, one menu dropdown, and a dedicated music bar. */
     @media(max-width:760px){
-      header{display:flex;flex-direction:column;align-items:stretch;gap:10px;padding:12px 14px 14px}
-      .logo-link{align-self:center;flex:0 0 auto;width:clamp(110px,34vw,150px);min-height:66px}
-      .logo-image{left:50%;top:0;width:175%;transform:translateX(-50%);transform-origin:top center}
+      header{display:flex;flex-direction:column;align-items:stretch;gap:12px;padding:16px 14px 16px}
+      .logo-link{align-self:center;flex:0 0 auto;width:clamp(160px,45vw,210px);min-height:96px}
+      .logo-image{left:50%;top:0;width:150%;transform:translateX(-50%);transform-origin:top center}
       .logo-image.logo-settled{animation:logoSwayMobile 3.8s ease-in-out infinite}
       @keyframes logoSwayMobile{0%,100%{transform:translateX(calc(-50% - 5px))}50%{transform:translateX(calc(-50% + 5px))}}
-      .header-actions{display:flex;flex-direction:column;align-items:stretch;gap:10px;width:100%;min-width:0}
+      .header-actions{display:flex;flex-direction:column;align-items:stretch;gap:12px;width:100%;min-width:0}
       .nav-primary{display:none}
-      .nav-more{align-self:center;width:min(100%,300px);order:0}
-      .nav-more summary{justify-content:center;width:100%;min-height:44px;font-size:9px;padding:10px 14px}
+      .nav-more{align-self:center;width:min(100%,320px);order:0}
+      .nav-more summary{justify-content:center;width:100%;min-height:46px;font-size:9px;padding:11px 14px}
       .nav-dropdown{position:static;width:100%;max-width:100%;margin-top:8px;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;padding:9px}
       .nav-dropdown .mobile-menu-link{display:inline-flex}
       .nav-dropdown .products-tab{min-height:38px;align-items:center;justify-content:center;font-size:7px;padding:8px 5px;line-height:1.5;overflow-wrap:anywhere}
-      .mobile-music-bar{display:flex;align-items:center;justify-content:center;gap:12px;order:1;width:100%;min-height:56px;padding:6px 12px;background:#171717;border:3px solid #171717;box-shadow:4px 4px #fff1d6}
-      .mobile-music-bar .music-toggle{width:40px;height:40px;flex:0 0 40px;font-size:23px;border:2px solid #fff1d6;border-radius:12px;box-shadow:none}
+      .mobile-music-bar{display:flex;align-items:center;justify-content:center;gap:12px;order:1;width:100%;min-height:60px;margin-top:3px;padding:8px 12px;background:#7027d9;color:#fff;border:3px solid #171717;box-shadow:4px 4px #171717;position:relative}
+      .mobile-music-bar:before{content:"";position:absolute;left:0;right:0;top:-15px;border-top:2px solid #171717}
+      .mobile-music-bar .music-toggle{width:40px;height:40px;flex:0 0 40px;font-size:23px;border:2px solid #fff;border-radius:12px;background:#5520a6;color:#fff;box-shadow:none}
+      .mobile-music-bar .music-toggle.is-playing{background:#8b4dff}
       .mobile-music-label{color:#fff;font-family:"Press Start 2P",monospace;font-size:9px;font-weight:800;letter-spacing:.5px;line-height:1.5}
     }
     @media(max-width:360px){
-      .logo-link{width:105px;min-height:58px}
+      .logo-link{width:clamp(150px,48vw,180px);min-height:84px}
+      .logo-image{width:150%}
       .nav-dropdown .products-tab{font-size:6px;padding:7px 3px}
       .mobile-music-label{font-size:8px}
     }
@@ -221,6 +224,149 @@
       h1 { font-size:27px; }
     }
 
+
+    /* FINAL MOBILE HEADER FIX: one centered vertical stack, never a side-by-side logo. */
+    @media (max-width:760px) {
+      header {
+        display:flex !important;
+        flex-direction:column !important;
+        align-items:center !important;
+        justify-content:flex-start !important;
+        gap:14px !important;
+        width:100%;
+        min-height:0;
+        padding:18px 14px 16px !important;
+        border-bottom:3px solid #171717;
+      }
+      header > .logo-link {
+        display:block;
+        position:relative;
+        align-self:center !important;
+        flex:0 0 auto !important;
+        width:clamp(190px,56vw,250px) !important;
+        min-width:0 !important;
+        min-height:112px !important;
+        height:112px;
+        margin:0 auto;
+      }
+      header > .logo-link .logo-image {
+        position:absolute;
+        left:50% !important;
+        right:auto !important;
+        top:0 !important;
+        width:150% !important;
+        max-width:none;
+        transform:translateX(-50%);
+        transform-origin:top center;
+        object-position:top center;
+      }
+      header > .header-actions {
+        display:flex !important;
+        flex:0 0 auto !important;
+        flex-direction:column !important;
+        align-items:stretch !important;
+        justify-content:flex-start !important;
+        gap:12px !important;
+        width:100% !important;
+        min-width:0 !important;
+        margin:0;
+      }
+      header .nav-primary { display:none !important; }
+      header .nav-more {
+        display:block;
+        position:relative;
+        align-self:center !important;
+        order:0 !important;
+        width:min(100%,360px) !important;
+        min-width:0;
+        margin:0 auto;
+      }
+      header .nav-more > summary {
+        display:flex;
+        width:100%;
+        min-height:48px;
+        align-items:center;
+        justify-content:center;
+        text-align:center;
+        font-size:9px;
+        padding:12px 14px;
+      }
+      header .nav-more .nav-dropdown {
+        position:static !important;
+        display:grid;
+        width:100% !important;
+        max-width:100% !important;
+        margin:10px 0 0;
+        grid-template-columns:repeat(2,minmax(0,1fr));
+        gap:8px;
+      }
+      header .nav-more .nav-dropdown .mobile-menu-link { display:inline-flex; }
+      header .nav-more .nav-dropdown .products-tab {
+        min-width:0;
+        min-height:42px;
+        font-size:7px;
+        padding:8px 5px;
+        line-height:1.5;
+        overflow-wrap:anywhere;
+        white-space:normal;
+      }
+      header .mobile-music-bar {
+        display:flex !important;
+        position:relative;
+        order:1 !important;
+        align-self:stretch;
+        align-items:center;
+        justify-content:center;
+        gap:12px;
+        width:100% !important;
+        min-height:62px;
+        margin:8px 0 0 !important;
+        padding:9px 12px;
+        background:#7027d9 !important;
+        color:#fff !important;
+        border:3px solid #171717;
+        box-shadow:4px 4px #171717;
+      }
+      header .mobile-music-bar:before {
+        content:"";
+        position:absolute;
+        left:0;
+        right:0;
+        top:-14px;
+        border-top:2px solid #171717;
+      }
+      header .mobile-music-bar .music-toggle {
+        display:inline-flex;
+        align-items:center;
+        justify-content:center;
+        flex:0 0 40px;
+        width:40px !important;
+        height:40px !important;
+        margin:0;
+        border:2px solid #fff;
+        border-radius:10px;
+        background:#5520a6;
+        color:#fff;
+        box-shadow:none;
+        font-size:23px;
+      }
+      header .mobile-music-label {
+        display:inline-block;
+        color:#fff !important;
+        font-family:"Press Start 2P",monospace;
+        font-size:9px;
+        font-weight:800;
+        line-height:1.6;
+        letter-spacing:.5px;
+      }
+    }
+    @media (max-width:380px) {
+      header > .logo-link { width:clamp(175px,60vw,215px) !important; min-height:100px !important; height:100px; }
+      header > .logo-link .logo-image { width:150% !important; }
+      header .nav-more > summary { font-size:8px; }
+      header .nav-more .nav-dropdown .products-tab { font-size:6px; padding:7px 3px; }
+      header .mobile-music-label { font-size:8px; }
+    }
   </style>
 </head>
 <body>
@@ -246,7 +392,7 @@
         </nav>
       </details>
       <div class="mobile-music-bar" aria-label="Music controls">
-        <button id="musicToggle" class="music-toggle is-muted" type="button" aria-label="Play background music" aria-pressed="false" title="Play background music">🎵</button>
+        <button id="musicToggle" class="music-toggle is-muted" type="button" aria-label="Play background music" aria-pressed="false" title="Play background music">🔈</button>
         <span class="mobile-music-label">PLAY MUSIC</span>
       </div>
     </div>
@@ -362,7 +508,7 @@
       music.volume = .35;
       function updateButton(playing) {
         button.classList.toggle("is-muted",!playing); button.classList.toggle("is-playing",playing);
-        button.textContent = playing ? "🔊" : "🎵"; button.setAttribute("aria-pressed",String(playing));
+        button.textContent = playing ? "🔊" : "🔈"; button.setAttribute("aria-pressed",String(playing));
         const label = playing ? "Pause background music" : "Play background music";
         button.setAttribute("aria-label",label); button.title = label;
       }
