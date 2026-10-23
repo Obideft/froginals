@@ -3,652 +3,901 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#ff7900">
+
   <title>FROGINALS — Supporting Dogecoin</title>
-  <meta name="description" content="FROGINALS! Good frogs, good Doge. Shop the FROGINALS tee and join the community.">
+  <meta name="description" content="FROGINALS! Good frogs, good Doge. Shop the FROGINALS tee and support Dogecoin.">
+
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;700;800&display=swap" rel="stylesheet">
+
   <style>
-    *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:20px}body{margin:0;background:#ff7900;color:#171717;font-family:"Space Grotesk",sans-serif;text-align:center}header{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:18px 6%;border-bottom:3px solid #171717;position:relative;z-index:5;overflow:visible;min-height:82px}.logo-link{position:relative;display:block;align-self:stretch;width:clamp(110px,15vw,165px);min-width:90px;flex-shrink:0;text-decoration:none;z-index:7}.logo-image{position:absolute;display:block;width:175%;max-width:none;height:auto;left:0;top:2px;object-fit:contain;object-position:top left;transform-origin:top left;opacity:0;filter:drop-shadow(4px 5px 0 rgba(23,23,23,.2));will-change:transform}.logo-image.logo-settled{animation:logoSway 3.8s ease-in-out infinite}@keyframes logoSway{0%,100%{transform:translateX(-7px)}50%{transform:translateX(7px)}}.header-actions{display:flex;align-items:center;gap:18px;flex-shrink:0;position:relative;z-index:8}.shop-link{color:#171717;text-decoration:none;font-weight:800;font-size:12px;white-space:nowrap}.shop-link:hover{color:#fff1d6}.whitepaper-tab{background:#ff63c7;color:#171717}.whitepaper-tab:hover{background:#ffb0e4}.mint-button{display:inline-block;max-width:100%;margin:18px auto 12px;padding:17px 20px;background:#53ff89;color:#171717;border:3px solid #171717;box-shadow:6px 6px #171717;text-decoration:none;font-family:"Press Start 2P",monospace;font-size:clamp(9px,1.8vw,13px);line-height:1.9;transition:transform .2s,box-shadow .2s,background .2s}.mint-button:hover{background:#c3ff53;color:#171717;transform:translate(3px,3px);box-shadow:3px 3px #171717}.mint-note{margin:12px 0 20px;font-size:12px;font-weight:700;line-height:1.8}
-    .nft-tab{background:#ffd447;color:#171717;border-color:#171717}.nft-tab:hover{background:#53ff89}
-    .products-tab{display:inline-flex;align-items:center;justify-content:center;padding:10px 12px;background:#ffd447;color:#171717;border:3px solid #171717;box-shadow:3px 3px #171717;text-decoration:none;font-family:"Press Start 2P",monospace;font-size:9px;line-height:1.6;white-space:nowrap;transition:transform .2s,box-shadow .2s}.products-tab:hover{transform:translate(2px,2px);box-shadow:1px 1px #171717}.army-tab{background:#c3ff53}.army-tab:hover{background:#8cff9b}.community-tab{background:#fff1d6}.community-tab:hover{background:#fff}.music-toggle{display:inline-flex;align-items:center;justify-content:center;width:58px;height:58px;flex-shrink:0;border:4px solid #171717;border-radius:19px;background:#888;color:white;font-size:33px;line-height:1;cursor:pointer;box-shadow:5px 5px #171717;transition:transform .2s,background .2s,box-shadow .2s;-webkit-tap-highlight-color:transparent}.music-toggle:hover{transform:scale(1.08);box-shadow:7px 7px #171717}.music-toggle.is-muted{background:#888}.music-toggle.is-playing{background:#168cff;animation:musicBounce .8s ease-in-out infinite alternate}@keyframes musicBounce{from{transform:scale(1)}to{transform:scale(1.07)}}.logo-launch{position:fixed;inset:0;z-index:9999;background:#ff7900;display:flex;align-items:center;justify-content:center;overflow:hidden;pointer-events:all;opacity:1}.logo-launch img{position:absolute;left:50%;top:50%;display:block;width:min(59.5vw,595px);max-width:none;max-height:80vh;height:auto;object-fit:contain;object-position:center;transform:translate(-50%,-50%);image-rendering:pixelated;filter:drop-shadow(9px 10px 0 #171717);will-change:left,top,width,transform,opacity}main{padding:55px 20px 40px;overflow:hidden;background-image:radial-gradient(#ff9d2e 2px,transparent 2px);background-size:22px 22px}.eyebrow{font-family:"Press Start 2P",monospace;font-size:11px;line-height:1.8}h1{margin:25px 0;font-family:"Press Start 2P",monospace;font-size:clamp(34px,8vw,100px);line-height:1.3;letter-spacing:-5px;overflow-wrap:anywhere;text-shadow:5px 5px #fff1d6,9px 9px #171717}.mission{font-size:clamp(17px,3vw,27px);font-weight:800;line-height:1.7}.mission strong{background:#171717;color:#ffd447;padding:5px 8px}.moon{font-family:"Press Start 2P",monospace;font-size:clamp(11px,2vw,17px);line-height:1.8;margin:20px 0}.product{width:min(520px,100%);margin:20px auto 0;padding:15px}.shirt-image{display:block;width:100%;max-height:470px;object-fit:contain;margin:0 auto;filter:drop-shadow(10px 12px 0 rgba(23,23,23,.2));animation:float 4s ease-in-out infinite}.product-name{font-family:"Press Start 2P",monospace;font-size:clamp(12px,2vw,17px);line-height:1.8;margin:20px 0 10px}.price{font-size:38px;font-weight:800;margin:10px 0}.shipping{font-family:"Press Start 2P",monospace;font-size:10px;line-height:2;margin:15px 0 25px}.buy-button{display:inline-block;max-width:100%;padding:20px 24px;background:#171717;color:#fff1d6;border:3px solid #171717;box-shadow:6px 6px #fff1d6;text-decoration:none;font-family:"Press Start 2P",monospace;font-size:11px;line-height:1.8;transition:.2s}.buy-button:hover{transform:translate(3px,3px);box-shadow:3px 3px #fff1d6;color:#ffd447}.payment-note{font-size:12px;font-weight:700;margin:20px 0}
-    .community-section{padding:65px 0 60px;background:#ffe46b;border-top:4px solid #171717;border-bottom:4px solid #171717;overflow:hidden;scroll-margin-top:20px;background-image:radial-gradient(rgba(23,23,23,.09) 2px,transparent 2px);background-size:20px 20px}.community-inner{width:100%;margin:0 auto}.community-eyebrow{margin:0 15px 15px;font-family:"Press Start 2P",monospace;font-size:10px;line-height:2}.community-title{margin:0 12px 15px;font-family:"Press Start 2P",monospace;font-size:clamp(23px,5vw,48px);line-height:1.5;letter-spacing:-1px;text-shadow:3px 3px #fff1d6,5px 5px #171717}.community-description{max-width:620px;margin:0 auto 30px;padding:0 18px;font-size:clamp(14px,2vw,18px);font-weight:700;line-height:1.8}.community-status{min-height:24px;margin:12px 15px 20px;font-size:13px;font-weight:800;line-height:1.8}.community-carousel{position:relative;width:100%}.community-track{display:flex;gap:18px;overflow-x:auto;overflow-y:hidden;padding:12px max(20px,calc((100vw - 1000px)/2)) 24px;scroll-snap-type:x mandatory;scroll-behavior:smooth;overscroll-behavior-x:contain;-webkit-overflow-scrolling:touch;scrollbar-width:thin;scrollbar-color:#171717 #ffd447;cursor:grab}.community-track:active{cursor:grabbing}.community-track:focus-visible{outline:4px solid #168cff;outline-offset:-4px}.community-card{position:relative;flex:0 0 min(76%,820px);min-width:0;overflow:hidden;align-self:stretch;background:#171717;border:4px solid #171717;border-radius:5px;box-shadow:8px 8px 0 rgba(23,23,23,.2);scroll-snap-align:start}.community-card img{display:block;width:100%;aspect-ratio:16/9;object-fit:cover;background:#ff7900;user-select:none;-webkit-user-drag:none}.community-card .image-link{display:block;text-decoration:none}.community-caption{padding:15px 14px 17px;background:#171717;color:#fff1d6;text-align:left}.community-caption h3{margin:0 0 8px;color:#ffd447;font-family:"Press Start 2P",monospace;font-size:clamp(9px,1.5vw,13px);line-height:1.9;overflow-wrap:anywhere}.community-caption p{margin:0;font-size:13px;font-weight:700;line-height:1.6;overflow-wrap:anywhere}.community-controls{display:flex;align-items:center;justify-content:center;gap:15px;margin:24px 15px 0}.carousel-arrow{display:inline-flex;align-items:center;justify-content:center;width:52px;height:52px;border:3px solid #171717;border-radius:4px;background:#ffd447;color:#171717;box-shadow:4px 4px #171717;font-size:26px;font-weight:800;cursor:pointer;transition:transform .18s,box-shadow .18s,background .18s}.carousel-arrow:hover{background:#c3ff53;transform:translate(2px,2px);box-shadow:2px 2px #171717}.carousel-counter{min-width:76px;font-family:"Press Start 2P",monospace;font-size:10px;line-height:1.8}.community-cta{display:inline-block;margin-top:28px;padding:16px 18px;border:3px solid #171717;background:#c3ff53;color:#171717;box-shadow:5px 5px #171717;font-family:"Press Start 2P",monospace;font-size:10px;line-height:1.9;text-decoration:none;transition:transform .2s,box-shadow .2s}.community-cta:hover{transform:translate(3px,3px);box-shadow:2px 2px #171717}.community-note{margin:22px 16px 0;font-size:12px;font-weight:700;line-height:1.8}.ticker{background:#171717;color:#ffd447;border-top:3px solid #fff1d6;border-bottom:3px solid #fff1d6;padding:17px 0;overflow:hidden;white-space:nowrap;font-family:"Press Start 2P",monospace;font-size:12px}.ticker span{display:inline-block;animation:scroll 22s linear infinite}footer{display:flex;justify-content:space-between;gap:15px;padding:25px 6%;background:#171717;color:#fff1d6;font-family:"Press Start 2P",monospace;font-size:9px;line-height:1.8}@keyframes float{0%,100%{transform:translateY(0) rotate(-1deg)}50%{transform:translateY(-8px) rotate(1deg)}}@keyframes scroll{from{transform:translateX(0)}to{transform:translateX(-50%)}}
-
-    /* $1 FROGINALS POPUP */
-    .dollar-popup-overlay{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;padding:18px;background:rgba(20,8,28,.78);backdrop-filter:blur(5px);opacity:0;visibility:hidden;pointer-events:none;transition:opacity .25s ease,visibility .25s ease}
-    .dollar-popup-overlay.is-visible{opacity:1;visibility:visible;pointer-events:auto}
-    .dollar-popup{position:relative;width:min( min(920px, 94vw), calc(88vh * 1.5));max-height:88vh;overflow:visible;border:4px solid #171717;border-radius:18px;background:#fff;box-shadow:0 0 0 4px #d52bff,0 0 32px rgba(213,43,255,.65),10px 12px 0 #171717;transform:translateY(18px) scale(.96);transition:transform .3s cubic-bezier(.2,.8,.2,1)}
-    .dollar-popup-overlay.is-visible .dollar-popup{transform:translateY(0) scale(1)}
-    .dollar-popup-art{display:block;width:100%;height:auto;max-height:calc(88vh - 8px);object-fit:contain;border-radius:13px}
-    .dollar-popup-close{position:absolute;right:8px;top:8px;z-index:3;display:flex;align-items:center;justify-content:center;width:clamp(34px,5vw,52px);height:clamp(34px,5vw,52px);padding:0;border:3px solid #171717;border-radius:8px;background:#f32be8;color:#171717;box-shadow:3px 3px 0 #171717;font-size:clamp(22px,3vw,34px);font-weight:900;line-height:1;cursor:pointer}
-    .dollar-popup-close:hover{background:#fff;transform:scale(1.06)}
-    .popup-mint-button{position:absolute;left:72%;top:86.8%;transform:translate(-50%,-50%);width:45.5%;min-height:clamp(34px,6vw,74px);display:flex;align-items:center;justify-content:center;padding:clamp(5px,1vw,12px);box-sizing:border-box;background:#39ff14;color:#101010;border:3px solid #101010;border-radius:8px;box-shadow:0 0 8px #39ff14,0 0 18px #39ff14,0 0 32px rgba(57,255,20,.8),4px 4px 0 #101010;text-decoration:none;font-family:"Press Start 2P",monospace;font-size:clamp(7px,1.2vw,13px);font-weight:900;line-height:1.55;text-align:center;z-index:2;animation:popupMintGlow 1.1s ease-in-out infinite alternate}
-    @keyframes popupMintGlow{from{box-shadow:0 0 7px #39ff14,0 0 15px #39ff14,4px 4px 0 #101010;filter:brightness(1)}to{box-shadow:0 0 14px #39ff14,0 0 28px #39ff14,0 0 42px rgba(57,255,20,.95),4px 4px 0 #101010;filter:brightness(1.22)}}
-    .popup-mint-button:hover{background:#aaff00;color:#101010;transform:translate(-50%,-50%) scale(1.035)}
-    @media(max-width:600px){.dollar-popup-overlay{padding:12px}.dollar-popup{width:min(96vw,calc(84vh * 1.5));max-height:84vh;border-width:3px;border-radius:12px;box-shadow:0 0 0 3px #d52bff,0 0 20px rgba(213,43,255,.65),6px 7px 0 #171717}.dollar-popup-art{max-height:calc(84vh - 6px);border-radius:9px}.dollar-popup-close{right:5px;top:5px;width:32px;height:32px;border-width:2px;border-radius:6px;font-size:23px;box-shadow:2px 2px #171717}.popup-mint-button{left:72%;top:86.8%;width:45.5%;min-height:clamp(27px,8vw,44px);padding:4px;font-size:clamp(5px,1.65vw,8px);border-width:2px;border-radius:5px;box-shadow:0 0 7px #39ff14,0 0 15px #39ff14,2px 2px #101010}}
-    @media(prefers-reduced-motion:reduce){.dollar-popup-overlay,.dollar-popup{transition:none}.popup-mint-button{animation:none}}
-
-    @media(max-width:600px){header{padding:14px 12px;min-height:72px;gap:8px}.logo-link{width:95px;min-width:75px}.logo-image{width:175%}.header-actions{gap:8px;flex-wrap:wrap;justify-content:flex-end}.shop-link{font-size:8px}.products-tab{padding:8px 7px;font-size:7px;border-width:2px;box-shadow:2px 2px #171717}.music-toggle{width:46px;height:46px;font-size:27px;border-radius:15px}main{padding:38px 15px 30px}h1{letter-spacing:-3px;text-shadow:3px 3px #fff1d6,6px 6px #171717}.shipping{font-size:8px}.buy-button{font-size:9px;padding:17px 12px}.community-section{padding:45px 0}.community-track{gap:12px;padding:10px 16px 20px}.community-card{flex-basis:86%;border-width:3px;box-shadow:5px 5px 0 rgba(23,23,23,.2)}.community-caption{padding:12px 10px 14px}.community-caption p{font-size:12px}.carousel-arrow{width:46px;height:46px}.community-cta{max-width:calc(100% - 32px);font-size:8px;padding:13px 10px}footer{flex-direction:column;align-items:center}.logo-launch img{width:64.4vw}}
-    @media(max-width:360px){header{padding:12px 8px}.logo-link{width:78px;min-width:65px}.header-actions{gap:5px}.shop-link{font-size:7px}.products-tab{padding:6px 5px;font-size:6px}.music-toggle{width:42px;height:42px;font-size:24px}.community-card{flex-basis:90%}}
-    @media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}}
-
-    /* FROGINALS $1 SWAMP SPECIAL — RESPONSIVE IMAGE POPUP */
-    .swamp-popup-overlay{position:fixed;inset:0;z-index:10000;display:flex;align-items:center;justify-content:center;padding:clamp(10px,3vw,28px);background:rgba(23,23,23,.78);opacity:0;visibility:hidden;transition:opacity .25s,visibility .25s}
-    .swamp-popup-overlay.is-open{opacity:1;visibility:visible}
-    .swamp-popup{position:relative;width:min( min(900px, 94vw), calc((100dvh - 36px) * 1.5));max-width:900px;line-height:0;border:4px solid #171717;border-radius:22px;overflow:hidden;background:#fff;box-shadow:10px 10px 0 #d82cff;transform:translateY(18px) scale(.96);transition:transform .25s}
-    .swamp-popup-overlay.is-open .swamp-popup{transform:translateY(0) scale(1)}
-    .swamp-popup-art{display:block;width:100%;height:auto;aspect-ratio:3/2;object-fit:contain;background:#fff}
-    .swamp-popup-close{position:absolute;z-index:2;top:2.1%;right:2.1%;width:clamp(32px,5vw,48px);height:clamp(32px,5vw,48px);border:3px solid #171717;border-radius:12px;background:#ff35d4;color:#171717;font-size:clamp(20px,3vw,30px);font-weight:900;line-height:1;cursor:pointer;box-shadow:3px 3px #171717;display:grid;place-items:center}
-    .swamp-popup-cta{position:absolute;z-index:1;right:6.2%;bottom:7.1%;width:43.5%;height:12%;display:flex;align-items:center;justify-content:center;padding:0 2%;border:0;border-radius:8px;background:transparent;color:transparent;text-decoration:none;font-size:clamp(10px,1.6vw,18px);line-height:1;overflow:hidden}
-    .swamp-popup-cta:focus-visible{outline:4px solid #d82cff;outline-offset:3px;background:rgba(83,255,137,.18)}
-    @media(max-width:540px){.swamp-popup{width:min(96vw,calc((100dvh - 28px) * 1.5));border-width:3px;border-radius:14px;box-shadow:5px 5px 0 #d82cff}.swamp-popup-overlay{padding:8px}.swamp-popup-close{top:1.8%;right:1.8%;width:30px;height:30px;border-width:2px;border-radius:8px;font-size:21px;box-shadow:2px 2px #171717}.swamp-popup-cta{right:5.8%;bottom:7%;width:44%;height:12.5%;border-radius:5px}}
-    @media(prefers-reduced-motion:reduce){.swamp-popup-overlay,.swamp-popup{transition:none}}
-
-    /* Compact navigation: keep three key links visible and place the rest in a dropdown. */
-    header{align-items:center;gap:clamp(10px,2vw,24px)}
-    .logo-link{flex:0 0 clamp(105px,14vw,165px);width:clamp(105px,14vw,165px);min-width:0;min-height:62px}
-    .header-actions{display:flex;align-items:center;justify-content:flex-end;gap:clamp(8px,1.2vw,16px);flex:1 1 auto;min-width:0}
-    .nav-primary{display:grid;grid-template-columns:repeat(3,minmax(0,max-content));align-items:center;justify-content:end;gap:8px}
-    .nav-primary .shop-link{padding:9px 8px;text-align:center;white-space:normal;line-height:1.5}
-    .nav-primary .products-tab,.nav-dropdown .products-tab{max-width:100%;white-space:normal;text-align:center;overflow-wrap:anywhere}
-    .nav-more{position:relative;flex:0 0 auto;z-index:20}
-    .nav-more summary{display:flex;align-items:center;justify-content:center;gap:6px;min-height:38px;padding:9px 10px;border:3px solid #171717;background:#fff1d6;color:#171717;box-shadow:3px 3px #171717;font-family:"Press Start 2P",monospace;font-size:8px;line-height:1.6;cursor:pointer;list-style:none}
-    .nav-more summary::-webkit-details-marker{display:none}
-    .nav-more summary:hover,.nav-more[open] summary{background:#ffd447}
-    .nav-dropdown{position:absolute;top:calc(100% + 10px);right:0;display:grid;grid-template-columns:repeat(2,minmax(125px,1fr));gap:9px;width:min(360px,calc(100vw - 24px));padding:12px;background:#ff7900;border:3px solid #171717;box-shadow:5px 5px #171717}
-    .nav-dropdown .products-tab{min-width:0;font-size:8px;padding:9px 7px;white-space:normal}
-    .nav-more[open] .nav-dropdown{animation:navDropIn .16s ease-out}
-    @keyframes navDropIn{from{opacity:0;transform:translateY(-5px)}to{opacity:1;transform:translateY(0)}}
-    @media(max-width:760px){
-      header{padding:14px 3%;gap:10px;align-items:center}
-      .logo-link{flex-basis:clamp(82px,18vw,125px);width:clamp(82px,18vw,125px);min-height:54px}
-      .header-actions{gap:8px;flex-wrap:wrap}
-      .nav-primary{grid-template-columns:repeat(2,minmax(0,1fr));gap:6px;flex:1 1 100%;order:1}
-      .nav-primary .shop-link,.nav-primary .products-tab{min-width:0;font-size:7px;padding:7px 6px;line-height:1.5}
-      .nav-more{order:2}
-      .nav-more summary{font-size:7px;padding:8px 7px;border-width:2px}
-      .nav-dropdown{grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;padding:9px}
-      .nav-dropdown .products-tab{font-size:7px;padding:8px 5px;border-width:2px;line-height:1.5}
-      .music-toggle{order:3;width:42px;height:42px;font-size:24px;border-width:3px;border-radius:13px;box-shadow:3px 3px #171717}
-    }
-    @media(max-width:420px){
-      header{padding:12px 8px;gap:7px}
-      .logo-link{flex-basis:70px;width:70px;min-height:48px}
-      .header-actions{gap:6px}
-      .nav-primary{gap:5px}
-      .nav-primary .shop-link,.nav-primary .products-tab{font-size:6px;padding:6px 4px;border-width:2px}
-      .nav-more summary{font-size:6px;padding:7px 5px}
-      .nav-dropdown{right:-48px;width:min(320px,calc(100vw - 16px))}
-      .music-toggle{width:37px;height:37px;font-size:21px}
-    }
-    @media(prefers-reduced-motion:reduce){.nav-more[open] .nav-dropdown{animation:none}}
-
-    .mobile-music-bar{display:none}
-    .mobile-menu-link{display:none}
-
-    /* Mobile header: centered logo, one menu dropdown, and a dedicated music bar. */
-    @media(max-width:760px){
-      header{display:flex;flex-direction:column;align-items:stretch;gap:12px;padding:16px 14px 16px}
-      .logo-link{align-self:center;flex:0 0 auto;width:clamp(160px,45vw,210px);min-height:96px}
-      .logo-image{left:50%;top:0;width:150%;transform:translateX(-50%);transform-origin:top center}
-      .logo-image.logo-settled{animation:logoSwayMobile 3.8s ease-in-out infinite}
-      @keyframes logoSwayMobile{0%,100%{transform:translateX(calc(-50% - 5px))}50%{transform:translateX(calc(-50% + 5px))}}
-      .header-actions{display:flex;flex-direction:column;align-items:stretch;gap:12px;width:100%;min-width:0}
-      .nav-primary{display:none}
-      .nav-more{align-self:center;width:min(100%,320px);order:0}
-      .nav-more summary{justify-content:center;width:100%;min-height:46px;font-size:9px;padding:11px 14px}
-      .nav-dropdown{position:static;width:100%;max-width:100%;margin-top:8px;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;padding:9px}
-      .nav-dropdown .mobile-menu-link{display:inline-flex}
-      .nav-dropdown .products-tab{min-height:38px;align-items:center;justify-content:center;font-size:7px;padding:8px 5px;line-height:1.5;overflow-wrap:anywhere}
-      .mobile-music-bar{display:flex;align-items:center;justify-content:center;gap:12px;order:1;width:100%;min-height:60px;margin-top:3px;padding:8px 12px;background:#7027d9;color:#fff;border:3px solid #171717;box-shadow:4px 4px #171717;position:relative}
-      .mobile-music-bar:before{content:"";position:absolute;left:0;right:0;top:-15px;border-top:2px solid #171717}
-      .mobile-music-bar .music-toggle{width:40px;height:40px;flex:0 0 40px;font-size:23px;border:2px solid #fff;border-radius:12px;background:#5520a6;color:#fff;box-shadow:none}
-      .mobile-music-bar .music-toggle.is-playing{background:#8b4dff}
-      .mobile-music-label{color:#fff;font-family:"Press Start 2P",monospace;font-size:9px;font-weight:800;letter-spacing:.5px;line-height:1.5}
-    }
-    @media(max-width:360px){
-      .logo-link{width:clamp(150px,48vw,180px);min-height:84px}
-      .logo-image{width:150%}
-      .nav-dropdown .products-tab{font-size:6px;padding:7px 3px}
-      .mobile-music-label{font-size:8px}
+    * {
+      box-sizing: border-box;
     }
 
-
-    /* Mobile and tablet refinement overrides — preserve the existing visual identity. */
-    img, video, canvas, svg { max-width:100%; }
-    body { overflow-x:hidden; }
-    main, .community-section, footer { min-width:0; }
-    .product, .community-inner { max-width:100%; }
-    .mission, .moon, .mint-note, .payment-note, .shipping,
-    .community-description, .community-note { overflow-wrap:anywhere; }
-    .community-track { overscroll-behavior-inline:contain; }
-    .community-card { flex-shrink:0; }
-    .community-card img { height:auto; }
-    .dollar-popup-overlay, .swamp-popup-overlay { isolation:isolate; }
-    .dollar-popup, .swamp-popup { max-width:100%; }
-    a, button, summary { -webkit-tap-highlight-color:transparent; }
-    a:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid #168cff; outline-offset:3px; }
-
-    /* Tablet: make the header breathe and reduce oversized content spacing. */
-    @media (min-width:761px) and (max-width:1024px) {
-      header { padding:16px 3%; gap:12px; }
-      .logo-link { flex-basis:clamp(100px,13vw,135px); width:clamp(100px,13vw,135px); }
-      .header-actions { gap:9px; }
-      .nav-primary { grid-template-columns:repeat(2,minmax(0,1fr)); gap:7px; }
-      .nav-primary .shop-link, .nav-primary .products-tab { min-width:0; font-size:8px; padding:8px 7px; line-height:1.5; }
-      .nav-more summary { font-size:7px; padding:8px; }
-      .nav-dropdown { width:min(330px,calc(100vw - 24px)); }
-      .music-toggle { width:46px; height:46px; font-size:26px; }
-      main { padding:44px 24px 34px; }
-      h1 { font-size:clamp(42px,7vw,76px); letter-spacing:-3px; }
-      .product { width:min(480px,100%); }
-      .community-section { padding:54px 0 48px; }
-      .community-card { flex-basis:min(82%,720px); }
-      .dollar-popup { width:min(90vw,calc(84dvh * 1.5)); }
+    html {
+      scroll-behavior: smooth;
     }
 
-    /* Phones and narrow tablets: stack header regions without squeezing the logo. */
-    @media (max-width:760px) {
-      header { display:grid; grid-template-columns:minmax(72px,22%) minmax(0,1fr); align-items:center; padding:12px 14px 14px; gap:10px; }
-      .logo-link { grid-column:1; grid-row:1; align-self:center; width:100%; min-width:0; min-height:58px; }
-      .logo-image { width:170%; max-width:none; }
-      .header-actions { grid-column:2; grid-row:1; display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; justify-content:stretch; gap:8px; min-width:0; }
-      .nav-primary { grid-column:1 / -1; grid-row:1; width:100%; grid-template-columns:repeat(2,minmax(0,1fr)); min-width:0; }
-      .nav-primary > * { min-width:0; }
-      .nav-more { grid-column:1; grid-row:2; min-width:0; }
-      .nav-more summary { width:100%; min-height:40px; white-space:normal; overflow-wrap:anywhere; }
-      .music-toggle { grid-column:2; grid-row:2; justify-self:end; }
-      .nav-dropdown { z-index:30; right:auto; left:0; width:min(340px,calc(100vw - 28px)); max-width:calc(100vw - 28px); }
-      main { padding:36px 16px 30px; }
-      .eyebrow { font-size:clamp(8px,2vw,11px); }
-      h1 { font-size:clamp(32px,8.5vw,58px); line-height:1.35; letter-spacing:-2px; margin:20px 0; }
-      .mission { font-size:clamp(16px,4vw,23px); }
-      .moon { font-size:clamp(10px,2.5vw,15px); }
-      .mint-button { padding:14px 12px; line-height:1.8; }
-      .mint-note { font-size:11px; padding:0 4px; }
-      .product { width:100%; padding:8px 0; }
-      .shirt-image { max-height:clamp(250px,80vw,430px); }
-      .product-name { font-size:clamp(10px,2.7vw,15px); }
-      .price { font-size:clamp(30px,8vw,38px); }
-      .buy-button { padding:15px 12px; font-size:clamp(8px,2.1vw,10px); }
-      .community-section { padding:42px 0 38px; }
-      .community-title { font-size:clamp(21px,6vw,38px); letter-spacing:0; }
-      .community-description { margin-bottom:22px; }
-      .community-track { padding:10px 14px 20px; gap:12px; scroll-padding-inline:14px; }
-      .community-card { flex-basis:min(88%,560px); }
-      .community-card img { aspect-ratio:4/3; object-fit:cover; }
-      .community-caption h3 { font-size:clamp(8px,2.2vw,11px); }
-      .community-caption p { font-size:12px; }
-      .community-controls { gap:12px; margin-top:18px; }
-      .community-cta { max-width:calc(100% - 28px); overflow-wrap:anywhere; }
-      .ticker { font-size:10px; }
-      footer { padding:22px 14px; }
+    body {
+      margin: 0;
+      background: #ff7900;
+      color: #171717;
+      font-family: "Space Grotesk", sans-serif;
+      text-align: center;
     }
 
-    @media (max-width:420px) {
-      header { grid-template-columns:64px minmax(0,1fr); padding:10px 9px 12px; gap:8px; }
-      .logo-link { min-height:48px; }
-      .logo-image { width:175%; }
-      .header-actions { gap:6px; }
-      .nav-primary { gap:5px; }
-      .nav-primary .shop-link, .nav-primary .products-tab { font-size:6px; padding:7px 4px; line-height:1.45; }
-      .nav-more summary { font-size:6px; padding:7px 5px; min-height:36px; }
-      .nav-dropdown { left:0; right:auto; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; width:min(300px,calc(100vw - 18px)); max-width:calc(100vw - 18px); }
-      .nav-dropdown .products-tab { font-size:6px; padding:7px 4px; }
-      .music-toggle { width:36px; height:36px; font-size:20px; border-radius:11px; }
-      main { padding:30px 12px 26px; }
-      h1 { font-size:clamp(29px,9vw,38px); letter-spacing:-1.5px; text-shadow:3px 3px #fff1d6,5px 5px #171717; }
-      .mission { font-size:16px; }
-      .mint-button { font-size:8px; padding:12px 9px; }
-      .shipping { font-size:7px; }
-      .community-eyebrow { font-size:8px; }
-      .community-track { padding-inline:10px; gap:10px; }
-      .community-card { flex-basis:92%; }
-      .community-card img { aspect-ratio:1/1; }
-      .community-caption { padding:11px 9px 12px; }
-      .community-controls { gap:9px; }
-      .carousel-arrow { width:42px; height:42px; }
-      .carousel-counter { min-width:68px; font-size:8px; }
-      .community-cta { font-size:7px; padding:12px 8px; }
-      .dollar-popup-overlay { padding:8px; }
-      .dollar-popup { width:96vw; }
-      .swamp-popup { width:96vw; }
+    /* HEADER */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      padding: 18px 6%;
+      border-bottom: 3px solid #171717;
+      position: relative;
+      z-index: 5;
+      overflow: visible;
+      min-height: 82px;
     }
 
-    @media (max-width:340px) {
-      header { grid-template-columns:54px minmax(0,1fr); padding-inline:6px; }
-      .nav-primary .shop-link, .nav-primary .products-tab { font-size:5.5px; padding:6px 3px; }
-      .nav-more summary { font-size:5.5px; }
-      .music-toggle { width:33px; height:33px; font-size:18px; }
-      h1 { font-size:27px; }
+    .logo-link {
+      position: relative;
+      display: block;
+      align-self: stretch;
+      width: clamp(110px, 15vw, 165px);
+      min-width: 90px;
+      flex-shrink: 0;
+      text-decoration: none;
+      z-index: 7;
     }
 
+    /* 30% smaller than the previous 250% logo */
+    .logo-image {
+      position: absolute;
+      display: block;
+      width: 175%;
+      max-width: none;
+      height: auto;
+      left: 0;
+      top: 2px;
+      object-fit: contain;
+      object-position: top left;
+      transform-origin: top left;
+      opacity: 0;
+      filter: drop-shadow(4px 5px 0 rgba(23, 23, 23, 0.2));
+      will-change: transform;
+    }
 
-    /* FINAL MOBILE HEADER FIX: one centered vertical stack, never a side-by-side logo. */
-    @media (max-width:760px) {
+    /* Horizontal sway only */
+    .logo-image.logo-settled {
+      animation: logoSway 3.8s ease-in-out infinite;
+    }
+
+    @keyframes logoSway {
+      0%, 100% {
+        transform: translateX(-7px);
+      }
+      50% {
+        transform: translateX(7px);
+      }
+    }
+
+    .header-actions {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-shrink: 0;
+      position: relative;
+      z-index: 8;
+    }
+
+    .shop-link {
+      color: #171717;
+      text-decoration: none;
+      font-weight: 800;
+      font-size: 12px;
+      white-space: nowrap;
+    }
+
+    .shop-link:hover {
+      color: #fff1d6;
+    }
+
+    .products-tab {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      padding: 10px 12px;
+      background: #ffd447;
+      color: #171717;
+      border: 3px solid #171717;
+      box-shadow: 3px 3px #171717;
+      text-decoration: none;
+      font-family: "Press Start 2P", monospace;
+      font-size: 9px;
+      line-height: 1.6;
+      white-space: nowrap;
+      transition: transform .2s, box-shadow .2s;
+    }
+
+    .products-tab:hover {
+      transform: translate(2px, 2px);
+      box-shadow: 1px 1px #171717;
+    }
+
+    /* CARTOON MUSIC BUTTON */
+    .music-toggle {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 58px;
+      height: 58px;
+      flex-shrink: 0;
+      border: 4px solid #171717;
+      border-radius: 19px;
+      background: #888;
+      color: white;
+      font-size: 33px;
+      line-height: 1;
+      cursor: pointer;
+      box-shadow: 5px 5px #171717;
+      transition: transform 0.2s, background 0.2s, box-shadow 0.2s;
+      -webkit-tap-highlight-color: transparent;
+    }
+
+    .music-toggle:hover {
+      transform: scale(1.08);
+      box-shadow: 7px 7px #171717;
+    }
+
+    .music-toggle:active {
+      transform: translate(3px, 3px);
+      box-shadow: 2px 2px #171717;
+    }
+
+    .music-toggle.is-muted {
+      background: #888;
+    }
+
+    .music-toggle.is-playing {
+      background: #168cff;
+      animation: musicBounce 0.8s ease-in-out infinite alternate;
+    }
+
+    @keyframes musicBounce {
+      from { transform: scale(1); }
+      to { transform: scale(1.07); }
+    }
+
+    /* CENTER LOGO INTRO */
+    .logo-launch {
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: #ff7900;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      pointer-events: all;
+      opacity: 1;
+    }
+
+    .logo-launch img {
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      display: block;
+      width: min(59.5vw, 595px);
+      max-width: none;
+      max-height: 80vh;
+      height: auto;
+      object-fit: contain;
+      object-position: center;
+      transform: translate(-50%, -50%);
+      image-rendering: pixelated;
+      filter: drop-shadow(9px 10px 0 #171717);
+      will-change: left, top, width, transform, opacity;
+    }
+
+    /* MAIN CONTENT */
+    main {
+      padding: 55px 20px 40px;
+      overflow: hidden;
+      background-image: radial-gradient(#ff9d2e 2px, transparent 2px);
+      background-size: 22px 22px;
+    }
+
+    .eyebrow {
+      font-family: "Press Start 2P", monospace;
+      font-size: 11px;
+      line-height: 1.8;
+    }
+
+    h1 {
+      margin: 25px 0;
+      font-family: "Press Start 2P", monospace;
+      font-size: clamp(34px, 8vw, 100px);
+      line-height: 1.3;
+      letter-spacing: -5px;
+      overflow-wrap: anywhere;
+      text-shadow: 5px 5px #fff1d6, 9px 9px #171717;
+    }
+
+    .mission {
+      font-size: clamp(17px, 3vw, 27px);
+      font-weight: 800;
+      line-height: 1.7;
+    }
+
+    .mission strong {
+      background: #171717;
+      color: #ffd447;
+      padding: 5px 8px;
+    }
+
+    .moon {
+      font-family: "Press Start 2P", monospace;
+      font-size: clamp(11px, 2vw, 17px);
+      line-height: 1.8;
+      margin: 20px 0;
+    }
+
+    /* PRODUCT */
+    .product {
+      width: min(520px, 100%);
+      margin: 20px auto 0;
+      padding: 15px;
+    }
+
+    .shirt-image {
+      display: block;
+      width: 100%;
+      max-height: 470px;
+      object-fit: contain;
+      margin: 0 auto;
+      filter: drop-shadow(10px 12px 0 rgba(23, 23, 23, .2));
+      animation: float 4s ease-in-out infinite;
+    }
+
+    .product-name {
+      font-family: "Press Start 2P", monospace;
+      font-size: clamp(12px, 2vw, 17px);
+      line-height: 1.8;
+      margin: 20px 0 10px;
+    }
+
+    .price {
+      font-size: 38px;
+      font-weight: 800;
+      margin: 10px 0;
+    }
+
+    .shipping {
+      font-family: "Press Start 2P", monospace;
+      font-size: 10px;
+      line-height: 2;
+      margin: 15px 0 25px;
+    }
+
+    .buy-button {
+      display: inline-block;
+      max-width: 100%;
+      padding: 20px 24px;
+      background: #171717;
+      color: #fff1d6;
+      border: 3px solid #171717;
+      box-shadow: 6px 6px #fff1d6;
+      text-decoration: none;
+      font-family: "Press Start 2P", monospace;
+      font-size: 11px;
+      line-height: 1.8;
+      transition: .2s;
+    }
+
+    .buy-button:hover {
+      transform: translate(3px, 3px);
+      box-shadow: 3px 3px #fff1d6;
+      color: #ffd447;
+    }
+
+    .payment-note {
+      font-size: 12px;
+      font-weight: 700;
+      margin: 20px 0;
+    }
+
+    /* TICKER AND FOOTER */
+    .ticker {
+      background: #171717;
+      color: #ffd447;
+      border-top: 3px solid #fff1d6;
+      border-bottom: 3px solid #fff1d6;
+      padding: 17px 0;
+      overflow: hidden;
+      white-space: nowrap;
+      font-family: "Press Start 2P", monospace;
+      font-size: 12px;
+    }
+
+    .ticker span {
+      display: inline-block;
+      animation: scroll 22s linear infinite;
+    }
+
+    footer {
+      display: flex;
+      justify-content: space-between;
+      gap: 15px;
+      padding: 25px 6%;
+      background: #171717;
+      color: #fff1d6;
+      font-family: "Press Start 2P", monospace;
+      font-size: 9px;
+      line-height: 1.8;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0) rotate(-1deg);
+      }
+      50% {
+        transform: translateY(-8px) rotate(1deg);
+      }
+    }
+
+    @keyframes scroll {
+      from { transform: translateX(0); }
+      to { transform: translateX(-50%); }
+    }
+
+    /* MOBILE */
+    @media (max-width: 600px) {
       header {
-        display:flex !important;
-        flex-direction:column !important;
-        align-items:center !important;
-        justify-content:flex-start !important;
-        gap:14px !important;
-        width:100%;
-        min-height:0;
-        padding:18px 14px 16px !important;
-        border-bottom:3px solid #171717;
+        padding: 14px 12px;
+        min-height: 72px;
+        gap: 8px;
       }
-      header > .logo-link {
-        display:block;
-        position:relative;
-        align-self:center !important;
-        flex:0 0 auto !important;
-        width:clamp(190px,56vw,250px) !important;
-        min-width:0 !important;
-        min-height:112px !important;
-        height:112px;
-        margin:0 auto;
+
+      .logo-link {
+        width: 95px;
+        min-width: 75px;
       }
-      header > .logo-link .logo-image {
-        position:absolute;
-        left:50% !important;
-        right:auto !important;
-        top:0 !important;
-        width:150% !important;
-        max-width:none;
-        transform:translateX(-50%);
-        transform-origin:top center;
-        object-position:top center;
+
+      .logo-image {
+        width: 175%;
       }
-      header > .header-actions {
-        display:flex !important;
-        flex:0 0 auto !important;
-        flex-direction:column !important;
-        align-items:stretch !important;
-        justify-content:flex-start !important;
-        gap:12px !important;
-        width:100% !important;
-        min-width:0 !important;
-        margin:0;
+
+      .header-actions {
+        gap: 8px;
       }
-      header .nav-primary { display:none !important; }
-      header .nav-more {
-        display:block;
-        position:relative;
-        align-self:center !important;
-        order:0 !important;
-        width:min(100%,360px) !important;
-        min-width:0;
-        margin:0 auto;
+
+      .shop-link {
+        font-size: 8px;
       }
-      header .nav-more > summary {
-        display:flex;
-        width:100%;
-        min-height:48px;
-        align-items:center;
-        justify-content:center;
-        text-align:center;
-        font-size:9px;
-        padding:12px 14px;
+
+      .products-tab {
+        padding: 8px 7px;
+        font-size: 7px;
+        border-width: 2px;
+        box-shadow: 2px 2px #171717;
       }
-      header .nav-more .nav-dropdown {
-        position:static !important;
-        display:grid;
-        width:100% !important;
-        max-width:100% !important;
-        margin:10px 0 0;
-        grid-template-columns:repeat(2,minmax(0,1fr));
-        gap:8px;
+
+      .music-toggle {
+        width: 46px;
+        height: 46px;
+        font-size: 27px;
+        border-radius: 15px;
       }
-      header .nav-more .nav-dropdown .mobile-menu-link { display:inline-flex; }
-      header .nav-more .nav-dropdown .products-tab {
-        min-width:0;
-        min-height:42px;
-        font-size:7px;
-        padding:8px 5px;
-        line-height:1.5;
-        overflow-wrap:anywhere;
-        white-space:normal;
+
+      main {
+        padding: 38px 15px 30px;
       }
-      header .mobile-music-bar {
-        display:flex !important;
-        position:relative;
-        order:1 !important;
-        align-self:stretch;
-        align-items:center;
-        justify-content:center;
-        gap:12px;
-        width:100% !important;
-        min-height:62px;
-        margin:8px 0 0 !important;
-        padding:9px 12px;
-        background:#7027d9 !important;
-        color:#fff !important;
-        border:3px solid #171717;
-        box-shadow:4px 4px #171717;
+
+      h1 {
+        letter-spacing: -3px;
+        text-shadow: 3px 3px #fff1d6, 6px 6px #171717;
       }
-      header .mobile-music-bar:before {
-        content:"";
-        position:absolute;
-        left:0;
-        right:0;
-        top:-14px;
-        border-top:2px solid #171717;
+
+      .shipping {
+        font-size: 8px;
       }
-      header .mobile-music-bar .music-toggle {
-        display:inline-flex;
-        align-items:center;
-        justify-content:center;
-        flex:0 0 40px;
-        width:40px !important;
-        height:40px !important;
-        margin:0;
-        border:2px solid #fff;
-        border-radius:10px;
-        background:#5520a6;
-        color:#fff;
-        box-shadow:none;
-        font-size:23px;
+
+      .buy-button {
+        font-size: 9px;
+        padding: 17px 12px;
       }
-      header .mobile-music-label {
-        display:inline-block;
-        color:#fff !important;
-        font-family:"Press Start 2P",monospace;
-        font-size:9px;
-        font-weight:800;
-        line-height:1.6;
-        letter-spacing:.5px;
+
+      footer {
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .logo-launch img {
+        width: 64.4vw;
       }
     }
-    @media (max-width:380px) {
-      header > .logo-link { width:clamp(175px,60vw,215px) !important; min-height:100px !important; height:100px; }
-      header > .logo-link .logo-image { width:150% !important; }
-      header .nav-more > summary { font-size:8px; }
-      header .nav-more .nav-dropdown .products-tab { font-size:6px; padding:7px 3px; }
-      header .mobile-music-label { font-size:8px; }
+
+    @media (max-width: 360px) {
+      header {
+        padding: 12px 8px;
+      }
+
+      .logo-link {
+        width: 78px;
+        min-width: 65px;
+      }
+
+      .header-actions {
+        gap: 5px;
+      }
+
+      .shop-link {
+        font-size: 7px;
+      }
+
+      .products-tab {
+        padding: 6px 5px;
+        font-size: 6px;
+      }
+
+      .music-toggle {
+        width: 42px;
+        height: 42px;
+        font-size: 24px;
+      }
     }
+
+    @media (prefers-reduced-motion: reduce) {
+      .shirt-image,
+      .ticker span,
+      .music-toggle.is-playing,
+      .logo-image {
+        animation: none !important;
+      }
+    }
+
+
+    /* DOGE LIVE MARKET TICKER */
+    .doge-market {
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+      z-index: 4;
+      background: linear-gradient(180deg, #f7c948 0%, #d99b17 100%);
+      border-top: 3px solid #171717;
+      border-bottom: 3px solid #171717;
+      box-shadow: inset 0 2px 0 rgba(255,255,255,.28), 0 4px 0 rgba(23,23,23,.18);
+      color: #fff;
+      text-align: left;
+    }
+
+    .doge-market-track {
+      display: flex;
+      width: max-content;
+      align-items: center;
+      animation: dogeMarketMove 48s linear infinite;
+      will-change: transform;
+    }
+
+    .doge-market:hover .doge-market-track { animation-play-state: paused; }
+
+    .doge-market-group {
+      display: flex;
+      align-items: center;
+      gap: clamp(18px, 3vw, 42px);
+      padding: 12px 26px;
+      flex-shrink: 0;
+      white-space: nowrap;
+    }
+
+    .doge-market-brand {
+      display: inline-flex;
+      align-items: center;
+      gap: 11px;
+      color: #fff;
+      font: 800 12px/1.4 "Space Grotesk", sans-serif;
+      letter-spacing: .08em;
+    }
+
+    .doge-market-icon {
+      width: 42px;
+      height: 42px;
+      object-fit: contain;
+      flex-shrink: 0;
+      filter: drop-shadow(2px 2px 0 rgba(23,23,23,.35));
+    }
+
+    .doge-market-price {
+      color: #8e24ff;
+      font: 18px/1.65 "Press Start 2P", monospace;
+      text-shadow: 0 0 2px #fff, 0 0 7px #d5a0ff, 0 0 14px rgba(109,0,255,.85), 2px 2px 0 rgba(23,23,23,.28);
+    }
+
+    .doge-market-stat {
+      display: inline-flex;
+      align-items: baseline;
+      gap: 7px;
+      color: #fff;
+      font: 700 13px/1.5 "Space Grotesk", sans-serif;
+      text-shadow: 1px 1px 1px rgba(23,23,23,.3);
+    }
+
+    .doge-market-stat strong { font-weight: 800; }
+    .doge-market-change { color: #fff; font-weight: 800; }
+    .doge-market-change.negative { color: #5b0010; }
+
+    .doge-market-source {
+      display: block;
+      padding: 0 14px 7px;
+      color: rgba(255,255,255,.9);
+      font: 10px/1.4 "Space Grotesk", sans-serif;
+      text-align: right;
+    }
+
+    .doge-market-source a { color: inherit; text-decoration: underline; }
+
+    @keyframes dogeMarketMove {
+      from { transform: translateX(-50%); }
+      to { transform: translateX(0); }
+    }
+
+    @media (max-width: 600px) {
+      .doge-market-group { gap: 16px; padding: 10px 18px; }
+      .doge-market-icon { width: 32px; height: 32px; }
+      .doge-market-brand { font-size: 10px; gap: 7px; }
+      .doge-market-price { font-size: 12px; }
+      .doge-market-stat { font-size: 11px; }
+      .doge-market-source { font-size: 9px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .doge-market-track { animation: none; }
+    }
+
   </style>
 </head>
+
 <body>
-  <div class="logo-launch" id="logoLaunch" aria-hidden="true"><img src="images/Log01.png" alt=""></div>
+  <!-- CENTER LOGO INTRO -->
+  <div class="logo-launch" id="logoLaunch" aria-hidden="true">
+    <img src="images/Log01.png" alt="">
+  </div>
+
+  <!-- SINGLE HEADER -->
   <header>
-    <a class="logo-link" href="index.html" aria-label="FROGINALS home"><img class="logo-image" id="navLogo" src="images/Log01.png" alt="FROGINALS logo" fetchpriority="high"></a>
+    <a class="logo-link" href="index.html" aria-label="FROGINALS home">
+      <img
+        class="logo-image"
+        id="navLogo"
+        src="images/Log01.png"
+        alt="FROGINALS logo"
+        fetchpriority="high"
+      >
+    </a>
+
     <div class="header-actions">
-      <nav class="nav-primary" aria-label="Main navigation">
-        <a class="shop-link" href="#shop">SHOP THE TEE ↓</a>
-        <a class="products-tab" href="product.html">PRODUCTS</a>
-        <a class="products-tab nft-tab" href="https://gravemint.io/mint/3678jb?utm_source=copy_link&amp;utm_medium=referral&amp;utm_content=collection" target="_blank" rel="noopener noreferrer" aria-label="Open FROGINALS NFTs on GraveMint">NFTS 🐸</a>
-      </nav>
-      <details class="nav-more">
-        <summary aria-label="Show more navigation links">MORE MENU <span aria-hidden="true">▾</span></summary>
-        <nav class="nav-dropdown" aria-label="More navigation">
-          <a class="products-tab mobile-menu-link" href="#shop">SHOP THE TEE ↓</a>
-          <a class="products-tab mobile-menu-link" href="product.html">PRODUCTS</a>
-          <a class="products-tab mobile-menu-link" href="https://gravemint.io/mint/3678jb?utm_source=copy_link&amp;utm_medium=referral&amp;utm_content=collection" target="_blank" rel="noopener noreferrer">NFTS 🐸</a>
-          <a class="products-tab" href="https://obideft.github.io/doge-buy/" target="_blank" rel="noopener noreferrer">FROGISWAP</a>
-          <a class="products-tab army-tab" href="froginalarmy.html">FROGINALARMY 🐸</a>
-          <a class="products-tab community-tab" href="#community">COMMUNITY ✦</a>
-          <a class="products-tab whitepaper-tab" href="froginal-theses.html">WHITEPAPER</a>
-        </nav>
-      </details>
-      <div class="mobile-music-bar" aria-label="Music controls">
-        <button id="musicToggle" class="music-toggle is-muted" type="button" aria-label="Play background music" aria-pressed="false" title="Play background music">🔈</button>
-        <span class="mobile-music-label">PLAY MUSIC</span>
-      </div>
+      <a class="shop-link" href="#shop">SHOP THE TEE ↓</a>
+      <a class="products-tab" href="product.html">PRODUCTS</a>
+      <a class="products-tab" href="https://obideft.github.io/doge-buy/" target="_blank" rel="noopener noreferrer">FROGISWAP</a>
+
+      <button
+        id="musicToggle"
+        class="music-toggle is-muted"
+        type="button"
+        aria-label="Play background music"
+        aria-pressed="false"
+        title="Play background music"
+      >🎵</button>
     </div>
   </header>
+
+
+
+  <!-- LIVE DOGE PRICE / MARKET DATA TICKER -->
+  <section class="doge-market" aria-label="Live Dogecoin market data">
+    <div class="doge-market-track">
+      <div class="doge-market-group" aria-live="polite">
+        <span class="doge-market-brand">
+          <img class="doge-market-icon" src="https://raw.githubusercontent.com/Obideft/froginals/main/images/DOGE%20COIN%20BLUE%20COIN.png" alt="Dogecoin coin icon" loading="lazy">
+          DOGECOIN LIVE
+        </span>
+        <span class="doge-market-price" id="dogePrice">$—</span>
+        <span class="doge-market-stat">24H <strong class="doge-market-change" id="dogeChange">—</strong></span>
+        <span class="doge-market-stat">MARKET CAP <strong id="dogeMarketCap">Loading…</strong></span>
+        <span class="doge-market-stat">24H VOLUME <strong id="dogeVolume">Loading…</strong></span>
+      </div>
+      <div class="doge-market-group" aria-hidden="true">
+        <span class="doge-market-brand">
+          <img class="doge-market-icon" src="https://raw.githubusercontent.com/Obideft/froginals/main/images/DOGE%20COIN%20BLUE%20COIN.png" alt="" loading="lazy">
+          DOGECOIN LIVE
+        </span>
+        <span class="doge-market-price" id="dogePriceDuplicate">$—</span>
+        <span class="doge-market-stat">24H <strong class="doge-market-change" id="dogeChangeDuplicate">—</strong></span>
+        <span class="doge-market-stat">MARKET CAP <strong id="dogeMarketCapDuplicate">Loading…</strong></span>
+        <span class="doge-market-stat">24H VOLUME <strong id="dogeVolumeDuplicate">Loading…</strong></span>
+      </div>
+    </div>
+    <div class="doge-market-source">Market data via <a href="https://www.coingecko.com/en/coins/dogecoin" target="_blank" rel="noopener noreferrer">CoinGecko</a> · Refreshes automatically</div>
+  </section>
+
+  <!-- MAIN WEBSITE -->
   <main>
     <div class="eyebrow">GOOD FROGS. GOOD DOGE.</div>
+
     <h1>FROGINALS!</h1>
-    <p class="mission">FROGINAL IS SUPPORTING<br><strong>DOGECOIN</strong></p>
+
+    <p class="mission">
+      FROGINAL IS SUPPORTING<br>
+      <strong>DOGECOIN</strong>
+    </p>
+
     <p class="moon">DOGE TO THE MOON 🚀</p>
-    <a class="mint-button" href="https://gravemint.io/mint/3678jb?utm_source=copy_link&amp;utm_medium=referral&amp;utm_content=collection" target="_blank" rel="noopener noreferrer">🐸 MINT FROGINALS ↗</a>
-    <p class="mint-note">YOUR FROG. YOUR WALLET. YOUR ON-CHAIN LEGACY.</p>
+
     <section class="product" id="shop">
-      <img class="shirt-image" src="assets/FROGINALs_shirt_01.png" alt="Froginals T-shirt design">
+      <img
+        class="shirt-image"
+        src="assets/FROGINALs_shirt_01.png"
+        alt="Froginals T-shirt design"
+      >
+
       <h2 class="product-name">THE FROGINALS TEE</h2>
       <p class="price">$19.99 <small>USD</small></p>
       <p class="shipping">✦ FREE SHIPPING WORLDWIDE ✦</p>
-      <a class="buy-button" href="product.html">BUY T-SHIRT ↗</a>
+
+      <a
+        class="buy-button"
+        href="product.html"
+      >BUY T-SHIRT ↗</a>
+
       <p class="payment-note">Secure checkout via PayPal</p>
     </section>
   </main>
-  <section class="community-section" id="community" aria-labelledby="communityTitle">
-    <div class="community-inner">
-      <p class="community-eyebrow">🐸 THE FROG GANG CHECK-IN 🐸</p>
-      <h2 class="community-title" id="communityTitle">FROGINALS<br>COMMUNITY!</h2>
-      <p class="community-description">Real frogs. Real outfits. Real community. Slide through the FROGINALS universe and check out what the pack is cooking.</p>
-      <p class="community-status" id="communityStatus" role="status" aria-live="polite">CONNECTING TO THE SWAMP...</p>
-      <div class="community-carousel">
-        <div class="community-track" id="communityTrack" tabindex="0" aria-label="FROGINALS community image carousel. Swipe or use the arrow buttons to explore."></div>
-        <div class="community-controls">
-          <button class="carousel-arrow" id="communityPrev" type="button" aria-label="Previous community image" title="Previous image">←</button>
-          <span class="carousel-counter" id="communityCounter" aria-live="polite">00 / 00</span>
-          <button class="carousel-arrow" id="communityNext" type="button" aria-label="Next community image" title="Next image">→</button>
-        </div>
-      </div>
-      <a class="community-cta" href="froginalarmy.html">JOIN THE FROGINALS ARMY 🐸</a>
-      <p class="community-note">HOLD THE VIBE. SHARE THE MEMES. SUPPORT THE PACK.</p>
-    </div>
-  </section>
-  <div class="ticker"><span>FROGINALS SUPPORTS DOGECOIN ✦ DOGE TO THE MOON ✦ FROGINALS SUPPORTS DOGECOIN ✦ DOGE TO THE MOON ✦</span></div>
-  <footer><span>FROGINALS © 2026</span><span>MADE FOR THE PACK 🐸🐕</span></footer>
 
-  <!-- $1 SWAMP SPECIAL POPUP -->
-  <div class="dollar-popup-overlay" id="dollarPopup" aria-hidden="true">
-    <section class="dollar-popup" role="dialog" aria-modal="true" aria-label="FROGINALS one dollar swamp special">
-      <img class="dollar-popup-art" src="images/POP_one_dollar.png" alt="FROGINALS $1 Swamp Special with a jumping purple frog">
-      <button class="dollar-popup-close" id="dollarPopupClose" type="button" aria-label="Close popup">×</button>
-      <a class="popup-mint-button" href="https://gravemint.io/mint/3678jb?utm_source=copy_link&amp;utm_medium=referral&amp;utm_content=collection" target="_blank" rel="noopener noreferrer">🐸 MINT YOUR FROGINAL ↗</a>
-    </section>
+  <div class="ticker">
+    <span>
+      FROGINALS SUPPORTS DOGECOIN ✦ DOGE TO THE MOON ✦
+      FROGINALS SUPPORTS DOGECOIN ✦ DOGE TO THE MOON ✦
+    </span>
   </div>
-  <audio id="backgroundMusic" loop preload="metadata"><source src="./audio/LOOT%20AN%20LOOT%20BASE%20MUSIC.wav" type="audio/wav"></audio>
+
+  <footer>
+    <span>FROGINALS © 2026</span>
+    <span>MADE FOR THE PACK 🐸🐕</span>
+  </footer>
+
+  <!-- BACKGROUND MUSIC: EXACT WAV FILENAME -->
+  <audio id="backgroundMusic" loop preload="metadata">
+    <source
+      src="./audio/LOOT%20AN%20LOOT%20BASE%20MUSIC.wav"
+      type="audio/wav"
+    >
+  </audio>
+
   <script>
-    /* LOGO INTRO: center logo animates into the navbar */
+    /* LOGO INTRO: CENTER TO NAVBAR */
     window.addEventListener("load", () => {
       const launch = document.getElementById("logoLaunch");
       const launchLogo = launch?.querySelector("img");
       const navLogo = document.getElementById("navLogo");
-      if (!launch || !launchLogo || !navLogo) { launch?.remove(); if (navLogo) { navLogo.style.opacity = "1"; navLogo.classList.add("logo-settled"); } return; }
+
+      if (!launch || !launchLogo || !navLogo) {
+        launch?.remove();
+        if (navLogo) navLogo.style.opacity = "1";
+        return;
+      }
+
       let finished = false;
-      function finishLaunch() { if (finished) return; finished = true; launch.remove(); navLogo.style.opacity = "1"; navLogo.classList.add("logo-settled"); }
-      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) { finishLaunch(); return; }
+
+      function finishLaunch() {
+        if (finished) return;
+        finished = true;
+
+        launch.remove();
+        navLogo.style.opacity = "1";
+        navLogo.classList.add("logo-settled");
+      }
+
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        finishLaunch();
+        return;
+      }
+
       function animateLogo() {
         if (finished) return;
-        const finalTarget = navLogo.getBoundingClientRect();
-        if (!finalTarget.width || !finalTarget.height) { finishLaunch(); return; }
-        launchLogo.style.width = Math.min(window.innerWidth * .595, 595) + "px";
-        launchLogo.style.height = "auto"; launchLogo.style.maxHeight = "80vh";
-        launchLogo.style.left = "50%"; launchLogo.style.top = "50%"; launchLogo.style.transform = "translate(-50%,-50%)";
+
+        const target = navLogo.getBoundingClientRect();
+
+        if (!target.width || !target.height) {
+          finishLaunch();
+          return;
+        }
+
+        /* 30% smaller intro logo */
+        const startWidth = Math.min(window.innerWidth * 0.595, 595);
+
+        launchLogo.style.width = startWidth + "px";
+        launchLogo.style.height = "auto";
+        launchLogo.style.maxHeight = "80vh";
+        launchLogo.style.left = "50%";
+        launchLogo.style.top = "50%";
+        launchLogo.style.transform = "translate(-50%, -50%)";
+        launchLogo.style.opacity = "1";
+
         const startRect = launchLogo.getBoundingClientRect();
+        const finalTarget = navLogo.getBoundingClientRect();
+
         const animation = launchLogo.animate([
-          {left:startRect.left+"px",top:startRect.top+"px",width:startRect.width+"px",transform:"translate(0,0)",opacity:1},
-          {left:(window.innerWidth/2-startRect.width*.46)+"px",top:(window.innerHeight/2-startRect.height*.46)+"px",width:startRect.width*1.04+"px",transform:"translate(0,0)",opacity:1,offset:.28},
-          {left:finalTarget.left+"px",top:finalTarget.top+"px",width:finalTarget.width+"px",transform:"translate(0,0)",opacity:1}
-        ],{duration:1650,easing:"cubic-bezier(.22,.75,.25,1)",fill:"forwards"});
-        launch.animate([{opacity:1},{opacity:1,offset:.64},{opacity:0}],{duration:1650,easing:"ease-in-out",fill:"forwards"});
+          {
+            left: startRect.left + "px",
+            top: startRect.top + "px",
+            width: startRect.width + "px",
+            transform: "translate(0, 0)",
+            opacity: 1
+          },
+          {
+            left: (window.innerWidth / 2 - startRect.width * 0.46) + "px",
+            top: (window.innerHeight / 2 - startRect.height * 0.46) + "px",
+            width: (startRect.width * 1.04) + "px",
+            transform: "translate(0, 0)",
+            opacity: 1,
+            offset: 0.28
+          },
+          {
+            left: finalTarget.left + "px",
+            top: finalTarget.top + "px",
+            width: finalTarget.width + "px",
+            transform: "translate(0, 0)",
+            opacity: 1
+          }
+        ], {
+          duration: 1650,
+          easing: "cubic-bezier(.22, .75, .25, 1)",
+          fill: "forwards"
+        });
+
+        launch.animate([
+          { opacity: 1 },
+          { opacity: 1, offset: 0.64 },
+          { opacity: 0 }
+        ], {
+          duration: 1650,
+          easing: "ease-in-out",
+          fill: "forwards"
+        });
+
         animation.onfinish = finishLaunch;
       }
-      requestAnimationFrame(() => requestAnimationFrame(() => window.setTimeout(animateLogo,450)));
-      window.setTimeout(finishLaunch,3000);
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          window.setTimeout(animateLogo, 450);
+        });
+      });
+
+      window.setTimeout(finishLaunch, 3000);
     });
 
-
-    /* $1 POPUP: show once per tab session, close by button, backdrop, or Escape */
-    document.addEventListener("DOMContentLoaded", () => {
-      const popup = document.getElementById("dollarPopup");
-      const closeButton = document.getElementById("dollarPopupClose");
-      if (!popup || !closeButton) return;
-      const closePopup = () => {
-        popup.classList.remove("is-visible");
-        popup.setAttribute("aria-hidden", "true");
-        document.body.style.overflow = "";
-        try { sessionStorage.setItem("froginalsDollarPopupClosed", "1"); } catch (_) {}
-      };
-      closeButton.addEventListener("click", closePopup);
-      popup.addEventListener("click", (event) => { if (event.target === popup) closePopup(); });
-      document.addEventListener("keydown", (event) => { if (event.key === "Escape" && popup.classList.contains("is-visible")) closePopup(); });
-      let alreadyClosed = false;
-      try { alreadyClosed = sessionStorage.getItem("froginalsDollarPopupClosed") === "1"; } catch (_) {}
-      if (!alreadyClosed) {
-        window.setTimeout(() => {
-          popup.classList.add("is-visible");
-          popup.setAttribute("aria-hidden", "false");
-          document.body.style.overflow = "hidden";
-          closeButton.focus({ preventScroll: true });
-        }, 5500);
-      }
-    });
-
-    /* BACKGROUND MUSIC */
+    /* MUSIC CONTROLS */
     document.addEventListener("DOMContentLoaded", () => {
       const music = document.getElementById("backgroundMusic");
       const button = document.getElementById("musicToggle");
+
       if (!music || !button) return;
-      music.volume = .35;
+
+      music.volume = 0.35;
+
       function updateButton(playing) {
-        button.classList.toggle("is-muted",!playing); button.classList.toggle("is-playing",playing);
-        button.textContent = playing ? "🔊" : "🔈"; button.setAttribute("aria-pressed",String(playing));
-        const label = playing ? "Pause background music" : "Play background music";
-        button.setAttribute("aria-label",label); button.title = label;
-      }
-      button.addEventListener("click",async()=>{
-        if(!music.paused){music.pause();updateButton(false);return;}
-        button.disabled=true;
-        try { if(music.networkState===HTMLMediaElement.NETWORK_NO_SOURCE) music.load(); await music.play(); updateButton(true); }
-        catch(error){console.error("Music playback failed:",error);updateButton(false);alert("Music could not play. Check that the WAV file exists in the audio folder and its filename matches exactly.");}
-        finally{button.disabled=false;}
-      });
-      music.addEventListener("play",()=>updateButton(true)); music.addEventListener("pause",()=>updateButton(false));
-      music.addEventListener("error",()=>{console.error("Audio file failed to load:",music.currentSrc,music.error);updateButton(false);});
-    });
+        button.classList.toggle("is-muted", !playing);
+        button.classList.toggle("is-playing", playing);
 
-    /* COMMUNITY GALLERY: loads the live images from data/community.json */
-    document.addEventListener("DOMContentLoaded", () => {
-      const FEED_URL = "./data/community.json";
-      const track = document.getElementById("communityTrack");
-      const prevButton = document.getElementById("communityPrev");
-      const nextButton = document.getElementById("communityNext");
-      const counter = document.getElementById("communityCounter");
-      const status = document.getElementById("communityStatus");
-      if (!track || !prevButton || !nextButton || !counter || !status) return;
+        button.textContent = playing ? "🔊" : "🎵";
+        button.setAttribute("aria-pressed", String(playing));
 
-      let cards = [];
-      let activeIndex = 0;
-      let requestId = 0;
-      let scrollFrame = null;
+        const label = playing
+          ? "Pause background music"
+          : "Play background music";
 
-      function safeUrl(value) {
-        if (typeof value !== "string" || !value.trim()) return null;
-        try { const u = new URL(value.trim(), document.baseURI); return ["https:","http:"].includes(u.protocol) ? u.href : null; }
-        catch { return null; }
+        button.setAttribute("aria-label", label);
+        button.title = label;
       }
-      function updateCounter() {
-        if (!cards.length) { counter.textContent="00 / 00"; prevButton.disabled=true; nextButton.disabled=true; return; }
-        const left=track.getBoundingClientRect().left; let nearest=0,dist=Infinity;
-        cards.forEach((card,i)=>{const d=Math.abs(card.getBoundingClientRect().left-left);if(d<dist){dist=d;nearest=i;}});
-        activeIndex=nearest; counter.textContent=String(nearest+1).padStart(2,"0")+" / "+String(cards.length).padStart(2,"0");
-        prevButton.disabled=nearest===0; nextButton.disabled=nearest===cards.length-1;
-      }
-      function goTo(index) {
-        if(!cards.length)return; const target=Math.max(0,Math.min(cards.length-1,index));
-        cards[target].scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"nearest",inline:"start"});
-        activeIndex=target; updateCounter();
-      }
-      prevButton.addEventListener("click",()=>goTo(activeIndex-1));
-      nextButton.addEventListener("click",()=>goTo(activeIndex+1));
-      track.addEventListener("scroll",()=>{if(scrollFrame!==null)cancelAnimationFrame(scrollFrame);scrollFrame=requestAnimationFrame(()=>{updateCounter();scrollFrame=null;});},{passive:true});
-      track.addEventListener("keydown",e=>{if(e.key==="ArrowRight"){e.preventDefault();goTo(activeIndex+1);}if(e.key==="ArrowLeft"){e.preventDefault();goTo(activeIndex-1);}});
-      window.addEventListener("resize",updateCounter);
 
-      async function loadGallery() {
-        const thisRequest=++requestId; const controller=new AbortController();
-        const timeout=setTimeout(()=>controller.abort(),15000);
-        cards=[]; activeIndex=0; track.replaceChildren(); updateCounter(); status.textContent="FETCHING FROG ART...";
+      /* Do not autoplay: wait for the visitor's click */
+      button.addEventListener("click", async () => {
+        if (!music.paused) {
+          music.pause();
+          updateButton(false);
+          return;
+        }
+
+        button.disabled = true;
+
         try {
-          const feedUrl=new URL(FEED_URL,window.location.href); feedUrl.searchParams.set("_",Date.now().toString());
-          const response=await fetch(feedUrl.href,{cache:"no-store",headers:{Accept:"application/json"},signal:controller.signal});
-          if(!response.ok)throw new Error("JSON returned HTTP "+response.status+" at "+feedUrl.href);
-          const data=await response.json(); if(thisRequest!==requestId)return;
-          const entries=Array.isArray(data)?data:Array.isArray(data?.images)?data.images:Array.isArray(data?.items)?data.items:[];
-          const items=entries.map(item=>typeof item==="string"?{image:item}:item).filter(item=>item&&typeof item==="object"&&safeUrl(item.image||item.imageUrl||item.src));
-          const featuredImage="https://res.cloudinary.com/al96yvcm/image/upload/v1792767463/FROGINALS.png";
-          const featuredEntry={
-            image:featuredImage,
-            title:"FROGINALS",
-            caption:"Meet the FROGINALS — good frogs, good Doge, one legendary community.",
-            alt:"FROGINALS community artwork"
-          };
-          /* Keep this featured image as the third carousel card without duplicating it if it is already in the feed. */
-          const featuredIndex=items.findIndex(item=>safeUrl(item.image||item.imageUrl||item.src)===featuredImage);
-          if(featuredIndex!==-1)items.splice(featuredIndex,1);
-          items.splice(Math.min(2,items.length),0,featuredEntry);
-          if(!items.length){status.textContent="NO VALID IMAGES FOUND — CHECK data/community.json";console.error("Community JSON contains no valid image URLs",data);return;}
+          /* Reload the source if the browser has not loaded it yet */
+          if (music.networkState === HTMLMediaElement.NETWORK_NO_SOURCE) {
+            music.load();
+          }
 
-          let loaded=0,failed=0,settled=0; const failedCards=new Set();
-          function refreshStatus(){if(thisRequest!==requestId)return;if(settled<items.length){status.textContent="LOADING FROG ART... "+settled+" / "+items.length;return;}status.textContent=loaded?loaded+(loaded===1?" COMMUNITY IMAGE LOADED":" COMMUNITY IMAGES LOADED")+(failed?" · "+failed+" IMAGE(S) SKIPPED":""):"IMAGES COULD NOT LOAD — CHECK THE IMAGE URLS";updateCounter();}
-          function onLoaded(card){if(thisRequest!==requestId||failedCards.has(card))return;loaded++;settled++;refreshStatus();}
-          function onFailed(card){if(thisRequest!==requestId||failedCards.has(card))return;failedCards.add(card);failed++;settled++;card.remove();cards=cards.filter(c=>c!==card);refreshStatus();updateCounter();}
+          await music.play();
+          updateButton(true);
+        } catch (error) {
+          console.error("Music playback failed:", error);
+          updateButton(false);
 
-          const prepared=items.map((item,index)=>{
-            const card=document.createElement("article");card.className="community-card";
-            const img=document.createElement("img");img.alt=String(item.alt||item.title||"FROGINALS community artwork");img.loading=index<2?"eager":"lazy";img.decoding="async";img.draggable=false;
-            const caption=document.createElement("div");caption.className="community-caption";
-            const title=document.createElement("h3");title.textContent=String(item.title||item.name||"FROGINALS COMMUNITY");
-            const desc=document.createElement("p");desc.textContent=String(item.caption||item.description||"Another legendary frog moment.");caption.append(title,desc);
-            let finished=false;function finish(ok){if(finished)return;finished=true;ok?onLoaded(card):onFailed(card);}
-            img.addEventListener("load",()=>finish(img.naturalWidth>0));img.addEventListener("error",()=>finish(false));
-            const postUrl=safeUrl(item.url||item.postUrl);let visual=img;
-            if(postUrl){const a=document.createElement("a");a.href=postUrl;a.target="_blank";a.rel="noopener noreferrer";a.className="image-link";a.setAttribute("aria-label","Open original community post");a.appendChild(img);visual=a;}
-            card.append(visual,caption);
-            return {card,img,url:safeUrl(item.image||item.imageUrl||item.src),finish};
-          });
-          prepared.forEach(({card})=>{cards.push(card);track.appendChild(card);});
-          updateCounter();status.textContent="LOADING "+items.length+(items.length===1?" COMMUNITY IMAGE...":" COMMUNITY IMAGES...");
-          prepared.forEach(({img,url,finish})=>{if(!url){finish(false);return;}img.src=url;if(img.complete)finish(img.naturalWidth>0);});
-        } catch(error) {
-          if(thisRequest!==requestId)return; console.error("FROGINALS community feed error:",error);
-          status.textContent=error.name==="AbortError"?"JSON REQUEST TIMED OUT — TRY RELOADING":"COULD NOT LOAD community.json — CHECK THE DEPLOYED FILE PATH AND CONSOLE";
-        } finally {clearTimeout(timeout);}
-      }
-      loadGallery();
+          alert(
+            "Music could not play. Check that the WAV file exists in the audio folder and that its filename matches exactly."
+          );
+        } finally {
+          button.disabled = false;
+        }
+      });
+
+      music.addEventListener("play", () => updateButton(true));
+      music.addEventListener("pause", () => updateButton(false));
+
+      music.addEventListener("error", () => {
+        console.error(
+          "Audio file failed to load:",
+          music.currentSrc,
+          music.error
+        );
+        updateButton(false);
+      });
     });
   </script>
 
-  <!-- FROGINALS $1 SWAMP SPECIAL POPUP -->
-  <div class="swamp-popup-overlay" id="swampPopupOverlay" aria-hidden="true">
-    <section class="swamp-popup" role="dialog" aria-modal="true" aria-label="FROGINALS one dollar swamp special">
-      <button class="swamp-popup-close" id="swampPopupClose" type="button" aria-label="Close popup">×</button>
-      <img class="swamp-popup-art" src="images/POP_one_dollar.png" alt="FROGINALS $1 Swamp Special — get your FROGINAL for about one dollar worth of SOL">
-      <a class="swamp-popup-cta" href="https://gravemint.io/mint/3678jb?utm_source=copy_link&amp;utm_medium=referral&amp;utm_content=collection" target="_blank" rel="noopener noreferrer" aria-label="Mint your FROGINAL on GraveMint">MINT YOUR FROGINAL</a>
-    </section>
-  </div>
+
   <script>
-    /* Show once per browser tab session after 5.5 seconds. */
+    /* DOGE MARKET DATA — public CoinGecko endpoint */
     (() => {
-      const overlay = document.getElementById('swampPopupOverlay');
-      const closeButton = document.getElementById('swampPopupClose');
-      if (!overlay || !closeButton) return;
-      const storageKey = 'froginalsSwampPopupSeen';
-      let previousFocus = null;
-      function closePopup() {
-        overlay.classList.remove('is-open');
-        overlay.setAttribute('aria-hidden', 'true');
-        document.body.style.overflow = '';
-        if (previousFocus && typeof previousFocus.focus === 'function') previousFocus.focus();
+      const apiUrl = "https://api.coingecko.com/api/v3/simple/price?ids=dogecoin&vs_currencies=usd&include_market_cap=true&include_24hr_vol=true&include_24hr_change=true";
+      const numberFormat = new Intl.NumberFormat("en-US", { maximumFractionDigits: 2 });
+      const compactUSD = value => {
+        if (!Number.isFinite(value)) return "—";
+        return new Intl.NumberFormat("en-US", { style: "currency", currency: "USD", notation: "compact", maximumFractionDigits: 2 }).format(value);
+      };
+      const setText = (ids, value) => ids.forEach(id => {
+        const node = document.getElementById(id);
+        if (node) node.textContent = value;
+      });
+
+      async function refreshDogeMarket() {
+        try {
+          const response = await fetch(apiUrl, { cache: "no-store" });
+          if (!response.ok) throw new Error("Market data request returned " + response.status);
+          const json = await response.json();
+          const doge = json && json.dogecoin;
+          if (!doge || !Number.isFinite(doge.usd)) throw new Error("DOGE price data was unavailable");
+
+          const price = doge.usd < 1
+            ? "$" + doge.usd.toLocaleString("en-US", { minimumFractionDigits: 4, maximumFractionDigits: 8 })
+            : "$" + numberFormat.format(doge.usd);
+          const changeValue = Number.isFinite(doge.usd_24h_change) ? doge.usd_24h_change : null;
+          const changeText = changeValue === null ? "—" : (changeValue > 0 ? "+" : "") + changeValue.toFixed(2) + "%";
+          const capText = compactUSD(doge.usd_market_cap);
+          const volumeText = compactUSD(doge.usd_24h_vol);
+
+          setText(["dogePrice", "dogePriceDuplicate"], price);
+          setText(["dogeChange", "dogeChangeDuplicate"], changeText);
+          setText(["dogeMarketCap", "dogeMarketCapDuplicate"], capText);
+          setText(["dogeVolume", "dogeVolumeDuplicate"], volumeText);
+          ["dogeChange", "dogeChangeDuplicate"].forEach(id => {
+            const node = document.getElementById(id);
+            if (node) node.classList.toggle("negative", changeValue !== null && changeValue < 0);
+          });
+        } catch (error) {
+          console.warn("Could not refresh DOGE market data:", error);
+          ["dogePrice", "dogePriceDuplicate", "dogeMarketCap", "dogeMarketCapDuplicate", "dogeVolume", "dogeVolumeDuplicate", "dogeChange", "dogeChangeDuplicate"].forEach(id => {
+            const node = document.getElementById(id);
+            if (node && (node.textContent === "$—" || node.textContent === "Loading…" || node.textContent === "—")) node.textContent = "Data unavailable";
+          });
+        }
       }
-      function openPopup() {
-        try { if (sessionStorage.getItem(storageKey)) return; sessionStorage.setItem(storageKey, '1'); } catch (e) {}
-        previousFocus = document.activeElement;
-        overlay.classList.add('is-open');
-        overlay.setAttribute('aria-hidden', 'false');
-        document.body.style.overflow = 'hidden';
-        closeButton.focus();
-      }
-      closeButton.addEventListener('click', closePopup);
-      overlay.addEventListener('click', event => { if (event.target === overlay) closePopup(); });
-      document.addEventListener('keydown', event => { if (event.key === 'Escape' && overlay.classList.contains('is-open')) closePopup(); });
-      window.setTimeout(openPopup, 5500);
+
+      refreshDogeMarket();
+      window.setInterval(refreshDogeMarket, 60000);
     })();
   </script>
 
