@@ -83,6 +83,144 @@
       .music-toggle{width:37px;height:37px;font-size:21px}
     }
     @media(prefers-reduced-motion:reduce){.nav-more[open] .nav-dropdown{animation:none}}
+
+    .mobile-music-bar{display:none}
+    .mobile-menu-link{display:none}
+
+    /* Mobile header: centered logo, one menu dropdown, and a dedicated music bar. */
+    @media(max-width:760px){
+      header{display:flex;flex-direction:column;align-items:stretch;gap:10px;padding:12px 14px 14px}
+      .logo-link{align-self:center;flex:0 0 auto;width:clamp(110px,34vw,150px);min-height:66px}
+      .logo-image{left:50%;top:0;width:175%;transform:translateX(-50%);transform-origin:top center}
+      .logo-image.logo-settled{animation:logoSwayMobile 3.8s ease-in-out infinite}
+      @keyframes logoSwayMobile{0%,100%{transform:translateX(calc(-50% - 5px))}50%{transform:translateX(calc(-50% + 5px))}}
+      .header-actions{display:flex;flex-direction:column;align-items:stretch;gap:10px;width:100%;min-width:0}
+      .nav-primary{display:none}
+      .nav-more{align-self:center;width:min(100%,300px);order:0}
+      .nav-more summary{justify-content:center;width:100%;min-height:44px;font-size:9px;padding:10px 14px}
+      .nav-dropdown{position:static;width:100%;max-width:100%;margin-top:8px;grid-template-columns:repeat(2,minmax(0,1fr));gap:7px;padding:9px}
+      .nav-dropdown .mobile-menu-link{display:inline-flex}
+      .nav-dropdown .products-tab{min-height:38px;align-items:center;justify-content:center;font-size:7px;padding:8px 5px;line-height:1.5;overflow-wrap:anywhere}
+      .mobile-music-bar{display:flex;align-items:center;justify-content:center;gap:12px;order:1;width:100%;min-height:56px;padding:6px 12px;background:#171717;border:3px solid #171717;box-shadow:4px 4px #fff1d6}
+      .mobile-music-bar .music-toggle{width:40px;height:40px;flex:0 0 40px;font-size:23px;border:2px solid #fff1d6;border-radius:12px;box-shadow:none}
+      .mobile-music-label{color:#fff;font-family:"Press Start 2P",monospace;font-size:9px;font-weight:800;letter-spacing:.5px;line-height:1.5}
+    }
+    @media(max-width:360px){
+      .logo-link{width:105px;min-height:58px}
+      .nav-dropdown .products-tab{font-size:6px;padding:7px 3px}
+      .mobile-music-label{font-size:8px}
+    }
+
+
+    /* Mobile and tablet refinement overrides — preserve the existing visual identity. */
+    img, video, canvas, svg { max-width:100%; }
+    body { overflow-x:hidden; }
+    main, .community-section, footer { min-width:0; }
+    .product, .community-inner { max-width:100%; }
+    .mission, .moon, .mint-note, .payment-note, .shipping,
+    .community-description, .community-note { overflow-wrap:anywhere; }
+    .community-track { overscroll-behavior-inline:contain; }
+    .community-card { flex-shrink:0; }
+    .community-card img { height:auto; }
+    .dollar-popup-overlay, .swamp-popup-overlay { isolation:isolate; }
+    .dollar-popup, .swamp-popup { max-width:100%; }
+    a, button, summary { -webkit-tap-highlight-color:transparent; }
+    a:focus-visible, button:focus-visible, summary:focus-visible { outline:3px solid #168cff; outline-offset:3px; }
+
+    /* Tablet: make the header breathe and reduce oversized content spacing. */
+    @media (min-width:761px) and (max-width:1024px) {
+      header { padding:16px 3%; gap:12px; }
+      .logo-link { flex-basis:clamp(100px,13vw,135px); width:clamp(100px,13vw,135px); }
+      .header-actions { gap:9px; }
+      .nav-primary { grid-template-columns:repeat(2,minmax(0,1fr)); gap:7px; }
+      .nav-primary .shop-link, .nav-primary .products-tab { min-width:0; font-size:8px; padding:8px 7px; line-height:1.5; }
+      .nav-more summary { font-size:7px; padding:8px; }
+      .nav-dropdown { width:min(330px,calc(100vw - 24px)); }
+      .music-toggle { width:46px; height:46px; font-size:26px; }
+      main { padding:44px 24px 34px; }
+      h1 { font-size:clamp(42px,7vw,76px); letter-spacing:-3px; }
+      .product { width:min(480px,100%); }
+      .community-section { padding:54px 0 48px; }
+      .community-card { flex-basis:min(82%,720px); }
+      .dollar-popup { width:min(90vw,calc(84dvh * 1.5)); }
+    }
+
+    /* Phones and narrow tablets: stack header regions without squeezing the logo. */
+    @media (max-width:760px) {
+      header { display:grid; grid-template-columns:minmax(72px,22%) minmax(0,1fr); align-items:center; padding:12px 14px 14px; gap:10px; }
+      .logo-link { grid-column:1; grid-row:1; align-self:center; width:100%; min-width:0; min-height:58px; }
+      .logo-image { width:170%; max-width:none; }
+      .header-actions { grid-column:2; grid-row:1; display:grid; grid-template-columns:minmax(0,1fr) auto; align-items:center; justify-content:stretch; gap:8px; min-width:0; }
+      .nav-primary { grid-column:1 / -1; grid-row:1; width:100%; grid-template-columns:repeat(2,minmax(0,1fr)); min-width:0; }
+      .nav-primary > * { min-width:0; }
+      .nav-more { grid-column:1; grid-row:2; min-width:0; }
+      .nav-more summary { width:100%; min-height:40px; white-space:normal; overflow-wrap:anywhere; }
+      .music-toggle { grid-column:2; grid-row:2; justify-self:end; }
+      .nav-dropdown { z-index:30; right:auto; left:0; width:min(340px,calc(100vw - 28px)); max-width:calc(100vw - 28px); }
+      main { padding:36px 16px 30px; }
+      .eyebrow { font-size:clamp(8px,2vw,11px); }
+      h1 { font-size:clamp(32px,8.5vw,58px); line-height:1.35; letter-spacing:-2px; margin:20px 0; }
+      .mission { font-size:clamp(16px,4vw,23px); }
+      .moon { font-size:clamp(10px,2.5vw,15px); }
+      .mint-button { padding:14px 12px; line-height:1.8; }
+      .mint-note { font-size:11px; padding:0 4px; }
+      .product { width:100%; padding:8px 0; }
+      .shirt-image { max-height:clamp(250px,80vw,430px); }
+      .product-name { font-size:clamp(10px,2.7vw,15px); }
+      .price { font-size:clamp(30px,8vw,38px); }
+      .buy-button { padding:15px 12px; font-size:clamp(8px,2.1vw,10px); }
+      .community-section { padding:42px 0 38px; }
+      .community-title { font-size:clamp(21px,6vw,38px); letter-spacing:0; }
+      .community-description { margin-bottom:22px; }
+      .community-track { padding:10px 14px 20px; gap:12px; scroll-padding-inline:14px; }
+      .community-card { flex-basis:min(88%,560px); }
+      .community-card img { aspect-ratio:4/3; object-fit:cover; }
+      .community-caption h3 { font-size:clamp(8px,2.2vw,11px); }
+      .community-caption p { font-size:12px; }
+      .community-controls { gap:12px; margin-top:18px; }
+      .community-cta { max-width:calc(100% - 28px); overflow-wrap:anywhere; }
+      .ticker { font-size:10px; }
+      footer { padding:22px 14px; }
+    }
+
+    @media (max-width:420px) {
+      header { grid-template-columns:64px minmax(0,1fr); padding:10px 9px 12px; gap:8px; }
+      .logo-link { min-height:48px; }
+      .logo-image { width:175%; }
+      .header-actions { gap:6px; }
+      .nav-primary { gap:5px; }
+      .nav-primary .shop-link, .nav-primary .products-tab { font-size:6px; padding:7px 4px; line-height:1.45; }
+      .nav-more summary { font-size:6px; padding:7px 5px; min-height:36px; }
+      .nav-dropdown { left:0; right:auto; grid-template-columns:repeat(2,minmax(0,1fr)); gap:6px; width:min(300px,calc(100vw - 18px)); max-width:calc(100vw - 18px); }
+      .nav-dropdown .products-tab { font-size:6px; padding:7px 4px; }
+      .music-toggle { width:36px; height:36px; font-size:20px; border-radius:11px; }
+      main { padding:30px 12px 26px; }
+      h1 { font-size:clamp(29px,9vw,38px); letter-spacing:-1.5px; text-shadow:3px 3px #fff1d6,5px 5px #171717; }
+      .mission { font-size:16px; }
+      .mint-button { font-size:8px; padding:12px 9px; }
+      .shipping { font-size:7px; }
+      .community-eyebrow { font-size:8px; }
+      .community-track { padding-inline:10px; gap:10px; }
+      .community-card { flex-basis:92%; }
+      .community-card img { aspect-ratio:1/1; }
+      .community-caption { padding:11px 9px 12px; }
+      .community-controls { gap:9px; }
+      .carousel-arrow { width:42px; height:42px; }
+      .carousel-counter { min-width:68px; font-size:8px; }
+      .community-cta { font-size:7px; padding:12px 8px; }
+      .dollar-popup-overlay { padding:8px; }
+      .dollar-popup { width:96vw; }
+      .swamp-popup { width:96vw; }
+    }
+
+    @media (max-width:340px) {
+      header { grid-template-columns:54px minmax(0,1fr); padding-inline:6px; }
+      .nav-primary .shop-link, .nav-primary .products-tab { font-size:5.5px; padding:6px 3px; }
+      .nav-more summary { font-size:5.5px; }
+      .music-toggle { width:33px; height:33px; font-size:18px; }
+      h1 { font-size:27px; }
+    }
+
   </style>
 </head>
 <body>
@@ -98,13 +236,19 @@
       <details class="nav-more">
         <summary aria-label="Show more navigation links">MORE MENU <span aria-hidden="true">▾</span></summary>
         <nav class="nav-dropdown" aria-label="More navigation">
+          <a class="products-tab mobile-menu-link" href="#shop">SHOP THE TEE ↓</a>
+          <a class="products-tab mobile-menu-link" href="product.html">PRODUCTS</a>
+          <a class="products-tab mobile-menu-link" href="https://gravemint.io/mint/3678jb?utm_source=copy_link&amp;utm_medium=referral&amp;utm_content=collection" target="_blank" rel="noopener noreferrer">NFTS 🐸</a>
           <a class="products-tab" href="https://obideft.github.io/doge-buy/" target="_blank" rel="noopener noreferrer">FROGISWAP</a>
           <a class="products-tab army-tab" href="froginalarmy.html">FROGINALARMY 🐸</a>
           <a class="products-tab community-tab" href="#community">COMMUNITY ✦</a>
           <a class="products-tab whitepaper-tab" href="froginal-theses.html">WHITEPAPER</a>
         </nav>
       </details>
-      <button id="musicToggle" class="music-toggle is-muted" type="button" aria-label="Play background music" aria-pressed="false" title="Play background music">🎵</button>
+      <div class="mobile-music-bar" aria-label="Music controls">
+        <button id="musicToggle" class="music-toggle is-muted" type="button" aria-label="Play background music" aria-pressed="false" title="Play background music">🎵</button>
+        <span class="mobile-music-label">PLAY MUSIC</span>
+      </div>
     </div>
   </header>
   <main>
