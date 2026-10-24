@@ -1,348 +1,299 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#858d51">
+<meta name="description" content="Enter the FROGINALVERSE recruitment terminal. Join the FROGINALARMY and claim your mission.">
 <title>FROGINALVERSE — RECRUITMENT TERMINAL</title>
-
 <style>
 :root {
   --khaki: #858d51;
   --orange: #ff792e;
   --cream: #f4f0d9;
   --dark: #22291c;
+  --yellow: #fff000;
 }
-
 * { box-sizing: border-box; }
-
+html { min-height: 100%; background: var(--khaki); }
 body {
-  margin: 0;
-  min-height: 100vh;
-  overflow-x: hidden;
-  background: var(--khaki);
-  color: var(--cream);
-  font-family: "Courier New", monospace;
+  margin: 0; min-height: 100vh; min-height: 100svh; overflow-x: hidden;
+  background: var(--khaki); color: var(--cream); font-family: "Courier New", monospace;
+  cursor: crosshair;
 }
-
+/* Full-screen CRT / videogame interference */
+body::before, body::after { content: ""; position: fixed; inset: 0; pointer-events: none; }
 body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 10;
-  pointer-events: none;
-  opacity: .22;
-  background: repeating-linear-gradient(
-    to bottom,
-    transparent 0px,
-    transparent 3px,
-    rgba(20, 25, 15, .45) 4px
-  );
+  z-index: 20; opacity: .25;
+  background: repeating-linear-gradient(to bottom, transparent 0, transparent 3px, rgba(20,25,15,.5) 4px);
 }
-
 body::after {
-  content: "";
-  position: fixed;
-  inset: 0;
-  z-index: 11;
-  pointer-events: none;
-  opacity: .12;
-  background: repeating-linear-gradient(
-    90deg,
-    transparent 0,
-    transparent 8px,
-    rgba(255,255,255,.12) 9px
-  );
-  animation: flicker .12s infinite;
+  z-index: 21; opacity: .1;
+  background: repeating-linear-gradient(90deg, transparent 0, transparent 8px, rgba(255,255,255,.12) 9px);
+  animation: flicker .13s infinite;
 }
-
-@keyframes flicker {
-  0%, 100% { opacity: .09; }
-  50% { opacity: .16; }
+@keyframes flicker { 0%,100% { opacity:.07 } 50% { opacity:.17 } }
+/* Oversized character backdrop */
+.scene-character {
+  position: fixed; z-index: 0; inset: -8vh -12vw; width: 124vw; height: 116vh;
+  object-fit: contain; object-position: center; opacity: .43; pointer-events: none;
+  filter: saturate(.75) contrast(1.18) drop-shadow(0 0 30px rgba(34,41,28,.3));
+  transform: scale(1.04); animation: sceneGlitch 6.8s steps(1,end) infinite;
+  transition: opacity .18s ease, filter .2s ease;
 }
-
+.scene-shade {
+  position: fixed; z-index: 1; inset: 0; pointer-events: none;
+  background: linear-gradient(90deg, rgba(76,83,43,.72), rgba(92,99,55,.55) 45%, rgba(52,61,35,.72)),
+              radial-gradient(ellipse at center, transparent 10%, rgba(28,35,23,.28) 100%);
+}
+@keyframes sceneGlitch {
+  0%, 90%, 100% { transform: translate(0,0) scale(1.04); clip-path: inset(0); }
+  91% { transform: translate(7px,-2px) scale(1.06); clip-path: inset(28% 0 53% 0); filter: hue-rotate(28deg) contrast(1.5); }
+  92% { transform: translate(-6px,2px) scale(1.03); clip-path: inset(62% 0 18% 0); }
+  93% { transform: translate(0,0) scale(1.04); clip-path: inset(0); }
+}
 .terminal {
-  position: relative;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-height: 100svh;
-  padding: 28px 20px 36px;
-  text-align: center;
+  position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center;
+  width: 100%; min-height: 100vh; min-height: 100svh; padding: 80px 20px 36px; text-align: center; isolation: isolate;
 }
-
 .topline {
-  position: absolute;
-  top: 24px;
-  left: 26px;
-  right: 26px;
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  color: var(--dark);
-  font-size: 11px;
-  font-weight: bold;
-  letter-spacing: 2px;
+  position: absolute; top: 24px; left: 26px; right: 26px; display: flex; justify-content: space-between; gap: 12px;
+  color: var(--dark); font-size: 11px; font-weight: bold; letter-spacing: 2px; text-shadow: 0 1px rgba(244,240,217,.25);
 }
-
-.status {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-}
-
-.status::before {
-  content: "";
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: #d6ff76;
-  box-shadow: 0 0 10px #d6ff76;
-}
-
+.status { display: inline-flex; align-items: center; gap: 8px; }
+.status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #d6ff76; box-shadow: 0 0 10px #d6ff76; animation: statusPulse 1.2s infinite; }
+@keyframes statusPulse { 50% { opacity: .35; } }
 h1 {
-  position: relative;
-  z-index: 1;
-  margin: 36px 0 5px;
-  color: var(--cream);
-  font-size: clamp(26px, 5vw, 54px);
-  line-height: 1;
-  letter-spacing: clamp(1px, .6vw, 6px);
-  font-weight: 900;
-  text-shadow: 3px 3px 0 rgba(37, 44, 25, .4);
+  position: relative; z-index: 2; margin: 18px 0 5px; color: var(--cream); font-size: clamp(30px, 6vw, 76px);
+  line-height: .98; letter-spacing: clamp(1px, .65vw, 7px); font-weight: 900;
+  text-shadow: 4px 4px 0 rgba(37,44,25,.72), -2px 0 rgba(255,121,46,.6); max-width: 100%;
 }
-
-.subtitle {
-  margin: 10px 0 0;
-  color: var(--dark);
-  font-size: 11px;
-  font-weight: bold;
-  letter-spacing: 4px;
-}
-
+.subtitle { margin: 12px 0 0; color: var(--dark); font-size: clamp(10px, 1.4vw, 13px); font-weight: bold; letter-spacing: 4px; text-shadow: 0 1px rgba(244,240,217,.25); }
 .character-stage {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: min(100%, 510px);
-  height: clamp(280px, 45vh, 440px);
-  margin: 8px 0;
+  position: relative; display: flex; align-items: center; justify-content: center; width: min(100%, 690px);
+  height: clamp(310px, 48vh, 490px); margin: 0 0 2px; cursor: none; isolation: isolate;
 }
-
 .character-stage::before {
-  content: "";
-  position: absolute;
-  width: 74%;
-  height: 74%;
-  border: 1px solid rgba(244, 240, 217, .35);
-  border-radius: 50%;
-  box-shadow: 0 0 50px rgba(35, 42, 24, .12);
+  content: ""; position: absolute; width: 83%; height: 83%; border: 1px solid rgba(244,240,217,.45); border-radius: 50%;
+  box-shadow: 0 0 55px rgba(35,42,24,.25), inset 0 0 55px rgba(35,42,24,.15); z-index: -1;
 }
-
 .character-stage::after {
-  content: "FROGINAL ARMY • RECRUIT • DEPLOY";
-  position: absolute;
-  bottom: 7px;
-  color: var(--dark);
-  font-size: 9px;
-  letter-spacing: 2px;
+  content: "FROGINAL ARMY  •  RECRUIT  •  DEPLOY"; position: absolute; bottom: 4px; color: var(--dark); font-size: 9px; letter-spacing: 2px;
 }
-
 .frog {
-  position: relative;
-  z-index: 2;
-  display: block;
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
-  filter: drop-shadow(0 14px 0 rgba(31, 38, 23, .12));
-  animation: float 3s ease-in-out infinite, glitch 7s infinite;
+  position: relative; z-index: 2; display: block; width: 100%; height: 100%; object-fit: contain;
+  filter: drop-shadow(0 18px 0 rgba(31,38,23,.22)); animation: float 3s ease-in-out infinite, characterGlitch 7.2s steps(1,end) infinite;
+  transition: filter .2s ease, transform .25s ease; user-select: none; -webkit-user-drag: none;
 }
-
-@keyframes float {
-  0%, 100% { transform: translateY(0); }
-  50% { transform: translateY(-8px); }
-}
-
-@keyframes glitch {
+.character-stage:hover .frog { filter: drop-shadow(0 0 20px rgba(255,240,0,.6)) drop-shadow(0 18px 0 rgba(31,38,23,.22)); }
+@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
+@keyframes characterGlitch {
   0%, 93%, 100% { opacity: 1; }
-  94% { opacity: .75; transform: translateX(2px); }
-  95% { opacity: 1; transform: translateX(-2px); }
-  96% { opacity: .9; transform: translateX(0); }
+  94% { opacity: .72; transform: translateX(4px) skewX(-1deg); }
+  95% { opacity: 1; transform: translateX(-4px); }
+  96% { opacity: .85; transform: translateX(0); }
 }
-
-.actions {
-  position: relative;
-  z-index: 12;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 13px;
-  width: min(100%, 360px);
-  margin-top: 8px;
+/* Oversized yellow cursor that appears over the frog */
+.frog-cursor {
+  position: fixed; z-index: 30; left: 0; top: 0; width: 56px; height: 56px; display: grid; place-items: center;
+  color: var(--yellow); font: 900 52px/1 Arial, sans-serif; text-shadow: 3px 3px 0 #22291c, 0 0 14px rgba(255,240,0,.5);
+  pointer-events: none; opacity: 0; transform: translate(-50%,-50%) rotate(-12deg); transition: opacity .12s; mix-blend-mode: normal;
 }
-
+.frog-cursor::before { content: "➤"; }
+.character-stage:hover ~ .frog-cursor, .frog-cursor.visible { opacity: 1; }
+.actions { position: relative; z-index: 12; display: flex; flex-direction: column; align-items: center; gap: 13px; width: min(100%, 390px); margin-top: 8px; }
 .button {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  min-height: 62px;
-  padding: 16px 20px;
-  border: 2px solid var(--orange);
-  border-radius: 0;
-  color: var(--cream);
-  font: 900 16px "Courier New", monospace;
-  letter-spacing: 2px;
-  text-decoration: none;
-  cursor: pointer;
-  transition: transform .2s, background .2s, color .2s;
+  position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 66px;
+  padding: 17px 20px; border: 2px solid var(--orange); border-radius: 3px; color: var(--cream);
+  font: 900 15px "Courier New", monospace; letter-spacing: 2px; text-decoration: none; cursor: pointer;
+  transition: transform .2s, background .2s, color .2s, box-shadow .2s;
 }
-
-.button:hover {
-  transform: translateY(-3px);
+.button::before {
+  content: ""; position: absolute; top: -70%; left: -35%; width: 35%; height: 240%; transform: rotate(24deg);
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,.62), transparent); transition: left .55s ease; pointer-events: none;
 }
-
+.button:hover::before { left: 125%; }
+.button:hover { transform: translateY(-3px); }
 .buy {
-  background: var(--orange);
-  color: #202619;
-  box-shadow: 5px 5px 0 rgba(35, 42, 24, .4);
+  background: linear-gradient(135deg, #ff9b43 0%, #ff792e 38%, #e64c17 100%); color: #202619;
+  border-color: #ffd18a; box-shadow: 0 0 0 2px rgba(255,121,46,.25), 0 7px 0 #a64018, 0 0 26px rgba(255,121,46,.45), inset 0 2px 0 rgba(255,255,255,.5);
+  text-shadow: 0 1px rgba(255,255,255,.2);
 }
-
-.buy:hover {
-  background: var(--cream);
-  border-color: var(--cream);
-}
-
-.later {
-  background: transparent;
-  color: white;
-  font-size: 12px;
-  letter-spacing: 1px;
-}
-
-.later:hover {
-  background: var(--orange);
-  color: var(--dark);
-}
-
-.footer {
-  margin-top: 24px;
-  color: var(--dark);
-  font-size: 9px;
-  letter-spacing: 2px;
-}
-
+.buy:hover { background: linear-gradient(135deg, #fff1b7, #ffad42 55%, #ff792e); border-color: #fff1b7; box-shadow: 0 0 0 2px rgba(255,121,46,.25), 0 7px 0 #a64018, 0 0 36px rgba(255,185,60,.7), inset 0 2px 0 #fff; }
+.later { background: rgba(34,41,28,.42); color: var(--cream); border-color: rgba(244,240,217,.85); font-size: 12px; letter-spacing: 1px; backdrop-filter: blur(4px); }
+.later:hover { background: var(--cream); color: var(--dark); border-color: var(--cream); }
+.footer { margin-top: 24px; color: var(--dark); font-size: 9px; font-weight: bold; letter-spacing: 2px; text-shadow: 0 1px rgba(244,240,217,.2); }
 .toast {
-  position: fixed;
-  z-index: 20;
-  left: 50%;
-  bottom: 24px;
-  width: max-content;
-  max-width: calc(100% - 32px);
-  padding: 14px 18px;
-  border: 1px solid var(--orange);
-  background: #252b1e;
-  color: var(--cream);
-  font-size: 12px;
-  line-height: 1.6;
-  text-align: center;
-  transform: translate(-50%, 20px);
-  opacity: 0;
-  pointer-events: none;
-  transition: .25s;
+  position: fixed; z-index: 40; left: 50%; bottom: 24px; width: max-content; max-width: calc(100% - 32px); padding: 14px 18px;
+  border: 1px solid var(--orange); background: #252b1e; color: var(--cream); font-size: 12px; line-height: 1.6; text-align: center;
+  transform: translate(-50%,20px); opacity: 0; pointer-events: none; transition: .25s;
 }
-
-.toast.show {
-  opacity: 1;
-  transform: translate(-50%, 0);
+.toast.show { opacity: 1; transform: translate(-50%,0); }
+/* Instructions panel */
+.modal-backdrop { position: fixed; z-index: 50; inset: 0; display: grid; place-items: center; padding: 20px; background: rgba(18,23,15,.78); backdrop-filter: blur(5px); }
+.modal-backdrop[hidden] { display: none; }
+.instructions {
+  position: relative; width: min(100%, 560px); max-height: min(85vh, 720px); overflow: auto; padding: clamp(22px,4vw,36px);
+  color: var(--cream); text-align: left; background: #303923; border: 2px solid var(--orange); box-shadow: 9px 9px 0 rgba(0,0,0,.35), 0 0 35px rgba(255,121,46,.16);
 }
-
-@media (max-height: 700px) {
-  .terminal { padding-top: 40px; padding-bottom: 20px; }
-  .character-stage { height: 34vh; min-height: 210px; }
-  h1 { margin-top: 20px; }
+.instructions h2 { margin: 0 38px 18px 0; color: var(--orange); font-size: clamp(20px,4vw,30px); letter-spacing: 2px; }
+.instructions p, .instructions li { font-size: 13px; line-height: 1.75; }
+.instructions ol { padding-left: 22px; }
+.close-modal { position: absolute; top: 12px; right: 12px; width: 34px; height: 34px; border: 1px solid var(--orange); background: transparent; color: var(--cream); font: bold 22px monospace; cursor: pointer; }
+.close-modal:hover { background: var(--orange); color: var(--dark); }
+.modal-buy { margin-top: 20px; min-height: 54px; }
+@media (max-height: 740px) {
+  .terminal { padding-top: 65px; padding-bottom: 22px; }
+  .character-stage { height: 38vh; min-height: 225px; }
+  h1 { margin-top: 8px; }
   .footer { margin-top: 15px; }
 }
-
-@media (max-width: 480px) {
-  .topline { left: 14px; right: 14px; font-size: 9px; }
-  .character-stage { height: 38vh; min-height: 260px; }
+@media (max-width: 600px) {
+  .scene-character { inset: -3vh -48vw; width: 196vw; height: 108vh; opacity: .35; }
+  .terminal { padding: 76px 14px 28px; }
+  .topline { top: 17px; left: 13px; right: 13px; font-size: 8px; letter-spacing: 1px; }
+  h1 { font-size: clamp(27px, 9vw, 48px); letter-spacing: 1px; }
   .subtitle { font-size: 9px; letter-spacing: 2px; }
-  .button { min-height: 58px; }
+  .character-stage { height: 40vh; min-height: 255px; margin-top: 8px; }
+  .character-stage::after { font-size: 7px; letter-spacing: 1px; }
+  .button { min-height: 59px; padding: 14px 12px; font-size: 12px; letter-spacing: 1.4px; }
+  .later { font-size: 10px; }
+  .footer { font-size: 8px; letter-spacing: 1px; }
+  .frog-cursor { display: none; }
 }
-
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation: none !important;
-    transition: none !important;
-  }
+  *, *::before, *::after { animation: none !important; transition: none !important; }
 }
 </style>
 </head>
-
 <body>
+<img class="scene-character" id="sceneCharacter" src="https://raw.githubusercontent.com/Obideft/froginals/main/images/recrute/froginal_Army_front.png" alt="" aria-hidden="true">
+<div class="scene-shade" aria-hidden="true"></div>
 <main class="terminal">
-
   <div class="topline">
     <span>FROGINALS // F-01</span>
     <span class="status">SYSTEM ONLINE</span>
   </div>
-
   <h1>FROGINALVERSE</h1>
   <p class="subtitle">RECRUITMENT TERMINAL</p>
-
-  <div class="character-stage">
-    <img
-      class="frog"
-      src="https://raw.githubusercontent.com/Obideft/froginals/main/images/recrute/froginal_Army_front.png"
-      alt="Froginal Army recruit standing in a front-facing T-pose"
-      onerror="this.style.opacity='.15'; this.alt='Frog image could not load. Check the GitHub image path.';"
-    >
+  <div class="character-stage" id="characterStage" aria-label="Froginal Army character preview">
+    <img class="frog" id="frogCharacter" src="https://raw.githubusercontent.com/Obideft/froginals/main/images/recrute/froginal_Army_front.png" alt="Froginal Army recruit, front view" draggable="false">
   </div>
-
   <div class="actions">
-    <a
-      class="button buy"
-      href="https://gravemint.io/mint/3678jb"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      BUY NFT &nbsp; ↗
-    </a>
-
-    <button class="button later" id="laterButton" type="button">
-      NO, NOW RECRUIT ME LATER
-    </button>
+    <a class="button buy" href="https://gravemint.io/mint/3678jb" target="_blank" rel="noopener noreferrer">BUY NFT NOW &nbsp; ↗</a>
+    <button class="button later" id="instructionsButton" type="button">GET INSTRUCTIONS FIRST</button>
   </div>
-
-  <div class="footer">
-    YOUR FROG. YOUR SQUAD. YOUR MISSION.
-  </div>
-
+  <div class="footer">YOUR FROG. YOUR SQUAD. YOUR MISSION.</div>
 </main>
-
+<div class="frog-cursor" id="frogCursor" aria-hidden="true"></div>
 <div class="toast" id="toast" role="status" aria-live="polite"></div>
-
+<div class="modal-backdrop" id="instructionsModal" hidden>
+  <section class="instructions" role="dialog" aria-modal="true" aria-labelledby="instructionsTitle">
+    <button class="close-modal" id="closeModal" type="button" aria-label="Close instructions">×</button>
+    <h2 id="instructionsTitle">RECRUIT BRIEFING</h2>
+    <p><strong>ATTENTION, RECRUIT!</strong> Your FROGINAL DOGS NFT is your ticket into the FROGINALARMY mission.</p>
+    <ol>
+      <li>Open the official mint page using <strong>BUY NFT NOW</strong>.</li>
+      <li>Connect a compatible wallet and review the NFT details and total cost before confirming anything.</li>
+      <li>Complete the purchase only if you are happy with the details. Never share your wallet recovery phrase.</li>
+      <li>Return to the FROGINALS site and visit the FROGINALARMY / community links to find current mission instructions.</li>
+    </ol>
+    <p><strong>FIELD NOTE:</strong> NFT ownership does not guarantee rewards. Check official project announcements for current eligibility and mission rules.</p>
+    <a class="button buy modal-buy" href="https://gravemint.io/mint/3678jb" target="_blank" rel="noopener noreferrer">UNDERSTOOD — BUY NFT ↗</a>
+  </section>
+</div>
 <script>
-const laterButton = document.getElementById("laterButton");
-const toast = document.getElementById("toast");
-let toastTimeout;
+(() => {
+  const front = 'https://raw.githubusercontent.com/Obideft/froginals/main/images/recrute/froginal_Army_front.png';
+  const side = 'https://raw.githubusercontent.com/Obideft/froginals/main/images/recrute/froginal_Army_side.png';
+  const back = 'https://raw.githubusercontent.com/Obideft/froginals/main/images/recrute/froginal_Army_back.png';
+  const views = [
+    { src: front, alt: 'Froginal Army recruit, front view' },
+    { src: side, alt: 'Froginal Army recruit, side view' },
+    { src: back, alt: 'Froginal Army recruit, back view' }
+  ];
+  const frog = document.getElementById('frogCharacter');
+  const scene = document.getElementById('sceneCharacter');
+  const stage = document.getElementById('characterStage');
+  const cursor = document.getElementById('frogCursor');
+  const instructionsButton = document.getElementById('instructionsButton');
+  const modal = document.getElementById('instructionsModal');
+  const closeModal = document.getElementById('closeModal');
+  const toast = document.getElementById('toast');
+  let viewIndex = 0;
+  let toastTimeout;
 
-laterButton.addEventListener("click", () => {
-  toast.textContent =
-    "RECRUITMENT POSTPONED. THE COMMANDER WILL BE WAITING, SOLDIER.";
-  toast.classList.add("show");
+  // Preload all angles so random view changes feel immediate.
+  views.forEach(view => { const img = new Image(); img.src = view.src; });
 
-  clearTimeout(toastTimeout);
-  toastTimeout = setTimeout(() => {
-    toast.classList.remove("show");
-  }, 3200);
-});
+  function changeView(index) {
+    viewIndex = index;
+    frog.style.opacity = '.15';
+    scene.style.opacity = '.18';
+    window.setTimeout(() => {
+      frog.src = views[index].src;
+      frog.alt = views[index].alt;
+      scene.src = views[index].src;
+      frog.onload = () => { frog.style.opacity = ''; scene.style.opacity = ''; };
+      // If an image fails, restore visibility and keep the rest of the terminal usable.
+      frog.onerror = () => { frog.style.opacity = '1'; scene.style.opacity = '.22'; };
+    }, 110);
+  }
+
+  // Randomly switch between front, side, and back views at irregular intervals.
+  function scheduleViewChange() {
+    const delay = 4200 + Math.random() * 5200;
+    window.setTimeout(() => {
+      let next = Math.floor(Math.random() * views.length);
+      if (next === viewIndex) next = (next + 1 + Math.floor(Math.random() * 2)) % views.length;
+      changeView(next);
+      scheduleViewChange();
+    }, delay);
+  }
+  scheduleViewChange();
+
+  stage.addEventListener('pointermove', event => {
+    if (event.pointerType === 'touch') return;
+    cursor.style.left = event.clientX + 'px';
+    cursor.style.top = event.clientY + 'px';
+    cursor.classList.add('visible');
+  });
+  stage.addEventListener('pointerenter', event => {
+    if (event.pointerType !== 'touch') cursor.classList.add('visible');
+  });
+  stage.addEventListener('pointerleave', () => cursor.classList.remove('visible'));
+
+  function openInstructions() {
+    modal.hidden = false;
+    closeModal.focus();
+  }
+  function hideInstructions() {
+    modal.hidden = true;
+    instructionsButton.focus();
+  }
+  instructionsButton.addEventListener('click', openInstructions);
+  closeModal.addEventListener('click', hideInstructions);
+  modal.addEventListener('click', event => { if (event.target === modal) hideInstructions(); });
+  document.addEventListener('keydown', event => {
+    if (event.key === 'Escape' && !modal.hidden) hideInstructions();
+  });
+
+  // Small toast fallback for an optional recruit-later keyboard action.
+  function showToast(message) {
+    toast.textContent = message;
+    toast.classList.add('show');
+    clearTimeout(toastTimeout);
+    toastTimeout = window.setTimeout(() => toast.classList.remove('show'), 3000);
+  }
+  // Keep this feedback available if the recruit chooses not to mint yet via the footer shortcut.
+  document.querySelector('.footer').title = 'Press L to postpone recruitment';
+  document.addEventListener('keydown', event => {
+    if (event.key.toLowerCase() === 'l' && !modal.hidden && event.target.tagName !== 'INPUT') {
+      hideInstructions();
+      showToast('RECRUITMENT POSTPONED. THE COMMANDER WILL BE WAITING, SOLDIER.');
+    }
+  });
+})();
 </script>
 </body>
 </html>
