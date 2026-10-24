@@ -1,10 +1,11 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#101510">
-<meta name="description" content="Meet the FROGINALARMY. Join missions, submit proof, and earn rewards.">
+<meta name="description" content="Meet the FROGINALARMY. Explore live FROGINAL DOGS listings, join missions, and earn rewards.">
 <title>FROGINALARMY | FROGINALS</title>
 <style>
 :root{--bg:#71845b;--panel:#243322;--green:#c9f49a;--lime:#d9f47a;--white:#f7fff0;--muted:#d0ddc3;--border:#526847;--pink:#ff70c7;--gold:#ffd36a}
@@ -14,27 +15,54 @@ body:before{content:"";position:fixed;inset:-10%;z-index:-1;pointer-events:none;
 @keyframes camoDrift{0%{background-position:0 0}25%{background-position:-120px 60px}50%{background-position:-240px 0}75%{background-position:-120px -60px}100%{background-position:0 -120px}}
 a{color:inherit}button,input,select{font:inherit}button{cursor:pointer}
 .site-header{min-height:76px;padding:16px 6%;display:flex;justify-content:space-between;align-items:center;gap:20px;border-bottom:1px solid var(--border);background:rgba(44,61,35,.94);backdrop-filter:blur(10px);position:sticky;top:0;z-index:10}.logo{text-decoration:none;display:flex;align-items:center;flex:0 0 auto;line-height:0}.logo img{display:block;width:clamp(145px,18vw,220px);height:auto;max-height:58px;object-fit:contain;object-position:left center}.logo span{color:var(--green)}.nav{display:flex;gap:20px;align-items:center;flex-wrap:wrap}.nav a{text-decoration:none;font-size:13px;font-weight:800;color:var(--muted)}.nav a:hover{color:var(--green)}.nav .home-link{background:var(--lime);color:#101510;padding:11px 15px;border-radius:5px}
-.hero{text-align:center;position:relative;isolation:isolate;display:flex;flex-direction:column;align-items:center;justify-content:center;aspect-ratio:2173 / 724;min-height:360px;padding:clamp(30px,4vw,76px) 20px 38px;overflow:hidden;background-image:linear-gradient(180deg,rgba(8,12,8,.22),rgba(8,12,8,.48)),url("https://raw.githubusercontent.com/Obideft/froginals/main/images/BANNER%20FROGINALS%20ARMY.png");background-size:cover;background-position:center;background-repeat:no-repeat}.eyebrow{color:var(--lime);font-size:12px;font-weight:900;letter-spacing:4px;text-transform:uppercase;text-shadow:0 2px 8px #000}.hero h1{font-size:clamp(38px,7.3vw,88px);line-height:.98;letter-spacing:clamp(-5px,-.35vw,-1px);margin:20px 0;font-weight:1000;color:#fff8d7;text-wrap:balance;text-shadow:0 4px 0 #17100a,2px 6px 0 #17100a,0 8px 20px #000b}.hero h1 span{color:var(--lime);display:inline}.hero p{color:#fff;max-width:550px;line-height:1.7;margin:0 auto;font-size:15px;text-shadow:0 2px 7px #000;}.stats{display:flex;justify-content:center;gap:45px;margin-top:28px;flex-wrap:wrap}.hero .stat strong{color:#fff08a;text-shadow:0 2px 8px #000}.hero .stat span{color:#fff;text-shadow:0 1px 5px #000}.stat strong{display:block;font-size:28px;color:var(--lime)}.stat span{display:block;margin-top:5px;color:var(--muted);font-size:10px;letter-spacing:2px;font-weight:800}
-
+.hero{text-align:center;position:relative;isolation:isolate;display:flex;flex-direction:column;align-items:center;justify-content:center;aspect-ratio:2173 / 724;min-height:360px;padding:clamp(30px,4vw,76px) 20px 38px;overflow:hidden;background-image:linear-gradient(180deg,rgba(8,12,8,.22),rgba(8,12,8,.48)),url("https://raw.githubusercontent.com/Obideft/froginals/main/images/BANNER%20FROGINALS%20ARMY.png");background-size:cover;background-position:center;background-repeat:no-repeat}.eyebrow{color:var(--lime);font-size:12px;font-weight:900;letter-spacing:4px;text-transform:uppercase;text-shadow:0 2px 8px #000}.hero h1{font-size:clamp(38px,7.3vw,88px);line-height:.98;letter-spacing:clamp(-5px,-.35vw,-1px);margin:20px 0;font-weight:1000;color:#fff8d7;text-wrap:balance;text-shadow:0 4px 0 #17100a,2px 6px 0 #17100a,0 8px 20px #000b}.hero h1 span{color:var(--lime);display:inline}.hero p{color:#fff;max-width:550px;line-height:1.7;margin:0 auto;font-size:15px;text-shadow:0 2px 7px #000}.stats{display:flex;justify-content:center;gap:45px;margin-top:28px;flex-wrap:wrap}.hero .stat strong{color:#fff08a;text-shadow:0 2px 8px #000}.hero .stat span{color:#fff;text-shadow:0 1px 5px #000}.stat strong{display:block;font-size:28px;color:var(--lime)}.stat span{display:block;margin-top:5px;color:var(--muted);font-size:10px;letter-spacing:2px;font-weight:800}
 .brand-film{width:min(1180px,90%);margin:34px auto 10px;padding:clamp(20px,4vw,42px);border:1px solid #476047;border-radius:12px;background:radial-gradient(ellipse at top center,#263d28 0%,#151e16 60%,#121812 100%);box-shadow:0 18px 48px #0004;overflow:hidden}
-.brand-film-kicker{display:inline-flex;align-items:center;gap:8px;color:var(--lime);font-size:10px;font-weight:1000;letter-spacing:3px;text-transform:uppercase}
-.brand-film-kicker:before{content:"";display:block;width:22px;height:2px;background:var(--lime)}
-.brand-film-heading{text-align:center;max-width:780px;margin:0 auto 24px}
-.brand-film h2{margin:12px 0 10px;font-size:clamp(27px,4.5vw,48px);line-height:1.04;letter-spacing:-1.8px;color:#fff8d7}
-.brand-film h2 span{color:var(--lime)}
-.brand-film-intro{max-width:650px;margin:0 auto;color:#b9cbb9;font-size:14px;line-height:1.8}
-.brand-film-frame{position:relative;width:100%;max-width:940px;margin:0 auto;aspect-ratio:16/9;overflow:hidden;border:1px solid #526b51;border-radius:9px;background:#050805;box-shadow:0 16px 42px #0008}
-.brand-film-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
-.brand-film-bottom{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;max-width:940px;margin:18px auto 0}
-.brand-film-bottom p{margin:0;color:var(--muted);font-size:11px;line-height:1.7}
-.brand-film-bottom strong{color:var(--green)}
+.brand-film-kicker{display:inline-flex;align-items:center;gap:8px;color:var(--lime);font-size:10px;font-weight:1000;letter-spacing:3px;text-transform:uppercase}.brand-film-kicker:before{content:"";display:block;width:22px;height:2px;background:var(--lime)}
+.brand-film-heading{text-align:center;max-width:780px;margin:0 auto 24px}.brand-film h2{margin:12px 0 10px;font-size:clamp(27px,4.5vw,48px);line-height:1.04;letter-spacing:-1.8px;color:#fff8d7}.brand-film h2 span{color:var(--lime)}.brand-film-intro{max-width:650px;margin:0 auto;color:#b9cbb9;font-size:14px;line-height:1.8}
+.brand-film-frame{position:relative;width:100%;max-width:940px;margin:0 auto;aspect-ratio:16/9;overflow:hidden;border:1px solid #526b51;border-radius:9px;background:#050805;box-shadow:0 16px 42px #0008}.brand-film-frame iframe{position:absolute;inset:0;width:100%;height:100%;border:0}
+.brand-film-bottom{display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;max-width:940px;margin:18px auto 0}.brand-film-bottom p{margin:0;color:var(--muted);font-size:11px;line-height:1.7}.brand-film-bottom strong{color:var(--green)}
 @media(max-width:540px){.brand-film{width:92%;padding:20px 14px;margin-top:24px}.brand-film h2{letter-spacing:-1px}.brand-film-intro{font-size:13px}.brand-film-frame{border-radius:6px}.brand-film-bottom{align-items:stretch}.brand-film-bottom .btn{width:100%}}
-
-.container{width:min(1180px,90%);margin:0 auto;padding-bottom:70px}.section-head{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin:30px 0 24px}.section-head h2{margin:0;font-size:24px;letter-spacing:-1px}.section-head h2 span{color:var(--green)}.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:25px}.search{flex:1;min-width:190px}input,select{width:100%;padding:13px 14px;background:#141c15;border:1px solid var(--border);border-radius:5px;color:var(--white);outline:none}input:focus,select:focus{border-color:var(--green)}.btn{display:inline-flex;justify-content:center;align-items:center;padding:12px 17px;border:1px solid var(--border);border-radius:5px;background:var(--panel);color:var(--white);text-decoration:none;font-size:12px;font-weight:900;transition:.2s}.btn:hover{border-color:var(--green)}.btn-green{background:var(--lime);color:#101510;border-color:var(--lime)}.btn-green:hover{background:var(--green)}.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.member{min-width:0;background:var(--panel);border:1px solid var(--border);border-radius:9px;overflow:hidden;transition:transform .2s,border-color .2s}.member:hover{transform:translateY(-4px);border-color:var(--green)}.nft-wrap{position:relative;background:#263729;aspect-ratio:1/1;overflow:hidden}.nft-wrap img{width:100%;height:100%;object-fit:cover;display:block}.nft-placeholder{width:100%;height:100%;display:flex;justify-content:center;align-items:center;font-size:70px;background:radial-gradient(circle,#426548,#18271a 75%)}.member-badge{position:absolute;left:12px;top:12px;padding:7px 9px;border-radius:4px;background:var(--lime);color:#101510;font-size:9px;font-weight:1000;letter-spacing:1px}.member-body{padding:17px}.member-name{font-size:19px;font-weight:1000;overflow-wrap:anywhere;margin-bottom:8px}.member-name a{text-decoration:none}.member-name a:hover{color:var(--green)}.handle{color:var(--green);font-size:13px;font-weight:800;margin-bottom:13px}.wallet{color:var(--muted);font-size:11px;margin-bottom:16px;overflow-wrap:anywhere}.member-actions{display:flex;gap:8px}.member-actions .btn{flex:1;padding:11px 8px;font-size:10px}.empty{display:none;text-align:center;padding:65px 20px;border:1px dashed var(--border);border-radius:9px;color:var(--muted)}.empty strong{display:block;font-size:25px;color:var(--green);margin-bottom:10px}
- .missions{margin:52px 0 65px}.mission-intro{color:var(--muted);line-height:1.7;font-size:14px;max-width:720px}.mission-card{margin-top:20px;display:grid;grid-template-columns:1fr 1.1fr;gap:0;background:linear-gradient(135deg,#1a281b,#151c16);border:1px solid #476047;border-radius:12px;overflow:hidden}.mission-art{padding:26px;display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:320px;text-align:center;background:radial-gradient(circle at 25% 25%,#345a37,#18231a 65%)}.mission-preview{display:block;width:100%;max-width:440px;aspect-ratio:1/1;object-fit:cover;border:1px solid #476047;border-radius:10px;box-shadow:0 12px 38px #0008}.mission-tag{display:inline-block;padding:7px 10px;border-radius:4px;background:var(--lime);color:#101510;font-size:10px;font-weight:1000;letter-spacing:1px;margin-bottom:15px}.mission-art h3{font-size:clamp(25px,3vw,38px);line-height:1.05;letter-spacing:-1.5px;margin:17px 0 10px}.mission-art p{color:#b7c8b7;font-size:13px;line-height:1.6;margin:0}.mission-content{padding:28px}.reward-goal{display:block;text-align:center;padding:24px 16px;margin-bottom:22px;border:2px solid #bd7bff;border-radius:12px;background:linear-gradient(135deg,#38165f,#170d2d 72%);box-shadow:0 0 24px #8c3dff35,inset 0 0 20px #a34dff20;color:#fff}.reward-goal .goal-label{font-size:10px;letter-spacing:3px;font-weight:900;color:#e4c8ff;margin-bottom:10px}.reward-goal strong{display:block;color:#fff;font-size:clamp(25px,3vw,36px);line-height:1.1;font-weight:1000;letter-spacing:-1px;text-shadow:0 0 15px #d7a5ff55}.reward-goal span{display:block;margin-top:10px;color:#f4eaff;font-size:12px;font-weight:800;letter-spacing:1px}.mission-content h4{margin:20px 0 12px;font-size:13px;letter-spacing:1px}.mission-checklist{list-style:none;padding:0;margin:0;display:grid;gap:13px}.mission-checklist li{display:flex;align-items:flex-start;gap:11px;color:#f5fff4;font-size:13px;line-height:1.65}.checkmark{flex:0 0 22px;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;background:#8cff9b;color:#101510;border-radius:50%;font-weight:1000;font-size:13px;margin-top:1px}.mission-bottom{margin-top:25px;padding-top:21px;border-top:1px solid var(--border);text-align:center}.mission-bottom p{color:var(--muted);font-size:12px;line-height:1.7;margin:0 0 15px}.mission-submit{display:flex;width:100%;min-height:52px;align-items:center;justify-content:center;text-align:center;padding:15px 18px;background:linear-gradient(135deg,#c3ff53,#8cff9b);border:1px solid #c3ff53;border-radius:7px;color:#101510;text-decoration:none;font-size:13px;font-weight:1000;letter-spacing:.5px;box-shadow:0 7px 22px #8cff9b20;transition:transform .2s,filter .2s}.mission-submit:hover{transform:translateY(-2px);filter:brightness(1.06)}.mission-disclaimer{padding:12px 14px;border-left:3px solid #bd7bff;background:#20142e;color:#e8d9ff;font-size:11px;line-height:1.7;margin-top:16px;border-radius:0 5px 5px 0}
+.container{width:min(1180px,90%);margin:0 auto;padding-bottom:70px}.section-head{display:flex;justify-content:space-between;align-items:center;gap:20px;flex-wrap:wrap;margin:30px 0 24px}.section-head h2{margin:0;font-size:24px;letter-spacing:-1px}.section-head h2 span{color:var(--green)}.tools{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:25px}.search{flex:1;min-width:190px}input,select{width:100%;padding:13px 14px;background:#141c15;border:1px solid var(--border);border-radius:5px;color:var(--white);outline:none}input:focus,select:focus{border-color:var(--green)}.btn{display:inline-flex;justify-content:center;align-items:center;padding:12px 17px;border:1px solid var(--border);border-radius:5px;background:var(--panel);color:var(--white);text-decoration:none;font-size:12px;font-weight:900;transition:.2s}.btn:hover{border-color:var(--green)}.btn-green{background:var(--lime);color:#101510;border-color:var(--lime)}.btn-green:hover{background:var(--green)}
+.grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.member{min-width:0;background:var(--panel);border:1px solid var(--border);border-radius:9px;overflow:hidden;transition:transform .2s,border-color .2s}.member:hover{transform:translateY(-4px);border-color:var(--green)}.nft-wrap{position:relative;background:#263729;aspect-ratio:1/1;overflow:hidden}.nft-wrap img{width:100%;height:100%;object-fit:cover;display:block}.nft-placeholder{width:100%;height:100%;display:flex;justify-content:center;align-items:center;font-size:70px;background:radial-gradient(circle,#426548,#18271a 75%)}.member-badge{position:absolute;left:12px;top:12px;padding:7px 9px;border-radius:4px;background:var(--lime);color:#101510;font-size:9px;font-weight:1000;letter-spacing:1px}.member-body{padding:17px}.member-name{font-size:19px;font-weight:1000;overflow-wrap:anywhere;margin-bottom:8px}.member-name a{text-decoration:none}.member-name a:hover{color:var(--green)}.handle{color:var(--green);font-size:13px;font-weight:800;margin-bottom:13px}.wallet{color:var(--muted);font-size:11px;margin-bottom:16px;overflow-wrap:anywhere}.member-actions{display:flex;gap:8px}.member-actions .btn{flex:1;padding:11px 8px;font-size:10px}.empty{display:none;text-align:center;padding:65px 20px;border:1px dashed var(--border);border-radius:9px;color:var(--muted)}.empty strong{display:block;font-size:25px;color:var(--green);margin-bottom:10px}
+.missions{margin:52px 0 65px}.mission-intro{color:var(--muted);line-height:1.7;font-size:14px;max-width:720px}.mission-card{margin-top:20px;display:grid;grid-template-columns:1fr 1.1fr;gap:0;background:linear-gradient(135deg,#1a281b,#151c16);border:1px solid #476047;border-radius:12px;overflow:hidden}.mission-art{padding:26px;display:flex;flex-direction:column;justify-content:center;align-items:center;min-height:320px;text-align:center;background:radial-gradient(circle at 25% 25%,#345a37,#18231a 65%)}.mission-preview{display:block;width:100%;max-width:440px;aspect-ratio:1/1;object-fit:cover;border:1px solid #476047;border-radius:10px;box-shadow:0 12px 38px #0008}.mission-tag{display:inline-block;padding:7px 10px;border-radius:4px;background:var(--lime);color:#101510;font-size:10px;font-weight:1000;letter-spacing:1px;margin-bottom:15px}.mission-art h3{font-size:clamp(25px,3vw,38px);line-height:1.05;letter-spacing:-1.5px;margin:17px 0 10px}.mission-art p{color:#b7c8b7;font-size:13px;line-height:1.6;margin:0}.mission-content{padding:28px}.reward-goal{display:block;text-align:center;padding:24px 16px;margin-bottom:22px;border:2px solid #bd7bff;border-radius:12px;background:linear-gradient(135deg,#38165f,#170d2d 72%);box-shadow:0 0 24px #8c3dff35,inset 0 0 20px #a34dff20;color:#fff}.reward-goal .goal-label{font-size:10px;letter-spacing:3px;font-weight:900;color:#e4c8ff;margin-bottom:10px}.reward-goal strong{display:block;color:#fff;font-size:clamp(25px,3vw,36px);line-height:1.1;font-weight:1000;letter-spacing:-1px;text-shadow:0 0 15px #d7a5ff55}.reward-goal span{display:block;margin-top:10px;color:#f4eaff;font-size:12px;font-weight:800;letter-spacing:1px}.mission-content h4{margin:20px 0 12px;font-size:13px;letter-spacing:1px}.mission-checklist{list-style:none;padding:0;margin:0;display:grid;gap:13px}.mission-checklist li{display:flex;align-items:flex-start;gap:11px;color:#f5fff4;font-size:13px;line-height:1.65}.checkmark{flex:0 0 22px;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;background:#8cff9b;color:#101510;border-radius:50%;font-weight:1000;font-size:13px;margin-top:1px}.mission-bottom{margin-top:25px;padding-top:21px;border-top:1px solid var(--border);text-align:center}.mission-bottom p{color:var(--muted);font-size:12px;line-height:1.7;margin:0 0 15px}.mission-submit{display:flex;width:100%;min-height:52px;align-items:center;justify-content:center;text-align:center;padding:15px 18px;background:linear-gradient(135deg,#c3ff53,#8cff9b);border:1px solid #c3ff53;border-radius:7px;color:#101510;text-decoration:none;font-size:13px;font-weight:1000;letter-spacing:.5px;box-shadow:0 7px 22px #8cff9b20;transition:transform .2s,filter .2s}.mission-submit:hover{transform:translateY(-2px);filter:brightness(1.06)}.mission-disclaimer{padding:12px 14px;border-left:3px solid #bd7bff;background:#20142e;color:#e8d9ff;font-size:11px;line-height:1.7;margin-top:16px;border-radius:0 5px 5px 0}
 .admin{margin-top:65px;background:#141c15;border:1px solid var(--border);border-radius:9px;padding:25px}.admin-header{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;align-items:center;margin-bottom:20px}.admin h2{margin:0}.admin h2 span{color:var(--green)}.notice{color:var(--muted);font-size:12px;line-height:1.7;margin-bottom:22px}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}.field label{display:block;margin-bottom:8px;font-size:11px;font-weight:900;letter-spacing:1px}.field.full{grid-column:1/-1}.form-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}#message{min-height:20px;margin-top:15px;font-size:12px;color:var(--green)}.footer{border-top:1px solid var(--border);padding:28px 15px;text-align:center;color:var(--muted);font-size:11px;letter-spacing:1px}.footer a{color:var(--green);text-decoration:none}
-@media(max-width:850px){.grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{aspect-ratio:auto;min-height:430px;padding:52px 24px 36px;background-position:center}.hero h1{letter-spacing:-3px}.mission-card{grid-template-columns:1fr}.mission-art{min-height:260px}}@media(max-width:540px){.site-header{padding:15px 5%;gap:12px}.logo img{width:clamp(125px,36vw,175px);max-height:48px}.nav{gap:10px}.nav a{font-size:10px}.hero{min-height:500px;padding:48px 18px 32px;background-position:58% center}.hero h1{font-size:clamp(37px,10vw,54px);letter-spacing:-2px;overflow-wrap:anywhere}.hero .eyebrow{letter-spacing:2px}.hero p{font-size:14px}.stats{gap:20px;margin-top:25px}.stat strong{font-size:24px}.grid{grid-template-columns:1fr}.container{width:92%}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.admin{padding:18px}.mission-content,.mission-art{padding:21px}.mission-art{min-height:230px}.mission-buttons .btn{flex:1}}
-@media(prefers-reduced-motion:reduce){body:before{animation:none;scroll-behavior:auto}}\n</style>
+
+/* LIVE FROGINAL DOGS MARKETPLACE */
+.market-section{margin:58px 0 65px;padding:clamp(18px,3.5vw,34px);border:1px solid #526b51;border-radius:14px;background:linear-gradient(145deg,rgba(21,32,22,.98),rgba(35,53,33,.97));box-shadow:0 18px 45px #0004;overflow:hidden}
+.market-topline{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.market-kicker{color:var(--lime);font-size:10px;font-weight:1000;letter-spacing:3px;text-transform:uppercase}
+.market-title{margin:10px 0;font-size:clamp(27px,4vw,43px);line-height:1.05;letter-spacing:-1.5px;color:#fff8d7}
+.market-title span{color:var(--lime)}
+.market-description{max-width:700px;color:var(--muted);font-size:13px;line-height:1.8;margin:0}
+.market-toolbar{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin:25px 0 18px;padding:13px 15px;border:1px solid #40583e;border-radius:8px;background:#111a12}
+.market-status{font-size:11px;color:var(--muted);line-height:1.6}
+.market-status strong{color:var(--green)}
+.market-status .status-dot{display:inline-block;width:8px;height:8px;margin-right:7px;border-radius:50%;background:#8cff9b;box-shadow:0 0 10px #8cff9b80}
+.market-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
+.market-card{min-width:0;overflow:hidden;border:1px solid #4c6547;border-radius:10px;background:#19251a;transition:transform .2s,border-color .2s}
+.market-card:hover{transform:translateY(-4px);border-color:var(--lime)}
+.market-image-wrap{position:relative;aspect-ratio:1/1;overflow:hidden;background:#263729}
+.market-image{width:100%;height:100%;display:block;object-fit:cover;transition:transform .35s}
+.market-card:hover .market-image{transform:scale(1.035)}
+.market-listing-badge{position:absolute;top:12px;left:12px;padding:7px 10px;border-radius:4px;background:var(--lime);color:#101510;font-size:9px;font-weight:1000;letter-spacing:1px}
+.market-card-body{padding:17px}
+.market-nft-name{margin:0 0 14px;color:#fff8d7;font-size:20px;font-weight:1000;overflow-wrap:anywhere}
+.market-price-label{color:#aebfa8;font-size:9px;font-weight:900;letter-spacing:2px}
+.market-price{margin-top:5px;color:var(--lime);font-size:clamp(25px,3vw,32px);font-weight:1000;letter-spacing:-1px}
+.market-meta{display:flex;justify-content:space-between;align-items:center;gap:8px;flex-wrap:wrap;margin-top:12px;color:var(--muted);font-size:10px}
+.market-marketplace{color:#d9f47a;font-weight:900;text-transform:uppercase;letter-spacing:.8px}
+.market-actions{display:flex;gap:8px;margin-top:18px}
+.market-actions .btn{flex:1;min-width:0;padding:11px 7px;font-size:10px}
+.market-empty,.market-error,.market-loading{padding:38px 18px;border:1px dashed #526b51;border-radius:9px;text-align:center;color:var(--muted);font-size:13px;line-height:1.8}
+.market-empty strong,.market-error strong,.market-loading strong{display:block;margin-bottom:8px;color:var(--lime);font-size:18px}
+.market-error{border-color:#8b5878}
+.market-error strong{color:#ffb2df}
+.market-footnote{margin:16px 0 0;color:#aebfa8;font-size:10px;line-height:1.7}
+.market-footnote a{color:var(--green)}
+@media(max-width:850px){.grid,.market-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.hero{aspect-ratio:auto;min-height:430px;padding:52px 24px 36px;background-position:center}.hero h1{letter-spacing:-3px}.mission-card{grid-template-columns:1fr}.mission-art{min-height:260px}}
+@media(max-width:540px){.site-header{padding:15px 5%;gap:12px}.logo img{width:clamp(125px,36vw,175px);max-height:48px}.nav{gap:10px}.nav a{font-size:10px}.hero{min-height:500px;padding:48px 18px 32px;background-position:58% center}.hero h1{font-size:clamp(37px,10vw,54px);letter-spacing:-2px;overflow-wrap:anywhere}.hero .eyebrow{letter-spacing:2px}.hero p{font-size:14px}.stats{gap:20px;margin-top:25px}.stat strong{font-size:24px}.grid,.market-grid{grid-template-columns:1fr}.container{width:92%}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.admin{padding:18px}.mission-content,.mission-art{padding:21px}.mission-art{min-height:230px}.mission-buttons .btn{flex:1}.market-section{padding:18px 14px}.market-title{letter-spacing:-1px}.market-toolbar{align-items:flex-start}.market-toolbar .btn{width:100%}.market-actions .btn{font-size:10px;padding:11px 5px}}
+@media(prefers-reduced-motion:reduce){body:before{animation:none}html{scroll-behavior:auto}.market-card,.market-image{transition:none}}
+</style>
 </head>
 <body>
 <header class="site-header">
@@ -42,9 +70,10 @@ a{color:inherit}button,input,select{font:inherit}button{cursor:pointer}
   <nav class="nav">
     <a href="./index.html">HOME</a><a href="./index.html#products">SHOP</a>
     <a href="#brand-film">BRAND FILM</a><a class="home-link" href="#army">FROGINALARMY 🐸</a>
-    <a href="#missions">MISSIONS</a>
+    <a href="#marketplace">NFT MARKET</a><a href="#missions">MISSIONS</a>
   </nav>
 </header>
+
 <section class="hero">
   <div class="eyebrow">FROGINALS COMMUNITY</div>
   <h1>THE FROGINALARMY.</h1>
@@ -63,14 +92,7 @@ a{color:inherit}button,input,select{font:inherit}button{cursor:pointer}
     <p class="brand-film-intro">Every universe starts with a story. Hit play, meet the FROGINAL DOGS, and get a first look at the culture behind the FROGINALS Army.</p>
   </div>
   <div class="brand-film-frame">
-    <iframe
-      src="https://www.youtube-nocookie.com/embed/H7NPenor2fs?rel=0"
-      title="FROGINAL DOGS — Official Brand Video"
-      loading="lazy"
-      referrerpolicy="strict-origin-when-cross-origin"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-      allowfullscreen>
-    </iframe>
+    <iframe src="https://www.youtube-nocookie.com/embed/H7NPenor2fs?rel=0" title="FROGINAL DOGS — Official Brand Video" loading="lazy" referrerpolicy="strict-origin-when-cross-origin" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
   </div>
   <div class="brand-film-bottom">
     <p><strong>WATCH THE STORY. JOIN THE ARMY.</strong><br>Play the film here, then explore the members and missions below.</p>
@@ -83,6 +105,29 @@ a{color:inherit}button,input,select{font:inherit}button{cursor:pointer}
   <div class="tools"><div class="search"><input type="search" id="search" placeholder="Search X username or wallet..." aria-label="Search members"></div><a class="btn btn-green" href="#admin">+ ADD MEMBER</a></div>
   <div class="grid" id="memberGrid"></div>
   <div class="empty" id="empty"><strong>NO FROGS FOUND 🐸</strong>No members match your search yet.</div>
+
+  <!-- LIVE GRAVEMARKET NFT LISTINGS -->
+  <section class="market-section" id="marketplace" aria-labelledby="market-title">
+    <div class="market-topline">
+      <div>
+        <div class="market-kicker">LIVE FROM GRAVEMARKET</div>
+        <h2 class="market-title" id="market-title">FROGINAL DOGS <span>ON THE MARKET.</span></h2>
+        <p class="market-description">Explore Froginal Dogs currently listed for sale. Live listing data is retrieved from Gravemarket, so prices and availability can change.</p>
+      </div>
+      <a class="btn btn-green" href="https://gravemarket.io/7b265fa3-c77d-4a2a-aa27-656900136b52" target="_blank" rel="noopener noreferrer">OPEN COLLECTION ↗</a>
+    </div>
+
+    <div class="market-toolbar">
+      <div class="market-status" id="marketStatus" role="status" aria-live="polite"><strong>CONNECTING TO GRAVEMARKET...</strong></div>
+      <button class="btn" type="button" id="refreshMarket">↻ REFRESH LISTINGS</button>
+    </div>
+
+    <div class="market-grid" id="marketGrid" aria-live="polite">
+      <div class="market-loading"><strong>🐸 LOADING THE FROGS...</strong>Fetching the latest marketplace data.</div>
+    </div>
+
+    <p class="market-footnote">Listing information is provided by Gravemarket. A listing can change or sell before you open the marketplace. FROGINALS does not process or guarantee transactions here.</p>
+  </section>
 
   <section class="missions" id="missions">
     <div class="section-head"><h2>ARMY <span>MISSIONS</span> & REWARDS</h2><span style="color:var(--muted);font-size:12px">PLAY IT. PROVE IT. CLAIM IT.</span></div>
@@ -119,20 +164,26 @@ a{color:inherit}button,input,select{font:inherit}button{cursor:pointer}
   <section class="admin" id="admin">
     <div class="admin-header"><h2>ARMY <span>MANAGER</span></h2><span style="font-size:11px;color:var(--muted)">MEMBER ENTRY FORM</span></div>
     <p class="notice">Add the member's X handle, public Solana wallet, and NFT image or marketplace URL. This prototype saves entries in this browser only. Anyone who can access this page can use this form. Do not treat it as a private or secure admin panel.</p>
-    <form id="memberForm"><div class="form-grid">
-      <div class="field"><label for="xHandle">X USERNAME *</label><input id="xHandle" placeholder="@frogcollector" maxlength="100" required></div>
-      <div class="field"><label for="walletAddress">SOLANA WALLET ADDRESS *</label><input id="walletAddress" placeholder="Public wallet address" maxlength="100" required></div>
-      <div class="field full"><label for="nftUrl">NFT IMAGE OR MARKETPLACE URL *</label><input id="nftUrl" type="url" placeholder="https://..." maxlength="2000" required></div>
-      <div class="field full"><label for="displayName">DISPLAY NAME (OPTIONAL)</label><input id="displayName" placeholder="FROG LEGEND" maxlength="80"></div>
-    </div>
-    <div class="form-actions"><button class="btn btn-green" type="submit">ADD TO THE ARMY 🐸</button><button class="btn" type="button" id="exportBtn">EXPORT MEMBERS JSON</button><button class="btn" type="button" id="importBtn">IMPORT MEMBERS JSON</button><input id="importFile" type="file" accept=".json,application/json" hidden></div>
-    <div id="message" role="status" aria-live="polite"></div></form>
+    <form id="memberForm">
+      <div class="form-grid">
+        <div class="field"><label for="xHandle">X USERNAME *</label><input id="xHandle" placeholder="@frogcollector" maxlength="100" required></div>
+        <div class="field"><label for="walletAddress">SOLANA WALLET ADDRESS *</label><input id="walletAddress" placeholder="Public wallet address" maxlength="100" required></div>
+        <div class="field full"><label for="nftUrl">NFT IMAGE OR MARKETPLACE URL *</label><input id="nftUrl" type="url" placeholder="https://..." maxlength="2000" required></div>
+        <div class="field full"><label for="displayName">DISPLAY NAME (OPTIONAL)</label><input id="displayName" placeholder="FROG LEGEND" maxlength="80"></div>
+      </div>
+      <div class="form-actions"><button class="btn btn-green" type="submit">ADD TO THE ARMY 🐸</button><button class="btn" type="button" id="exportBtn">EXPORT MEMBERS JSON</button><button class="btn" type="button" id="importBtn">IMPORT MEMBERS JSON</button><input id="importFile" type="file" accept=".json,application/json" hidden></div>
+      <div id="message" role="status" aria-live="polite"></div>
+    </form>
   </section>
 </main>
+
 <footer class="footer">FROGINALARMY © 2026 · BUILT DIFFERENT. BUILT FROGINAL.<br><br><a href="./index.html">BACK TO FROGINALS</a></footer>
+
 <script>
 (() => {
   "use strict";
+
+  /* EXISTING FROGINALARMY MEMBER DIRECTORY */
   const STORAGE_KEY = "froginalarmy_members_v1";
   const grid = document.getElementById("memberGrid");
   const search = document.getElementById("search");
@@ -142,103 +193,407 @@ a{color:inherit}button,input,select{font:inherit}button{cursor:pointer}
   let members = loadMembers();
 
   function loadMembers() {
-    try { const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]"); return Array.isArray(saved) ? saved.filter(isValidRecord) : []; }
-    catch { return []; }
+    try {
+      const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) || "[]");
+      return Array.isArray(saved) ? saved.filter(isValidRecord) : [];
+    } catch { return []; }
   }
+
   function isValidRecord(member) {
-    return member && typeof member.id === "string" && typeof member.handle === "string" && typeof member.wallet === "string" && typeof member.nftUrl === "string";
+    return member && typeof member.id === "string" &&
+      typeof member.handle === "string" &&
+      typeof member.wallet === "string" &&
+      typeof member.nftUrl === "string";
   }
+
   function saveMembers() {
-    try { localStorage.setItem(STORAGE_KEY, JSON.stringify(members)); return true; }
-    catch { showMessage("Could not save. Browser storage may be full or disabled.", true); return false; }
+    try {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(members));
+      return true;
+    } catch {
+      showMessage("Could not save. Browser storage may be full or disabled.", true);
+      return false;
+    }
   }
+
   function safeHttpUrl(value) {
-    try { const url = new URL(value); return ["https:","http:"].includes(url.protocol) ? url.href : null; }
-    catch { return null; }
+    try {
+      const url = new URL(value);
+      return ["https:", "http:"].includes(url.protocol) ? url.href : null;
+    } catch { return null; }
   }
-  function shortWallet(wallet) { return wallet.length < 15 ? wallet : wallet.slice(0,6) + "..." + wallet.slice(-5); }
-  function showMessage(text, error = false) { message.textContent = text; message.style.color = error ? "#ff70c7" : "#8cff9b"; }
+
+  function shortWallet(wallet) {
+    return wallet.length < 15 ? wallet : wallet.slice(0, 6) + "..." + wallet.slice(-5);
+  }
+
+  function showMessage(text, error = false) {
+    message.textContent = text;
+    message.style.color = error ? "#ff70c7" : "#8cff9b";
+  }
+
   function makeElement(tag, className, text) {
     const element = document.createElement(tag);
     if (className) element.className = className;
     if (text !== undefined) element.textContent = text;
     return element;
   }
+
   function makeLink(text, href, className, newTab = true) {
-    const link = makeElement("a", className, text); link.href = href;
-    if (newTab) { link.target = "_blank"; link.rel = "noopener noreferrer"; }
+    const link = makeElement("a", className, text);
+    link.href = href;
+    if (newTab) {
+      link.target = "_blank";
+      link.rel = "noopener noreferrer";
+    }
     return link;
   }
+
   function render() {
     const query = search.value.trim().toLowerCase();
-    const visible = members.filter(member => member.handle.toLowerCase().includes(query) || member.wallet.toLowerCase().includes(query) || (member.displayName || "").toLowerCase().includes(query));
+    const visible = members.filter(member =>
+      member.handle.toLowerCase().includes(query) ||
+      member.wallet.toLowerCase().includes(query) ||
+      (member.displayName || "").toLowerCase().includes(query)
+    );
+
     grid.replaceChildren();
     document.getElementById("memberCount").textContent = members.length;
     empty.style.display = visible.length ? "none" : "block";
+
     visible.forEach(member => {
-      const card = makeElement("article","member");
-      const imageWrap = makeElement("div","nft-wrap");
-      imageWrap.appendChild(makeElement("span","member-badge","FROGINALARMY"));
+      const card = makeElement("article", "member");
+      const imageWrap = makeElement("div", "nft-wrap");
+      imageWrap.appendChild(makeElement("span", "member-badge", "FROGINALARMY"));
+
       const imageUrl = safeHttpUrl(member.nftUrl);
       if (imageUrl) {
-        const img = document.createElement("img"); img.src = imageUrl; img.alt = "NFT submitted for " + member.handle; img.loading = "lazy"; img.referrerPolicy = "no-referrer";
-        img.addEventListener("error",() => { img.remove(); imageWrap.appendChild(makeElement("div","nft-placeholder","🐸")); },{once:true});
+        const img = document.createElement("img");
+        img.src = imageUrl;
+        img.alt = "NFT submitted for " + member.handle;
+        img.loading = "lazy";
+        img.referrerPolicy = "no-referrer";
+        img.addEventListener("error", () => {
+          img.remove();
+          imageWrap.appendChild(makeElement("div", "nft-placeholder", "🐸"));
+        }, { once: true });
         imageWrap.appendChild(img);
-      } else imageWrap.appendChild(makeElement("div","nft-placeholder","🐸"));
-      const body = makeElement("div","member-body");
+      } else {
+        imageWrap.appendChild(makeElement("div", "nft-placeholder", "🐸"));
+      }
+
+      const body = makeElement("div", "member-body");
       const displayName = member.displayName || member.handle;
-      const name = makeElement("div","member-name");
-      const profileUrl = "https://x.com/" + member.handle.replace(/^@/,"");
-      name.appendChild(makeLink(displayName,profileUrl,""));
-      const handle = makeElement("div","handle",member.handle);
-      const wallet = makeElement("div","wallet","WALLET: " + shortWallet(member.wallet));
-      const actions = makeElement("div","member-actions");
-      actions.appendChild(makeLink("VIEW X ↗",profileUrl,"btn"));
-      if (imageUrl) actions.appendChild(makeLink("VIEW NFT ↗",imageUrl,"btn btn-green"));
-      body.append(name,handle,wallet,actions); card.append(imageWrap,body); grid.appendChild(card);
+      const name = makeElement("div", "member-name");
+      const profileUrl = "https://x.com/" + member.handle.replace(/^@/, "");
+      name.appendChild(makeLink(displayName, profileUrl, ""));
+      const handle = makeElement("div", "handle", member.handle);
+      const wallet = makeElement("div", "wallet", "WALLET: " + shortWallet(member.wallet));
+      const actions = makeElement("div", "member-actions");
+
+      actions.appendChild(makeLink("VIEW X ↗", profileUrl, "btn"));
+      if (imageUrl) actions.appendChild(makeLink("VIEW NFT ↗", imageUrl, "btn btn-green"));
+
+      body.append(name, handle, wallet, actions);
+      card.append(imageWrap, body);
+      grid.appendChild(card);
     });
   }
-  form.addEventListener("submit",event => {
+
+  form.addEventListener("submit", event => {
     event.preventDefault();
+
     const handleInput = document.getElementById("xHandle").value.trim();
     const wallet = document.getElementById("walletAddress").value.trim();
     const nftUrl = document.getElementById("nftUrl").value.trim();
     const displayName = document.getElementById("displayName").value.trim();
     const handle = handleInput.startsWith("@") ? handleInput : "@" + handleInput;
-    if (!/^@[A-Za-z0-9_]{1,15}$/.test(handle)) { showMessage("Enter a valid X username (letters, numbers, underscores).",true); return; }
-    if (wallet.length < 32 || wallet.length > 100) { showMessage("Check the wallet address length.",true); return; }
+
+    if (!/^@[A-Za-z0-9_]{1,15}$/.test(handle)) {
+      showMessage("Enter a valid X username (letters, numbers, underscores).", true);
+      return;
+    }
+    if (wallet.length < 32 || wallet.length > 100) {
+      showMessage("Check the wallet address length.", true);
+      return;
+    }
+
     const validNftUrl = safeHttpUrl(nftUrl);
-    if (!validNftUrl) { showMessage("Enter a valid HTTP or HTTPS NFT URL.",true); return; }
-    if (members.some(member => member.wallet.toLowerCase() === wallet.toLowerCase())) { showMessage("This wallet is already listed.",true); return; }
-    members.unshift({id:createId(),handle,wallet,nftUrl:validNftUrl,displayName:displayName.slice(0,80),addedAt:new Date().toISOString()});
-    if (!saveMembers()) { members.shift(); return; }
-    form.reset(); search.value = ""; render(); showMessage("Member added to this browser's directory! 🐸");
+    if (!validNftUrl) {
+      showMessage("Enter a valid HTTP or HTTPS NFT URL.", true);
+      return;
+    }
+    if (members.some(member => member.wallet.toLowerCase() === wallet.toLowerCase())) {
+      showMessage("This wallet is already listed.", true);
+      return;
+    }
+
+    members.unshift({
+      id: createId(),
+      handle,
+      wallet,
+      nftUrl: validNftUrl,
+      displayName: displayName.slice(0, 80),
+      addedAt: new Date().toISOString()
+    });
+
+    if (!saveMembers()) {
+      members.shift();
+      return;
+    }
+
+    form.reset();
+    search.value = "";
+    render();
+    showMessage("Member added to this browser's directory! 🐸");
   });
-  function createId() { if (crypto.randomUUID) return crypto.randomUUID(); return Date.now().toString(36) + Math.random().toString(36).slice(2); }
-  search.addEventListener("input",render);
-  document.getElementById("exportBtn").addEventListener("click",() => {
-    const blob = new Blob([JSON.stringify(members,null,2)],{type:"application/json"});
-    const url = URL.createObjectURL(blob); const link = document.createElement("a"); link.href = url; link.download = "froginalarmy-members.json"; link.click(); URL.revokeObjectURL(url); showMessage("Member data exported.");
+
+  function createId() {
+    if (crypto.randomUUID) return crypto.randomUUID();
+    return Date.now().toString(36) + Math.random().toString(36).slice(2);
+  }
+
+  search.addEventListener("input", render);
+
+  document.getElementById("exportBtn").addEventListener("click", () => {
+    const blob = new Blob([JSON.stringify(members, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = "froginalarmy-members.json";
+    link.click();
+    URL.revokeObjectURL(url);
+    showMessage("Member data exported.");
   });
-  document.getElementById("importBtn").addEventListener("click",() => document.getElementById("importFile").click());
-  document.getElementById("importFile").addEventListener("change",async event => {
-    const file = event.target.files[0]; if (!file) return;
+
+  document.getElementById("importBtn").addEventListener("click", () => {
+    document.getElementById("importFile").click();
+  });
+
+  document.getElementById("importFile").addEventListener("change", async event => {
+    const file = event.target.files[0];
+    if (!file) return;
+
     try {
       const imported = JSON.parse(await file.text());
-      if (!Array.isArray(imported) || imported.length > 10000) throw new Error("Invalid member file.");
-      const cleaned = imported.filter(member => isValidRecord(member) && member.handle.length <= 100 && member.wallet.length <= 100 && (member.displayName || "").length <= 80 && safeHttpUrl(member.nftUrl));
+      if (!Array.isArray(imported) || imported.length > 10000) {
+        throw new Error("Invalid member file.");
+      }
+
+      const cleaned = imported.filter(member =>
+        isValidRecord(member) &&
+        member.handle.length <= 100 &&
+        member.wallet.length <= 100 &&
+        (member.displayName || "").length <= 80 &&
+        safeHttpUrl(member.nftUrl)
+      );
+
       if (!confirm("Import " + cleaned.length + " members? Existing records will be kept unless their wallet matches.")) return;
-      const byWallet = new Map(members.map(member => [member.wallet.toLowerCase(),member]));
-      cleaned.forEach(member => byWallet.set(member.wallet.toLowerCase(),member));
-      const previous = members; members = Array.from(byWallet.values());
-      if (!saveMembers()) { members = previous; return; }
-      render(); showMessage("Import complete. " + members.length + " members listed.");
-    } catch { showMessage("Could not import this file. Check the JSON format.",true); }
-    finally { event.target.value = ""; }
+
+      const byWallet = new Map(members.map(member => [member.wallet.toLowerCase(), member]));
+      cleaned.forEach(member => byWallet.set(member.wallet.toLowerCase(), member));
+
+      const previous = members;
+      members = Array.from(byWallet.values());
+      if (!saveMembers()) {
+        members = previous;
+        return;
+      }
+
+      render();
+      showMessage("Import complete. " + members.length + " members listed.");
+    } catch {
+      showMessage("Could not import this file. Check the JSON format.", true);
+    } finally {
+      event.target.value = "";
+    }
   });
 
-
   render();
+
+  /* LIVE GRAVEMARKET LISTINGS */
+  const MARKET_API =
+    "https://api.solanadeads.com/gravemarket/v1/collections/7b265fa3-c77d-4a2a-aa27-656900136b52/items?limit=50";
+
+  const marketGrid = document.getElementById("marketGrid");
+  const marketStatus = document.getElementById("marketStatus");
+  const refreshMarketButton = document.getElementById("refreshMarket");
+
+  function marketElement(tag, className, text) {
+    const element = document.createElement(tag);
+    if (className) element.className = className;
+    if (text !== undefined) element.textContent = text;
+    return element;
+  }
+
+  function marketLink(label, url, className) {
+    const link = marketElement("a", className, label);
+    link.href = url;
+    link.target = "_blank";
+    link.rel = "noopener noreferrer";
+    return link;
+  }
+
+  function showMarketMessage(type, heading, detail) {
+    marketGrid.replaceChildren();
+    const box = marketElement("div", type, "");
+    box.style.gridColumn = "1 / -1";
+    box.appendChild(marketElement("strong", "", heading));
+    box.appendChild(document.createTextNode(detail));
+    marketGrid.appendChild(box);
+  }
+
+  function formatPrice(price, currency) {
+    const amount = Number(price);
+    if (!Number.isFinite(amount) || amount <= 0) return null;
+
+    const formatted = new Intl.NumberFormat("en-US", {
+      maximumFractionDigits: 6
+    }).format(amount);
+
+    return formatted + " " + String(currency || "SOL").toUpperCase();
+  }
+
+  function createMarketCard(nft) {
+    const card = marketElement("article", "market-card");
+    const imageWrap = marketElement("div", "market-image-wrap");
+    const imageUrl = safeHttpUrl(nft.thumbnail_url) || safeHttpUrl(nft.image_url);
+
+    if (imageUrl) {
+      const image = marketElement("img", "market-image");
+      image.src = imageUrl;
+      image.alt = nft.name || "Froginal Dogs NFT";
+      image.loading = "lazy";
+      image.referrerPolicy = "no-referrer";
+      image.addEventListener("error", () => {
+        image.remove();
+        imageWrap.appendChild(marketElement("div", "nft-placeholder", "🐸"));
+      }, { once: true });
+      imageWrap.appendChild(image);
+    } else {
+      imageWrap.appendChild(marketElement("div", "nft-placeholder", "🐸"));
+    }
+
+    imageWrap.appendChild(marketElement("span", "market-listing-badge", "LIVE LISTING"));
+
+    const body = marketElement("div", "market-card-body");
+    body.appendChild(marketElement("h3", "market-nft-name", nft.name || "Froginal Dogs"));
+
+    body.appendChild(marketElement("div", "market-price-label", "ASKING PRICE"));
+    body.appendChild(marketElement(
+      "div",
+      "market-price",
+      formatPrice(nft.listing_price, nft.listing_currency) || "Price unavailable"
+    ));
+
+    const meta = marketElement("div", "market-meta");
+    meta.appendChild(marketElement(
+      "span",
+      "market-marketplace",
+      nft.listing_marketplace || "Marketplace listing"
+    ));
+
+    if (Number.isFinite(Number(nft.token_id_numeric))) {
+      meta.appendChild(marketElement("span", "", "#" + nft.token_id_numeric));
+    }
+    body.appendChild(meta);
+
+    const actions = marketElement("div", "market-actions");
+
+    // The API response does not include an individual listing URL.
+    // Send buyers to the verified collection page rather than inventing one.
+    actions.appendChild(marketLink(
+      "VIEW COLLECTION ↗",
+      "https://gravemarket.io/7b265fa3-c77d-4a2a-aa27-656900136b52",
+      "btn btn-green"
+    ));
+
+    if (imageUrl) {
+      actions.appendChild(marketLink("VIEW IMAGE ↗", imageUrl, "btn"));
+    }
+
+    body.appendChild(actions);
+    card.append(imageWrap, body);
+    return card;
+  }
+
+  async function loadMarketListings() {
+    refreshMarketButton.disabled = true;
+    refreshMarketButton.textContent = "↻ LOADING...";
+    marketStatus.textContent = "Fetching live listing data from Gravemarket...";
+    showMarketMessage("market-loading", "🐸 LOADING THE FROGS...", "Fetching current listings.");
+
+    try {
+      const response = await fetch(MARKET_API, {
+        method: "GET",
+        headers: { "Accept": "application/json" },
+        cache: "no-store"
+      });
+
+      if (!response.ok) {
+        throw new Error("Gravemarket returned HTTP " + response.status + ".");
+      }
+
+      const payload = await response.json();
+
+      if (payload.success !== true) {
+        throw new Error("The marketplace API did not return a successful response.");
+      }
+
+      // The response structure is data.data, as confirmed by the endpoint test.
+      const allItems = Array.isArray(payload.data?.data) ? payload.data.data : [];
+
+      // Only display active listings with a positive, numeric asking price.
+      const listings = allItems.filter(item =>
+        item &&
+        !item.is_burned &&
+        item.listing_price !== null &&
+        item.listing_price !== undefined &&
+        item.listing_price !== "" &&
+        Number.isFinite(Number(item.listing_price)) &&
+        Number(item.listing_price) > 0 &&
+        typeof item.listing_currency === "string" &&
+        item.listing_currency.length > 0
+      );
+
+      marketGrid.replaceChildren();
+
+      if (!listings.length) {
+        showMarketMessage(
+          "market-empty",
+          "NO ACTIVE LISTINGS RIGHT NOW 🐸",
+          "No priced listings were returned for this collection. Check back soon or open the collection page."
+        );
+        marketStatus.textContent = "0 active listings found in the latest API response.";
+        return;
+      }
+
+      listings.forEach(nft => marketGrid.appendChild(createMarketCard(nft)));
+
+      marketStatus.replaceChildren();
+      marketStatus.appendChild(marketElement("span", "status-dot", ""));
+      marketStatus.appendChild(document.createTextNode(" "));
+      marketStatus.appendChild(marketElement("strong", "", listings.length + " ACTIVE LISTING" + (listings.length === 1 ? "" : "S")));
+      marketStatus.appendChild(document.createTextNode(" · Live data from Gravemarket"));
+
+    } catch (error) {
+      console.error("FROGINAL DOGS marketplace error:", error);
+
+      showMarketMessage(
+        "market-error",
+        "COULDN'T LOAD THE MARKETPLACE",
+        "The live feed could not be reached from this page. This can happen if the API blocks browser requests (CORS) or is temporarily unavailable. Use the collection link to view listings directly."
+      );
+
+      marketStatus.textContent = "Marketplace feed unavailable.";
+    } finally {
+      refreshMarketButton.disabled = false;
+      refreshMarketButton.textContent = "↻ REFRESH LISTINGS";
+    }
+  }
+
+  refreshMarketButton.addEventListener("click", loadMarketListings);
+  loadMarketListings();
 })();
 </script>
 </body>
