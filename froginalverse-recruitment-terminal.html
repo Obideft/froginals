@@ -70,8 +70,8 @@ h1 {
 }
 .subtitle { margin: 12px 0 0; color: var(--dark); font-size: clamp(10px, 1.4vw, 13px); font-weight: bold; letter-spacing: 4px; text-shadow: 0 1px rgba(244,240,217,.25); }
 .character-stage {
-  position: relative; display: flex; align-items: center; justify-content: center; width: min(100%, 690px);
-  height: clamp(310px, 48vh, 490px); margin: 0 0 2px; cursor: none; isolation: isolate;
+  position: relative; display: flex; align-items: center; justify-content: center; width: min(100%, 900px);
+  height: clamp(430px, 59vh, 650px); margin: 0 0 -112px; cursor: none; isolation: isolate;
 }
 .character-stage::before {
   content: ""; position: absolute; width: 83%; height: 83%; border: 1px solid rgba(244,240,217,.45); border-radius: 50%;
@@ -122,6 +122,8 @@ h1 {
 .buy:hover { background: linear-gradient(135deg, #fff1b7, #ffad42 55%, #ff792e); border-color: #fff1b7; box-shadow: 0 0 0 2px rgba(255,121,46,.25), 0 7px 0 #a64018, 0 0 36px rgba(255,185,60,.7), inset 0 2px 0 #fff; }
 .later { background: rgba(34,41,28,.42); color: var(--cream); border-color: rgba(244,240,217,.85); font-size: 12px; letter-spacing: 1px; backdrop-filter: blur(4px); }
 .later:hover { background: var(--cream); color: var(--dark); border-color: var(--cream); }
+.holder { background: linear-gradient(135deg, #a855f7 0%, #7628c7 48%, #4c168c 100%); color: #fff; border-color: #e0b7ff; box-shadow: 0 0 0 2px rgba(168,85,247,.24), 0 7px 0 #35105f, 0 0 28px rgba(168,85,247,.48), inset 0 2px 0 rgba(255,255,255,.45); }
+.holder:hover { background: linear-gradient(135deg, #d8b4fe, #a855f7 55%, #6b21a8); border-color: #f3e8ff; box-shadow: 0 0 0 2px rgba(168,85,247,.3), 0 7px 0 #35105f, 0 0 38px rgba(192,132,252,.7), inset 0 2px 0 #fff; }
 .footer { margin-top: 24px; color: var(--dark); font-size: 9px; font-weight: bold; letter-spacing: 2px; text-shadow: 0 1px rgba(244,240,217,.2); }
 .toast {
   position: fixed; z-index: 40; left: 50%; bottom: 24px; width: max-content; max-width: calc(100% - 32px); padding: 14px 18px;
@@ -144,7 +146,7 @@ h1 {
 .modal-buy { margin-top: 20px; min-height: 54px; }
 @media (max-height: 740px) {
   .terminal { padding-top: 65px; padding-bottom: 22px; }
-  .character-stage { height: 38vh; min-height: 225px; }
+  .character-stage { height: 46vh; min-height: 300px; margin-bottom: -82px; }
   h1 { margin-top: 8px; }
   .footer { margin-top: 15px; }
 }
@@ -154,10 +156,11 @@ h1 {
   .topline { top: 17px; left: 13px; right: 13px; font-size: 8px; letter-spacing: 1px; }
   h1 { font-size: clamp(27px, 9vw, 48px); letter-spacing: 1px; }
   .subtitle { font-size: 9px; letter-spacing: 2px; }
-  .character-stage { height: 40vh; min-height: 255px; margin-top: 8px; }
+  .character-stage { width: min(100%, 620px); height: 43vh; min-height: 300px; margin-top: 8px; margin-bottom: -72px; }
   .character-stage::after { font-size: 7px; letter-spacing: 1px; }
   .button { min-height: 59px; padding: 14px 12px; font-size: 12px; letter-spacing: 1.4px; }
   .later { font-size: 10px; }
+  .holder { font-size: 10px; }
   .footer { font-size: 8px; letter-spacing: 1px; }
   .frog-cursor { display: none; }
 }
@@ -182,6 +185,7 @@ h1 {
   <div class="actions">
     <a class="button buy" href="https://gravemint.io/mint/3678jb" target="_blank" rel="noopener noreferrer">BUY NFT NOW &nbsp; ↗</a>
     <button class="button later" id="instructionsButton" type="button">GET INSTRUCTIONS FIRST</button>
+    <button class="button holder" id="holderButton" type="button">I ALREADY OWN THE NFT ✓</button>
   </div>
   <div class="footer">YOUR FROG. YOUR SQUAD. YOUR MISSION.</div>
 </main>
@@ -202,6 +206,20 @@ h1 {
     <a class="button buy modal-buy" href="https://gravemint.io/mint/3678jb" target="_blank" rel="noopener noreferrer">UNDERSTOOD — BUY NFT ↗</a>
   </section>
 </div>
+<div class="modal-backdrop" id="holderModal" hidden>
+  <section class="instructions" role="dialog" aria-modal="true" aria-labelledby="holderTitle">
+    <button class="close-modal" id="closeHolderModal" type="button" aria-label="Close holder information">×</button>
+    <h2 id="holderTitle" style="color:#c084fc">HOLDER STATUS: READY</h2>
+    <p><strong>ALREADY HOLDING YOUR FROGINAL DOGS NFT, SOLDIER?</strong> Welcome back to the squad. You can skip the purchase step and head straight to the official community and current mission instructions.</p>
+    <ol>
+      <li>Make sure the NFT is held in the wallet you use for any holder-only activity.</li>
+      <li>Visit the FROGINALARMY page or official community announcements for the latest mission steps.</li>
+      <li>Follow the published eligibility and reward rules for each mission.</li>
+    </ol>
+    <p><strong>IMPORTANT:</strong> This page does not verify wallet ownership yet. Holder status and rewards must be confirmed through the project's official process. Never share your recovery phrase or private keys.</p>
+    <a class="button holder modal-buy" href="froginalarmy.html">GO TO FROGINALARMY ↗</a>
+  </section>
+</div>
 <script>
 (() => {
   const front = 'https://raw.githubusercontent.com/Obideft/froginals/main/images/recrute/froginal_Army_front.png';
@@ -217,6 +235,9 @@ h1 {
   const stage = document.getElementById('characterStage');
   const cursor = document.getElementById('frogCursor');
   const instructionsButton = document.getElementById('instructionsButton');
+  const holderButton = document.getElementById('holderButton');
+  const holderModal = document.getElementById('holderModal');
+  const closeHolderModal = document.getElementById('closeHolderModal');
   const modal = document.getElementById('instructionsModal');
   const closeModal = document.getElementById('closeModal');
   const toast = document.getElementById('toast');
@@ -231,12 +252,13 @@ h1 {
     frog.style.opacity = '.15';
     scene.style.opacity = '.18';
     window.setTimeout(() => {
-      frog.src = views[index].src;
-      frog.alt = views[index].alt;
-      scene.src = views[index].src;
+      // Install handlers before changing the source to avoid a fast-load race.
       frog.onload = () => { frog.style.opacity = ''; scene.style.opacity = ''; };
       // If an image fails, restore visibility and keep the rest of the terminal usable.
       frog.onerror = () => { frog.style.opacity = '1'; scene.style.opacity = '.22'; };
+      frog.alt = views[index].alt;
+      frog.src = views[index].src;
+      scene.src = views[index].src;
     }, 110);
   }
 
@@ -272,10 +294,15 @@ h1 {
     instructionsButton.focus();
   }
   instructionsButton.addEventListener('click', openInstructions);
+  holderButton.addEventListener('click', () => { holderModal.hidden = false; closeHolderModal.focus(); });
+  function hideHolderModal() { holderModal.hidden = true; holderButton.focus(); }
+  closeHolderModal.addEventListener('click', hideHolderModal);
+  holderModal.addEventListener('click', event => { if (event.target === holderModal) hideHolderModal(); });
   closeModal.addEventListener('click', hideInstructions);
   modal.addEventListener('click', event => { if (event.target === modal) hideInstructions(); });
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape' && !modal.hidden) hideInstructions();
+    if (event.key === 'Escape' && !holderModal.hidden) hideHolderModal();
   });
 
   // Small toast fallback for an optional recruit-later keyboard action.
