@@ -30,7 +30,7 @@ const $ = id => document.getElementById(id); const grid=$('memberGrid'), search=
 function safeHttpUrl(value){try{const u=new URL(value);return u.protocol==='https:'?u.href:null}catch{return null}}
 async function loadDiscordStatus(){
  const ds=$('discordStatus'), logout=$('discordLogout'), connect=$('discordConnect');
- try{const r=await fetch('/api/discord-status',{headers:{Accept:'application/json'},cache:'no-store'});const d=await r.json();
+ try{const r=await fetch('/api/discord?action=status',{headers:{Accept:'application/json'},cache:'no-store'});const d=await r.json();
  if(!r.ok||d.success!==true)throw new Error(d.error||'Discord status unavailable.');
  if(d.connected){connect.textContent='DISCORD CONNECTED: '+d.username;connect.href='#join-army';logout.style.display='inline-flex';ds.className='gate-status'+(d.verified?' success':'');ds.textContent=d.verified?'Verified holder: '+(d.nft_name||'FROGINAL DOGS')+' · Wallet '+shortWallet(d.wallet_address)+'. Role assignment is checked when you verify.':'Discord connected. Enter your wallet and sign the verification message to continue.'}
  else{connect.textContent='CONNECT DISCORD ↗';connect.href='/api/discord-start';logout.style.display='none';ds.textContent='Connect Discord first, then verify with Phantom.'}
@@ -42,7 +42,7 @@ $('discordVerifyForm').addEventListener('submit',async e=>{
  if(!provider||!provider.isPhantom){ds.className='gate-status error';ds.textContent='Install or open the Phantom wallet extension, then try again.';return}
  btn.disabled=true;btn.textContent='PREPARING SIGNATURE...';ds.className='gate-status';ds.textContent='Preparing a one-time wallet ownership challenge...';
  try{
-  const cr=await fetch('/api/discord-challenge',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({wallet_address:wallet})});
+  const cr=await fetch('/api/discord?action=challenge',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({wallet_address:wallet})});
   const challenge=await cr.json();if(!cr.ok||challenge.success!==true)throw new Error(challenge.error||'Could not create verification challenge.');
   const connected=await provider.connect();const connectedKey=connected.publicKey?.toString()||provider.publicKey?.toString();
   if(connectedKey!==wallet)throw new Error('The connected Phantom wallet does not match the wallet address you entered.');
@@ -50,13 +50,13 @@ $('discordVerifyForm').addEventListener('submit',async e=>{
   const signed=await provider.signMessage(new TextEncoder().encode(challenge.message),'utf8');
   const sig=signed.signature||signed;const signature=btoa(Array.from(sig).map(b=>String.fromCharCode(b)).join(''));
   btn.textContent='CHECKING NFT...';ds.textContent='Signature received. Checking verified collection ownership and assigning your Discord role...';
-  const vr=await fetch('/api/verify-discord-holder',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({wallet_address:wallet,signature})});
+  const vr=await fetch('/api/discord?action=verify',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({wallet_address:wallet,signature})});
   const result=await vr.json();if(!vr.ok||result.success!==true)throw new Error(result.error||'Verification failed.');
   ds.className='gate-status success';ds.textContent='🐸 '+result.message+' Wallet: '+shortWallet(result.wallet_address)+'.';await loadDiscordStatus();await loadMembers();
  }catch(err){ds.className='gate-status error';ds.textContent=err.message||'Verification could not be completed. No role assignment was confirmed.'}
  finally{btn.disabled=false;btn.textContent='SIGN & VERIFY NFT'}
 });
-$('discordLogout').addEventListener('click',async()=>{try{await fetch('/api/discord-logout',{method:'POST',headers:{Accept:'application/json'}})}finally{loadDiscordStatus()}});
+$('discordLogout').addEventListener('click',async()=>{try{await fetch('/api/discord?action=logout',{method:'POST',headers:{Accept:'application/json'}})}finally{loadDiscordStatus()}});
 const query=new URLSearchParams(location.search);if(query.has('discord_connected')){$('discordStatus').textContent='Discord connected successfully. Now sign with the Phantom wallet holding your NFT.'}if(query.has('discord_error')){$('discordStatus').className='gate-status error';$('discordStatus').textContent='Discord sign-in did not complete. Please try connecting again.'}
 
 function shortWallet(w){return w.length<15?w:w.slice(0,6)+'...'+w.slice(-5)}
