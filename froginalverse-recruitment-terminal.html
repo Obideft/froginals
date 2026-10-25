@@ -3,322 +3,257 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#858d51">
-<meta name="description" content="Enter the FROGINALVERSE recruitment terminal. Join the FROGINALARMY and claim your mission.">
-<title>FROGINALVERSE — RECRUITMENT TERMINAL</title>
+<meta name="theme-color" content="#11150e">
+<meta name="description" content="FROGINAL TERMINAL — enlist, receive your briefing, and join the FROGINALARMY.">
+<title>FROGINAL TERMINAL // RECRUITMENT</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
-:root {
-  --khaki: #858d51;
-  --orange: #ff792e;
-  --cream: #f4f0d9;
-  --dark: #22291c;
-  --yellow: #fff000;
-}
-* { box-sizing: border-box; }
-html { min-height: 100%; background: var(--khaki); }
-body {
-  margin: 0; min-height: 100vh; min-height: 100svh; overflow-x: hidden;
-  background: var(--khaki); color: var(--cream); font-family: "Courier New", monospace;
-  cursor: crosshair;
-}
-/* Full-screen CRT / videogame interference */
-body::before, body::after { content: ""; position: fixed; inset: 0; pointer-events: none; }
-body::before {
-  z-index: 20; opacity: .25;
-  background: repeating-linear-gradient(to bottom, transparent 0, transparent 3px, rgba(20,25,15,.5) 4px);
-}
-body::after {
-  z-index: 21; opacity: .1;
-  background: repeating-linear-gradient(90deg, transparent 0, transparent 8px, rgba(255,255,255,.12) 9px);
-  animation: flicker .13s infinite;
-}
-@keyframes flicker { 0%,100% { opacity:.07 } 50% { opacity:.17 } }
-/* Oversized character backdrop */
-.scene-character {
-  position: fixed; z-index: 0; inset: -8vh -12vw; width: 124vw; height: 116vh;
-  object-fit: contain; object-position: center; opacity: .43; pointer-events: none;
-  filter: saturate(.75) contrast(1.18) drop-shadow(0 0 30px rgba(34,41,28,.3));
-  transform: scale(1.04); animation: sceneGlitch 6.8s steps(1,end) infinite;
-  transition: opacity .18s ease, filter .2s ease;
-}
-.scene-shade {
-  position: fixed; z-index: 1; inset: 0; pointer-events: none;
-  background: linear-gradient(90deg, rgba(76,83,43,.72), rgba(92,99,55,.55) 45%, rgba(52,61,35,.72)),
-              radial-gradient(ellipse at center, transparent 10%, rgba(28,35,23,.28) 100%);
-}
-@keyframes sceneGlitch {
-  0%, 90%, 100% { transform: translate(0,0) scale(1.04); clip-path: inset(0); }
-  91% { transform: translate(7px,-2px) scale(1.06); clip-path: inset(28% 0 53% 0); filter: hue-rotate(28deg) contrast(1.5); }
-  92% { transform: translate(-6px,2px) scale(1.03); clip-path: inset(62% 0 18% 0); }
-  93% { transform: translate(0,0) scale(1.04); clip-path: inset(0); }
-}
-.terminal {
-  position: relative; z-index: 2; display: flex; flex-direction: column; align-items: center; justify-content: center;
-  width: 100%; min-height: 100vh; min-height: 100svh; padding: 80px 20px 36px; text-align: center; isolation: isolate;
-}
-.topline {
-  position: absolute; top: 24px; left: 26px; right: 26px; display: flex; justify-content: space-between; gap: 12px;
-  color: var(--dark); font-size: 11px; font-weight: bold; letter-spacing: 2px; text-shadow: 0 1px rgba(244,240,217,.25);
-}
-.status { display: inline-flex; align-items: center; gap: 8px; }
-.status::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: #d6ff76; box-shadow: 0 0 10px #d6ff76; animation: statusPulse 1.2s infinite; }
-@keyframes statusPulse { 50% { opacity: .35; } }
-h1 {
-  position: relative; z-index: 2; margin: 18px 0 5px; color: var(--cream); font-size: clamp(30px, 6vw, 76px);
-  line-height: .98; letter-spacing: clamp(1px, .65vw, 7px); font-weight: 900;
-  text-shadow: 4px 4px 0 rgba(37,44,25,.72), -2px 0 rgba(255,121,46,.6); max-width: 100%;
-}
-.subtitle { margin: 12px 0 0; color: var(--dark); font-size: clamp(10px, 1.4vw, 13px); font-weight: bold; letter-spacing: 4px; text-shadow: 0 1px rgba(244,240,217,.25); }
-.character-stage {
-  position: relative; display: flex; align-items: center; justify-content: center; width: min(100%, 900px);
-  height: clamp(430px, 59vh, 650px); margin: 0 0 -112px; cursor: none; isolation: isolate;
-}
-.character-stage::before {
-  content: ""; position: absolute; width: 83%; height: 83%; border: 1px solid rgba(244,240,217,.45); border-radius: 50%;
-  box-shadow: 0 0 55px rgba(35,42,24,.25), inset 0 0 55px rgba(35,42,24,.15); z-index: -1;
-}
-.character-stage::after {
-  content: "FROGINAL ARMY  •  RECRUIT  •  DEPLOY"; position: absolute; bottom: 4px; color: var(--dark); font-size: 9px; letter-spacing: 2px;
-}
-.frog {
-  position: relative; z-index: 2; display: block; width: 100%; height: 100%; object-fit: contain;
-  filter: drop-shadow(0 18px 0 rgba(31,38,23,.22)); animation: float 3s ease-in-out infinite, characterGlitch 7.2s steps(1,end) infinite;
-  transition: filter .2s ease, transform .25s ease; user-select: none; -webkit-user-drag: none;
-}
-.character-stage:hover .frog { filter: drop-shadow(0 0 20px rgba(255,240,0,.6)) drop-shadow(0 18px 0 rgba(31,38,23,.22)); }
-@keyframes float { 0%,100% { transform: translateY(0); } 50% { transform: translateY(-9px); } }
-@keyframes characterGlitch {
-  0%, 93%, 100% { opacity: 1; }
-  94% { opacity: .72; transform: translateX(4px) skewX(-1deg); }
-  95% { opacity: 1; transform: translateX(-4px); }
-  96% { opacity: .85; transform: translateX(0); }
-}
-/* Oversized yellow cursor that appears over the frog */
-.frog-cursor {
-  position: fixed; z-index: 30; left: 0; top: 0; width: 56px; height: 56px; display: grid; place-items: center;
-  color: var(--yellow); font: 900 52px/1 Arial, sans-serif; text-shadow: 3px 3px 0 #22291c, 0 0 14px rgba(255,240,0,.5);
-  pointer-events: none; opacity: 0; transform: translate(-50%,-50%) rotate(-12deg); transition: opacity .12s; mix-blend-mode: normal;
-}
-.frog-cursor::before { content: "➤"; }
-.character-stage:hover ~ .frog-cursor, .frog-cursor.visible { opacity: 1; }
-.actions { position: relative; z-index: 12; display: flex; flex-direction: column; align-items: center; gap: 13px; width: min(100%, 390px); margin-top: 8px; }
-.button {
-  position: relative; overflow: hidden; display: flex; align-items: center; justify-content: center; width: 100%; min-height: 66px;
-  padding: 17px 20px; border: 2px solid var(--orange); border-radius: 3px; color: var(--cream);
-  font: 900 15px "Courier New", monospace; letter-spacing: 2px; text-decoration: none; cursor: pointer;
-  transition: transform .2s, background .2s, color .2s, box-shadow .2s;
-}
-.button::before {
-  content: ""; position: absolute; top: -70%; left: -35%; width: 35%; height: 240%; transform: rotate(24deg);
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.62), transparent); transition: left .55s ease; pointer-events: none;
-}
-.button:hover::before { left: 125%; }
-.button:hover { transform: translateY(-3px); }
-.buy {
-  background: linear-gradient(135deg, #ff9b43 0%, #ff792e 38%, #e64c17 100%); color: #202619;
-  border-color: #ffd18a; box-shadow: 0 0 0 2px rgba(255,121,46,.25), 0 7px 0 #a64018, 0 0 26px rgba(255,121,46,.45), inset 0 2px 0 rgba(255,255,255,.5);
-  text-shadow: 0 1px rgba(255,255,255,.2);
-}
-.buy:hover { background: linear-gradient(135deg, #fff1b7, #ffad42 55%, #ff792e); border-color: #fff1b7; box-shadow: 0 0 0 2px rgba(255,121,46,.25), 0 7px 0 #a64018, 0 0 36px rgba(255,185,60,.7), inset 0 2px 0 #fff; }
-.later { background: rgba(34,41,28,.42); color: var(--cream); border-color: rgba(244,240,217,.85); font-size: 12px; letter-spacing: 1px; backdrop-filter: blur(4px); }
-.later:hover { background: var(--cream); color: var(--dark); border-color: var(--cream); }
-.holder { background: linear-gradient(135deg, #a855f7 0%, #7628c7 48%, #4c168c 100%); color: #fff; border-color: #e0b7ff; box-shadow: 0 0 0 2px rgba(168,85,247,.24), 0 7px 0 #35105f, 0 0 28px rgba(168,85,247,.48), inset 0 2px 0 rgba(255,255,255,.45); }
-.holder:hover { background: linear-gradient(135deg, #d8b4fe, #a855f7 55%, #6b21a8); border-color: #f3e8ff; box-shadow: 0 0 0 2px rgba(168,85,247,.3), 0 7px 0 #35105f, 0 0 38px rgba(192,132,252,.7), inset 0 2px 0 #fff; }
-.footer { margin-top: 24px; color: var(--dark); font-size: 9px; font-weight: bold; letter-spacing: 2px; text-shadow: 0 1px rgba(244,240,217,.2); }
-.toast {
-  position: fixed; z-index: 40; left: 50%; bottom: 24px; width: max-content; max-width: calc(100% - 32px); padding: 14px 18px;
-  border: 1px solid var(--orange); background: #252b1e; color: var(--cream); font-size: 12px; line-height: 1.6; text-align: center;
-  transform: translate(-50%,20px); opacity: 0; pointer-events: none; transition: .25s;
-}
-.toast.show { opacity: 1; transform: translate(-50%,0); }
-/* Instructions panel */
-.modal-backdrop { position: fixed; z-index: 50; inset: 0; display: grid; place-items: center; padding: 20px; background: rgba(18,23,15,.78); backdrop-filter: blur(5px); }
-.modal-backdrop[hidden] { display: none; }
-.instructions {
-  position: relative; width: min(100%, 560px); max-height: min(85vh, 720px); overflow: auto; padding: clamp(22px,4vw,36px);
-  color: var(--cream); text-align: left; background: #303923; border: 2px solid var(--orange); box-shadow: 9px 9px 0 rgba(0,0,0,.35), 0 0 35px rgba(255,121,46,.16);
-}
-.instructions h2 { margin: 0 38px 18px 0; color: var(--orange); font-size: clamp(20px,4vw,30px); letter-spacing: 2px; }
-.instructions p, .instructions li { font-size: 13px; line-height: 1.75; }
-.instructions ol { padding-left: 22px; }
-.close-modal { position: absolute; top: 12px; right: 12px; width: 34px; height: 34px; border: 1px solid var(--orange); background: transparent; color: var(--cream); font: bold 22px monospace; cursor: pointer; }
-.close-modal:hover { background: var(--orange); color: var(--dark); }
-.modal-buy { margin-top: 20px; min-height: 54px; }
-@media (max-height: 740px) {
-  .terminal { padding-top: 65px; padding-bottom: 22px; }
-  .character-stage { height: 46vh; min-height: 300px; margin-bottom: -82px; }
-  h1 { margin-top: 8px; }
-  .footer { margin-top: 15px; }
-}
-@media (max-width: 600px) {
-  .scene-character { inset: -3vh -48vw; width: 196vw; height: 108vh; opacity: .35; }
-  .terminal { padding: 76px 14px 28px; }
-  .topline { top: 17px; left: 13px; right: 13px; font-size: 8px; letter-spacing: 1px; }
-  h1 { font-size: clamp(27px, 9vw, 48px); letter-spacing: 1px; }
-  .subtitle { font-size: 9px; letter-spacing: 2px; }
-  .character-stage { width: min(100%, 620px); height: 43vh; min-height: 300px; margin-top: 8px; margin-bottom: -72px; }
-  .character-stage::after { font-size: 7px; letter-spacing: 1px; }
-  .button { min-height: 59px; padding: 14px 12px; font-size: 12px; letter-spacing: 1.4px; }
-  .later { font-size: 10px; }
-  .holder { font-size: 10px; }
-  .footer { font-size: 8px; letter-spacing: 1px; }
-  .frog-cursor { display: none; }
-}
-@media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after { animation: none !important; transition: none !important; }
-}
+:root{--orange:#ff7900;--yellow:#ffd447;--green:#53ff89;--ink:#11150e;--panel:#191e15;--muted:#a9b09c;--line:#3b4930}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;min-height:100vh;background:var(--ink);color:#f4f3e8;font-family:"Space Grotesk",sans-serif;overflow-x:hidden}
+body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:5;opacity:.12;background:repeating-linear-gradient(0deg,transparent 0 3px,#000 4px 5px)}
+body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(ellipse at 80% 15%,#ff790018,transparent 40%),radial-gradient(ellipse at 10% 90%,#53ff8910,transparent 35%)}
+button,a{font:inherit}
+a{color:inherit;text-decoration:none}
+button{cursor:pointer}
+.topbar{height:58px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 clamp(16px,4vw,54px);border-bottom:1px solid var(--line);background:#0b0e09eF;position:relative;z-index:8}
+.brand{font-family:"Press Start 2P",monospace;font-size:11px;color:var(--yellow);letter-spacing:.02em}
+.brand span{color:var(--orange)}
+.status{font-size:11px;letter-spacing:.16em;color:var(--green);text-transform:uppercase;display:flex;align-items:center;gap:9px}
+.status:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green);animation:pulse 1.8s infinite}
+@keyframes pulse{50%{opacity:.35}}
+.shell{width:min(1240px,100% - 32px);margin:0 auto;padding:28px 0 48px}
+.kicker{font-size:11px;letter-spacing:.24em;color:var(--orange);text-transform:uppercase;margin:0 0 12px}
+h1{font-family:"Press Start 2P",monospace;font-size:clamp(22px,4vw,43px);line-height:1.45;margin:0;max-width:900px;text-transform:uppercase}
+h1 em{font-style:normal;color:var(--yellow)}
+.intro{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:24px}
+.intro-copy{max-width:700px}
+.intro p{color:var(--muted);line-height:1.65;max-width:620px;margin:14px 0 0}
+.mission-tag{border:1px solid var(--orange);color:var(--orange);padding:10px 12px;font-size:10px;letter-spacing:.13em;white-space:nowrap;transform:rotate(2deg)}
+.terminal{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(310px,.9fr);min-height:510px;border:1px solid #4b5a3a;background:linear-gradient(135deg,#20271a 0%,#13170f 65%);box-shadow:0 0 0 5px #0b0e09,0 20px 60px #0008;overflow:hidden}
+.terminal:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 49.9%,#42503570 50%,transparent 50.1%),repeating-linear-gradient(90deg,transparent 0 79px,#ffffff05 80px),repeating-linear-gradient(0deg,transparent 0 79px,#ffffff05 80px);pointer-events:none}
+.hero-art{position:absolute;inset:0;pointer-events:none;overflow:hidden}
+.hero-art img{position:absolute;width:min(70vw,790px);max-width:none;right:20%;top:50%;transform:translate(35%,-47%);opacity:.3;filter:saturate(1.15) contrast(1.05);transition:opacity .35s,transform .65s;mix-blend-mode:screen}
+.terminal:hover .hero-art img{opacity:.52;transform:translate(31%,-47%) scale(1.035)}
+.terminal:hover .hero-art img.side{opacity:0}
+.terminal:hover .hero-art img.back{opacity:.24}
+.hero-art img.side,.hero-art img.back{opacity:0}
+.terminal:hover .hero-art img.side{opacity:.36}
+.terminal:hover .hero-art img.front{opacity:0}
+.panel{position:relative;z-index:2;padding:clamp(20px,3.3vw,42px)}
+.commander-panel{display:flex;flex-direction:column;justify-content:space-between;min-height:510px;border-right:1px solid #46543a;background:linear-gradient(90deg,#11150eeF 0%,#11150ec9 68%,#11150e55 100%)}
+.panel-head{display:flex;justify-content:space-between;gap:12px;align-items:center}
+.micro{font-size:10px;letter-spacing:.17em;color:var(--muted);text-transform:uppercase}
+.rec{color:var(--orange);font-size:10px;letter-spacing:.14em}
+.commander-stage{display:flex;align-items:center;gap:18px;margin:24px 0 16px}
+.commander{width:clamp(155px,20vw,245px);height:280px;flex:0 0 auto;object-fit:contain;object-position:center bottom;cursor:pointer;filter:drop-shadow(0 0 18px #53ff891c);transition:transform .2s,filter .2s}
+.commander:hover{transform:translateY(-4px);filter:drop-shadow(0 0 20px #53ff8940)}
+.commander:focus-visible{outline:2px solid var(--yellow);outline-offset:5px}
+.speech{position:relative;max-width:260px;align-self:center;border:1px solid #68784e;background:#20291b;padding:16px 15px;box-shadow:5px 5px 0 #0a0c08}
+.speech:before{content:"";position:absolute;left:-8px;top:30px;width:14px;height:14px;background:#20291b;border-left:1px solid #68784e;border-bottom:1px solid #68784e;transform:rotate(45deg)}
+.speech .label{font-size:9px;letter-spacing:.18em;color:var(--green);margin-bottom:9px}
+.speech p{margin:0;font-size:14px;line-height:1.55}
+.speech .hint{display:block;margin-top:12px;font-size:9px;letter-spacing:.08em;color:var(--muted)}
+.commander-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:17px}
+.play-btn{display:flex;align-items:center;gap:10px;border:1px solid var(--green);background:#53ff8912;color:var(--green);padding:11px 13px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;transition:.2s}
+.play-btn:hover{background:var(--green);color:#10150e}
+.play-icon{font-size:16px}
+.orders{font-size:9px;color:var(--muted);letter-spacing:.1em;text-align:right;line-height:1.7}
+.action-panel{display:flex;flex-direction:column;justify-content:center;gap:16px;background:#11150eaa}
+.section-label{font-size:10px;color:var(--orange);letter-spacing:.2em;text-transform:uppercase;margin:0 0 3px}
+.action-panel h2{font-family:"Press Start 2P",monospace;font-size:16px;line-height:1.7;margin:0 0 7px}
+.action-panel .sub{font-size:13px;color:var(--muted);line-height:1.6;margin:0 0 5px}
+.action-card{display:grid;grid-template-columns:42px 1fr 22px;align-items:center;gap:13px;padding:17px 15px;border:1px solid var(--line);background:#1b2116d9;transition:transform .18s,border-color .18s,background .18s;position:relative;overflow:hidden}
+.action-card:hover{transform:translateX(4px);border-color:var(--yellow);background:#252d1c}
+.action-card.primary{border-color:var(--orange);background:linear-gradient(110deg,#ff790018,#1b2116 72%)}
+.action-card.primary:hover{border-color:var(--yellow)}
+.action-card .num{font-family:"Press Start 2P",monospace;color:var(--orange);font-size:13px}
+.action-card h3{font-size:14px;margin:0 0 5px;text-transform:uppercase;letter-spacing:.035em}
+.action-card p{font-size:11px;line-height:1.45;color:var(--muted);margin:0}
+.action-card .arrow{font-size:21px;color:var(--yellow);text-align:right}
+.action-card.primary .num{color:var(--yellow)}
+.footerline{display:flex;justify-content:space-between;gap:16px;margin-top:17px;color:#77816b;font-size:9px;letter-spacing:.13em;text-transform:uppercase}
+.footerline strong{color:var(--green);font-weight:600}
+.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);background:#20291b;border:1px solid var(--green);color:#f4f3e8;padding:12px 16px;font-size:12px;z-index:20;opacity:0;pointer-events:none;transition:.25s;max-width:calc(100% - 32px)}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media(max-width:820px){.intro{align-items:flex-start;flex-direction:column}.mission-tag{display:none}.terminal{grid-template-columns:1fr}.commander-panel{min-height:450px;border-right:0;border-bottom:1px solid #46543a}.action-panel{padding-top:28px;padding-bottom:28px}.hero-art img{width:110vw;right:-12%;transform:translate(20%,-42%)}.terminal:hover .hero-art img{transform:translate(17%,-42%) scale(1.02)}}
+@media(max-width:520px){.shell{width:calc(100% - 20px);padding-top:22px}.topbar{padding:0 12px}.brand{font-size:9px}.status{font-size:8px;letter-spacing:.1em}.commander-panel{padding:19px;min-height:420px}.commander-stage{gap:8px;align-items:flex-end}.commander{width:45%;height:220px}.speech{padding:12px;max-width:55%}.speech p{font-size:12px}.speech .hint{font-size:8px}.action-panel{padding:22px 18px}.action-card{padding:14px 11px;grid-template-columns:30px 1fr 15px;gap:10px}.action-card .num{font-size:10px}.action-card h3{font-size:12px}.footerline{font-size:8px;line-height:1.6}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
 </style>
 </head>
 <body>
-<img class="scene-character" id="sceneCharacter" src="https://raw.githubusercontent.com/Obideft/froginals/main/images/recrute/froginal_Army_front.png" alt="" aria-hidden="true">
-<div class="scene-shade" aria-hidden="true"></div>
-<main class="terminal">
-  <div class="topline">
-    <span>FROGINALS // F-01</span>
-    <span class="status">SYSTEM ONLINE</span>
+<header class="topbar">
+  <a class="brand" href="#" aria-label="FROGINALS Terminal home">FROGINAL<span>_</span>TERMINAL</a>
+  <div class="status">Recruitment system online</div>
+</header>
+
+<main class="shell">
+  <section class="intro">
+    <div class="intro-copy">
+      <p class="kicker">// FROGINALARMY • RECRUITMENT DIVISION</p>
+      <h1>YOUR NEXT<br><em>MISSION STARTS HERE.</em></h1>
+      <p>Listen up, recruit. Get the briefing, secure your FROGINAL DOG, and report to the FROGINALARMY to begin completing missions. The swamp needs builders, collectors, and loyal mates.</p>
+    </div>
+    <div class="mission-tag">CLASSIFIED // FIELD ACCESS</div>
+  </section>
+
+  <section class="terminal" aria-label="FROGINAL recruitment terminal">
+    <div class="hero-art" aria-hidden="true">
+      <img class="front" src="https://raw.githubusercontent.com/Obideft/froginals/main/images/recrute/froginal_Army_front.png" alt="">
+      <img class="side" src="https://raw.githubusercontent.com/Obideft/froginals/main/images/recrute/froginal_Army_side.png" alt="">
+      <img class="back" src="https://raw.githubusercontent.com/Obideft/froginals/main/images/recrute/froginal_Army_back.png" alt="">
+    </div>
+
+    <section class="panel commander-panel">
+      <div class="panel-head">
+        <span class="micro">FIELD COMMAND // 001</span>
+        <span class="rec">● LIVE TRANSMISSION</span>
+      </div>
+
+      <div class="commander-stage">
+        <img id="commander" class="commander"
+          src="https://raw.githubusercontent.com/Obideft/froginals/main/images/recrute/froginal_snake_idle.png"
+          alt="FROGINALARMY commander. Select him to hear your orders."
+          role="button" tabindex="0" aria-label="Play commander briefing">
+        <div class="speech" aria-live="polite">
+          <div class="label">COMMANDER SNAKE // SAYS</div>
+          <p id="speechText">Recruit! Tap me for your first briefing. We don't do things halfway in this army.</p>
+          <span class="hint" id="speechHint">▶ TAP COMMANDER TO RECEIVE ORDERS</span>
+        </div>
+      </div>
+
+      <div class="commander-actions">
+        <button class="play-btn" id="playBriefing" type="button"><span class="play-icon">▶</span> Play briefing</button>
+        <div class="orders">ORDERS AVAILABLE<br><span id="orderCount">06 AUDIO FILES</span></div>
+      </div>
+    </section>
+
+    <section class="panel action-panel">
+      <div>
+        <p class="section-label">// CHOOSE YOUR PATH</p>
+        <h2>REPORT FOR DUTY</h2>
+        <p class="sub">Three ways to enter the operation. Choose the one that matches your status, recruit.</p>
+      </div>
+
+      <a class="action-card primary" href="https://gravemint.io/mint/3678jb" target="_blank" rel="noopener noreferrer">
+        <div class="num">01</div>
+        <div><h3>Mint a FROGINAL DOG</h3><p>No FROGINAL DOG yet? Start here and join the collection on Gravemint.</p></div>
+        <div class="arrow">↗</div>
+      </a>
+
+      <button class="action-card" id="briefingButton" type="button" style="text-align:left;color:inherit;width:100%">
+        <div class="num">02</div>
+        <div><h3>Receive the briefing</h3><p>New recruit? Hear the orders and learn how the FROGINALARMY works.</p></div>
+        <div class="arrow">▶</div>
+      </button>
+
+      <a class="action-card" href="https://obideft.github.io/froginals/" aria-label="Open FROGINALARMY portal">
+        <div class="num">03</div>
+        <div><h3>Enter FROGINALARMY</h3><p>Already hold a FROGINAL DOG? Head to the army portal and start your missions.</p></div>
+        <div class="arrow">→</div>
+      </a>
+    </section>
+  </section>
+
+  <div class="footerline">
+    <span>FROGINALS // SWAMP OPERATIONS</span>
+    <span>STAY SHARP. <strong>STAY FROGINAL.</strong></span>
   </div>
-  <h1>FROGINALVERSE</h1>
-  <p class="subtitle">RECRUITMENT TERMINAL</p>
-  <div class="character-stage" id="characterStage" aria-label="Froginal Army character preview">
-    <img class="frog" id="frogCharacter" src="https://raw.githubusercontent.com/Obideft/froginals/main/images/recrute/froginal_Army_front.png" alt="Froginal Army recruit, front view" draggable="false">
-  </div>
-  <div class="actions">
-    <a class="button buy" href="https://gravemint.io/mint/3678jb" target="_blank" rel="noopener noreferrer">BUY NFT NOW &nbsp; ↗</a>
-    <button class="button later" id="instructionsButton" type="button">GET INSTRUCTIONS FIRST</button>
-    <button class="button holder" id="holderButton" type="button">I ALREADY OWN THE NFT ✓</button>
-  </div>
-  <div class="footer">YOUR FROG. YOUR SQUAD. YOUR MISSION.</div>
 </main>
-<div class="frog-cursor" id="frogCursor" aria-hidden="true"></div>
-<div class="toast" id="toast" role="status" aria-live="polite"></div>
-<div class="modal-backdrop" id="instructionsModal" hidden>
-  <section class="instructions" role="dialog" aria-modal="true" aria-labelledby="instructionsTitle">
-    <button class="close-modal" id="closeModal" type="button" aria-label="Close instructions">×</button>
-    <h2 id="instructionsTitle">RECRUIT BRIEFING</h2>
-    <p><strong>ATTENTION, RECRUIT!</strong> Your FROGINAL DOGS NFT is your ticket into the FROGINALARMY mission.</p>
-    <ol>
-      <li>Open the official mint page using <strong>BUY NFT NOW</strong>.</li>
-      <li>Connect a compatible wallet and review the NFT details and total cost before confirming anything.</li>
-      <li>Complete the purchase only if you are happy with the details. Never share your wallet recovery phrase.</li>
-      <li>Return to the FROGINALS site and visit the FROGINALARMY / community links to find current mission instructions.</li>
-    </ol>
-    <p><strong>FIELD NOTE:</strong> NFT ownership does not guarantee rewards. Check official project announcements for current eligibility and mission rules.</p>
-    <a class="button buy modal-buy" href="https://gravemint.io/mint/3678jb" target="_blank" rel="noopener noreferrer">UNDERSTOOD — BUY NFT ↗</a>
-  </section>
-</div>
-<div class="modal-backdrop" id="holderModal" hidden>
-  <section class="instructions" role="dialog" aria-modal="true" aria-labelledby="holderTitle">
-    <button class="close-modal" id="closeHolderModal" type="button" aria-label="Close holder information">×</button>
-    <h2 id="holderTitle" style="color:#c084fc">HOLDER STATUS: READY</h2>
-    <p><strong>ALREADY HOLDING YOUR FROGINAL DOGS NFT, SOLDIER?</strong> Welcome back to the squad. You can skip the purchase step and head straight to the official community and current mission instructions.</p>
-    <ol>
-      <li>Make sure the NFT is held in the wallet you use for any holder-only activity.</li>
-      <li>Visit the FROGINALARMY page or official community announcements for the latest mission steps.</li>
-      <li>Follow the published eligibility and reward rules for each mission.</li>
-    </ol>
-    <p><strong>IMPORTANT:</strong> This page does not verify wallet ownership yet. Holder status and rewards must be confirmed through the project's official process. Never share your recovery phrase or private keys.</p>
-    <a class="button holder modal-buy" href="froginalarmy.html">GO TO FROGINALARMY ↗</a>
-  </section>
-</div>
+
+<div class="toast" id="toast" role="status"></div>
+<audio id="orderAudio" preload="none"></audio>
 <script>
 (() => {
-  const front = 'https://raw.githubusercontent.com/Obideft/froginals/main/images/recrute/froginal_Army_front.png';
-  const side = 'https://raw.githubusercontent.com/Obideft/froginals/main/images/recrute/froginal_Army_side.png';
-  const back = 'https://raw.githubusercontent.com/Obideft/froginals/main/images/recrute/froginal_Army_back.png';
-  const views = [
-    { src: front, alt: 'Froginal Army recruit, front view' },
-    { src: side, alt: 'Froginal Army recruit, side view' },
-    { src: back, alt: 'Froginal Army recruit, back view' }
+  const base = "https://raw.githubusercontent.com/Obideft/froginals/main/images/recrute/";
+  const commander = document.getElementById("commander");
+  const audio = document.getElementById("orderAudio");
+  const speechText = document.getElementById("speechText");
+  const speechHint = document.getElementById("speechHint");
+  const toast = document.getElementById("toast");
+  const playButton = document.getElementById("playBriefing");
+  const briefingButton = document.getElementById("briefingButton");
+  const orders = [
+    {file:"ORDER%2001.mp3", text:"Recruit! Welcome to the FROGINALARMY. Listen carefully, because every great mission starts with a briefing."},
+    {file:"ORDER%2002.mp3", text:"First order: if you don't have a FROGINAL DOG yet, head to the mint station and secure your place in the collection."},
+    {file:"ORDER%2003.mp3", text:"Already holding a FROGINAL DOG? Good. Your next move is the FROGINALARMY portal. That's where the missions begin."},
+    {file:"ORDER%2004.mp3", text:"Inside the army, check the available missions, follow the instructions, and complete your tasks. Every action helps the community grow."},
+    {file:"ORDER%2005.mp3", text:"Stay alert, use official links, and never share your wallet recovery phrase. We build together and we look after our mates."},
+    {file:"ORDER%2006.mp3", text:"That's your briefing, recruit. Pick your path, get moving, and show the swamp what a FROGINAL can do. Dismissed!"}
   ];
-  const frog = document.getElementById('frogCharacter');
-  const scene = document.getElementById('sceneCharacter');
-  const stage = document.getElementById('characterStage');
-  const cursor = document.getElementById('frogCursor');
-  const instructionsButton = document.getElementById('instructionsButton');
-  const holderButton = document.getElementById('holderButton');
-  const holderModal = document.getElementById('holderModal');
-  const closeHolderModal = document.getElementById('closeHolderModal');
-  const modal = document.getElementById('instructionsModal');
-  const closeModal = document.getElementById('closeModal');
-  const toast = document.getElementById('toast');
-  let viewIndex = 0;
-  let toastTimeout;
+  let currentOrder = 0;
+  let playing = false;
+  let toastTimer;
 
-  // Preload all angles so random view changes feel immediate.
-  views.forEach(view => { const img = new Image(); img.src = view.src; });
-
-  function changeView(index) {
-    viewIndex = index;
-    frog.style.opacity = '.15';
-    scene.style.opacity = '.18';
-    window.setTimeout(() => {
-      // Install handlers before changing the source to avoid a fast-load race.
-      frog.onload = () => { frog.style.opacity = ''; scene.style.opacity = ''; };
-      // If an image fails, restore visibility and keep the rest of the terminal usable.
-      frog.onerror = () => { frog.style.opacity = '1'; scene.style.opacity = '.22'; };
-      frog.alt = views[index].alt;
-      frog.src = views[index].src;
-      scene.src = views[index].src;
-    }, 110);
-  }
-
-  // Randomly switch between front, side, and back views at irregular intervals.
-  function scheduleViewChange() {
-    const delay = 4200 + Math.random() * 5200;
-    window.setTimeout(() => {
-      let next = Math.floor(Math.random() * views.length);
-      if (next === viewIndex) next = (next + 1 + Math.floor(Math.random() * 2)) % views.length;
-      changeView(next);
-      scheduleViewChange();
-    }, delay);
-  }
-  scheduleViewChange();
-
-  stage.addEventListener('pointermove', event => {
-    if (event.pointerType === 'touch') return;
-    cursor.style.left = event.clientX + 'px';
-    cursor.style.top = event.clientY + 'px';
-    cursor.classList.add('visible');
-  });
-  stage.addEventListener('pointerenter', event => {
-    if (event.pointerType !== 'touch') cursor.classList.add('visible');
-  });
-  stage.addEventListener('pointerleave', () => cursor.classList.remove('visible'));
-
-  function openInstructions() {
-    modal.hidden = false;
-    closeModal.focus();
-  }
-  function hideInstructions() {
-    modal.hidden = true;
-    instructionsButton.focus();
-  }
-  instructionsButton.addEventListener('click', openInstructions);
-  holderButton.addEventListener('click', () => { holderModal.hidden = false; closeHolderModal.focus(); });
-  function hideHolderModal() { holderModal.hidden = true; holderButton.focus(); }
-  closeHolderModal.addEventListener('click', hideHolderModal);
-  holderModal.addEventListener('click', event => { if (event.target === holderModal) hideHolderModal(); });
-  closeModal.addEventListener('click', hideInstructions);
-  modal.addEventListener('click', event => { if (event.target === modal) hideInstructions(); });
-  document.addEventListener('keydown', event => {
-    if (event.key === 'Escape' && !modal.hidden) hideInstructions();
-    if (event.key === 'Escape' && !holderModal.hidden) hideHolderModal();
-  });
-
-  // Small toast fallback for an optional recruit-later keyboard action.
   function showToast(message) {
     toast.textContent = message;
-    toast.classList.add('show');
-    clearTimeout(toastTimeout);
-    toastTimeout = window.setTimeout(() => toast.classList.remove('show'), 3000);
+    toast.classList.add("show");
+    clearTimeout(toastTimer);
+    toastTimer = setTimeout(() => toast.classList.remove("show"), 3000);
   }
-  // Keep this feedback available if the recruit chooses not to mint yet via the footer shortcut.
-  document.querySelector('.footer').title = 'Press L to postpone recruitment';
-  document.addEventListener('keydown', event => {
-    if (event.key.toLowerCase() === 'l' && !modal.hidden && event.target.tagName !== 'INPUT') {
-      hideInstructions();
-      showToast('RECRUITMENT POSTPONED. THE COMMANDER WILL BE WAITING, SOLDIER.');
+
+  function setIdle() {
+    playing = false;
+    commander.src = base + "froginal_snake_idle.png";
+    commander.alt = "FROGINALARMY commander. Select him to hear your orders.";
+    playButton.innerHTML = '<span class="play-icon">▶</span> Play briefing';
+    speechHint.textContent = "▶ TAP COMMANDER TO RECEIVE ORDERS";
+  }
+
+  function playOrder(index) {
+    currentOrder = index % orders.length;
+    const order = orders[currentOrder];
+    audio.pause();
+    audio.currentTime = 0;
+    audio.src = base + "audio/" + order.file;
+    speechText.textContent = order.text;
+    speechHint.textContent = "● TRANSMITTING ORDER " + String(currentOrder + 1).padStart(2, "0");
+    commander.src = base + "vida.gif";
+    commander.alt = "Commander Snake speaking during the briefing.";
+    playing = true;
+    playButton.innerHTML = '<span class="play-icon">Ⅱ</span> Playing order';
+    audio.onended = () => {
+      setIdle();
+      currentOrder = (currentOrder + 1) % orders.length;
+    };
+    audio.onerror = () => {
+      setIdle();
+      showToast("Audio couldn't load. Check that the ORDER audio files are available in the repository.");
+    };
+    audio.play().then(() => {
+      // GIF runs only while the voice audio is playing.
+    }).catch(() => {
+      setIdle();
+      showToast("Tap again to allow audio playback in your browser.");
+    });
+  }
+
+  function playNextOrder() {
+    if (playing) {
+      audio.pause();
+      setIdle();
+      return;
     }
+    playOrder(currentOrder);
+  }
+
+  commander.addEventListener("click", playNextOrder);
+  commander.addEventListener("keydown", event => {
+    if (event.key === "Enter" || event.key === " ") {
+      event.preventDefault();
+      playNextOrder();
+    }
+  });
+  playButton.addEventListener("click", playNextOrder);
+  briefingButton.addEventListener("click", () => {
+    playOrder(0);
+    document.querySelector(".commander-panel").scrollIntoView({behavior:"smooth",block:"center"});
+  });
+  audio.addEventListener("pause", () => {
+    if (playing && audio.currentTime < audio.duration) setIdle();
   });
 })();
 </script>
