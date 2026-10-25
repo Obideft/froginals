@@ -2,7 +2,8 @@
 const { send, cookies, unpack, setCookie, clearCookie, discordConfig } = require('../lib/discord-auth');
 module.exports = async function handler(req,res) {
   if(req.method!=='GET'){res.setHeader('Allow','GET');return send(res,405,{success:false,error:'Method not allowed.'});}
-  const base='https://froginals-nu.vercel.app/froginalarmy.html';
+  // Keep the callback on the same deployment so its session cookie works with that deployment's API.
+  const base='/froginalarmy.html';
   try {
     const q=req.query||{}, c=cookies(req), saved=unpack(c.froginal_discord_oauth_state);
     clearCookie(res,'froginal_discord_oauth_state');
@@ -17,7 +18,7 @@ module.exports = async function handler(req,res) {
     if(!tokenRes.ok||!token.access_token) throw new Error('Discord OAuth token exchange failed.');
     const userRes=await fetch('https://discord.com/api/v10/users/@me',{headers:{Authorization:'Bearer '+token.access_token,Accept:'application/json'},signal:AbortSignal.timeout(12000)});
     const user=await userRes.json();
-    if(!userRes.ok||!/^\d{17,20}$/.test(String(user.id||''))) throw new Error('Discord identity lookup failed.');
+    if(!userRes.ok||!/^[0-9]{17,20}$/.test(String(user.id||''))) throw new Error('Discord identity lookup failed.');
     setCookie(res,'froginal_discord_session',require('../lib/discord-auth').pack({discordUserId:String(user.id),username:String(user.global_name||user.username||'Discord member').slice(0,100),exp:Date.now()+8*60*60*1000}),8*60*60);
     return res.redirect(302,base+'?discord_connected=1#join-army');
   } catch(e) { console.error('Discord OAuth callback:',e.message); return res.redirect(302,base+'?discord_error=setup#join-army'); }
