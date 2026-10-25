@@ -31,6 +31,30 @@ No `package.json` is required by these two endpoints because they use Node's bui
 
 The verification endpoint checks current ownership whenever a wallet verifies and updates `last_checked_at`. This starter does not automatically remove members who sell or transfer their NFT later. To keep membership accurate, add a scheduled revalidation job (for example Vercel Cron) that rechecks every approved wallet and flips `approved` to false when the verified NFT is no longer owned. Until that is deployed, treat the directory as holders who were verified at their most recent successful check, not a guarantee of perpetual current ownership. A future hardening pass should also add a shared rate limiter (the included in-memory throttle is only per serverless instance) and a scheduled stale-member policy.
 
+## Discord holder-role verification
+
+The Discord verification flow is separate from the public member directory form. It uses Discord OAuth, a short-lived signed session cookie, a one-time Phantom message signature, a server-side Helius DAS ownership check, and the Discord REST API to assign the configured holder role. It never requests a seed phrase or private key.
+
+### Required setup
+
+1. In Supabase SQL Editor, run `supabase-discord-links.sql`. This creates a separate private table for Discord-to-wallet links; it does not replace `froginalarmy_members`.
+2. In Discord Developer Portal, open your bot application → OAuth2 and note the **Client ID** and create/copy the **Client Secret**. Add the exact redirect URL `https://froginals-nu.vercel.app/api/discord-callback` to the OAuth2 Redirects list.
+3. In Vercel → Project → Settings → Environment Variables, add `DISCORD_CLIENT_ID`, `DISCORD_CLIENT_SECRET`, `DISCORD_REDIRECT_URI`, `DISCORD_BOT_TOKEN`, `DISCORD_GUILD_ID`, `DISCORD_HOLDER_ROLE_ID`, and `DISCORD_SESSION_SECRET`. Use the same redirect URL above. Generate a random `DISCORD_SESSION_SECRET` with at least 32 characters. Apply the variables to Production (and Preview if needed), then redeploy.
+4. Keep `DISCORD_CLIENT_SECRET`, `DISCORD_BOT_TOKEN`, `DISCORD_SESSION_SECRET`, `HELIUS_API_KEY`, and `SUPABASE_SERVICE_ROLE_KEY` server-side only. Never put them in HTML or commit real values.
+5. Confirm the bot is in the FROGINALS Discord server, has **Manage Roles**, and its highest role is above `🐸 FROGINAL HOLDER`. The visitor must join the server before role assignment can work.
+6. Verify that `FROGINAL_COLLECTION_ADDRESS` exactly matches the verified collection group value returned by Helius DAS.
+
+### Discord verification endpoints
+
+- `GET /api/discord-start` — begins Discord OAuth.
+- `GET /api/discord-callback` — validates OAuth state and creates a short-lived HttpOnly session.
+- `GET /api/discord-status` — reports the current session and linked verification status.
+- `POST /api/discord-challenge` — issues a five-minute wallet-specific signing challenge.
+- `POST /api/verify-discord-holder` — verifies the Ed25519 wallet signature, checks live NFT ownership, saves the unique link, and assigns the holder role.
+- `POST /api/discord-logout` — clears the browser session.
+
+A wallet and Discord account can each be linked to only one record. If an existing link needs changing, have an administrator review it rather than deleting database rows blindly. The role grant is an idempotent Discord API call; if the NFT check passes but role assignment fails, check server membership, bot permissions, and role hierarchy, then retry.
+
 ## Manual verification checklist
 
 Do not mark these as passed until tested against your Vercel deployment:
