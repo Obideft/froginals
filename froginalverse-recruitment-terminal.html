@@ -1,174 +1,851 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="theme-color" content="#11150e">
+<meta name="theme-color" content="#080d09">
 <meta name="description" content="FROGINAL TERMINAL — enlist, receive your briefing, and join the FROGINALARMY.">
 <title>FROGINAL TERMINAL // RECRUITMENT</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
 <style>
-:root{--orange:#ff7900;--yellow:#ffd447;--green:#53ff89;--ink:#11150e;--panel:#191e15;--muted:#a9b09c;--line:#3b4930}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;min-height:100vh;background:var(--ink);color:#f4f3e8;font-family:"Space Grotesk",sans-serif;overflow-x:hidden}
-body:before{content:"";position:fixed;inset:0;pointer-events:none;z-index:5;opacity:.12;background:repeating-linear-gradient(0deg,transparent 0 3px,#000 4px 5px)}
-body:after{content:"";position:fixed;inset:0;pointer-events:none;z-index:-1;background:radial-gradient(ellipse at 80% 15%,#ff790018,transparent 40%),radial-gradient(ellipse at 10% 90%,#53ff8910,transparent 35%)}
-button,a{font:inherit}
-a{color:inherit;text-decoration:none}
-button{cursor:pointer}
-.topbar{height:58px;display:flex;align-items:center;justify-content:space-between;gap:16px;padding:0 clamp(16px,4vw,54px);border-bottom:1px solid var(--line);background:#0b0e09eF;position:relative;z-index:8}
-.brand{font-family:"Press Start 2P",monospace;font-size:11px;color:var(--yellow);letter-spacing:.02em}
-.brand span{color:var(--orange)}
-.status{font-size:11px;letter-spacing:.16em;color:var(--green);text-transform:uppercase;display:flex;align-items:center;gap:9px}
-.status:before{content:"";width:7px;height:7px;border-radius:50%;background:var(--green);box-shadow:0 0 12px var(--green);animation:pulse 1.8s infinite}
-@keyframes pulse{50%{opacity:.35}}
-.shell{width:min(1240px,100% - 32px);margin:0 auto;padding:28px 0 48px}
-.kicker{font-size:11px;letter-spacing:.24em;color:var(--orange);text-transform:uppercase;margin:0 0 12px}
-h1{font-family:"Press Start 2P",monospace;font-size:clamp(22px,4vw,43px);line-height:1.45;margin:0;max-width:900px;text-transform:uppercase}
-h1 em{font-style:normal;color:var(--yellow)}
-.intro{display:flex;justify-content:space-between;align-items:end;gap:24px;margin-bottom:24px}
-.intro-copy{max-width:700px}
-.intro p{color:var(--muted);line-height:1.65;max-width:620px;margin:14px 0 0}
-.mission-tag{border:1px solid var(--orange);color:var(--orange);padding:10px 12px;font-size:10px;letter-spacing:.13em;white-space:nowrap;transform:rotate(2deg)}
-.terminal{position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(310px,.9fr);min-height:510px;border:1px solid #4b5a3a;background:linear-gradient(135deg,#20271a 0%,#13170f 65%);box-shadow:0 0 0 5px #0b0e09,0 20px 60px #0008;overflow:hidden}
-.terminal:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,transparent 49.9%,#42503570 50%,transparent 50.1%),repeating-linear-gradient(90deg,transparent 0 79px,#ffffff05 80px),repeating-linear-gradient(0deg,transparent 0 79px,#ffffff05 80px);pointer-events:none}
-.hero-art{position:absolute;inset:0;pointer-events:none;overflow:hidden}
-.hero-art img{position:absolute;width:min(70vw,790px);max-width:none;right:20%;top:50%;transform:translate(35%,-47%);opacity:.3;filter:saturate(1.15) contrast(1.05);transition:opacity .35s,transform .65s;mix-blend-mode:screen}
-.terminal:hover .hero-art img{opacity:.52;transform:translate(31%,-47%) scale(1.035)}
-.terminal:hover .hero-art img.side{opacity:0}
-.terminal:hover .hero-art img.back{opacity:.24}
-.hero-art img.side,.hero-art img.back{opacity:0}
-.terminal:hover .hero-art img.side{opacity:.36}
-.terminal:hover .hero-art img.front{opacity:0}
-.panel{position:relative;z-index:2;padding:clamp(20px,3.3vw,42px)}
-.commander-panel{display:flex;flex-direction:column;justify-content:space-between;min-height:510px;border-right:1px solid #46543a;background:linear-gradient(90deg,#11150eeF 0%,#11150ec9 68%,#11150e55 100%)}
-.panel-head{display:flex;justify-content:space-between;gap:12px;align-items:center}
-.micro{font-size:10px;letter-spacing:.17em;color:var(--muted);text-transform:uppercase}
-.rec{color:var(--orange);font-size:10px;letter-spacing:.14em}
-.commander-stage{display:flex;align-items:center;gap:18px;margin:24px 0 16px}
-.commander{width:clamp(155px,20vw,245px);height:280px;flex:0 0 auto;object-fit:contain;object-position:center bottom;cursor:pointer;filter:drop-shadow(0 0 18px #53ff891c);transition:transform .2s,filter .2s}
-.commander:hover{transform:translateY(-4px);filter:drop-shadow(0 0 20px #53ff8940)}
-.commander:focus-visible{outline:2px solid var(--yellow);outline-offset:5px}
-.speech{position:relative;max-width:260px;align-self:center;border:1px solid #68784e;background:#20291b;padding:16px 15px;box-shadow:5px 5px 0 #0a0c08}
-.speech:before{content:"";position:absolute;left:-8px;top:30px;width:14px;height:14px;background:#20291b;border-left:1px solid #68784e;border-bottom:1px solid #68784e;transform:rotate(45deg)}
-.speech .label{font-size:9px;letter-spacing:.18em;color:var(--green);margin-bottom:9px}
-.speech p{margin:0;font-size:14px;line-height:1.55}
-.speech .hint{display:block;margin-top:12px;font-size:9px;letter-spacing:.08em;color:var(--muted)}
-.commander-actions{display:flex;align-items:center;justify-content:space-between;gap:12px;border-top:1px solid var(--line);padding-top:17px}
-.play-btn{display:flex;align-items:center;gap:10px;border:1px solid var(--green);background:#53ff8912;color:var(--green);padding:11px 13px;font-size:10px;letter-spacing:.12em;text-transform:uppercase;transition:.2s}
-.play-btn:hover{background:var(--green);color:#10150e}
-.play-icon{font-size:16px}
-.orders{font-size:9px;color:var(--muted);letter-spacing:.1em;text-align:right;line-height:1.7}
-.action-panel{display:flex;flex-direction:column;justify-content:center;gap:16px;background:#11150eaa}
-.section-label{font-size:10px;color:var(--orange);letter-spacing:.2em;text-transform:uppercase;margin:0 0 3px}
-.action-panel h2{font-family:"Press Start 2P",monospace;font-size:16px;line-height:1.7;margin:0 0 7px}
-.action-panel .sub{font-size:13px;color:var(--muted);line-height:1.6;margin:0 0 5px}
-.action-card{display:grid;grid-template-columns:42px 1fr 22px;align-items:center;gap:13px;padding:17px 15px;border:1px solid var(--line);background:#1b2116d9;transition:transform .18s,border-color .18s,background .18s;position:relative;overflow:hidden}
-.action-card:hover{transform:translateX(4px);border-color:var(--yellow);background:#252d1c}
-.action-card.primary{border-color:var(--orange);background:linear-gradient(110deg,#ff790018,#1b2116 72%)}
-.action-card.primary:hover{border-color:var(--yellow)}
-.action-card .num{font-family:"Press Start 2P",monospace;color:var(--orange);font-size:13px}
-.action-card h3{font-size:14px;margin:0 0 5px;text-transform:uppercase;letter-spacing:.035em}
-.action-card p{font-size:11px;line-height:1.45;color:var(--muted);margin:0}
-.action-card .arrow{font-size:21px;color:var(--yellow);text-align:right}
-.action-card.primary .num{color:var(--yellow)}
-.footerline{display:flex;justify-content:space-between;gap:16px;margin-top:17px;color:#77816b;font-size:9px;letter-spacing:.13em;text-transform:uppercase}
-.footerline strong{color:var(--green);font-weight:600}
-.toast{position:fixed;bottom:20px;left:50%;transform:translate(-50%,20px);background:#20291b;border:1px solid var(--green);color:#f4f3e8;padding:12px 16px;font-size:12px;z-index:20;opacity:0;pointer-events:none;transition:.25s;max-width:calc(100% - 32px)}
-.toast.show{opacity:1;transform:translate(-50%,0)}
-@media(max-width:820px){.intro{align-items:flex-start;flex-direction:column}.mission-tag{display:none}.terminal{grid-template-columns:1fr}.commander-panel{min-height:450px;border-right:0;border-bottom:1px solid #46543a}.action-panel{padding-top:28px;padding-bottom:28px}.hero-art img{width:110vw;right:-12%;transform:translate(20%,-42%)}.terminal:hover .hero-art img{transform:translate(17%,-42%) scale(1.02)}}
-@media(max-width:520px){.shell{width:calc(100% - 20px);padding-top:22px}.topbar{padding:0 12px}.brand{font-size:9px}.status{font-size:8px;letter-spacing:.1em}.commander-panel{padding:19px;min-height:420px}.commander-stage{gap:8px;align-items:flex-end}.commander{width:45%;height:220px}.speech{padding:12px;max-width:55%}.speech p{font-size:12px}.speech .hint{font-size:8px}.action-panel{padding:22px 18px}.action-card{padding:14px 11px;grid-template-columns:30px 1fr 15px;gap:10px}.action-card .num{font-size:10px}.action-card h3{font-size:12px}.footerline{font-size:8px;line-height:1.6}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}}
+:root {
+  --green: #65ff38;
+  --green-dark: #183e15;
+  --orange: #ff7900;
+  --orange-light: #ffb347;
+  --bg: #080d09;
+  --panel: #101912;
+  --muted: #91a393;
+  --border: #28472c;
+}
+
+* { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  color: #f2fff0;
+  background:
+    radial-gradient(ellipse at 50% 0%, #24512645, transparent 45%),
+    radial-gradient(ellipse at 10% 65%, #ff79000b, transparent 35%),
+    var(--bg);
+  font-family: "Rajdhani", sans-serif;
+  overflow-x: hidden;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  opacity: .12;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent 0px,
+    transparent 3px,
+    #000 4px,
+    #000 5px
+  );
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: -1;
+  opacity: .17;
+  background-image:
+    linear-gradient(#65ff3810 1px, transparent 1px),
+    linear-gradient(90deg, #65ff3810 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(to bottom, black, transparent 85%);
+}
+
+a, button { font: inherit; }
+a { color: inherit; text-decoration: none; }
+button { cursor: pointer; }
+
+.topbar {
+  min-height: 54px;
+  padding: 12px clamp(16px, 4vw, 55px);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  border-bottom: 1px solid #65ff382a;
+  background: #070b08ed;
+  position: relative;
+  z-index: 11;
+}
+
+.brand {
+  font: 800 11px "Orbitron", sans-serif;
+  letter-spacing: .08em;
+}
+
+.brand span { color: var(--green); }
+
+.status {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: .15em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+
+.status::before {
+  content: "";
+  width: 7px;
+  height: 7px;
+  flex-shrink: 0;
+  background: var(--green);
+  border-radius: 50%;
+  box-shadow: 0 0 12px var(--green);
+  animation: pulse 1.5s infinite;
+}
+
+@keyframes pulse {
+  50% { opacity: .3; }
+}
+
+.shell {
+  width: min(1120px, calc(100% - 32px));
+  margin: 0 auto;
+  padding: 24px 0 45px;
+}
+
+/* TOP GAME BANNER */
+
+.hero-banner {
+  position: relative;
+  overflow: hidden;
+  text-align: center;
+  padding: 23px 15px 27px;
+  margin-bottom: 24px;
+  border: 1px solid #65ff382b;
+  background:
+    linear-gradient(180deg, #142519c9, #080d09e8),
+    var(--bg);
+  box-shadow: inset 0 0 45px #65ff3809;
+}
+
+.hero-banner::before,
+.hero-banner::after {
+  content: "";
+  position: absolute;
+  width: 95px;
+  height: 95px;
+  pointer-events: none;
+}
+
+.hero-banner::before {
+  top: 0;
+  left: 0;
+  border-top: 3px solid var(--green);
+  border-left: 3px solid var(--green);
+}
+
+.hero-banner::after {
+  bottom: 0;
+  right: 0;
+  border-bottom: 3px solid var(--orange);
+  border-right: 3px solid var(--orange);
+}
+
+.banner-code {
+  font: 600 9px "Orbitron", sans-serif;
+  letter-spacing: .3em;
+  color: var(--green);
+  margin-bottom: 8px;
+}
+
+.logo-wrap {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 130px;
+}
+
+.main-logo {
+  display: block;
+  width: min(420px, 76vw);
+  max-height: 220px;
+  object-fit: contain;
+  filter:
+    drop-shadow(0 0 10px #65ff3840)
+    drop-shadow(0 8px 25px #000);
+  animation: logoFloat 3.6s ease-in-out infinite;
+  transform-origin: center;
+}
+
+@keyframes logoFloat {
+  0%, 100% { transform: translateX(-8px) rotate(-1deg); }
+  50% { transform: translateX(8px) rotate(1deg); }
+}
+
+.banner-divider {
+  width: min(330px, 70%);
+  height: 2px;
+  margin: 9px auto 14px;
+  background: linear-gradient(90deg, transparent, var(--green), var(--orange), transparent);
+  box-shadow: 0 0 12px #65ff3840;
+}
+
+.banner-subtitle {
+  font: 800 clamp(21px, 4vw, 35px)/1.3 "Orbitron", sans-serif;
+  letter-spacing: .045em;
+  margin: 0;
+  text-shadow: 0 0 22px #65ff3820;
+}
+
+.banner-subtitle span {
+  color: var(--green);
+}
+
+.banner-description {
+  color: var(--muted);
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: .055em;
+  margin: 12px auto 0;
+  max-width: 580px;
+}
+
+.intro-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 12px;
+  margin-top: 18px;
+  border: 1px solid #65ff3855;
+  color: var(--green);
+  background: #65ff380b;
+  font: 600 9px "Orbitron", sans-serif;
+  letter-spacing: .15em;
+}
+
+/* MAIN TERMINAL */
+
+.terminal {
+  position: relative;
+  overflow: hidden;
+  border: 1px solid #3c683b;
+  background: linear-gradient(135deg, #111b12, #080d09 70%);
+  box-shadow: 0 0 0 4px #050805, 0 20px 65px #0008;
+}
+
+.terminal::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, transparent 49.9%, #65ff3810 50%, transparent 50.1%),
+    repeating-linear-gradient(90deg, transparent 0 79px, #ffffff04 80px),
+    repeating-linear-gradient(0deg, transparent 0 79px, #ffffff04 80px);
+}
+
+.terminal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 13px 20px;
+  border-bottom: 1px solid var(--border);
+  background: #0a100b;
+  position: relative;
+  z-index: 1;
+}
+
+.terminal-head span {
+  font: 600 9px "Orbitron", sans-serif;
+  letter-spacing: .13em;
+  color: var(--muted);
+}
+
+.terminal-head .live {
+  color: var(--green);
+}
+
+.terminal-content {
+  position: relative;
+  z-index: 1;
+  padding: clamp(20px, 4vw, 40px);
+}
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 25px;
+}
+
+.eyebrow {
+  color: var(--orange-light);
+  font: 600 9px "Orbitron", sans-serif;
+  letter-spacing: .2em;
+  margin: 0 0 12px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  font: 800 clamp(17px, 3vw, 25px)/1.5 "Orbitron", sans-serif;
+}
+
+.section-heading p {
+  margin: 10px auto 0;
+  color: var(--muted);
+  max-width: 530px;
+  font-size: 16px;
+  line-height: 1.5;
+}
+
+/* CENTERED ACTION BUTTONS */
+
+.action-list {
+  width: min(590px, 100%);
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 15px;
+}
+
+.action-btn {
+  position: relative;
+  display: grid;
+  grid-template-columns: 43px 1fr 25px;
+  align-items: center;
+  gap: 14px;
+  width: 100%;
+  min-height: 83px;
+  padding: 15px 20px;
+  text-align: left;
+  color: #eaffea;
+  border: 1px solid #477b43;
+  background: linear-gradient(110deg, #142318, #0c130d);
+  transition: border-color .2s, background .2s, transform .2s, box-shadow .2s;
+}
+
+.action-btn:hover {
+  transform: translateY(-2px);
+  border-color: var(--green);
+  background: linear-gradient(110deg, #1c3420, #101a11);
+  box-shadow: 0 0 20px #65ff3814;
+}
+
+.action-number {
+  font: 800 16px "Orbitron", sans-serif;
+  color: var(--green);
+}
+
+.action-copy strong {
+  display: block;
+  font: 800 clamp(11px, 2vw, 14px)/1.5 "Orbitron", sans-serif;
+  letter-spacing: .025em;
+}
+
+.action-copy small {
+  display: block;
+  color: #9cb09c;
+  font-size: 14px;
+  line-height: 1.4;
+  margin-top: 4px;
+}
+
+.action-arrow {
+  color: var(--green);
+  font-size: 23px;
+  text-align: right;
+}
+
+/* THE ONLY ORANGE BUTTON: MINT NFT NOW */
+
+.action-btn.mint {
+  z-index: 1;
+  color: #211004;
+  min-height: 91px;
+  border: 1px solid #ffd18c;
+  border-top-color: #fff0c8;
+  border-bottom: 5px solid #a53b00;
+  background: linear-gradient(
+    180deg,
+    #ffd08a 0%,
+    #ff9d28 18%,
+    #ff7900 54%,
+    #e95700 100%
+  );
+  box-shadow:
+    0 6px 0 #351603,
+    0 10px 23px #ff790027,
+    inset 0 2px 2px #fff7d8,
+    inset 0 -5px 9px #b83c004d;
+  transform: translateY(-2px);
+  animation: mintGlow 2.4s ease-in-out infinite;
+}
+
+.action-btn.mint:hover {
+  transform: translateY(-5px) scale(1.015);
+  border-color: #fff3d1;
+  background: linear-gradient(180deg, #ffe5ad, #ffad36 35%, #ff7900 75%, #e95700);
+  box-shadow:
+    0 9px 0 #351603,
+    0 15px 34px #ff790052,
+    inset 0 2px 2px #fff7d8;
+}
+
+@keyframes mintGlow {
+  0%, 100% { filter: drop-shadow(0 0 4px #ff790018); }
+  50% { filter: drop-shadow(0 0 12px #ff79004d); }
+}
+
+.mint .action-number,
+.mint .action-arrow {
+  color: #4a2000;
+}
+
+.mint .action-copy strong {
+  font-size: clamp(13px, 2.5vw, 17px);
+}
+
+.mint .action-copy small {
+  color: #4c260b;
+  font-weight: 700;
+}
+
+.mint-badge {
+  display: inline-block;
+  margin-top: 5px;
+  padding: 3px 6px;
+  border: 1px solid #7133006e;
+  font: 800 8px "Orbitron", sans-serif;
+  letter-spacing: .12em;
+}
+
+/* COMMANDER BRIEFING */
+
+.commander-panel {
+  display: grid;
+  grid-template-columns: minmax(150px, 220px) 1fr;
+  gap: 25px;
+  align-items: center;
+  margin-top: 33px;
+  padding: 23px;
+  border: 1px solid #2d4c30;
+  background: linear-gradient(120deg, #122016d9, #0b100c);
+}
+
+.commander-visual {
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.commander {
+  display: block;
+  width: 100%;
+  max-width: 190px;
+  height: 220px;
+  object-fit: contain;
+  object-position: center bottom;
+  cursor: pointer;
+  filter: drop-shadow(0 0 17px #65ff3820);
+  transition: filter .2s, transform .2s;
+}
+
+.commander:hover {
+  transform: translateY(-3px);
+  filter: drop-shadow(0 0 22px #65ff3850);
+}
+
+.commander:focus-visible,
+.action-btn:focus-visible,
+.play-btn:focus-visible {
+  outline: 2px solid white;
+  outline-offset: 5px;
+}
+
+.commander-info {
+  min-width: 0;
+}
+
+.commander-label {
+  color: var(--green);
+  font: 600 9px "Orbitron", sans-serif;
+  letter-spacing: .14em;
+  margin-bottom: 12px;
+}
+
+.commander-info h3 {
+  font: 800 15px "Orbitron", sans-serif;
+  margin: 0 0 9px;
+}
+
+.commander-info p {
+  color: #bac9b9;
+  font-size: 15px;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.speech-hint {
+  display: block;
+  margin-top: 12px;
+  font-size: 10px;
+  font-weight: 700;
+  letter-spacing: .08em;
+  color: var(--green);
+}
+
+.commander-controls {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 12px;
+  margin-top: 17px;
+}
+
+.play-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  padding: 11px 15px;
+  color: var(--green);
+  border: 1px solid var(--green);
+  background: #65ff3810;
+  font: 700 10px "Orbitron", sans-serif;
+  transition: .2s;
+}
+
+.play-btn:hover {
+  color: #081008;
+  background: var(--green);
+  box-shadow: 0 0 18px #65ff3833;
+}
+
+.order-count {
+  font-size: 10px;
+  color: #849984;
+  letter-spacing: .08em;
+}
+
+/* FOOTER */
+
+.footerline {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 19px;
+  color: #718273;
+  font: 600 9px "Orbitron", sans-serif;
+  letter-spacing: .1em;
+  line-height: 1.8;
+}
+
+.footerline strong {
+  color: var(--green);
+}
+
+.toast {
+  position: fixed;
+  bottom: 22px;
+  left: 50%;
+  width: max-content;
+  max-width: calc(100% - 30px);
+  padding: 13px 17px;
+  color: #f2fff0;
+  background: #101a12;
+  border: 1px solid var(--green);
+  box-shadow: 0 0 25px #0008;
+  font-size: 14px;
+  z-index: 20;
+  opacity: 0;
+  pointer-events: none;
+  transform: translate(-50%, 15px);
+  transition: .25s;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translate(-50%, 0);
+}
+
+@media (max-width: 600px) {
+  .shell {
+    width: calc(100% - 20px);
+    padding-top: 14px;
+  }
+
+  .topbar {
+    padding: 12px;
+  }
+
+  .brand { font-size: 9px; }
+  .status { font-size: 8px; letter-spacing: .06em; }
+
+  .hero-banner {
+    padding: 19px 10px 23px;
+    margin-bottom: 15px;
+  }
+
+  .logo-wrap { min-height: 105px; }
+
+  .main-logo {
+    width: min(320px, 83vw);
+    max-height: 165px;
+  }
+
+  .banner-code { font-size: 8px; }
+
+  .banner-description {
+    font-size: 14px;
+    max-width: 330px;
+  }
+
+  .terminal-head {
+    padding: 12px;
+  }
+
+  .terminal-head span {
+    font-size: 8px;
+  }
+
+  .terminal-content {
+    padding: 21px 14px;
+  }
+
+  .action-list { gap: 14px; }
+
+  .action-btn {
+    grid-template-columns: 26px 1fr 15px;
+    gap: 9px;
+    padding: 14px 11px;
+    min-height: 76px;
+  }
+
+  .action-btn.mint { min-height: 85px; }
+
+  .action-number { font-size: 11px; }
+
+  .action-copy small {
+    font-size: 13px;
+  }
+
+  .commander-panel {
+    grid-template-columns: 95px minmax(0, 1fr);
+    gap: 13px;
+    padding: 14px 10px;
+    margin-top: 25px;
+  }
+
+  .commander { height: 165px; }
+
+  .commander-info h3 { font-size: 12px; }
+  .commander-info p { font-size: 14px; }
+  .commander-label { font-size: 8px; line-height: 1.7; }
+  .commander-controls { gap: 9px; }
+
+  .play-btn {
+    padding: 10px;
+    font-size: 9px;
+  }
+
+  .footerline { font-size: 8px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    scroll-behavior: auto !important;
+    transition: none !important;
+  }
+}
 </style>
 </head>
+
 <body>
+
 <header class="topbar">
-  <a class="brand" href="#" aria-label="FROGINALS Terminal home">FROGINAL<span>_</span>TERMINAL</a>
-  <div class="status">Recruitment system online</div>
+  <a class="brand" href="https://obideft.github.io/froginals/" aria-label="FROGINALS home">
+    FROGINAL<span>_</span>OPS
+  </a>
+  <div class="status">SYSTEM ONLINE</div>
 </header>
 
 <main class="shell">
-  <section class="intro">
-    <div class="intro-copy">
-      <p class="kicker">// FROGINALARMY • RECRUITMENT DIVISION</p>
-      <h1>YOUR NEXT<br><em>MISSION STARTS HERE.</em></h1>
-      <p>Listen up, recruit. Get the briefing, secure your FROGINAL DOG, and report to the FROGINALARMY to begin completing missions. The swamp needs builders, collectors, and loyal mates.</p>
+
+  <!-- GAME-STYLE LOGO BANNER -->
+  <section class="hero-banner">
+    <div class="banner-code">// FROGINALARMY • RECRUITMENT DIVISION</div>
+
+    <div class="logo-wrap">
+      <img
+        class="main-logo"
+        src="https://raw.githubusercontent.com/Obideft/froginals/main/images/Log01.png"
+        alt="FROGINALS logo"
+        fetchpriority="high"
+      >
     </div>
-    <div class="mission-tag">CLASSIFIED // FIELD ACCESS</div>
+
+    <div class="banner-divider"></div>
+
+    <h1 class="banner-subtitle">
+      FROGINAL <span>TERMINAL</span>
+    </h1>
+
+    <p class="banner-description">
+      YOUR SWAMP. YOUR MISSION. YOUR ARMY.
+      <br>Recruitment is open. Choose your next move.
+    </p>
+
+    <div class="intro-tag">◆ RECRUITMENT PROTOCOL // ACTIVE ◆</div>
   </section>
 
+  <!-- RECRUITMENT INTERFACE -->
   <section class="terminal" aria-label="FROGINAL recruitment terminal">
-    <div class="hero-art" aria-hidden="true">
-      <img class="front" src="https://raw.githubusercontent.com/Obideft/froginals/main/images/recrute/froginal_Army_front.png" alt="">
-      <img class="side" src="https://raw.githubusercontent.com/Obideft/froginals/main/images/recrute/froginal_Army_side.png" alt="">
-      <img class="back" src="https://raw.githubusercontent.com/Obideft/froginals/main/images/recrute/froginal_Army_back.png" alt="">
+
+    <div class="terminal-head">
+      <span>FROGINAL OPERATIONS // TERMINAL 001</span>
+      <span class="live">● CONNECTION ESTABLISHED</span>
     </div>
 
-    <section class="panel commander-panel">
-      <div class="panel-head">
-        <span class="micro">FIELD COMMAND // 001</span>
-        <span class="rec">● LIVE TRANSMISSION</span>
+    <div class="terminal-content">
+
+      <div class="section-heading">
+        <p class="eyebrow">// SELECT YOUR OPERATION</p>
+        <h2>READY TO JOIN THE SWAMP?</h2>
+        <p>
+          Secure your FROGINAL DOG, receive your orders,
+          or head straight to the FROGINALARMY portal.
+        </p>
       </div>
 
-      <div class="commander-stage">
-        <img id="commander" class="commander"
-          src="https://raw.githubusercontent.com/Obideft/froginals/main/images/recrute/froginal_snake_idle.png"
-          alt="FROGINALARMY commander. Select him to hear your orders."
-          role="button" tabindex="0" aria-label="Play commander briefing">
-        <div class="speech" aria-live="polite">
-          <div class="label">COMMANDER SNAKE // SAYS</div>
-          <p id="speechText">Recruit! Tap me for your first briefing. We don't do things halfway in this army.</p>
-          <span class="hint" id="speechHint">▶ TAP COMMANDER TO RECEIVE ORDERS</span>
+      <!-- THREE CENTERED ACTIONS -->
+      <nav class="action-list" aria-label="Recruitment actions">
+
+        <a
+          class="action-btn mint"
+          href="https://gravemint.io/mint/3678jb"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <span class="action-number">01</span>
+
+          <span class="action-copy">
+            <strong>MINT NFT NOW</strong>
+            <small>Secure your FROGINAL DOG and join the collection.</small>
+            <span class="mint-badge">MINT STATION // OPEN</span>
+          </span>
+
+          <span class="action-arrow">↗</span>
+        </a>
+
+        <button class="action-btn" id="briefingButton" type="button">
+          <span class="action-number">02</span>
+
+          <span class="action-copy">
+            <strong>GET INSTANT BRIEFING</strong>
+            <small>Listen to Commander Snake and learn your orders.</small>
+          </span>
+
+          <span class="action-arrow">▶</span>
+        </button>
+
+        <a
+          class="action-btn"
+          href="https://obideft.github.io/froginals/"
+          aria-label="Browse the FROGINALARMY page"
+        >
+          <span class="action-number">03</span>
+
+          <span class="action-copy">
+            <strong>BROWSE THE FROGINALARMY PAGE</strong>
+            <small>Explore the army portal and discover your missions.</small>
+          </span>
+
+          <span class="action-arrow">→</span>
+        </a>
+
+      </nav>
+
+      <!-- COMMANDER / AUDIO BRIEFING -->
+      <section class="commander-panel" id="commanderBriefing"
+               aria-label="Commander Snake audio briefing">
+
+        <div class="commander-visual">
+          <img
+            id="commander"
+            class="commander"
+            src="https://raw.githubusercontent.com/Obideft/froginals/main/images/recrute/froginal_snake_idle.png"
+            alt="Commander Snake. Select to play your briefing."
+            role="button"
+            tabindex="0"
+            aria-label="Play Commander Snake briefing"
+          >
         </div>
-      </div>
 
-      <div class="commander-actions">
-        <button class="play-btn" id="playBriefing" type="button"><span class="play-icon">▶</span> Play briefing</button>
-        <div class="orders">ORDERS AVAILABLE<br><span id="orderCount">06 AUDIO FILES</span></div>
-      </div>
-    </section>
+        <div class="commander-info">
+          <div class="commander-label">LIVE TRANSMISSION // COMMANDER SNAKE</div>
+          <h3>YOUR ORDERS, RECRUIT.</h3>
 
-    <section class="panel action-panel">
-      <div>
-        <p class="section-label">// CHOOSE YOUR PATH</p>
-        <h2>REPORT FOR DUTY</h2>
-        <p class="sub">Three ways to enter the operation. Choose the one that matches your status, recruit.</p>
-      </div>
+          <p id="speechText" aria-live="polite">
+            Welcome to the FROGINALARMY. Tap the button below to receive
+            your first briefing and find out how the operation works.
+          </p>
 
-      <a class="action-card primary" href="https://gravemint.io/mint/3678jb" target="_blank" rel="noopener noreferrer">
-        <div class="num">01</div>
-        <div><h3>Mint a FROGINAL DOG</h3><p>No FROGINAL DOG yet? Start here and join the collection on Gravemint.</p></div>
-        <div class="arrow">↗</div>
-      </a>
+          <span class="speech-hint" id="speechHint">
+            ▶ TRANSMISSION READY
+          </span>
 
-      <button class="action-card" id="briefingButton" type="button" style="text-align:left;color:inherit;width:100%">
-        <div class="num">02</div>
-        <div><h3>Receive the briefing</h3><p>New recruit? Hear the orders and learn how the FROGINALARMY works.</p></div>
-        <div class="arrow">▶</div>
-      </button>
+          <div class="commander-controls">
+            <button class="play-btn" id="playBriefing" type="button">
+              <span id="playIcon">▶</span>
+              <span id="playLabel">PLAY BRIEFING</span>
+            </button>
 
-      <a class="action-card" href="https://obideft.github.io/froginals/" aria-label="Open FROGINALARMY portal">
-        <div class="num">03</div>
-        <div><h3>Enter FROGINALARMY</h3><p>Already hold a FROGINAL DOG? Head to the army portal and start your missions.</p></div>
-        <div class="arrow">→</div>
-      </a>
-    </section>
+            <span class="order-count">
+              AUDIO FILES: <strong>06</strong>
+            </span>
+          </div>
+        </div>
+
+      </section>
+
+    </div>
   </section>
 
-  <div class="footerline">
+  <footer class="footerline">
     <span>FROGINALS // SWAMP OPERATIONS</span>
     <span>STAY SHARP. <strong>STAY FROGINAL.</strong></span>
-  </div>
+  </footer>
+
 </main>
 
-<div class="toast" id="toast" role="status"></div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
 <audio id="orderAudio" preload="none"></audio>
+
 <script>
 (() => {
-  const base = "https://raw.githubusercontent.com/Obideft/froginals/main/images/recrute/";
+  const base =
+    "https://raw.githubusercontent.com/Obideft/froginals/main/images/recrute/";
+
   const commander = document.getElementById("commander");
   const audio = document.getElementById("orderAudio");
   const speechText = document.getElementById("speechText");
@@ -176,14 +853,36 @@ h1 em{font-style:normal;color:var(--yellow)}
   const toast = document.getElementById("toast");
   const playButton = document.getElementById("playBriefing");
   const briefingButton = document.getElementById("briefingButton");
+  const playIcon = document.getElementById("playIcon");
+  const playLabel = document.getElementById("playLabel");
+
   const orders = [
-    {file:"ORDER%2001.mp3", text:"Recruit! Welcome to the FROGINALARMY. Listen carefully, because every great mission starts with a briefing."},
-    {file:"ORDER%2002.mp3", text:"First order: if you don't have a FROGINAL DOG yet, head to the mint station and secure your place in the collection."},
-    {file:"ORDER%2003.mp3", text:"Already holding a FROGINAL DOG? Good. Your next move is the FROGINALARMY portal. That's where the missions begin."},
-    {file:"ORDER%2004.mp3", text:"Inside the army, check the available missions, follow the instructions, and complete your tasks. Every action helps the community grow."},
-    {file:"ORDER%2005.mp3", text:"Stay alert, use official links, and never share your wallet recovery phrase. We build together and we look after our mates."},
-    {file:"ORDER%2006.mp3", text:"That's your briefing, recruit. Pick your path, get moving, and show the swamp what a FROGINAL can do. Dismissed!"}
+    {
+      file: "ORDER%2001.mp3",
+      text: "Recruit! Welcome to the FROGINALARMY. Listen carefully, because every great mission starts with a briefing."
+    },
+    {
+      file: "ORDER%2002.mp3",
+      text: "First order: if you don't have a FROGINAL DOG yet, head to the mint station and secure your place in the collection."
+    },
+    {
+      file: "ORDER%2003.mp3",
+      text: "Already holding a FROGINAL DOG? Good. Your next move is the FROGINALARMY portal. That's where the missions begin."
+    },
+    {
+      file: "ORDER%2004.mp3",
+      text: "Inside the army, check the available missions, follow the instructions, and complete your tasks. Every action helps the community grow."
+    },
+    {
+      file: "ORDER%2005.mp3",
+      text: "Stay alert, use official links, and never share your wallet recovery phrase. We build together and we look after our mates."
+    },
+    {
+      file: "ORDER%2006.mp3",
+      text: "That's your briefing, recruit. Pick your path, get moving, and show the swamp what a FROGINAL can do. Dismissed!"
+    }
   ];
+
   let currentOrder = 0;
   let playing = false;
   let toastTimer;
@@ -192,70 +891,96 @@ h1 em{font-style:normal;color:var(--yellow)}
     toast.textContent = message;
     toast.classList.add("show");
     clearTimeout(toastTimer);
-    toastTimer = setTimeout(() => toast.classList.remove("show"), 3000);
+    toastTimer = setTimeout(() => {
+      toast.classList.remove("show");
+    }, 3500);
   }
 
   function setIdle() {
     playing = false;
     commander.src = base + "froginal_snake_idle.png";
-    commander.alt = "FROGINALARMY commander. Select him to hear your orders.";
-    playButton.innerHTML = '<span class="play-icon">▶</span> Play briefing';
-    speechHint.textContent = "▶ TAP COMMANDER TO RECEIVE ORDERS";
+    commander.alt = "Commander Snake. Select to play your briefing.";
+    playIcon.textContent = "▶";
+    playLabel.textContent = "PLAY BRIEFING";
+    speechHint.textContent = "▶ TRANSMISSION READY";
   }
 
   function playOrder(index) {
     currentOrder = index % orders.length;
     const order = orders[currentOrder];
+
     audio.pause();
     audio.currentTime = 0;
     audio.src = base + "audio/" + order.file;
+
     speechText.textContent = order.text;
-    speechHint.textContent = "● TRANSMITTING ORDER " + String(currentOrder + 1).padStart(2, "0");
+    speechHint.textContent =
+      "● TRANSMITTING ORDER " +
+      String(currentOrder + 1).padStart(2, "0");
+
     commander.src = base + "vida.gif";
     commander.alt = "Commander Snake speaking during the briefing.";
+
     playing = true;
-    playButton.innerHTML = '<span class="play-icon">Ⅱ</span> Playing order';
+    playIcon.textContent = "Ⅱ";
+    playLabel.textContent = "STOP BRIEFING";
+
     audio.onended = () => {
-      setIdle();
       currentOrder = (currentOrder + 1) % orders.length;
+      setIdle();
     };
+
     audio.onerror = () => {
       setIdle();
-      showToast("Audio couldn't load. Check that the ORDER audio files are available in the repository.");
+      showToast(
+        "Audio could not load. Check the ORDER MP3 files in the repository."
+      );
     };
-    audio.play().then(() => {
-      // GIF runs only while the voice audio is playing.
-    }).catch(() => {
+
+    audio.play().catch(() => {
       setIdle();
-      showToast("Tap again to allow audio playback in your browser.");
+      showToast("Audio could not start. Tap Play Briefing to try again.");
     });
   }
 
-  function playNextOrder() {
+  function toggleBriefing() {
     if (playing) {
       audio.pause();
       setIdle();
       return;
     }
+
     playOrder(currentOrder);
   }
 
-  commander.addEventListener("click", playNextOrder);
+  function startBriefing() {
+    currentOrder = 0;
+
+    document.getElementById("commanderBriefing").scrollIntoView({
+      behavior: "smooth",
+      block: "center"
+    });
+
+    playOrder(0);
+  }
+
+  commander.addEventListener("click", toggleBriefing);
+
   commander.addEventListener("keydown", event => {
     if (event.key === "Enter" || event.key === " ") {
       event.preventDefault();
-      playNextOrder();
+      toggleBriefing();
     }
   });
-  playButton.addEventListener("click", playNextOrder);
-  briefingButton.addEventListener("click", () => {
-    playOrder(0);
-    document.querySelector(".commander-panel").scrollIntoView({behavior:"smooth",block:"center"});
-  });
+
+  playButton.addEventListener("click", toggleBriefing);
+  briefingButton.addEventListener("click", startBriefing);
+
   audio.addEventListener("pause", () => {
-    if (playing && audio.currentTime < audio.duration) setIdle();
+    if (playing) setIdle();
   });
 })();
 </script>
+
 </body>
 </html>
