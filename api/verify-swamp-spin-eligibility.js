@@ -168,7 +168,18 @@ module.exports = async function handler(req, res) {
       eligible: true,
       wallet_address: wallet,
       nft_mint: asset.id,
-      nft_name: String(asset.content?.metadata?.name || asset.content?.metadata?.symbol || 'FROGINAL DOGS').slice(0, 160)
+      nft_name: String(asset.content?.metadata?.name || asset.content?.metadata?.symbol || 'FROGINAL DOGS').slice(0, 160),
+      nft_image_url: (() => {
+        const raw = asset.content?.links?.image ||
+          asset.content?.files?.find(file => file?.mime?.startsWith('image/'))?.uri ||
+          asset.content?.metadata?.image;
+        try {
+          const url = new URL(raw);
+          return url.protocol === 'https:' ? url.href : null;
+        } catch {
+          return null;
+        }
+      })()
     });
   } catch (error) {
     console.error('SWAMP SPIN eligibility check failed:', error.message);
