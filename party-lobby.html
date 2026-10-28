@@ -1,0 +1,319 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#ff7900">
+<title>FROGINALS PARTY LOBBY 🐸</title>
+<meta name="description" content="Enter the FROGINALS party lobby. Meet the frogs, drop memes, and vibe together.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--orange:#ff7900;--ink:#171717;--cream:#fff1d6;--yellow:#ffd447;--green:#53ff89;--lime:#c3ff53;--blue:#168cff;--pink:#ff63c7}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--orange);color:var(--ink);font-family:"Space Grotesk",sans-serif;background-image:radial-gradient(#ff9d2e 2px,transparent 2px);background-size:22px 22px}
+button,input{font:inherit}button{cursor:pointer}a{color:inherit}
+.topbar{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:14px clamp(16px,4vw,58px);border-bottom:4px solid var(--ink);background:var(--orange);position:relative;z-index:5}
+.brand{display:flex;align-items:center;gap:14px;text-decoration:none;font:clamp(10px,1.4vw,14px)/1.8 "Press Start 2P",monospace}
+.brand img{width:92px;height:auto;image-rendering:pixelated;filter:drop-shadow(3px 3px 0 var(--ink))}
+.top-actions{display:flex;gap:10px;align-items:center;flex-wrap:wrap;justify-content:flex-end}
+.pixel-btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;padding:12px 14px;border:3px solid var(--ink);background:var(--yellow);color:var(--ink);box-shadow:4px 4px var(--ink);font:9px/1.8 "Press Start 2P",monospace;text-decoration:none;transition:transform .15s,box-shadow .15s,background .15s}
+.pixel-btn:hover{transform:translate(2px,2px);box-shadow:2px 2px var(--ink);background:var(--lime)}
+.pixel-btn.dark{background:var(--ink);color:var(--cream);box-shadow:4px 4px var(--cream)}.pixel-btn.green{background:var(--green)}.pixel-btn.pink{background:var(--pink)}
+main{width:min(1320px,100%);margin:auto;padding:clamp(18px,4vw,48px) clamp(14px,3vw,34px) 125px}
+.hero{text-align:center;padding:18px 12px 30px}
+.eyebrow{font:10px/2 "Press Start 2P",monospace;letter-spacing:.4px}
+h1,h2,h3{font-family:"Press Start 2P",monospace;line-height:1.65}
+h1{font-size:clamp(25px,6vw,64px);margin:16px 0 10px;letter-spacing:-2px;text-shadow:4px 4px var(--cream),7px 7px var(--ink)}
+.hero p{font-size:clamp(15px,2vw,19px);font-weight:800;line-height:1.8;margin:14px auto;max-width:680px}
+.pill{display:inline-flex;align-items:center;gap:8px;padding:7px 10px;border:2px solid var(--ink);background:var(--cream);font-size:12px;font-weight:800}
+.dot{width:9px;height:9px;border-radius:50%;background:#888;display:inline-block}.dot.live{background:#18c964;box-shadow:0 0 0 3px #18c96430}
+.grid{display:grid;grid-template-columns:minmax(0,1.3fr) minmax(280px,.7fr);gap:22px;align-items:start}
+.panel{border:4px solid var(--ink);background:var(--cream);box-shadow:8px 8px var(--ink);min-width:0}
+.panel-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:16px 18px;background:var(--yellow);border-bottom:4px solid var(--ink)}
+.panel-head h2{font-size:clamp(11px,1.6vw,15px);margin:0}
+.panel-body{padding:18px}
+.scene{position:relative;min-height:260px;aspect-ratio:16/8.5;overflow:hidden;border:3px solid var(--ink);background:#313d20;display:grid;place-items:center;isolation:isolate}
+.scene video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;z-index:-2}
+.scene:after{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,#17171720,#171717b5)}
+.scene-copy{color:white;text-align:center;padding:20px;text-shadow:3px 3px #171717}
+.scene-copy strong{display:block;font:clamp(15px,3vw,29px)/1.7 "Press Start 2P",monospace;color:var(--yellow)}
+.scene-copy span{display:block;font-weight:800;margin-top:10px}
+.scene-tools{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}
+.hint{font-size:12px;line-height:1.7;font-weight:700;color:#655b4f;margin:10px 0 0}
+.join-box{display:grid;grid-template-columns:1fr;gap:12px}
+.field-label{display:block;margin:0 0 7px;font:9px/1.8 "Press Start 2P",monospace}
+.text-input{width:100%;min-width:0;border:3px solid var(--ink);background:white;padding:12px 13px;color:var(--ink);outline-offset:3px}
+.avatar-grid{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:7px}
+.avatar-choice{border:3px solid var(--ink);background:white;min-height:48px;font-size:25px;box-shadow:2px 2px var(--ink)}
+.avatar-choice[aria-pressed="true"]{background:var(--green);outline:3px solid var(--blue);outline-offset:1px}
+.status{min-height:20px;font-size:12px;line-height:1.7;font-weight:800}
+.members{display:grid;gap:9px}
+.member{display:grid;grid-template-columns:42px minmax(0,1fr) auto;align-items:center;gap:10px;padding:10px;background:white;border:2px solid var(--ink)}
+.member-avatar{width:40px;height:40px;display:grid;place-items:center;background:var(--yellow);border:2px solid var(--ink);font-size:23px}
+.member-name{font-weight:800;overflow-wrap:anywhere}.member-meta{font-size:11px;color:#655b4f;font-weight:700;margin-top:3px}
+.rank{font:9px/1.8 "Press Start 2P",monospace;color:#5d5143}
+.member:nth-child(1) .member-avatar{background:var(--yellow)}.member:nth-child(2) .member-avatar{background:#d9d9d9}.member:nth-child(3) .member-avatar{background:#e5a16c}
+.reaction-section{margin-top:22px}
+.reaction-section h3{font-size:11px;margin:0 0 12px}
+.reaction-grid{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:8px}
+.reaction{min-width:0;display:grid;justify-items:center;gap:7px;padding:12px 4px;border:3px solid var(--ink);background:white;box-shadow:3px 3px var(--ink);transition:transform .15s,background .15s}
+.reaction:hover{transform:translateY(-3px);background:var(--yellow)}.reaction .emoji{font-size:clamp(22px,3.5vw,34px)}.reaction .label{font:7px/1.6 "Press Start 2P",monospace}.reaction .count{font-size:12px;font-weight:800}
+.feed{display:grid;gap:7px;margin-top:12px}.feed-item{padding:9px 11px;border-left:4px solid var(--pink);background:#fff;font-size:12px;font-weight:800;line-height:1.6}
+.music-dock{position:fixed;z-index:20;bottom:0;left:0;right:0;border-top:4px solid var(--ink);background:var(--ink);color:var(--cream);padding:12px clamp(12px,3vw,30px);display:grid;grid-template-columns:minmax(170px,.8fr) minmax(220px,1.5fr) minmax(150px,.8fr);gap:18px;align-items:center;box-shadow:0 -5px 0 #17171730}
+.track-info{min-width:0}.track-title{font:9px/1.8 "Press Start 2P",monospace;color:var(--yellow);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}.track-subtitle{font-size:11px;color:#d0c7b8;font-weight:700;margin-top:4px}
+.player-controls{display:flex;align-items:center;justify-content:center;gap:12px;min-width:0}
+.play-btn{width:43px;height:43px;flex-shrink:0;border:3px solid var(--cream);background:var(--yellow);color:var(--ink);font-size:18px;font-weight:800}
+.progress-wrap{min-width:0;flex:1;display:grid;grid-template-columns:38px minmax(0,1fr) 38px;gap:8px;align-items:center;font-size:10px;font-weight:800;font-variant-numeric:tabular-nums}
+input[type=range]{width:100%;accent-color:var(--yellow);cursor:pointer}
+.music-actions{display:flex;justify-content:flex-end;gap:7px;align-items:center}.music-actions .pixel-btn{font-size:7px;padding:9px}
+input[type=file]{max-width:100%;font-size:11px}
+.toast{position:fixed;top:15px;left:50%;transform:translateX(-50%);z-index:99;max-width:calc(100% - 24px);padding:12px 15px;background:var(--green);border:3px solid var(--ink);box-shadow:4px 4px var(--ink);font-weight:800;font-size:13px;display:none}
+footer{text-align:center;padding:25px 12px 145px;font:8px/2 "Press Start 2P",monospace}
+.hidden{display:none!important}
+@media(max-width:820px){.grid{grid-template-columns:1fr}.music-dock{grid-template-columns:1fr 1.3fr;gap:8px}.music-actions{grid-column:1/-1;justify-content:center}.track-info{grid-column:1/-1;text-align:center}.player-controls{grid-column:1/-1}.music-dock{padding:8px 12px}.topbar{align-items:flex-start}.brand img{width:68px}}
+@media(max-width:480px){.topbar{flex-direction:column;align-items:center}.top-actions{justify-content:center}.brand{justify-content:center}.panel-body{padding:12px}.avatar-grid{grid-template-columns:repeat(6,minmax(0,1fr));gap:5px}.avatar-choice{min-height:42px;font-size:21px}.reaction-grid{gap:5px}.reaction{padding:9px 2px}.reaction .label{font-size:6px}.music-dock{grid-template-columns:1fr}.track-info,.player-controls,.music-actions{grid-column:1}.track-info{text-align:center}.music-actions{flex-wrap:wrap}.progress-wrap{grid-template-columns:32px minmax(0,1fr) 32px}.music-dock{position:sticky;bottom:0}footer{padding-bottom:30px}}
+@media(prefers-reduced-motion:reduce){*{scroll-behavior:auto!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<header class="topbar">
+<a class="brand" href="index.html"><img src="images/Log01.png" alt="FROGINALS logo"><span>FROGINALS<br>PARTY LOBBY</span></a>
+<div class="top-actions"><span class="pill"><i class="dot" id="connectionDot"></i><span id="connectionLabel">LOCAL PARTY MODE</span></span><a class="pixel-btn" href="index.html">← HOME</a></div>
+</header>
+<main>
+<section class="hero">
+<div class="eyebrow">🐸 THE SWAMP IS OPEN 🐸</div>
+<h1>PARTY<br>LOBBY!</h1>
+<p>Pull up, pick your frog, drop a meme reaction, and vibe with the FROGINAL DOGS crew.</p>
+<span class="pill"><span id="onlineCount">1</span> FROGS IN THE LOBBY</span>
+</section>
+<div class="grid">
+<section class="panel">
+<div class="panel-head"><h2>🎬 THE PARTY SCREEN</h2><span class="eyebrow">LIVE VIBES</span></div>
+<div class="panel-body">
+<div class="scene" id="partyScene">
+<video id="bgVideo" autoplay muted loop playsinline class="hidden"></video>
+<div class="scene-copy"><strong>WELCOME TO<br>THE SWAMP!</strong><span>Good frogs. Good Doge. Big vibes.</span></div>
+</div>
+<div class="scene-tools">
+<label class="pixel-btn" for="videoUpload">📼 LOAD LOOP VIDEO</label><input class="hidden" id="videoUpload" type="file" accept="video/*">
+<button class="pixel-btn dark" id="clearVideo" type="button">CLEAR VIDEO</button>
+</div>
+<p class="hint">Choose a looping video from your device for this screen. For a shared background, use the same hosted video URL on each device.</p>
+<div class="reaction-section">
+<h3>💥 THE MEME PIT — SEND A SIGNAL</h3>
+<div class="reaction-grid" id="reactionGrid">
+<button class="reaction" data-reaction="frog" type="button"><span class="emoji">🐸</span><span class="label">FROG UP</span><span class="count" id="count-frog">0</span></button>
+<button class="reaction" data-reaction="fire" type="button"><span class="emoji">🔥</span><span class="label">HEAT</span><span class="count" id="count-fire">0</span></button>
+<button class="reaction" data-reaction="party" type="button"><span class="emoji">🎉</span><span class="label">PARTY</span><span class="count" id="count-party">0</span></button>
+<button class="reaction" data-reaction="laugh" type="button"><span class="emoji">😂</span><span class="label">LOL</span><span class="count" id="count-laugh">0</span></button>
+<button class="reaction" data-reaction="moon" type="button"><span class="emoji">🌕</span><span class="label">TO THE MOON</span><span class="count" id="count-moon">0</span></button>
+</div>
+<div class="feed" id="reactionFeed" aria-live="polite"><div class="feed-item">🐸 The swamp is warming up. Drop your first signal!</div></div>
+</div>
+</div>
+</section>
+<aside class="panel">
+<div class="panel-head"><h2>🏆 FROG ROLL CALL</h2><span class="pill"><i class="dot live"></i> ONLINE</span></div>
+<div class="panel-body">
+<div class="join-box" id="joinBox">
+<div><label class="field-label" for="nickname">YOUR PARTY NICKNAME</label><input class="text-input" id="nickname" maxlength="20" placeholder="e.g. DEFT KING" autocomplete="nickname"></div>
+<div><span class="field-label">PICK YOUR AVATAR</span><div class="avatar-grid" id="avatarGrid">
+<button class="avatar-choice" data-avatar="🐸" aria-pressed="true" type="button">🐸</button><button class="avatar-choice" data-avatar="🐶" aria-pressed="false" type="button">🐶</button><button class="avatar-choice" data-avatar="👑" aria-pressed="false" type="button">👑</button><button class="avatar-choice" data-avatar="🧢" aria-pressed="false" type="button">🧢</button><button class="avatar-choice" data-avatar="👽" aria-pressed="false" type="button">👽</button><button class="avatar-choice" data-avatar="🐸‍⬛" aria-pressed="false" type="button">🐸‍⬛</button>
+</div></div>
+<button class="pixel-btn green" id="joinBtn" type="button">ENTER THE PARTY →</button>
+<div class="status" id="joinStatus" aria-live="polite">No account needed. Pick a name and jump in.</div>
+</div>
+<div class="members" id="members"></div>
+<p class="hint">Live roster appears when Supabase Realtime is configured. In local preview, the roster is a demo.</p>
+</div>
+</aside>
+</div>
+</main>
+<footer>FROGINALS PARTY LOBBY · KEEP IT FROGGY · 🐸</footer>
+<section class="music-dock" aria-label="Party music player">
+<div class="track-info"><div class="track-title" id="trackTitle">SWAMP PARTY MIX</div><div class="track-subtitle" id="trackSubtitle">Choose a hosted audio URL to sync music with the room</div></div>
+<div class="player-controls">
+<button class="play-btn" id="playBtn" type="button" aria-label="Play or pause music">▶</button>
+<div class="progress-wrap"><span id="elapsed">0:00</span><input id="seekBar" type="range" min="0" max="100" value="0" aria-label="Track progress"><span id="duration">0:00</span></div>
+</div>
+<div class="music-actions">
+<label class="pixel-btn" for="audioUpload">LOAD AUDIO</label><input class="hidden" id="audioUpload" type="file" accept="audio/*">
+<button class="pixel-btn" id="setUrlBtn" type="button">SET SHARED URL</button>
+</div>
+</section>
+<audio id="partyAudio" preload="metadata"></audio>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script>
+/* Public browser config only. Never put a Supabase service-role key in this file. */
+const PARTY_CONFIG = {
+  supabaseUrl: "https://zftghdlrhcqwcezedglg.supabase.co",
+  supabaseAnonKey: "PASTE_SUPABASE_PUBLISHABLE_OR_ANON_KEY_HERE",
+  room: "froginals-party-lobby-v1"
+};
+const $ = id => document.getElementById(id);
+const avatars = ["🐸","🐶","👑","🧢","👽","🐸‍⬛"];
+const reactionMeta = {
+  frog:{emoji:"🐸",label:"FROG UP"},fire:{emoji:"🔥",label:"HEAT"},party:{emoji:"🎉",label:"PARTY"},laugh:{emoji:"😂",label:"LOL"},moon:{emoji:"🌕",label:"TO THE MOON"}
+};
+let chosenAvatar = "🐸";
+let nickname = "";
+let guestId = "";
+let channel = null;
+let supabase = null;
+let joined = false;
+let online = [];
+let localCounts = {frog:0,fire:0,party:0,laugh:0,moon:0};
+let demoTimer = null;
+let sharedTrackUrl = "";
+let applyingRemoteAudio = false;
+const audio = $("partyAudio");
+function toast(message){const t=$("toast");t.textContent=message;t.style.display="block";clearTimeout(toast.timer);toast.timer=setTimeout(()=>t.style.display="none",2800)}
+function fmt(seconds){if(!Number.isFinite(seconds)||seconds<0)return "0:00";const m=Math.floor(seconds/60),s=Math.floor(seconds%60);return m+":"+String(s).padStart(2,"0")}
+function safeName(value){return String(value||"FROG").trim().replace(/\s+/g," ").slice(0,20)}
+function renderMembers(){
+  const list=$("members");
+  const members=online.length?online:[{id:"demo-1",nickname:nickname||"SWAMP GUEST",avatar:chosenAvatar,rank:1,local:true}];
+  $("onlineCount").textContent=String(members.length);
+  list.innerHTML="";
+  members.slice().sort((a,b)=>(a.nickname||"").localeCompare(b.nickname||"")).forEach((m,i)=>{
+    const item=document.createElement("div");item.className="member";
+    const av=document.createElement("div");av.className="member-avatar";av.textContent=m.avatar||"🐸";
+    const info=document.createElement("div");
+    const name=document.createElement("div");name.className="member-name";name.textContent=m.nickname||"SWAMP GUEST";
+    const meta=document.createElement("div");meta.className="member-meta";meta.textContent=m.local?"Preview guest":(m.id===guestId?"That's you":"In the swamp");
+    info.append(name,meta);
+    const rank=document.createElement("div");rank.className="rank";rank.textContent="#"+String(i+1).padStart(2,"0");
+    item.append(av,info,rank);list.append(item);
+  });
+}
+function setConnection(connected){
+  $("connectionDot").classList.toggle("live",connected);
+  $("connectionLabel").textContent=connected?"LIVE REALTIME":"LOCAL PARTY MODE";
+}
+function updateCounts(counts){
+  Object.keys(reactionMeta).forEach(key=>{$("count-"+key).textContent=String(counts[key]||0)});
+}
+function pushFeed(text){
+  const feed=$("reactionFeed");const item=document.createElement("div");item.className="feed-item";item.textContent=text;
+  feed.prepend(item);while(feed.children.length>4)feed.lastElementChild.remove();
+}
+function startDemo(){
+  if(demoTimer)return;
+  online=[{id:"demo-1",nickname:"DEFT KING",avatar:"👑"},{id:"demo-2",nickname:"SWAMP LEGEND",avatar:"🐸"},{id:"demo-3",nickname:"DOGE DJ",avatar:"🐶"}];
+  renderMembers();
+}
+function broadcast(type,payload){
+  if(channel&&joined){channel.send({type:"broadcast",event:type,payload}).catch(()=>{});}
+}
+async function connectRealtime(){
+  const key=PARTY_CONFIG.supabaseAnonKey;
+  if(!window.supabase||!PARTY_CONFIG.supabaseUrl||!key||key.includes("PASTE_")){
+    setConnection(false);startDemo();return;
+  }
+  try{
+    supabase=window.supabase.createClient(PARTY_CONFIG.supabaseUrl,key,{auth:{persistSession:false,autoRefreshToken:false}});
+    guestId=(crypto.randomUUID?crypto.randomUUID():String(Date.now())+Math.random().toString(36).slice(2));
+    channel=supabase.channel(PARTY_CONFIG.room,{config:{presence:{key:guestId},broadcast:{self:false}}});
+    channel.on("presence",{event:"sync"},()=>{
+      const state=channel.presenceState();const next=[];
+      Object.keys(state).forEach(k=>(state[k]||[]).forEach(p=>next.push({id:p.id||k,nickname:p.nickname||"SWAMP GUEST",avatar:p.avatar||"🐸"})));
+      online=next;renderMembers();
+    });
+    channel.on("broadcast",{event:"reaction"},({payload})=>{
+      if(!payload||!reactionMeta[payload.reaction])return;
+      localCounts[payload.reaction]=(localCounts[payload.reaction]||0)+1;updateCounts(localCounts);
+      pushFeed((payload.avatar||"🐸")+" "+(payload.nickname||"A frog")+" sent "+reactionMeta[payload.reaction].emoji+" "+reactionMeta[payload.reaction].label+"!");
+    });
+    channel.on("broadcast",{event:"music"},({payload})=>applyRemoteMusic(payload));
+    const status=await channel.subscribe(async state=>{
+      if(state==="SUBSCRIBED"){
+        setConnection(true);
+        if(joined)await publishPresence();
+      }
+    });
+    if(status==="CHANNEL_ERROR"||status==="TIMED_OUT"){setConnection(false);startDemo()}
+  }catch(error){setConnection(false);startDemo();$("joinStatus").textContent="Realtime setup needed. Local party mode is ready."}
+}
+async function publishPresence(){
+  if(!channel||!joined)return;
+  await channel.track({id:guestId,nickname,avatar:chosenAvatar,joinedAt:new Date().toISOString()});
+}
+async function joinParty(){
+  const name=safeName($("nickname").value);
+  if(!name){$("joinStatus").textContent="Add a nickname first, frog."; $("nickname").focus();return}
+  nickname=name;joined=true;
+  $("nickname").value=nickname;
+  $("joinBtn").textContent="YOU'RE IN! ✓";
+  $("joinStatus").textContent="Welcome to the swamp, "+nickname+"!";
+  if(channel)await publishPresence();
+  else{online=[{id:"self",nickname,avatar:chosenAvatar,local:true}];renderMembers()}
+  toast("🐸 Welcome to the FROGINALS party!");
+}
+$("avatarGrid").addEventListener("click",event=>{
+  const button=event.target.closest("[data-avatar]");if(!button)return;
+  chosenAvatar=button.dataset.avatar;
+  document.querySelectorAll(".avatar-choice").forEach(b=>b.setAttribute("aria-pressed",String(b===button)));
+});
+$("joinBtn").addEventListener("click",joinParty);
+$("nickname").addEventListener("keydown",e=>{if(e.key==="Enter")joinParty()});
+$("reactionGrid").addEventListener("click",event=>{
+  const button=event.target.closest("[data-reaction]");if(!button)return;
+  if(!joined){toast("Enter the party first!");$("nickname").focus();return}
+  const reaction=button.dataset.reaction;
+  localCounts[reaction]=(localCounts[reaction]||0)+1;updateCounts(localCounts);
+  pushFeed(chosenAvatar+" "+nickname+" sent "+reactionMeta[reaction].emoji+" "+reactionMeta[reaction].label+"!");
+  broadcast("reaction",{reaction,nickname,avatar:chosenAvatar,at:Date.now()});
+});
+$("videoUpload").addEventListener("change",e=>{
+  const file=e.target.files&&e.target.files[0];if(!file)return;
+  const video=$("bgVideo");if(video.dataset.objectUrl)URL.revokeObjectURL(video.dataset.objectUrl);
+  const url=URL.createObjectURL(file);video.dataset.objectUrl=url;video.src=url;video.classList.remove("hidden");video.play().catch(()=>{});
+  toast("Party background loaded on this device.");
+});
+$("clearVideo").addEventListener("click",()=>{
+  const video=$("bgVideo");video.pause();video.removeAttribute("src");video.load();video.classList.add("hidden");
+  if(video.dataset.objectUrl)URL.revokeObjectURL(video.dataset.objectUrl);delete video.dataset.objectUrl;
+});
+$("audioUpload").addEventListener("change",e=>{
+  const file=e.target.files&&e.target.files[0];if(!file)return;
+  if(audio.dataset.objectUrl)URL.revokeObjectURL(audio.dataset.objectUrl);
+  const url=URL.createObjectURL(file);audio.dataset.objectUrl=url;audio.src=url;sharedTrackUrl="";
+  $("trackTitle").textContent=file.name.toUpperCase().slice(0,42);$("trackSubtitle").textContent="Local file · only plays on this device";
+  audio.play().then(()=>{$("playBtn").textContent="Ⅱ"}).catch(()=>toast("Tap play to start the track."));
+});
+$("setUrlBtn").addEventListener("click",()=>{
+  const value=prompt("Paste a direct, browser-playable MP3/OGG/WAV URL hosted for everyone to access:");
+  if(!value)return;
+  try{const url=new URL(value);if(!["http:","https:"].includes(url.protocol))throw Error();sharedTrackUrl=url.href;
+    if(audio.dataset.objectUrl)URL.revokeObjectURL(audio.dataset.objectUrl);delete audio.dataset.objectUrl;
+    audio.src=sharedTrackUrl;audio.load();$("trackTitle").textContent=(url.pathname.split("/").pop()||"SHARED PARTY TRACK").slice(0,42).toUpperCase();$("trackSubtitle").textContent="Shared URL · syncs play/pause with connected guests";
+    broadcast("music",{action:"load",url:sharedTrackUrl,title:$("trackTitle").textContent,at:Date.now()});toast("Shared track set. Other guests need access to this audio URL.");
+  }catch(e){toast("That URL doesn't look valid. Try a direct https audio link.")}
+});
+function applyRemoteMusic(payload){
+  if(!payload)return;
+  applyingRemoteAudio=true;
+  if(payload.action==="load"&&payload.url&&payload.url!==audio.src){
+    sharedTrackUrl=payload.url;audio.src=payload.url;audio.load();$("trackTitle").textContent=payload.title||"SHARED PARTY TRACK";$("trackSubtitle").textContent="Synced from the party host";
+  }else if(payload.action==="play"){
+    if(Number.isFinite(payload.time)&&Math.abs(audio.currentTime-payload.time)>2)audio.currentTime=payload.time;
+    audio.play().then(()=>$("playBtn").textContent="Ⅱ").catch(()=>{});
+  }else if(payload.action==="pause"){audio.pause();$("playBtn").textContent="▶"}
+  else if(payload.action==="seek"&&Number.isFinite(payload.time))audio.currentTime=payload.time;
+  setTimeout(()=>applyingRemoteAudio=false,200);
+}
+$("playBtn").addEventListener("click",async()=>{
+  if(audio.paused){try{await audio.play();$("playBtn").textContent="Ⅱ";if(sharedTrackUrl)broadcast("music",{action:"play",time:audio.currentTime,at:Date.now()})}catch(e){toast("Load an audio file or set a shared URL first.")}}
+  else{audio.pause();$("playBtn").textContent="▶";if(sharedTrackUrl)broadcast("music",{action:"pause",time:audio.currentTime,at:Date.now()})}
+});
+audio.addEventListener("loadedmetadata",()=>{$("duration").textContent=fmt(audio.duration);$("seekBar").max=String(Number.isFinite(audio.duration)?audio.duration:100)});
+audio.addEventListener("timeupdate",()=>{$("elapsed").textContent=fmt(audio.currentTime);$("seekBar").value=String(audio.currentTime);if(!audio.paused&&sharedTrackUrl&&!applyingRemoteAudio&&Math.floor(audio.currentTime)%10===0&&Math.floor(audio.currentTime)!==audio.dataset.lastSync){audio.dataset.lastSync=String(Math.floor(audio.currentTime));broadcast("music",{action:"seek",time:audio.currentTime,at:Date.now()})}});
+$("seekBar").addEventListener("input",e=>{audio.currentTime=Number(e.target.value);$("elapsed").textContent=fmt(audio.currentTime)});
+$("seekBar").addEventListener("change",()=>{if(sharedTrackUrl)broadcast("music",{action:"seek",time:audio.currentTime,at:Date.now()})});
+renderMembers();updateCounts(localCounts);connectRealtime();
+</script>
+</body>
+</html>
