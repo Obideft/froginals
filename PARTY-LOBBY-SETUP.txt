@@ -1,0 +1,8 @@
+-- FROGINALS Party Lobby setup note
+-- The first lobby version uses Supabase Realtime Presence + Broadcast only.
+-- No database table is required for live guests or reactions.
+-- In Supabase Dashboard:
+-- 1. Project Settings > API: copy the public publishable/anon key.
+-- 2. Enable Realtime for the project.
+-- 3. Add that public key to PARTY_CONFIG.supabaseAnonKey in party-lobby.html.
+-- Never use the service_role key in browser code.
