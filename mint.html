@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f32be8">
+  <meta name="theme-color" content="#eeaed3">
   <title>Mint FROGINAL DOGS 🐸 | FROGINALS</title>
   <meta name="description" content="Choose where to mint your FROGINAL DOGS NFT: Robinhood Chain with USDG or Solana with SOL on GraveMint.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -11,8 +11,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;600;700;800&display=swap" rel="stylesheet">
   <style>
     :root {
-      --pink: #f32be8;
-      --pink-light: #ffb7f8;
+      --pink: #eeaed3;
+      --pink-light: #f8c8e1;
       --yellow: #ffd447;
       --green: #c3ff53;
       --cream: #fff1d6;
@@ -23,7 +23,7 @@
     html { scroll-behavior: smooth; }
     body {
       margin: 0;
-      background: var(--pink);
+      background: #eeaed3;
       color: var(--ink);
       font-family: "Space Grotesk", sans-serif;
     }
@@ -35,7 +35,7 @@
       gap: 16px;
       padding: 15px clamp(16px, 5vw, 70px);
       border-bottom: 4px solid var(--ink);
-      background: var(--pink);
+      background: #eeaed3;
     }
     .logo { width: clamp(115px, 16vw, 180px); height: auto; display: block; }
     .back {
@@ -92,8 +92,21 @@
       box-shadow: 8px 8px 0 var(--ink);
       background: var(--cream);
     }
-    .card.rh { background: #eee5ff; }
-    .card.grave { background: #eaffcf; }
+    .card.rh { background: #91ff61; color: #171717; }
+    .card.grave { background: #08080d; color: #f5eaff; border-color: #171717; }
+    .brand-row { display: flex; align-items: center; gap: 12px; margin-bottom: 18px; min-height: 48px; }
+    .brand-logo { display: block; width: 44px; height: 44px; object-fit: contain; flex: 0 0 auto; }
+    .brand-name { font: 10px/1.8 "Press Start 2P", monospace; overflow-wrap: anywhere; }
+    .rh .brand-name { color: #171717; }
+    .grave .brand-name { color: #c77dff; text-shadow: 1px 1px #ff5ac8; }
+    .grave .description { color: #eadcf7; }
+    .grave .price { color: #ff5ac8; text-shadow: 2px 2px #7138ff; }
+    .grave .price-note, .grave .details li { color: #e5d5ff; }
+    .grave .details { border-top-color: #7b42bb; }
+    .grave .details li::before { color: #ff5ac8; }
+    .grave .chain-tag { background: #101016; border-color: #9d55ff; color: #ff8be1; }
+    .rh .chain-tag { background: #caffb4; color: #171717; }
+    .grave h2 { color: #c77dff; text-shadow: 2px 2px #ff5ac8; }
     .chain-tag {
       align-self: flex-start;
       padding: 8px 10px;
@@ -126,8 +139,9 @@
       overflow-wrap: anywhere;
       transition: transform .18s, box-shadow .18s;
     }
-    .rh .mint { background: var(--purple); }
-    .grave .mint { background: var(--green); }
+    .rh .mint { background: #171717; color: #91ff61; }
+    .grave .mint { background: #171717; color: #ff8be1; border-color: #a95cff; box-shadow: 5px 5px #7d39ff; }
+    .grave .mint:hover { box-shadow: 2px 2px #7d39ff; }
     .mint:hover { transform: translate(3px, 3px); box-shadow: 2px 2px var(--ink); }
     .note {
       max-width: 780px;
@@ -172,6 +186,10 @@
       <p class="intro">Two chains. One FROGINAL spirit. Pick the mint route that works for your wallet, homie.</p>
       <section class="choices" aria-label="Choose NFT minting platform">
         <article class="card rh">
+          <div class="brand-row">
+            <img class="brand-logo" src="https://cdn.simpleicons.org/robinhood/171717" alt="Robinhood logo" loading="lazy">
+            <span class="brand-name">ROBINHOOD</span>
+          </div>
           <span class="chain-tag">EVM • ROBINHOOD CHAIN</span>
           <h2>MINT ON<br>ROBINHOOD</h2>
           <p class="description">Mint through the FROGINAL DOGS collection page on NFS using a compatible wallet and the required network.</p>
@@ -185,6 +203,10 @@
           <a class="mint" href="https://nfs.family/collection/0x646C988463aa175956F59CC1f9Efa137CD0A9d7b" target="_blank" rel="noopener noreferrer">MINT WITH USDG ↗</a>
         </article>
         <article class="card grave">
+          <div class="brand-row">
+            <img class="brand-logo" src="https://cdn.simpleicons.org/solana/9945FF" alt="Solana logo" loading="lazy">
+            <span class="brand-name">SOLANA</span>
+          </div>
           <span class="chain-tag">SOLANA • GRAVEMINT</span>
           <h2>MINT ON<br>GRAVEMINT</h2>
           <p class="description">Use the GraveMint mint page with your Solana wallet, such as Phantom.</p>
