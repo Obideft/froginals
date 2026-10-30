@@ -85,7 +85,8 @@
     .hero-jump{display:inline-block;margin-top:10px;padding:15px 20px;border:1px solid rgba(255,255,255,.7);border-radius:10px;background:linear-gradient(135deg,rgba(255,255,255,.30),rgba(255,255,255,.09));box-shadow:inset 0 1px 0 rgba(255,255,255,.5),0 8px 25px rgba(0,0,0,.25);color:#fff;text-decoration:none;font:9px/1.8 "Press Start 2P",monospace;backdrop-filter:blur(12px);transition:transform .2s,background .2s}
     .hero-jump:hover{transform:translateY(-3px);background:rgba(255,255,255,.28)}
     .hero-caption{position:absolute;z-index:3;bottom:25px;left:16px;right:16px;color:#fff;text-shadow:0 2px 10px #000}
-    .froginals-wordmark{position:absolute;z-index:3;top:50%;left:12px;right:12px;margin:0;color:#fff3d6;text-align:center;font:clamp(34px,8vw,100px)/1.3 "Press Start 2P",monospace;letter-spacing:-5px;white-space:nowrap;pointer-events:none;text-shadow:4px 4px rgba(0,0,0,.75);transform:translateY(-50%);}
+    .wordmark-flow{position:relative;z-index:3;display:flex;align-items:center;justify-content:center;width:100%;height:100svh;margin-top:-100svh;padding:0 12px;pointer-events:none;}
+    .froginals-wordmark{position:relative;margin:0;color:#fff3d6;text-align:center;font:clamp(34px,8vw,100px)/1.3 "Press Start 2P",monospace;letter-spacing:-5px;white-space:nowrap;text-shadow:4px 4px rgba(0,0,0,.75);}
     .froginals-wordmark span{display:inline-block;animation:letterWave 2.2s ease-in-out infinite;animation-delay:calc(var(--i)*.09s)}
     @keyframes letterWave{0%,100%{transform:translateY(0)}18%{transform:translateY(-15px)}36%{transform:translateY(0)}}
     @media(max-width:700px){.froginals-wordmark{letter-spacing:-2px;text-shadow:2px 2px rgba(0,0,0,.8)}}
@@ -120,9 +121,13 @@
       <section class="hero" aria-label="FROGINAL DOGS collection artwork">
         <img class="hero-art" src="https://raw.githubusercontent.com/Obideft/froginals/main/images/froginal%20dogs%20HALOWEEN.png" alt="FROGINAL DOGS Halloween collection artwork" fetchpriority="high">
         <div class="hero-shade" aria-hidden="true"></div>
-        <h1 class="froginals-wordmark" aria-label="FROGINALS"><span style="--i:0">F</span><span style="--i:1">R</span><span style="--i:2">O</span><span style="--i:3">G</span><span style="--i:4">I</span><span style="--i:5">N</span><span style="--i:6">A</span><span style="--i:7">L</span><span style="--i:8">S</span></h1>
+        
         <p class="hero-caption">ONE PACK • MANY CHARACTERS • ONE FROGINAL COMMUNITY</p>
       </section>
+
+      <div class="wordmark-flow" aria-hidden="true">
+        <h1 class="froginals-wordmark"><span style="--i:0">F</span><span style="--i:1">R</span><span style="--i:2">O</span><span style="--i:3">G</span><span style="--i:4">I</span><span style="--i:5">N</span><span style="--i:6">A</span><span style="--i:7">L</span><span style="--i:8">S</span></h1>
+      </div>
 
       <section class="story" aria-labelledby="story-title">
         <h2 id="story-title">MORE THAN A JPEG. IT'S THE PACK.</h2>
