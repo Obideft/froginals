@@ -74,3 +74,30 @@ Do not mark these as passed until tested against your Vercel deployment:
 - The directory endpoint returns at most 500 approved rows per request in this starter. Add cursor pagination if the membership directory grows beyond that.
 - The in-memory rate limiter is a basic guard only; serverless instances do not share its state.
 - The public directory includes public wallet addresses by design. Tell members that their wallet address and NFT metadata will be publicly displayed before they join.
+
+
+## Post-mint FROGINAL DOGS welcome email
+
+The new `welcome.html` page lets a Solana holder connect Phantom, sign a short-lived message, and submit an email address. `api/welcome.js` verifies the signature and checks current ownership of the verified FROGINAL DOGS collection through the existing Helius DAS helper before recording the claim and sending the welcome email through Resend.
+
+### Required setup before public use
+
+1. In Supabase SQL Editor, run `supabase-welcome-emails.sql`. This creates a separate private table and does not modify the existing membership tables.
+2. In Vercel → Project → Settings → Environment Variables, add:
+   - `RESEND_API_KEY` — server-only Resend API key.
+   - `WELCOME_FROM_EMAIL` — a sender address verified in your Resend account, e.g. `FROGINALS <welcome@your-verified-domain>`.
+   - `FROGINALS_DISCORD_INVITE` — a current invite URL for the FROGINALS Discord server.
+3. The existing `HELIUS_API_KEY`, `SUPABASE_URL`, and `SUPABASE_SERVICE_ROLE_KEY` are also required. The collection address defaults to `DEADY34TucemEebp6PJwmggAGDUmpSMoS4CcESKNBPRh`, but confirm it matches the verified collection grouping returned by Helius before launch.
+4. Redeploy Vercel after setting variables.
+
+### Test checklist
+
+- Open `/welcome.html`, connect a Phantom wallet holding a known official FROGINAL DOG, and sign the verification message.
+- Submit an email and confirm the email arrives with the Discord and OG Rewards links.
+- Test a wallet with no qualifying NFT; it must be rejected and must not create a welcome claim.
+- Test a different email against the same NFT; the system must not send a second welcome email for that NFT.
+- Check Resend delivery logs and Supabase claim status.
+
+The welcome flow is separate from GraveMint checkout: it does not receive a buyer email from GraveMint or rely on a GraveMint webhook. Buyers visit the welcome page after minting and prove current wallet ownership themselves. Robinhood Chain holders remain on the existing manual team-verification path.
+
+**Not live until configured:** the GitHub changes can deploy automatically through Vercel, but email sending will return a configuration error until the SQL migration and Resend/Vercel environment variables above are completed. Never commit API keys or service-role secrets.
