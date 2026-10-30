@@ -4,6 +4,7 @@ const {
   send, session, cookies, unpack, setCookie, clearCookie, pack,
   isSolanaPublicKey, verifyWalletSignature, heliusFindAsset, supabase, grantRole
 } = require('../lib/discord-auth');
+const welcomeHandler = require('../lib/welcome');
 
 function imageOf(asset) {
   const candidates = [asset?.content?.links?.image, ...(Array.isArray(asset?.content?.files) ? asset.content.files.map(f => f?.uri) : [])];
@@ -15,6 +16,7 @@ function imageOf(asset) {
 
 module.exports = async function handler(req, res) {
   const action = String(req.query?.action || '');
+  if (action === 'welcome-challenge' || action === 'welcome-claim') return welcomeHandler(req, res, action);
   if (action === 'status') {
     if (req.method !== 'GET') { res.setHeader('Allow', 'GET'); return send(res, 405, { success: false, error: 'Method not allowed.' }); }
     const current = session(req);
