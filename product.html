@@ -210,6 +210,20 @@ h1 {
   line-height: 1.6;
 }
 .notice.show { display: block; }
+.checkout-panel{margin-top:22px;padding:18px;background:#fff;border:3px solid var(--black);box-shadow:5px 5px 0 var(--black)}
+.checkout-panel h2{margin:0 0 14px;font-size:18px;text-transform:uppercase}
+.address-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.address-grid label{display:block;font-size:12px;font-weight:900;text-transform:uppercase}
+.address-grid input{display:block;width:100%;margin-top:5px;padding:11px;border:2px solid var(--black);border-radius:0;font:inherit;font-size:14px}
+.address-grid .wide{grid-column:1/-1}
+.checkout-action{width:100%;margin-top:14px;padding:13px;border:3px solid var(--black);background:var(--green);color:var(--black);font-weight:900;text-transform:uppercase;box-shadow:3px 3px 0 var(--black)}
+.shipping-results{margin-top:15px}
+.shipping-results select{width:100%;padding:12px;border:2px solid var(--black);background:white;font:inherit}
+.order-total{margin-top:12px;padding:12px;background:#fff2c9;border:2px dashed #b6a58e;font-weight:800;line-height:1.8;white-space:pre-line}
+#paypal-button-container{margin-top:16px}
+.checkout-notice{display:none;margin-top:14px;padding:13px;background:#fff2c9;border:2px solid var(--black);line-height:1.6;overflow-wrap:anywhere}
+.checkout-notice.show{display:block}
+@media(max-width:520px){.address-grid{grid-template-columns:1fr}.address-grid .wide{grid-column:auto}}
 footer {
   margin-top: 60px;
   padding: 25px 20px;
@@ -312,13 +326,35 @@ footer {
         Variant ID: <span id="variantId">5586793338</span>
       </div>
 
-      <button class="buy-button" id="buyButton">CONTINUE — COMING SOON</button>
-
-      <div class="notice" id="notice" role="status" aria-live="polite"></div>
-      <p class="shipping-note">
-        Secure checkout is not connected yet. This page does not take payment
-        or submit an order.
-      </p>
+      <div class="section">
+        <label class="section-title" for="quantity">3. Quantity</label>
+        <select id="quantity" style="padding:11px;border:3px solid var(--black);font:inherit;font-weight:800">
+          <option value="1">1 shirt</option><option value="2">2 shirts</option><option value="3">3 shirts</option><option value="4">4 shirts</option><option value="5">5 shirts</option>
+        </select>
+      </div>
+      <div class="checkout-panel">
+        <h2>4. Shipping address</h2>
+        <p class="shipping-note">Printful calculates live delivery rates for your destination and selected shirt.</p>
+        <div class="address-grid">
+          <label class="wide">Full name *<input id="shipName" autocomplete="name" required></label>
+          <label class="wide">Email<input id="shipEmail" type="email" autocomplete="email"></label>
+          <label class="wide">Street address *<input id="shipAddress1" autocomplete="address-line1" required></label>
+          <label class="wide">Apartment, suite (optional)<input id="shipAddress2" autocomplete="address-line2"></label>
+          <label>City *<input id="shipCity" autocomplete="address-level2" required></label>
+          <label>State / province<input id="shipState" autocomplete="address-level1"></label>
+          <label>Postal code<input id="shipZip" autocomplete="postal-code"></label>
+          <label>Country code *<input id="shipCountry" maxlength="2" placeholder="US" autocomplete="country" required></label>
+          <label class="wide">Phone (optional)<input id="shipPhone" type="tel" autocomplete="tel"></label>
+        </div>
+        <button class="checkout-action" id="calculateShipping">CALCULATE LIVE SHIPPING</button>
+        <div class="shipping-results" id="shippingResults" hidden>
+          <label class="section-title" for="shippingMethod">Choose delivery method</label>
+          <select id="shippingMethod"></select>
+          <div class="order-total" id="orderTotal"></div>
+          <div id="paypal-button-container"></div>
+        </div>
+        <div class="checkout-notice" id="checkoutNotice" role="status" aria-live="polite"></div>
+      </div>
     </section>
   </div>
 </main>
@@ -329,114 +365,87 @@ footer {
 </footer>
 
 <script>
-const variants = {
-  Black: {
-    L:   { id: "5586793338", externalId: "6ad8a1ec107593", price: 14.50 },
-    "2XL": { id: "5586793339", externalId: "6ad8a1ec1075b7", price: 17.00 },
-    "4XL": { id: "5586793340", externalId: "6ad8a1ec1075d1", price: 22.00 }
-  },
-  Orange: {
-    L:   { id: "5586793341", externalId: "6ad8a1ec1075f5", price: 14.50 },
-    "2XL": { id: "5586793342", externalId: "6ad8a1ec107607", price: 17.00 },
-    "4XL": { id: "5586793343", externalId: "6ad8a1ec107615", price: 22.00 }
-  },
-  Cornsilk: {
-    L:   { id: "5586793344", externalId: "6ad8a1ec107638", price: 14.50 },
-    "2XL": { id: "5586793345", externalId: "6ad8a1ec107641", price: 17.00 }
-  },
-  White: {
-    L:   { id: "5586793346", externalId: "6ad8a1ec107656", price: 14.50 },
-    "2XL": { id: "5586793347", externalId: "6ad8a1ec107663", price: 17.00 },
-    "4XL": { id: "5586793348", externalId: "6ad8a1ec107673", price: 22.00 }
-  }
+const variants={
+ Black:{L:{id:"5586793338",externalId:"6ad8a1ec107593",price:14.50},"2XL":{id:"5586793339",externalId:"6ad8a1ec1075b7",price:17},"4XL":{id:"5586793340",externalId:"6ad8a1ec1075d1",price:22}},
+ Orange:{L:{id:"5586793341",externalId:"6ad8a1ec1075f5",price:14.50},"2XL":{id:"5586793342",externalId:"6ad8a1ec107607",price:17},"4XL":{id:"5586793343",externalId:"6ad8a1ec107615",price:22}},
+ Cornsilk:{L:{id:"5586793344",externalId:"6ad8a1ec107638",price:14.50},"2XL":{id:"5586793345",externalId:"6ad8a1ec107641",price:17}},
+ White:{L:{id:"5586793346",externalId:"6ad8a1ec107656",price:14.50},"2XL":{id:"5586793347",externalId:"6ad8a1ec107663",price:17},"4XL":{id:"5586793348",externalId:"6ad8a1ec107673",price:22}}
 };
-
-let selectedColor = "Black";
-let selectedSize = "L";
-
-const priceEl = document.getElementById("price");
-const variantEl = document.getElementById("variantId");
-const colorEl = document.getElementById("selectedColor");
-const sizeEl = document.getElementById("selectedSize");
-const availabilityEl = document.getElementById("availability");
-const noticeEl = document.getElementById("notice");
-const buyButton = document.getElementById("buyButton");
-
-function updateProduct() {
-  const colorVariants = variants[selectedColor];
-
-  document.querySelectorAll(".color-option").forEach(button => {
-    button.setAttribute(
-      "aria-pressed",
-      String(button.dataset.color === selectedColor)
-    );
-  });
-
-  document.querySelectorAll(".size-option").forEach(button => {
-    const available = Boolean(colorVariants[button.dataset.size]);
-    button.disabled = !available;
-    button.setAttribute(
-      "aria-pressed",
-      String(button.dataset.size === selectedSize)
-    );
-  });
-
-  if (!colorVariants[selectedSize]) {
-    selectedSize = Object.keys(colorVariants)[0];
-  }
-
-  const variant = colorVariants[selectedSize];
-
-  document.querySelectorAll(".size-option").forEach(button => {
-    button.setAttribute(
-      "aria-pressed",
-      String(button.dataset.size === selectedSize)
-    );
-  });
-
-  priceEl.textContent = "$" + variant.price.toFixed(2) + " USD";
-  variantEl.textContent = variant.id;
-  colorEl.textContent = selectedColor;
-  sizeEl.textContent = selectedSize;
-
-  availabilityEl.textContent = selectedColor === "Cornsilk"
-    ? "Available sizes: L and 2XL."
-    : "Available sizes: L, 2XL and 4XL.";
-
-  noticeEl.classList.remove("show");
+let selectedColor="Black",selectedSize="L",shippingRates=[],paypalSdkPromise=null,paypalRenderedFor="";
+const $=id=>document.getElementById(id);
+const priceEl=$("price"),variantEl=$("variantId"),colorEl=$("selectedColor"),sizeEl=$("selectedSize"),availabilityEl=$("availability"),quantityEl=$("quantity"),shippingResults=$("shippingResults"),shippingMethod=$("shippingMethod"),orderTotal=$("orderTotal"),paypalContainer=$("paypal-button-container"),noticeEl=$("checkoutNotice"),calculateButton=$("calculateShipping");
+function notice(message){noticeEl.textContent=message;noticeEl.classList.add("show")}
+function clearCheckout(){shippingRates=[];shippingResults.hidden=true;shippingMethod.innerHTML="";paypalContainer.innerHTML="";orderTotal.textContent="";paypalRenderedFor="";noticeEl.classList.remove("show")}
+function variant(){return variants[selectedColor][selectedSize]}
+function recipient(){return{name:$("shipName").value.trim(),email:$("shipEmail").value.trim(),address1:$("shipAddress1").value.trim(),address2:$("shipAddress2").value.trim(),city:$("shipCity").value.trim(),state_code:$("shipState").value.trim().toUpperCase(),zip:$("shipZip").value.trim(),country_code:$("shipCountry").value.trim().toUpperCase(),phone:$("shipPhone").value.trim()}}
+function updateProduct(){
+ const cv=variants[selectedColor];
+ document.querySelectorAll(".color-option").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.color===selectedColor)));
+ document.querySelectorAll(".size-option").forEach(b=>{b.disabled=!cv[b.dataset.size];b.setAttribute("aria-pressed",String(b.dataset.size===selectedSize))});
+ if(!cv[selectedSize])selectedSize=Object.keys(cv)[0];
+ document.querySelectorAll(".size-option").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.size===selectedSize)));
+ priceEl.textContent="$"+(variant().price*Number(quantityEl.value)).toFixed(2)+" USD";
+ variantEl.textContent=variant().id;colorEl.textContent=selectedColor;sizeEl.textContent=selectedSize;
+ availabilityEl.textContent=selectedColor==="Cornsilk"?"Available sizes: L and 2XL.":"Available sizes: L, 2XL and 4XL.";
+ clearCheckout();
 }
-
-document.getElementById("colorOptions").addEventListener("click", event => {
-  const button = event.target.closest("[data-color]");
-  if (!button) return;
-  selectedColor = button.dataset.color;
-  updateProduct();
-});
-
-document.getElementById("sizeOptions").addEventListener("click", event => {
-  const button = event.target.closest("[data-size]");
-  if (!button || button.disabled) return;
-  selectedSize = button.dataset.size;
-  updateProduct();
-});
-
-buyButton.addEventListener("click", () => {
-  const variant = variants[selectedColor][selectedSize];
-
-  noticeEl.innerHTML = `
-    <strong>Your shirt selection is ready! 🐸</strong><br>
-    Color: ${selectedColor}<br>
-    Size: ${selectedSize}<br>
-    Price: $${variant.price.toFixed(2)} USD<br>
-    Printful sync variant ID: ${variant.id}<br><br>
-    <strong>Checkout is not connected yet.</strong>
-    No payment has been taken and no order has been submitted.
-    Connect a real checkout and verify payment on the server before
-    enabling order fulfillment.
-  `;
-  noticeEl.classList.add("show");
-});
-
+function updateTotal(){
+ const r=shippingRates.find(x=>x.id===shippingMethod.value);if(!r)return;
+ const sub=variant().price*Number(quantityEl.value);
+ orderTotal.textContent="Shirt subtotal: $"+sub.toFixed(2)+" USD\nLive shipping: $"+Number(r.rate).toFixed(2)+" USD\nTotal: $"+(sub+Number(r.rate)).toFixed(2)+" USD";
+}
+async function calcShipping(){
+ clearCheckout();const r=recipient();
+ if(!r.name||!r.address1||!r.city||!/^[A-Z]{2}$/.test(r.country_code)){notice("Enter your name, street address, city and 2-letter country code (for example US, GB or MA).");return}
+ if(["US","CA","AU"].includes(r.country_code)&&!r.state_code){notice("Enter your state or province code for this destination.");return}
+ calculateButton.disabled=true;calculateButton.textContent="CALCULATING PRINTFUL RATES…";
+ try{
+  const response=await fetch("/api/printful-shipping-rates",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({variantId:variant().id,quantity:Number(quantityEl.value),recipient:r})});
+  const data=await response.json();if(!response.ok||!Array.isArray(data.rates))throw new Error(data.error||"Shipping rates are unavailable.");
+  shippingRates=data.rates;shippingMethod.innerHTML="";
+  shippingRates.forEach((rate,i)=>{const o=document.createElement("option");o.value=rate.id;o.textContent=rate.name+" — $"+Number(rate.rate).toFixed(2)+" USD";shippingMethod.appendChild(o);if(i===0)shippingMethod.value=rate.id});
+  shippingResults.hidden=false;updateTotal();await renderPayPal();
+ }catch(err){notice(err.message||"Could not calculate shipping. Please try again")}
+ finally{calculateButton.disabled=false;calculateButton.textContent="RECALCULATE LIVE SHIPPING"}
+}
+async function loadPayPal(){
+ if(window.paypal)return;if(paypalSdkPromise)return paypalSdkPromise;
+ paypalSdkPromise=(async()=>{
+  const response=await fetch("/api/paypal-client-id");const data=await response.json();
+  if(!response.ok||!data.clientId)throw new Error(data.error||"PayPal is not configured.");
+  await new Promise((resolve,reject)=>{const s=document.createElement("script");s.src="https://www.paypal.com/sdk/js?client-id="+encodeURIComponent(data.clientId)+"&currency=USD&intent=capture&components=buttons";s.onload=resolve;s.onerror=()=>reject(new Error("PayPal checkout could not load."));document.head.appendChild(s)});
+ })();return paypalSdkPromise;
+}
+async function renderPayPal(){
+ const selected=shippingMethod.value;if(!selected||paypalRenderedFor===selected)return;
+ paypalContainer.innerHTML="";paypalRenderedFor=selected;
+ try{
+  await loadPayPal();if(!window.paypal||!window.paypal.Buttons)throw new Error("PayPal checkout is unavailable.");
+  await window.paypal.Buttons({
+   style:{layout:"vertical",color:"gold",shape:"rect",label:"paypal"},
+   createOrder:async()=>{
+    const response=await fetch("/api/create-order",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({variantId:variant().id,quantity:Number(quantityEl.value),recipient:recipient(),shippingId:shippingMethod.value})});
+    const data=await response.json();if(!response.ok||!data.id){if(response.status===409){clearCheckout();notice("Printful shipping changed. Recalculate shipping before paying.")}throw new Error(data.error||"Could not create PayPal order.")}
+    const sub=variant().price*Number(quantityEl.value);orderTotal.textContent="Shirt subtotal: $"+sub.toFixed(2)+" USD\nConfirmed shipping: $"+Number(data.shipping).toFixed(2)+" USD\nPayPal total: $"+Number(data.total).toFixed(2)+" USD";
+    return data.id;
+   },
+   onApprove:async data=>{
+    notice("Payment approved. Confirming payment and sending your order to Printful…");
+    const response=await fetch("/api/capture-order",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({orderID:data.orderID})});
+    const result=await response.json();if(!response.ok&&response.status!==202)throw new Error(result.error||"Payment confirmation needs attention.");
+    if(result.fulfillment==="PENDING_RETRY"||result.fulfillment==="PENDING_CONFIGURATION"){notice("Your PayPal payment is complete, but Printful fulfillment needs attention. Contact FROGINALS support and provide PayPal order "+result.orderID+".");return}
+    notice("Payment successful! 🐸 Your order has been sent to Printful. PayPal order: "+result.orderID+(result.printfulOrderID?" | Printful order: "+result.printfulOrderID:"")+".");
+   },
+   onCancel:()=>notice("Checkout cancelled. No payment was taken."),
+   onError:error=>{console.error("PayPal checkout error:",error);notice(error&&error.message?error.message:"PayPal checkout encountered an error. Please try again.")}
+  }).render("#paypal-button-container");
+ }catch(err){paypalRenderedFor="";notice(err.message||"PayPal checkout could not be loaded.")}
+}
+$("colorOptions").addEventListener("click",e=>{const b=e.target.closest("[data-color]");if(!b)return;selectedColor=b.dataset.color;updateProduct()});
+$("sizeOptions").addEventListener("click",e=>{const b=e.target.closest("[data-size]");if(!b||b.disabled)return;selectedSize=b.dataset.size;updateProduct()});
+quantityEl.addEventListener("change",updateProduct);
+calculateButton.addEventListener("click",calcShipping);
+shippingMethod.addEventListener("change",()=>{paypalContainer.innerHTML="";paypalRenderedFor="";updateTotal();renderPayPal()});
 updateProduct();
 </script>
 </body>
