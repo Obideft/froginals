@@ -85,6 +85,7 @@ The new `welcome.html` page lets a Solana holder connect Phantom, sign a short-l
 1. In Supabase SQL Editor, run `supabase-welcome-emails.sql`. This creates a separate private table and does not modify the existing membership tables.
 2. In Vercel → Project → Settings → Environment Variables, add:
    - `RESEND_API_KEY` — server-only Resend API key.
+   - `WELCOME_SESSION_SECRET` — random secret of at least 32 characters, used to sign the short-lived wallet challenge cookie.
    - `WELCOME_FROM_EMAIL` — a sender address verified in your Resend account, e.g. `FROGINALS <welcome@your-verified-domain>`.
    - `FROGINALS_DISCORD_INVITE` — a current invite URL for the FROGINALS Discord server.
 3. The existing `HELIUS_API_KEY`, `SUPABASE_URL`, and `SUPABASE_SERVICE_ROLE_KEY` are also required. The collection address defaults to `DEADY34TucemEebp6PJwmggAGDUmpSMoS4CcESKNBPRh`, but confirm it matches the verified collection grouping returned by Helius before launch.
