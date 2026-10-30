@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#eeaed3">
+<title>FROGINALS — Claim Your Holder Welcome</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}body{margin:0;min-height:100vh;background:#eeaed3;color:#171717;font-family:"Space Grotesk",sans-serif;text-align:center;background-image:radial-gradient(rgba(23,23,23,.09) 2px,transparent 2px);background-size:22px 22px}
+header{padding:20px;border-bottom:3px solid #171717;background:#eeaed3}.brand{font:clamp(12px,2vw,18px)/1.8 "Press Start 2P",monospace;text-decoration:none;color:#171717}
+main{width:min(680px,calc(100% - 28px));margin:42px auto;padding:clamp(22px,5vw,44px);background:#fff1d6;border:4px solid #171717;box-shadow:9px 9px #171717;border-radius:8px}
+.kicker{font:9px/2 "Press Start 2P",monospace;color:#8b3d72}h1{font:clamp(20px,4vw,32px)/1.7 "Press Start 2P",monospace;margin:18px 0;text-shadow:3px 3px #eeaed3}
+p{font-size:16px;font-weight:700;line-height:1.8}.wallet{margin:20px 0;padding:13px;background:#171717;color:#c3ff53;font-weight:800;overflow-wrap:anywhere}
+input{display:block;width:100%;margin:14px 0;padding:16px;border:3px solid #171717;border-radius:4px;background:white;font:700 16px "Space Grotesk",sans-serif}
+button,.button{display:inline-block;width:100%;margin:10px 0;padding:17px 15px;border:3px solid #171717;background:#c3ff53;color:#171717;box-shadow:5px 5px #171717;font:10px/1.8 "Press Start 2P",monospace;cursor:pointer;text-decoration:none}
+button:disabled{opacity:.55;cursor:wait}.secondary{background:#ffd447}.status{min-height:30px;margin:16px 0 0;font-weight:800;line-height:1.7}.small{font-size:12px;color:#554b43}.steps{margin:25px 0;padding:15px;border:2px dashed #171717;text-align:left;font-size:13px;font-weight:700;line-height:1.9}
+footer{padding:22px;font:8px/2 "Press Start 2P",monospace}
+</style></head>
+<body>
+<header><a class="brand" href="/">🐸 FROGINALS</a></header>
+<main>
+<div class="kicker">FROGINAL DOGS • HOLDER WELCOME</div>
+<h1>WELCOME TO THE SWAMP!</h1>
+<p>Already minted your official FROGINAL DOG? Verify the wallet that holds it and claim your welcome email.</p>
+<div id="wallet" class="wallet">PHANTOM NOT CONNECTED</div>
+<button id="connect" type="button">CONNECT PHANTOM WALLET</button>
+<form id="claim" hidden>
+<input id="email" type="email" autocomplete="email" maxlength="254" placeholder="Your email address" required>
+<button id="submit" type="submit">VERIFY & SEND MY WELCOME EMAIL</button>
+</form>
+<div id="status" class="status" role="status" aria-live="polite">Connect the wallet that currently holds your FROGINAL DOG.</div>
+<div class="steps">1. Connect Phantom (or another compatible Solana wallet).<br>2. Sign a free verification message — no transaction and no SOL fee.<br>3. Enter your email. We check official collection ownership before sending your welcome.</div>
+<p class="small">We will never ask for your recovery phrase or private key. Signing the message only proves control of your wallet.</p>
+<a class="button secondary" href="https://froginals-nu.vercel.app/mint.html">NEED A FROGINAL DOG? MINT HERE</a>
+</main>
+<footer>ONE SWAMP • ONE ARMY • ONE MISSION 🐸</footer>
+<script>
+(() => {
+ const connectBtn=document.getElementById('connect'), form=document.getElementById('claim'), walletBox=document.getElementById('wallet'), status=document.getElementById('status'), submit=document.getElementById('submit');
+ let provider=null, address='';
+ const say=(message)=>{status.textContent=message};
+ const getProvider=()=>window.phantom?.solana?.isPhantom?window.phantom.solana:(window.solana?.isPhantom?window.solana:null);
+ connectBtn.addEventListener('click',async()=>{
+   provider=getProvider();
+   if(!provider){say('Phantom was not detected. Install Phantom, then reload this page.');return}
+   try{const result=await provider.connect();address=result.publicKey.toString();walletBox.textContent=address;form.hidden=false;connectBtn.textContent='WALLET CONNECTED';say('Wallet connected. Enter your email to continue.')}
+   catch(e){say('Wallet connection was cancelled or failed. Please try again.')}
+ });
+ form.addEventListener('submit',async(event)=>{
+   event.preventDefault();if(!provider||!address)return;
+   const email=document.getElementById('email').value.trim();if(!email)return;
+   submit.disabled=true;say('Preparing your secure wallet verification…');
+   try{
+     const challengeResponse=await fetch('/api/welcome?action=challenge',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({wallet_address:address})});
+     const challenge=await challengeResponse.json();if(!challengeResponse.ok||!challenge.success)throw new Error(challenge.error||'Could not start verification.');
+     say('Please approve the free signature request in Phantom…');
+     const signed=await provider.signMessage(new TextEncoder().encode(challenge.message),'utf8');
+     const signature= btoa(String.fromCharCode(...new Uint8Array(signed.signature)));
+     say('Checking your FROGINAL DOG ownership…');
+     const response=await fetch('/api/welcome?action=claim',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({wallet_address:address,email,signature})});
+     const result=await response.json();if(!response.ok||!result.success)throw new Error(result.error||'Verification could not be completed.');
+     say(result.email_sent?'🐸 VERIFIED! Your welcome email is on its way.':'🐸 Your wallet is verified. '+(result.message||'Email delivery is being finalized.'));
+     form.hidden=true;
+   }catch(error){say(error.message||'Something went wrong. Please try again.')}
+   finally{submit.disabled=false}
+ });
+})();
+</script></body></html>
