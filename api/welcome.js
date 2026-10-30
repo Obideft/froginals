@@ -1,6 +1,27 @@
 'use strict';
 const crypto = require('crypto');
-const { send, pack, unpack, cookies, setCookie, clearCookie, isSolanaPublicKey, verifyWalletSignature, heliusFindAsset, supabase } = require('../lib/discord-auth');
+const { send, cookies, setCookie, clearCookie, isSolanaPublicKey, verifyWalletSignature, heliusFindAsset, supabase } = require('../lib/discord-auth');
+function welcomeSecret() {
+  const value=process.env.WELCOME_SESSION_SECRET||'';
+  if(value.length<32) throw new Error('WELCOME_SESSION_SECRET must contain at least 32 characters.');
+  return value;
+}
+function packWelcome(payload) {
+  const body=Buffer.from(JSON.stringify(payload)).toString('base64url');
+  const sig=crypto.createHmac('sha256',welcomeSecret()).update(body).digest('base64url');
+  return body+'.'+sig;
+}
+function unpackWelcome(token) {
+  if(typeof token!=='string') return null;
+  const parts=token.split('.'); if(parts.length!==2) return null;
+  try {
+    const expected=crypto.createHmac('sha256',welcomeSecret()).update(parts[0]).digest();
+    const actual=Buffer.from(parts[1],'base64url');
+    if(expected.length!==actual.length||!crypto.timingSafeEqual(expected,actual)) return null;
+    const payload=JSON.parse(Buffer.from(parts[0],'base64url').toString('utf8'));
+    return payload&&Number.isFinite(payload.exp)&&payload.exp>Date.now()?payload:null;
+  } catch { return null; }
+}
 
 const attempts = new Map();
 function limited(req) {
@@ -38,7 +59,7 @@ module.exports = async function handler(req,res) {
     try {
       const nonce=crypto.randomBytes(24).toString('base64url'), issued=Date.now();
       const message=['FROGINALS — HOLDER WELCOME VERIFICATION','','Solana wallet: '+wallet,'Nonce: '+nonce,'Issued at: '+new Date(issued).toISOString(),'Expires at: '+new Date(issued+5*60*1000).toISOString(),'Purpose: Prove wallet control and verify current ownership of an official FROGINAL DOG.','This signature does not authorize a transaction.'].join('\n');
-      setCookie(res,'froginal_welcome_challenge',pack({wallet,message,exp:issued+5*60*1000}),300);
+      setCookie(res,'froginal_welcome_challenge',packWelcome({wallet,message,exp:issued+5*60*1000}),300);
       return send(res,200,{success:true,message,expires_in:300});
     } catch(error) { return send(res,503,{success:false,error:'Secure verification is not configured. No approval was made.'}); }
   }
@@ -46,7 +67,7 @@ module.exports = async function handler(req,res) {
     const wallet=typeof req.body?.wallet_address==='string'?req.body.wallet_address.trim():'';
     const email=typeof req.body?.email==='string'?req.body.email.trim().toLowerCase():'';
     const signature=typeof req.body?.signature==='string'?req.body.signature:'';
-    const challenge=unpack(cookies(req).froginal_welcome_challenge);
+    const challenge=unpackWelcome(cookies(req).froginal_welcome_challenge);
     clearCookie(res,'froginal_welcome_challenge');
     if(!isSolanaPublicKey(wallet)||!validEmail(email)) return send(res,400,{success:false,error:'Enter a valid wallet and email address.'});
     if(!challenge||challenge.wallet!==wallet||!verifyWalletSignature(wallet,challenge.message,signature))
