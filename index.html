@@ -44,9 +44,9 @@
     .discord-nav-tab{position:relative;background:#5865f2;color:#fff;border-color:#171717;animation:discordNavPulse 1.8s ease-in-out infinite;transform-origin:center}
     .discord-nav-tab:hover{background:#7984ff;color:#fff;transform:translateY(-2px) scale(1.035)}
     @keyframes discordNavPulse{0%,100%{box-shadow:3px 3px #171717,0 0 0 0 rgba(88,101,242,0)}50%{box-shadow:3px 3px #171717,0 0 0 5px rgba(88,101,242,.22)}}
-    .discord-recruit-section{position:relative;isolation:isolate;display:grid;place-items:center;min-height:clamp(390px,48vw,650px);padding:clamp(54px,8vw,100px) 20px;overflow:hidden;border-top:4px solid #171717;border-bottom:4px solid #171717;background:#171717 url("images/JOIN-DISCORD-BANNER.png") center center/cover no-repeat;scroll-margin-top:20px}
-    .discord-recruit-section:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,12,25,.38),rgba(10,12,25,.72))}
-    .discord-recruit-inner{width:min(900px,100%);display:flex;flex-direction:column;align-items:center;gap:clamp(14px,2.5vw,24px);padding:clamp(22px,4vw,42px);border:3px solid rgba(255,255,255,.72);border-radius:24px;background:rgba(15,18,35,.38);box-shadow:0 14px 42px rgba(0,0,0,.24);backdrop-filter:blur(3px)}
+    .discord-recruit-section{position:relative;isolation:isolate;display:grid;place-items:center;min-height:clamp(440px,56vw,720px);padding:clamp(62px,9vw,112px) 20px;overflow:hidden;border-top:5px solid #171717;border-bottom:5px solid #171717;background:radial-gradient(circle at 15% 20%,rgba(255,255,255,.22),transparent 26%),radial-gradient(circle at 85% 80%,rgba(17,20,70,.35),transparent 30%),linear-gradient(135deg,#5865f2 0%,#4752c4 55%,#303b9f 100%);scroll-margin-top:20px}
+    .discord-recruit-section:before{content:"DISCORD • FROGINALS • JOIN THE PACK •";position:absolute;z-index:-1;inset:auto -10% 8%;color:rgba(255,255,255,.12);font:clamp(22px,5vw,64px)/1.4 "Press Start 2P",monospace;white-space:nowrap;transform:rotate(-7deg);pointer-events:none}
+    .discord-recruit-inner{width:min(940px,100%);display:flex;flex-direction:column;align-items:center;gap:clamp(15px,2.7vw,27px);padding:clamp(26px,5vw,50px);border:3px solid rgba(255,255,255,.88);border-radius:26px;background:rgba(35,39,42,.72);box-shadow:0 18px 48px rgba(14,18,70,.38),0 0 0 7px rgba(255,255,255,.12);backdrop-filter:blur(5px)}
     .discord-recruit-kicker{margin:0;color:#fff;font:clamp(8px,1.2vw,11px)/1.9 "Press Start 2P",monospace;text-shadow:2px 2px #171717}
     .discord-recruit-title{margin:0;color:#fff;font:clamp(27px,7vw,72px)/1.25 "Press Start 2P",monospace;letter-spacing:-2px;text-shadow:4px 4px #171717,7px 7px #5865f2;overflow-wrap:anywhere}
     .discord-recruit-logo{display:block;width:clamp(90px,15vw,155px);height:auto;object-fit:contain;filter:drop-shadow(0 7px 0 rgba(0,0,0,.28));animation:discordLogoFloat 2.8s ease-in-out infinite}
@@ -369,10 +369,10 @@
   <!-- FROGINALS DISCORD RECRUITMENT -->
   <section class="discord-recruit-section" id="discord" aria-labelledby="discordRecruitTitle">
     <div class="discord-recruit-inner">
-      <p class="discord-recruit-kicker">🐸 THE PACK IS GROWING 🐕</p>
+      <p class="discord-recruit-kicker">🐸 NEW HERE? START HERE 🐕</p>
       <h2 class="discord-recruit-title" id="discordRecruitTitle">JOIN DISCORD</h2>
       <img class="discord-recruit-logo" src="images/DISCORD LOGO.png" alt="Discord logo" loading="lazy">
-      <p class="discord-recruit-copy">Meet the FROGINALS crew, connect with the community, and get in on the conversation.</p>
+      <p class="discord-recruit-copy">Meet the FROGINALS crew, connect with the community, follow the latest builds, and find your place in the pack. Your next hop starts here!</p>
       <a class="discord-recruit-cta" href="https://discord.gg/VZT9yENT2" target="_blank" rel="noopener noreferrer">💬 JOIN THE SERVER 👆</a>
     </div>
   </section>
