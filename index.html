@@ -40,6 +40,33 @@
     .telegram-tab{background:#53ff89;color:#171717;border-color:#171717}
     .telegram-tab:hover{background:#ffd447}
 
+    /* FROGINALS DISCORD RECRUITMENT */
+    .discord-nav-tab{position:relative;background:#5865f2;color:#fff;border-color:#171717;animation:discordNavPulse 1.8s ease-in-out infinite;transform-origin:center}
+    .discord-nav-tab:hover{background:#7984ff;color:#fff;transform:translateY(-2px) scale(1.035)}
+    @keyframes discordNavPulse{0%,100%{box-shadow:3px 3px #171717,0 0 0 0 rgba(88,101,242,0)}50%{box-shadow:3px 3px #171717,0 0 0 5px rgba(88,101,242,.22)}}
+    .discord-recruit-section{position:relative;isolation:isolate;display:grid;place-items:center;min-height:clamp(390px,48vw,650px);padding:clamp(54px,8vw,100px) 20px;overflow:hidden;border-top:4px solid #171717;border-bottom:4px solid #171717;background:#171717 url("images/JOIN-DISCORD-BANNER.png") center center/cover no-repeat;scroll-margin-top:20px}
+    .discord-recruit-section:before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(180deg,rgba(10,12,25,.38),rgba(10,12,25,.72))}
+    .discord-recruit-inner{width:min(900px,100%);display:flex;flex-direction:column;align-items:center;gap:clamp(14px,2.5vw,24px);padding:clamp(22px,4vw,42px);border:3px solid rgba(255,255,255,.72);border-radius:24px;background:rgba(15,18,35,.38);box-shadow:0 14px 42px rgba(0,0,0,.24);backdrop-filter:blur(3px)}
+    .discord-recruit-kicker{margin:0;color:#fff;font:clamp(8px,1.2vw,11px)/1.9 "Press Start 2P",monospace;text-shadow:2px 2px #171717}
+    .discord-recruit-title{margin:0;color:#fff;font:clamp(27px,7vw,72px)/1.25 "Press Start 2P",monospace;letter-spacing:-2px;text-shadow:4px 4px #171717,7px 7px #5865f2;overflow-wrap:anywhere}
+    .discord-recruit-logo{display:block;width:clamp(90px,15vw,155px);height:auto;object-fit:contain;filter:drop-shadow(0 7px 0 rgba(0,0,0,.28));animation:discordLogoFloat 2.8s ease-in-out infinite}
+    @keyframes discordLogoFloat{0%,100%{transform:translateY(0) rotate(-5deg) scale(1)}50%{transform:translateY(-12px) rotate(5deg) scale(1.06)}}
+    .discord-recruit-copy{max-width:620px;margin:0;color:#fff;text-shadow:1px 2px 3px #171717;font-size:clamp(15px,2.2vw,20px);font-weight:800;line-height:1.8}
+    .discord-recruit-cta{display:inline-flex;align-items:center;justify-content:center;gap:12px;max-width:100%;margin-top:5px;padding:clamp(15px,2.3vw,21px) clamp(19px,4vw,34px);border:3px solid #171717;border-radius:13px;background:#5865f2;color:#fff;box-shadow:6px 6px #171717;text-decoration:none;font:clamp(10px,1.7vw,14px)/1.8 "Press Start 2P",monospace;transition:transform .2s,box-shadow .2s,background .2s;animation:discordCtaGlow 2s ease-in-out infinite}
+    .discord-recruit-cta:hover{background:#7984ff;transform:translate(3px,3px);box-shadow:3px 3px #171717}
+    @keyframes discordCtaGlow{0%,100%{filter:drop-shadow(0 0 0 rgba(88,101,242,0))}50%{filter:drop-shadow(0 0 13px rgba(255,255,255,.65))}}
+    @media(max-width:600px){
+      .discord-nav-tab{font-size:7px}
+      .discord-recruit-section{min-height:440px;padding:42px 14px;background-position:center}
+      .discord-recruit-inner{gap:16px;padding:24px 15px;border-radius:17px}
+      .discord-recruit-title{letter-spacing:-1px;text-shadow:3px 3px #171717,5px 5px #5865f2}
+      .discord-recruit-logo{width:100px}
+      .discord-recruit-cta{width:min(100%,340px);padding:15px 12px;font-size:9px;box-shadow:4px 4px #171717}
+    }
+    @media(prefers-reduced-motion:reduce){
+      .discord-nav-tab,.discord-recruit-logo,.discord-recruit-cta{animation:none}
+    }
+
     .music-toggle{display:inline-flex;align-items:center;justify-content:center;width:58px;height:58px;flex-shrink:0;border:4px solid #171717;border-radius:19px;background:#888;color:white;font-size:33px;line-height:1;cursor:pointer;box-shadow:5px 5px #171717;transition:transform .2s,background .2s,box-shadow .2s;-webkit-tap-highlight-color:transparent}
     .music-toggle:hover{transform:scale(1.08);box-shadow:7px 7px #171717}
     .music-toggle.is-muted{background:#888}
@@ -279,6 +306,7 @@
           <a class="products-tab froginalverse-tab" href="froginalverse-recruitment-terminal.html">FROGINALVERSE 🎖️</a>
           <a class="products-tab swamp-spin-tab" href="https://obideft.github.io/froginals-prize-wheel-/" target="_blank" rel="noopener noreferrer">SWAMP SPIN 🎡</a>
           <a class="products-tab telegram-tab" href="https://t.me/froginaldogs" target="_blank" rel="noopener noreferrer" aria-label="Join the FROGINAL DOGS Telegram group">TELEGRAM 🐕</a>
+          <a class="products-tab discord-nav-tab" href="https://discord.gg/VZT9yENT2" target="_blank" rel="noopener noreferrer" aria-label="Join the FROGINALS Discord server">💬 DISCORD 👆</a>
           <a class="products-tab community-tab" href="#community">COMMUNITY ✦</a>
           <a class="products-tab whitepaper-tab" href="froginal-theses.html">WHITEPAPER</a>
           <button id="musicToggle" class="music-toggle is-muted" type="button" aria-label="Play background music" aria-pressed="false" title="Play background music">🎵</button>
@@ -335,6 +363,17 @@
       </div>
 
       <p class="community-note">HOLD THE VIBE. SHARE THE MEMES. SUPPORT THE PACK.</p>
+    </div>
+  </section>
+
+  <!-- FROGINALS DISCORD RECRUITMENT -->
+  <section class="discord-recruit-section" id="discord" aria-labelledby="discordRecruitTitle">
+    <div class="discord-recruit-inner">
+      <p class="discord-recruit-kicker">🐸 THE PACK IS GROWING 🐕</p>
+      <h2 class="discord-recruit-title" id="discordRecruitTitle">JOIN DISCORD</h2>
+      <img class="discord-recruit-logo" src="images/DISCORD LOGO.png" alt="Discord logo" loading="lazy">
+      <p class="discord-recruit-copy">Meet the FROGINALS crew, connect with the community, and get in on the conversation.</p>
+      <a class="discord-recruit-cta" href="https://discord.gg/VZT9yENT2" target="_blank" rel="noopener noreferrer">💬 JOIN THE SERVER 👆</a>
     </div>
   </section>
 
