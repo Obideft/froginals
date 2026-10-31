@@ -8,6 +8,19 @@ const { normalizeEvmAddress, verifyEvmWalletSignature, findRobinhoodFroginal } =
 const { sendFirstTimeWelcome } = require('../lib/discord-holder-welcome');
 const welcomeHandler = require('../lib/welcome');
 
+const evmAttempts = new Map();
+function evmRateLimited(req) {
+  const key = String(req.headers['x-forwarded-for'] || req.socket?.remoteAddress || 'unknown').split(',')[0].trim();
+  const now = Date.now();
+  const prior = evmAttempts.get(key);
+  if (!prior || now - prior.start >= 60000) {
+    evmAttempts.set(key, { start: now, count: 1 });
+    return false;
+  }
+  prior.count += 1;
+  return prior.count > 8;
+}
+
 function imageOf(asset) {
   const candidates = [asset?.content?.links?.image, ...(Array.isArray(asset?.content?.files) ? asset.content.files.map(f => f?.uri) : [])];
   for (const value of candidates) {
@@ -122,6 +135,7 @@ module.exports = async function handler(req, res) {
 
   if (action === 'evm-challenge') {
     if (req.method !== 'POST') { res.setHeader('Allow', 'POST'); return send(res, 405, { success: false, error: 'Method not allowed.' }); }
+    if (evmRateLimited(req)) return send(res, 429, { success: false, error: 'Too many Robinhood verification attempts. Wait a minute and try again.' });
     const current = session(req);
     if (!current) return send(res, 401, { success: false, error: 'Connect Discord first.' });
     const wallet = normalizeEvmAddress(req.body?.wallet_address);
@@ -153,6 +167,7 @@ module.exports = async function handler(req, res) {
 
   if (action === 'evm-verify') {
     if (req.method !== 'POST') { res.setHeader('Allow', 'POST'); return send(res, 405, { success: false, error: 'Method not allowed.' }); }
+    if (evmRateLimited(req)) return send(res, 429, { success: false, error: 'Too many Robinhood verification attempts. Wait a minute and try again.' });
     const current = session(req);
     if (!current) return send(res, 401, { success: false, error: 'Your Discord session expired. Connect Discord again.' });
     const wallet = normalizeEvmAddress(req.body?.wallet_address);
