@@ -1,0 +1,12 @@
+{
+  "name": "froginals",
+  "private": true,
+  "version": "1.0.0",
+  "description": "FROGINALS website and serverless APIs",
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "ethers": "^6.15.0"
+  }
+}
