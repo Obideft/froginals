@@ -1,0 +1,8 @@
+{
+  "rewrites": [
+    {
+      "source": "/api/printful-variants",
+      "destination": "/api/printful-products?resource=variants"
+    }
+  ]
+}
