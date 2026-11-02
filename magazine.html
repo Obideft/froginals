@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#171717">
+<title>DOGE CHRONICLES — FROGINALS</title>
+<meta name="description" content="A playful FROGINALS magazine about Dogecoin culture, streetwear, discovery and on-chain collectibles.">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--ink:#171717;--paper:#fff1d6;--orange:#ff7900;--gold:#ffd447;--green:#53ff89}
+*{box-sizing:border-box}body{margin:0;background:var(--ink);color:var(--paper);font-family:"Space Grotesk",sans-serif}
+.top{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:14px clamp(14px,4vw,48px);background:#171717ed;border-bottom:2px solid var(--green)}
+.top a{color:var(--paper);text-decoration:none;font-weight:800}.top .brand{color:var(--gold);font:9px/1.8 "Press Start 2P",monospace}
+header{text-align:center;padding:clamp(28px,5vw,58px) 18px 20px}.kicker{color:var(--green);font:9px/2 "Press Start 2P",monospace}
+header h1{margin:14px 0;color:var(--gold);font:clamp(28px,7vw,76px)/1.35 "Press Start 2P",monospace;text-shadow:5px 5px var(--orange),9px 9px #000}
+header p{max-width:720px;margin:auto;font-size:clamp(15px,2vw,19px);font-weight:700;line-height:1.8}
+.issue{display:inline-block;margin-top:18px;padding:9px 12px;border:2px solid var(--green);color:var(--green);font:8px/1.8 "Press Start 2P",monospace}
+.reader{width:min(1120px,calc(100% - 24px));margin:20px auto 50px}
+.paper{min-height:650px;padding:clamp(20px,4vw,52px);background:var(--paper);color:var(--ink);border:3px solid var(--gold);box-shadow:10px 10px #53ff8930}
+.page{display:none;animation:appear .3s ease}.page.active{display:block}@keyframes appear{from{opacity:.3;transform:translateX(12px)}to{opacity:1;transform:none}}
+.page-head{display:flex;justify-content:space-between;gap:12px;padding-bottom:12px;margin-bottom:24px;border-bottom:2px solid var(--ink);font:8px/1.8 "Press Start 2P",monospace}
+.page-head span:first-child{color:#36743b}.page h2{margin:0 0 18px;font:clamp(22px,4.5vw,45px)/1.4 "Press Start 2P",monospace;letter-spacing:-1px}
+.page p{font-size:clamp(15px,1.8vw,18px);font-weight:600;line-height:1.85}.lead{font-size:clamp(17px,2.2vw,22px)!important;font-weight:800!important}
+.cover{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;min-height:550px}.cover h2{font-size:clamp(30px,6vw,65px);text-shadow:3px 3px var(--gold)}.orange{color:#bd4e00}
+.sticker{display:inline-block;padding:9px 12px;background:var(--orange);font:8px/1.8 "Press Start 2P",monospace;transform:rotate(-2deg)}
+.images{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:22px 0}
+.slot{position:relative;display:grid;place-items:center;min-height:125px;aspect-ratio:4/3;overflow:hidden;border:2px dashed #8d806d;background:linear-gradient(135deg,#e7d9bf,#f7edda);color:#6e604f}
+.slot.big{min-height:260px;aspect-ratio:4/5}.slot.wide{grid-column:span 2;aspect-ratio:16/9}
+.slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0}.slot img.loaded{opacity:1}
+.slot-label{position:relative;z-index:1;text-align:center;font:8px/1.8 "Press Start 2P",monospace}.slot-label b{display:block;margin-bottom:8px;color:#bd4e00;font-size:18px}.slot img.loaded~.slot-label{display:none}
+.columns{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
+.quote{margin:24px 0;padding:20px;border-left:7px solid var(--orange);background:#f3e2c4;font:clamp(12px,2vw,18px)/1.8 "Press Start 2P",monospace}
+.note{padding:14px 17px;background:#e4f4d8;border:2px solid #6d9a5d;font-weight:800;line-height:1.7}
+.cta{display:inline-block;margin:12px 8px 0 0;padding:13px 15px;background:var(--orange);border:2px solid var(--ink);box-shadow:4px 4px var(--ink);color:var(--ink);text-decoration:none;font:8px/1.8 "Press Start 2P",monospace}
+.controls{display:flex;align-items:center;justify-content:center;gap:12px;padding:22px 0}
+.controls button{padding:12px;border:2px solid var(--green);background:#102018;color:var(--paper);font:8px/1.8 "Press Start 2P",monospace;cursor:pointer}
+.controls button:disabled{opacity:.35;cursor:not-allowed}.controls button:not(:disabled):hover{background:var(--green);color:var(--ink)}
+.progress{width:min(210px,22vw);height:7px;background:#555}.progress span{display:block;height:100%;width:8.33%;background:var(--gold)}
+.counter{min-width:72px;color:var(--gold);font:8px "Press Start 2P",monospace;text-align:center}
+.index{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}.index button{width:31px;height:31px;background:#292929;color:#fff;border:1px solid #777;font:8px "Press Start 2P",monospace;cursor:pointer}.index button[aria-current=page]{background:var(--gold);color:var(--ink)}
+footer{text-align:center;padding:0 18px 42px;color:#d9cdbb;font-size:12px;line-height:1.8}
+@media(max-width:680px){.paper{min-height:0;padding:18px}.cover,.columns{grid-template-columns:1fr}.cover{min-height:0}.images{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.slot{min-height:105px}.slot.wide{grid-column:span 2}.controls{gap:6px}.controls button{padding:10px 8px;font-size:7px}.progress{width:14vw}.counter{min-width:58px;font-size:7px}}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<nav class="top"><a class="brand" href="index.html">FROGINALS</a><a href="index.html">← BACK TO MAIN PAGE</a></nav>
+<header><div class="kicker">THE CULTURE · THE ADVENTURE · THE LEGACY</div><h1>DOGE<br>CHRONICLES</h1><p>A playful field guide to the people, style, discoveries and ideas moving Doge culture forward. Made from the swamp, for the pack.</p><div class="issue">ISSUE 001 · FROGINALS FIELD EDITION</div></header>
+<main class="reader"><div class="paper" id="paper"></div>
+<div class="controls"><button id="prev" disabled>← PREV</button><div class="progress"><span id="fill"></span></div><span class="counter" id="counter">01 / 12</span><button id="next">NEXT →</button></div><div class="index" id="index" aria-label="Jump to a page"></div></main>
+<footer>DOGE CHRONICLES · ISSUE 001 · A FROGINALS CULTURE PROJECT<br>60 numbered image slots · Add files 001.png–060.png to <b>magazine/images/</b>.</footer>
+<script>
+const stories=[
+{act:"COVER · ISSUE 001",title:"DOGE CHRONICLES",lead:"A field guide to the culture that started as a joke, became a movement, and keeps finding new ways to surprise us.",body:"Inside: Doge origins, community legends, streetwear, the FROGINAL expedition, NFTs and the future of the pack.",quote:"MUCH CULTURE. VERY ADVENTURE.",labels:["COVER ART","THE DOGE WORLD","FROGINALS","ISSUE 001","THE PACK"]},
+{act:"ACT I · THE CULTURE",title:"IT'S MORE THAN A MEME.",lead:"Doge began with a familiar face and a very internet sense of humour. The community turned that simple spark into a language of its own.",body:"Humour, generosity, creativity and a shared sense of belonging helped Doge travel far beyond a screen. The best part has always been the people who keep the spirit moving.",quote:"A meme is a moment. A culture is what people build around it.",labels:["DOGE CULTURE","MEME HISTORY","INTERNET MOMENT","COMMUNITY ENERGY","THE ICON"]},
+{act:"ACT I · THE CULTURE",title:"THE PEOPLE ARE THE LEGEND.",lead:"Every movement has its characters: makers, collectors, artists, builders, jokers and the friends who bring one more friend along.",body:"Doge culture is shaped in conversations, fan art, meetups, posts, experiments and acts of community. There is no single uniform for the pack — just room to make something your own.",quote:"THE PACK RULE: bring good energy, make something, and leave the swamp better than you found it.",labels:["THE COMMUNITY","THE CREATORS","THE COLLECTORS","THE PACK","GOOD ENERGY"]},
+{act:"ACT I · THE CULTURE",title:"WEAR YOUR CULTURE.",lead:"Culture doesn't stay inside a timeline. It shows up in the things we make, wear, trade, collect and take into the real world.",body:"FROGINALS turns swamp energy into wearable identity: tees, artwork, collectible designs and playful pieces for people who want to rep the culture out loud. It's not just merch. It's a signal that says: you were here, you get the joke, and you're part of the story.",quote:"FROM THE TIMELINE TO THE STREET.",labels:["FROGINALS LOOKBOOK","T-SHIRT","MERCH DETAIL","STREET STYLE","THE DROP"],links:[["EXPLORE PRODUCTS","product.html"]]},
+{act:"ACT II · THE ADVENTURE",title:"WELCOME TO THE DOGE FRONTIER.",lead:"The internet is a big place. Every new tool, community and creative experiment opens another trail to explore.",body:"Some expeditions lead to new friendships. Others lead to a new design, a new project or a technical rabbit hole. The fun is in exploring — and sharing what we learn along the way.",quote:"PACK YOUR CURIOSITY. THE NEXT DISCOVERY IS OUT THERE.",labels:["THE FRONTIER","ON THE ROAD","NEW DISCOVERY","FIELD GEAR","THE HORIZON"]},
+{act:"ACT II · THE ADVENTURE",title:"THE FROGINAL EXPEDITION.",lead:"A frog, a Doge community and a map full of question marks. That's how an expedition starts.",body:"FROGINALS has been exploring ways to give its corner of Doge culture a home: building community spaces, testing tools, experimenting with digital identity and navigating the occasional swamp of DNS settings and blockchain details. Not every route is a straight line. We document the attempts, celebrate the discoveries and keep moving.",quote:"FIELD NOTES FROM THE SWAMP.",labels:["THE EXPEDITION","FIELD NOTES","THE SWAMP MAP","NEXT CHECKPOINT","THE JOURNEY"]},
+{act:"ACT II · THE ADVENTURE",title:"THE NFT REVOLUTION.",lead:"Digital collectibles gave artists and communities new ways to create, collect and connect with work that lives on-chain.",body:"NFTs are not magic and they are not a promise of profit. They are one format for linking a token to a digital item, creator or community record. Their meaning comes from the people and stories around them.",quote:"COLLECT FOR THE ART, THE STORY OR THE COMMUNITY — AND ALWAYS DO YOUR OWN RESEARCH.",labels:["DIGITAL COLLECTIBLES","ARTWORK","ON-CHAIN","THE CREATOR","COLLECTOR CULTURE"]},
+{act:"ACT II · THE ADVENTURE",title:"ENTER THE SWAMP.",lead:"The FROGINALS universe brings the pieces together: FROGINAL DOGS, FROGINALARMY, community missions, games, creative drops and the merch that lets the pack wear its colours.",body:"Explore the collection, join the army, take part in missions and find your corner of the swamp. Every member adds another little piece to the story.",quote:"ONE SWAMP. MANY LEGENDS.",labels:["FROGINAL DOGS","FROGINALARMY","SWAMP LIFE","COMMUNITY","MISSIONS"],links:[["MEET THE FROGINALARMY","froginalarmy.html"]]},
+{act:"ACT III · THE LEGACY",title:"HOW DOGE GROWS.",lead:"A culture grows when people keep making things, welcoming newcomers and passing the best parts forward.",body:"Artists bring new ideas. Builders create useful tools. Collectors support creators. Communities make room for the next generation. Products and events turn online identity into shared experiences. There is no single roadmap for culture. It grows through participation, creativity and time.",quote:"THE NEXT WAVE IS ALREADY HERE.",labels:["THE NEXT WAVE","CREATORS","BUILDERS","NEW FRIENDS","FUTURE CULTURE"]},
+{act:"ACT III · THE LEGACY",title:"CULTURE NEEDS A HOME.",lead:"Stories can live in posts, archives, websites, art, clothing, community spaces and the memories people carry with them.",body:"For FROGINALS, that home is a growing universe of pages, products, collectibles and community experiences. A place to discover the story — and add your own chapter.",quote:"A WEBSITE CAN INTRODUCE THE STORY. A COMMUNITY KEEPS IT ALIVE.",labels:["A HOME FOR THE PACK","THE ARCHIVE","THE MEETING PLACE","SHARED STORIES","THE SWAMP"]},
+{act:"ACT III · THE LEGACY",title:"NFTs: A WAY TO PRESERVE CULTURE ON-CHAIN.",lead:"An NFT can help attach a lasting, verifiable on-chain record to a piece of art, a collectible or a moment in a community's history.",body:"That record can help document provenance, connect an item to its creator and give collectors a way to show ownership of a token. It can become one piece of a wider cultural archive. But the image, metadata, website and community still matter. Good preservation uses more than one format: keep copies, document the story and make the work accessible.",quote:"ON-CHAIN RECORDS CAN SUPPORT THE ARCHIVE. PEOPLE AND ACCESSIBLE FILES KEEP THE STORY UNDERSTANDABLE.",labels:["CULTURE ON-CHAIN","PROVENANCE","COLLECTOR STORY","DIGITAL ARCHIVE","THE RECORD"]},
+{act:"THE NEXT CHAPTER",title:"THE NEXT GENERATION OF DOGE CULTURE.",lead:"The story is still being written. The next chapter belongs to the people who show up, make things, share ideas and bring the culture into tomorrow.",body:"Discover the FROGINALS products, meet the FROGINALARMY and join the expedition. Culture is created. Community keeps it alive. Let's make the next chapter legendary.",quote:"CULTURE IS CREATED. COMMUNITY KEEPS IT ALIVE.",labels:["THE NEXT CHAPTER","FROGINALS STYLE","THE PACK","THE FUTURE","YOUR STORY"],links:[["SHOP FROGINALS","product.html"],["JOIN THE PACK","froginalarmy.html"],["BACK TO FROGINALS","index.html"]]}
+];
+const paper=document.getElementById("paper"),index=document.getElementById("index");
+stories.forEach((s,i)=>{
+ const page=document.createElement("section");page.className="page"+(i===0?" active":"");
+ const head=document.createElement("div");head.className="page-head";head.innerHTML="<span>"+s.act+"</span><span>"+String(i+1).padStart(2,"0")+" / 12</span>";page.append(head);
+ if(i===0){
+  const cover=document.createElement("div");cover.className="cover";
+  const copy=document.createElement("div");copy.innerHTML='<div class="kicker">FROGINALS PRESENTS · ISSUE 001</div><h2>DOGE<br><span class="orange">CHRONICLES</span></h2><p class="lead">'+s.lead+'</p><p><span class="sticker">'+s.quote+'</span></p><p>'+s.body+'</p>';
+  cover.append(copy);const slot=makeSlot(i,0,s.labels[0],"big");cover.append(slot);page.append(cover);
+ }else{
+  const h=document.createElement("h2");h.textContent=s.title;page.append(h);
+  const lead=document.createElement("p");lead.className="lead";lead.textContent=s.lead;page.append(lead);
+  const cols=document.createElement("div");cols.className="columns";
+  const text=document.createElement("div");const body=document.createElement("p");body.textContent=s.body;text.append(body);
+  if(i===3){const note=document.createElement("div");note.className="note";note.textContent="FROGINALS STREET DEPARTMENT · WEAR THE CULTURE.";text.append(note)}
+  if(i===10){const note=document.createElement("div");note.className="note";note.textContent="NFTs are one preservation tool, not the only one. Keep artwork, metadata and community records accessible too.";text.append(note)}
+  const big=makeSlot(i,0,s.labels[0],"big");cols.append(text,big);page.append(cols);
+  const quote=document.createElement("div");quote.className="quote";quote.textContent=s.quote;page.append(quote);
+  const grid=document.createElement("div");grid.className="images";
+  for(let n=1;n<5;n++)grid.append(makeSlot(i,n,s.labels[n],n===1?"wide":""));page.append(grid);
+ }
+ (s.links||[]).forEach(([label,url])=>{const a=document.createElement("a");a.className="cta";a.href=url;a.textContent=label+" ↗";page.append(a)});
+ paper.append(page);
+ const b=document.createElement("button");b.type="button";b.textContent=String(i+1).padStart(2,"0");b.setAttribute("aria-label","Go to page "+(i+1));b.addEventListener("click",()=>show(i));index.append(b);
+});
+function makeSlot(page,position,label,size){
+ const number=String(page*5+position+1).padStart(3,"0"),slot=document.createElement("div");slot.className="slot "+(size||"");
+ const img=document.createElement("img");img.src="magazine/images/"+number+".png";img.alt="FROGINALS magazine image "+number;img.loading="lazy";img.addEventListener("load",()=>img.classList.add("loaded"));img.addEventListener("error",()=>img.remove());
+ const caption=document.createElement("span");caption.className="slot-label";caption.innerHTML="<b>"+number+"</b>"+label;slot.append(img,caption);return slot;
+}
+let current=0;const prev=document.getElementById("prev"),next=document.getElementById("next"),counter=document.getElementById("counter"),fill=document.getElementById("fill");
+function show(i){current=Math.max(0,Math.min(11,i));[...paper.children].forEach((p,n)=>p.classList.toggle("active",n===current));[...index.children].forEach((b,n)=>{if(n===current)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")});prev.disabled=current===0;next.disabled=current===11;counter.textContent=String(current+1).padStart(2,"0")+" / 12";fill.style.width=((current+1)/12*100)+"%"}
+prev.addEventListener("click",()=>show(current-1));next.addEventListener("click",()=>show(current+1));document.addEventListener("keydown",e=>{if(e.key==="ArrowLeft")show(current-1);if(e.key==="ArrowRight")show(current+1)});show(0);
+</script>
+</body></html>
