@@ -152,6 +152,44 @@
     .swamp-popup-cta{position:absolute;z-index:1;right:6.2%;bottom:7.1%;width:43.5%;height:12%;display:flex;align-items:center;justify-content:center;padding:0 2%;border:0;border-radius:8px;background:transparent;color:transparent;text-decoration:none;font-size:clamp(10px,1.6vw,18px);line-height:1;overflow:hidden}
     .swamp-popup-cta:focus-visible{outline:4px solid #d82cff;outline-offset:3px;background:rgba(83,255,137,.18)}
 
+    /* DOGE CHRONICLES — FROGINALS DISCOVERY JOURNAL */
+    .doge-journal{position:relative;isolation:isolate;overflow:hidden;padding:clamp(48px,7vw,88px) 18px;background:radial-gradient(circle at 12% 12%,rgba(83,255,137,.12),transparent 28%),linear-gradient(145deg,#102018,#171717 58%,#24202a);color:#fff1d6;border-top:5px solid #ffd447;border-bottom:5px solid #171717;scroll-margin-top:20px}
+    .doge-journal:before{content:"FIELD NOTES • DOGE DISCOVERY • FROGINALS •";position:absolute;z-index:-1;top:30px;left:-18px;color:#53ff89;opacity:.07;font:clamp(18px,4.5vw,52px)/1.5 "Press Start 2P",monospace;white-space:nowrap;transform:rotate(-4deg);pointer-events:none}
+    .doge-journal-inner{width:min(1080px,100%);margin:0 auto}
+    .doge-journal-kicker{margin:0 0 14px;color:#53ff89;font:9px/2 "Press Start 2P",monospace;letter-spacing:.5px}
+    .doge-journal-title{margin:0 auto 16px;color:#ffd447;font:clamp(24px,5.2vw,52px)/1.45 "Press Start 2P",monospace;text-shadow:4px 4px #ff7900,7px 7px #080808;overflow-wrap:anywhere}
+    .doge-journal-lede{max-width:760px;margin:0 auto 24px;color:#fff1d6;font-size:clamp(15px,2vw,19px);font-weight:700;line-height:1.9}
+    .doge-journal-stamp{display:inline-flex;align-items:center;gap:9px;margin:0 auto 30px;padding:9px 13px;border:2px solid #53ff89;border-radius:999px;background:#10251a;color:#c3ff53;font:8px/1.8 "Press Start 2P",monospace}
+    .doge-journal-stamp:before{content:"";width:8px;height:8px;border-radius:50%;background:#53ff89;box-shadow:0 0 10px #53ff89}
+    .doge-journal-feature{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(230px,.85fr);gap:0;overflow:hidden;margin:0 auto 24px;border:2px solid #ffd447;border-radius:20px;background:#fff1d6;color:#171717;box-shadow:8px 8px 0 rgba(0,0,0,.3);text-align:left}
+    .doge-journal-feature-art{position:relative;display:grid;place-items:center;min-height:250px;padding:25px;background:radial-gradient(circle at 50% 45%,rgba(83,255,137,.22),transparent 40%),linear-gradient(135deg,#1c3525,#101713)}
+    .doge-journal-feature-art:before{content:"Ð";display:grid;place-items:center;width:clamp(130px,19vw,210px);aspect-ratio:1;border:5px solid #ffd447;border-radius:50%;color:#ffd447;font:clamp(72px,12vw,130px)/1 "Space Grotesk",sans-serif;font-weight:800;text-shadow:5px 5px #171717;box-shadow:0 0 0 12px rgba(255,212,71,.08),0 0 35px rgba(255,212,71,.18)}
+    .doge-journal-feature-art:after{content:"FROGINAL.DOGE / FIELD REPORT 001";position:absolute;bottom:17px;left:18px;right:18px;color:#c3ff53;font:7px/1.8 "Press Start 2P",monospace;text-align:center}
+    .doge-journal-feature-copy{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:clamp(22px,4vw,38px)}
+    .doge-journal-label{margin:0 0 12px;color:#a34a00;font:8px/1.8 "Press Start 2P",monospace}
+    .doge-journal-feature-copy h3{margin:0 0 12px;color:#171717;font:clamp(14px,2vw,20px)/1.8 "Press Start 2P",monospace}
+    .doge-journal-feature-copy p{margin:0 0 17px;font-size:14px;font-weight:700;line-height:1.8}
+    .doge-journal-feature-copy a{color:#171717;font:8px/1.8 "Press Start 2P",monospace;text-decoration-thickness:2px;text-underline-offset:4px}
+    .doge-journal-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px;text-align:left}
+    .doge-journal-entry{min-width:0;border:2px solid rgba(255,255,255,.16);border-radius:17px;background:linear-gradient(160deg,#302a37,#1b1a20);box-shadow:0 10px 24px rgba(0,0,0,.2);overflow:hidden}
+    .doge-journal-entry-top{display:flex;justify-content:space-between;align-items:center;gap:8px;padding:15px 15px 0}
+    .doge-journal-date{color:#53ff89;font:7px/1.8 "Press Start 2P",monospace}
+    .doge-journal-status{padding:4px 7px;border:1px solid #ffd447;border-radius:999px;color:#ffd447;font-size:9px;font-weight:800;white-space:nowrap}
+    .doge-journal-entry h3{margin:14px 15px 8px;color:#ffd447;font:clamp(10px,1.2vw,13px)/1.9 "Press Start 2P",monospace}
+    .doge-journal-entry>p{margin:0 15px 15px;color:#eee8df;font-size:13px;font-weight:700;line-height:1.75}
+    .doge-journal-entry details{border-top:1px solid rgba(255,255,255,.13);padding:12px 15px 15px}
+    .doge-journal-entry summary{color:#c3ff53;font:7px/1.9 "Press Start 2P",monospace;cursor:pointer;list-style:none}
+    .doge-journal-entry summary::-webkit-details-marker{display:none}
+    .doge-journal-entry summary:after{content:"＋";float:right;color:#ffd447;font-size:12px}
+    .doge-journal-entry details[open] summary:after{content:"−"}
+    .doge-journal-entry details p{margin:10px 0 0;color:#e3ded6;font-size:12px;font-weight:600;line-height:1.8}
+    .doge-journal-bottom{max-width:780px;margin:24px auto 0;padding:18px 20px;border:1px dashed rgba(195,255,83,.55);border-radius:14px;color:#e3ded6;font-size:12px;font-weight:700;line-height:1.8}
+    .doge-journal-bottom strong{color:#c3ff53}
+    .doge-journal-cta{display:inline-block;margin:23px auto 0;padding:14px 18px;border:2px solid #171717;border-radius:12px;background:#ffd447;color:#171717;box-shadow:4px 4px #53ff89;text-decoration:none;font:8px/1.9 "Press Start 2P",monospace;transition:transform .18s,box-shadow .18s}
+    .doge-journal-cta:hover{transform:translate(2px,2px);box-shadow:2px 2px #53ff89}
+    @media(max-width:760px){.doge-journal-feature{grid-template-columns:1fr}.doge-journal-feature-art{min-height:210px}.doge-journal-grid{grid-template-columns:1fr}.doge-journal-entry h3{font-size:11px}}
+    @media(prefers-reduced-motion:reduce){.doge-journal-cta{transition:none}}
+
     /* UPCOMING PROJECT BUILDS — ROADMAP */
     .build-section{position:relative;isolation:isolate;overflow:hidden;padding:clamp(44px,7vw,82px) 18px;background:radial-gradient(ellipse at 15% 5%,rgba(83,255,137,.14),transparent 34%),linear-gradient(145deg,#171717,#24202a 65%,#171717);color:#fff1d6;border-top:5px solid #53ff89;border-bottom:5px solid #171717;scroll-margin-top:20px}
     .build-section:before{content:"FROGINALS • BUILDING IN PUBLIC •";position:absolute;z-index:-1;top:24px;left:-16px;color:#53ff89;opacity:.07;font:clamp(20px,4.5vw,52px)/1.4 "Press Start 2P",monospace;white-space:nowrap;transform:rotate(-4deg);pointer-events:none}
@@ -309,6 +347,7 @@
           <a class="products-tab discord-nav-tab" href="https://discord.gg/VZT9yENT2" target="_blank" rel="noopener noreferrer" aria-label="Join the FROGINALS Discord server">💬 DISCORD 👆</a>
           <a class="products-tab community-tab" href="#community">COMMUNITY ✦</a>
           <a class="products-tab whitepaper-tab" href="froginal-theses.html">WHITEPAPER</a>
+          <a class="products-tab doge-journal-nav" href="#doge-chronicles">DOGE CHRONICLES Ð</a>
           <button id="musicToggle" class="music-toggle is-muted" type="button" aria-label="Play background music" aria-pressed="false" title="Play background music">🎵</button>
         </div>
       </div>
@@ -451,6 +490,52 @@
       </div>
       <a class="build-cta" href="froginalarmy.html">JOIN THE PACK · FOLLOW THE BUILD ↗</a>
       <p class="build-footer-note">ROADMAPS CAN EVOLVE. Confirmed releases, active work, and early ideas will be labelled clearly as the FROGINALS universe grows.</p>
+    </div>
+  </section>
+
+  <!-- DOGE CHRONICLES — THE FROGINALS DISCOVERY JOURNAL -->
+  <section class="doge-journal" id="doge-chronicles" aria-labelledby="dogeJournalTitle">
+    <div class="doge-journal-inner">
+      <p class="doge-journal-kicker">🐸 FROGINALS FIELD NOTES · THE DOGE EXPEDITION</p>
+      <h2 class="doge-journal-title" id="dogeJournalTitle">DOGE<br>CHRONICLES</h2>
+      <p class="doge-journal-lede">A living mini-magazine documenting our journey into the DOGE ecosystem — the discoveries, experiments, technical roadblocks and lessons learned while finding a new corner of the internet for FROGINALS.</p>
+      <div class="doge-journal-stamp">FIELD JOURNAL · UPDATED AS THE STORY UNFOLDS</div>
+
+      <article class="doge-journal-feature">
+        <div class="doge-journal-feature-art" role="img" aria-label="Gold Dogecoin-inspired symbol on a dark green field"></div>
+        <div class="doge-journal-feature-copy">
+          <p class="doge-journal-label">COVER STORY · DISPATCH 001</p>
+          <h3>THE HUNT FOR FROGINAL.DOGE</h3>
+          <p>What began as a domain idea turned into a hands-on expedition through Dogecoin naming, on-chain inscriptions, registrar rules and the world of DNS.</p>
+          <a href="#dogeJournalEntries">EXPLORE THE FIELD NOTES ↓</a>
+        </div>
+      </article>
+
+      <div class="doge-journal-grid" id="dogeJournalEntries">
+        <article class="doge-journal-entry">
+          <div class="doge-journal-entry-top"><span class="doge-journal-date">DISPATCH 01 · NOV 2026</span><span class="doge-journal-status">DISCOVERY</span></div>
+          <h3>A NEW DOGE ADDRESS</h3>
+          <p>We began exploring the .doge naming system and the route to registering froginal.doge through DogeSoft.</p>
+          <details><summary>READ THE FIELD NOTE</summary><p>The first step was understanding how the naming flow works: registrar checkout, the DOGE inscription payload and the on-chain transaction process. We learned that a domain journey is more than choosing a name — every field and inscription detail matters.</p></details>
+        </article>
+
+        <article class="doge-journal-entry">
+          <div class="doge-journal-entry-top"><span class="doge-journal-date">DISPATCH 02 · NOV 2026</span><span class="doge-journal-status">EXPERIMENT</span></div>
+          <h3>THE INSCRIPTION TEST</h3>
+          <p>A registration attempt surfaced an inscription text mismatch, teaching us to inspect the exact name and payload before proceeding.</p>
+          <details><summary>READ THE FIELD NOTE</summary><p>We saw a registration inscription for froginal.doge and examined its registrar field and transaction output. A later checkout error reported that the inscription text did not match the name. We are treating this as an unresolved registrar-flow issue until the registration state can be independently confirmed.</p></details>
+        </article>
+
+        <article class="doge-journal-entry">
+          <div class="doge-journal-entry-top"><span class="doge-journal-date">DISPATCH 03 · NOV 2026</span><span class="doge-journal-status">IN PROGRESS</span></div>
+          <h3>THE DNS MAZE</h3>
+          <p>Nameserver checks, SOA/NS validation and registrar support issues became the next challenge.</p>
+          <details><summary>READ THE FIELD NOTE</summary><p>We investigated DNS configuration and EU.org nameserver validation, then ran into a registrar website and contact-address problem. The next task is to find a dependable DNS provider and verify authoritative nameserver responses before calling the domain live.</p></details>
+        </article>
+      </div>
+
+      <p class="doge-journal-bottom"><strong>LIVE STATUS:</strong> The froginal.doge registration and DNS setup are still being verified. This journal separates confirmed steps from experiments and open issues — no victory laps until the domain resolves correctly.</p>
+      <a class="doge-journal-cta" href="https://froginal.doge" target="_blank" rel="noopener noreferrer">VISIT FROGINAL.DOGE ↗</a>
     </div>
   </section>
 
