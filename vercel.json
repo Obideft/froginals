@@ -1,6 +1,14 @@
 {
   "rewrites": [
     {
+      "source": "/api/discord-start",
+      "destination": "/api/discord?action=start"
+    },
+    {
+      "source": "/api/discord-callback",
+      "destination": "/api/discord?action=callback"
+    },
+    {
       "source": "/api/printful-variants",
       "destination": "/api/printful-products?resource=variants"
     }
