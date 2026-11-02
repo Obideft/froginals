@@ -1,210 +1,98 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#071426">
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#061426">
 <title>BOEDAW MAGAZIN — FROGINALS</title>
-<meta name="description" content="A playful FROGINALS magazine about Dogecoin culture, streetwear, discovery and on-chain collectibles.">
+<meta name="description" content="BOEDAW MAGAZIN — a cyberpunk field guide to Doge culture, FROGINALS and the pack.">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-:root{--ink:#171717;--paper:#fff1d6;--orange:#ff7900;--gold:#ffd447;--green:#53ff89}
-*{box-sizing:border-box}body{margin:0;background:var(--ink);color:var(--paper);font-family:"Space Grotesk",sans-serif}
-.top{position:sticky;top:0;z-index:5;display:flex;justify-content:space-between;align-items:center;padding:14px clamp(14px,4vw,48px);background:#171717ed;border-bottom:2px solid var(--green)}
-.top a{color:var(--paper);text-decoration:none;font-weight:800}.top .brand{color:var(--gold);font:9px/1.8 "Press Start 2P",monospace}
-header{text-align:center;padding:clamp(28px,5vw,58px) 18px 20px}.kicker{color:var(--green);font:9px/2 "Press Start 2P",monospace}
-header h1{margin:14px 0;color:var(--gold);font:clamp(28px,7vw,76px)/1.35 "Press Start 2P",monospace;text-shadow:5px 5px var(--orange),9px 9px #000}
-header p{max-width:720px;margin:auto;font-size:clamp(15px,2vw,19px);font-weight:700;line-height:1.8}
-.issue{display:inline-block;margin-top:18px;padding:9px 12px;border:2px solid var(--green);color:var(--green);font:8px/1.8 "Press Start 2P",monospace}
-.reader{width:min(1120px,calc(100% - 24px));margin:20px auto 50px}
-.paper{min-height:650px;padding:clamp(20px,4vw,52px);background:var(--paper);color:var(--ink);border:3px solid var(--gold);box-shadow:10px 10px #53ff8930}
-.page{display:none;animation:appear .3s ease}.page.active{display:block}@keyframes appear{from{opacity:.3;transform:translateX(12px)}to{opacity:1;transform:none}}
-.page-head{display:flex;justify-content:space-between;gap:12px;padding-bottom:12px;margin-bottom:24px;border-bottom:2px solid var(--ink);font:8px/1.8 "Press Start 2P",monospace}
-.page-head span:first-child{color:#36743b}.page h2{margin:0 0 18px;font:clamp(22px,4.5vw,45px)/1.4 "Press Start 2P",monospace;letter-spacing:-1px}
-.page p{font-size:clamp(15px,1.8vw,18px);font-weight:600;line-height:1.85}.lead{font-size:clamp(17px,2.2vw,22px)!important;font-weight:800!important}
-.cover{display:grid;grid-template-columns:1fr 1fr;gap:24px;align-items:center;min-height:550px}.cover h2{font-size:clamp(30px,6vw,65px);text-shadow:3px 3px var(--gold)}.orange{color:#bd4e00}
-.sticker{display:inline-block;padding:9px 12px;background:var(--orange);font:8px/1.8 "Press Start 2P",monospace;transform:rotate(-2deg)}
-.images{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin:22px 0}
-.slot{position:relative;display:grid;place-items:center;min-height:125px;aspect-ratio:4/3;overflow:hidden;border:2px dashed #8d806d;background:linear-gradient(135deg,#e7d9bf,#f7edda);color:#6e604f}
-.slot.big{min-height:260px;aspect-ratio:4/5}.slot.wide{grid-column:span 2;aspect-ratio:16/9}
-.slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0}.slot img.loaded{opacity:1}
-.slot-label{position:relative;z-index:1;text-align:center;font:8px/1.8 "Press Start 2P",monospace}.slot-label b{display:block;margin-bottom:8px;color:#bd4e00;font-size:18px}.slot img.loaded~.slot-label{display:none}
-.columns{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:center}
-.quote{margin:24px 0;padding:20px;border-left:7px solid var(--orange);background:#f3e2c4;font:clamp(12px,2vw,18px)/1.8 "Press Start 2P",monospace}
-.note{padding:14px 17px;background:#e4f4d8;border:2px solid #6d9a5d;font-weight:800;line-height:1.7}
-.cta{display:inline-block;margin:12px 8px 0 0;padding:13px 15px;background:var(--orange);border:2px solid var(--ink);box-shadow:4px 4px var(--ink);color:var(--ink);text-decoration:none;font:8px/1.8 "Press Start 2P",monospace}
-.controls{display:flex;align-items:center;justify-content:center;gap:12px;padding:22px 0}
-.controls button{padding:12px;border:2px solid var(--green);background:#102018;color:var(--paper);font:8px/1.8 "Press Start 2P",monospace;cursor:pointer}
-.controls button:disabled{opacity:.35;cursor:not-allowed}.controls button:not(:disabled):hover{background:var(--green);color:var(--ink)}
-.progress{width:min(210px,22vw);height:7px;background:#555}.progress span{display:block;height:100%;width:8.33%;background:var(--gold)}
-.counter{min-width:72px;color:var(--gold);font:8px "Press Start 2P",monospace;text-align:center}
-.index{display:flex;flex-wrap:wrap;justify-content:center;gap:6px}.index button{width:31px;height:31px;background:#292929;color:#fff;border:1px solid #777;font:8px "Press Start 2P",monospace;cursor:pointer}.index button[aria-current=page]{background:var(--gold);color:var(--ink)}
-footer{text-align:center;padding:0 18px 42px;color:#d9cdbb;font-size:12px;line-height:1.8}
-@media(max-width:680px){.paper{min-height:0;padding:18px}.cover,.columns{grid-template-columns:1fr}.cover{min-height:0}.images{grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.slot{min-height:105px}.slot.wide{grid-column:span 2}.controls{gap:6px}.controls button{padding:10px 8px;font-size:7px}.progress{width:14vw}.counter{min-width:58px;font-size:7px}}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;scroll-behavior:auto!important}}
-
-/* BOEDAW MAGAZIN — midnight-blue sci-fi / brushed-steel art direction */
-:root{
- --ink:#061426;--paper:#dce8f5;--orange:#ff8a32;--gold:#ffad63;--green:#58b8ff;
- --steel:#a9c0d8;--blue:#071a31;--panel:rgba(8,28,51,.62);--line:rgba(120,174,224,.3)
-}
-html{background:#061426;scroll-behavior:smooth}
-body{
- color:#dce8f5;
- background:
- radial-gradient(ellipse at 50% -15%,rgba(36,105,165,.34),transparent 54%),
- radial-gradient(ellipse at 85% 65%,rgba(255,125,48,.09),transparent 38%),
- linear-gradient(145deg,#061426 0%,#091d35 48%,#04101f 100%);
- font-family:"Space Grotesk",sans-serif;min-height:100vh
-}
-body:before{
- content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:.14;
- background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(120,180,235,.12) 4px,transparent 5px);
- mix-blend-mode:screen
-}
+:root{--bg:#061426;--panel:#091d33;--text:#e7f1fc;--muted:#a9bfd5;--green:#65ff9b;--orange:#ff9652;--line:rgba(101,255,155,.36)}
+*{box-sizing:border-box}
+html,body{width:100%;height:100%;margin:0;overflow:hidden}
+body{position:relative;display:flex;flex-direction:column;color:var(--text);font-family:"Space Grotesk",sans-serif;background:radial-gradient(ellipse at 50% -20%,#17466b 0,transparent 55%),linear-gradient(145deg,#061426,#091d35 55%,#030b16);overscroll-behavior:none}
+body:before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;opacity:.15;background:repeating-linear-gradient(0deg,transparent 0 3px,rgba(112,183,230,.16) 4px,transparent 5px)}
 .top,header,.reader,footer{position:relative;z-index:1}
-.top{
- background:rgba(4,16,31,.78);border-bottom:1px solid rgba(111,174,231,.34);
- box-shadow:0 8px 30px rgba(0,0,0,.22);backdrop-filter:blur(18px)
-}
-.top a{color:#d9e8f7}.top .brand{color:#ffad63;text-shadow:0 0 16px rgba(255,138,50,.3)}
-.top .brand:after{content:" // FIELD ARCHIVE";color:#6ea9dc;font:7px "Space Grotesk",sans-serif;letter-spacing:1.5px;margin-left:9px}
-header{padding:clamp(38px,6vw,76px) 18px 30px;overflow:hidden}
-.kicker{color:#70bcff;font:800 10px/2 "Space Grotesk",sans-serif;letter-spacing:3px;text-transform:uppercase}
-header h1{
- position:relative;display:inline-block;margin:18px 0 20px;color:#eaf4ff;
- font:900 clamp(38px,8vw,92px)/1.08 "Space Grotesk",sans-serif;letter-spacing:-4px;
- text-transform:uppercase;text-shadow:0 2px 0 #7795b3,0 5px 0 #243f5b,0 12px 34px rgba(0,0,0,.55);
- filter:drop-shadow(0 0 22px rgba(70,155,230,.22));animation:title-flicker 7s infinite
-}
-header h1:before,header h1:after{
- content:"BOEDAW MAGAZIN";position:absolute;inset:0;overflow:hidden;pointer-events:none
-}
-header h1:before{color:#ff9652;transform:translate(2px,0);clip-path:inset(0 0 58% 0);opacity:.62;animation:glitch-a 4.2s infinite steps(1)}
-header h1:after{color:#57baff;transform:translate(-2px,0);clip-path:inset(55% 0 0 0);opacity:.55;animation:glitch-b 3.6s infinite steps(1)}
-header p{color:#afc3d9;font-weight:500;max-width:740px}
-.issue{
- display:inline-block;margin-top:20px;padding:9px 15px;border:1px solid rgba(255,151,83,.7);
- border-radius:3px;color:#ffb174;background:rgba(255,132,58,.08);
- font:800 9px/1.8 "Space Grotesk",sans-serif;letter-spacing:2px;box-shadow:0 0 22px rgba(255,132,58,.08)
-}
-.reader{width:min(1160px,calc(100% - 28px));margin:24px auto 55px}
-.paper{
- min-height:650px;padding:clamp(20px,4vw,54px);color:#dce8f5;
- background:linear-gradient(135deg,rgba(9,31,55,.66),rgba(5,19,36,.54));
- border:1px solid rgba(130,181,229,.32);border-radius:10px;
- box-shadow:0 28px 80px rgba(0,0,0,.34),inset 0 1px rgba(255,255,255,.06);
- backdrop-filter:blur(14px);position:relative;overflow:hidden
-}
-.paper:before{content:"";position:absolute;inset:10px;border:1px solid rgba(111,174,231,.1);border-radius:5px;pointer-events:none}
-.page{display:none;position:relative;animation:page-in .55s cubic-bezier(.2,.75,.25,1)}
+.top{height:48px;flex:0 0 48px;display:flex;align-items:center;justify-content:space-between;padding:0 clamp(14px,4vw,44px);background:rgba(3,13,26,.88);border-bottom:1px solid var(--line);backdrop-filter:blur(16px)}
+.top a{color:#dceafa;text-decoration:none;font-size:12px;font-weight:800;letter-spacing:1px}
+.top .brand{color:var(--green);font-weight:800;letter-spacing:2px}
+header{flex:0 0 auto;text-align:center;padding:12px 14px 8px}
+.kicker{color:var(--green);font-size:9px;font-weight:800;letter-spacing:3px;text-transform:uppercase}
+header h1{margin:4px 0 3px;color:#eff8ff;font-size:clamp(27px,5vw,48px);font-weight:800;line-height:1;letter-spacing:-2px;text-transform:uppercase;text-shadow:0 2px #34516c,0 0 24px rgba(101,255,155,.16)}
+header p{margin:5px auto 7px;color:var(--muted);font-size:12px;line-height:1.35}
+.issue{display:inline-block;padding:4px 10px;border:1px solid rgba(101,255,155,.55);border-radius:3px;color:var(--green);background:rgba(101,255,155,.06);font-size:8px;font-weight:800;letter-spacing:2px}
+.reader{width:min(1160px,calc(100% - 24px));min-height:0;flex:1;margin:5px auto 0;display:flex;flex-direction:column}
+.paper{position:relative;min-height:0;flex:1;overflow:hidden;padding:clamp(14px,2.5vw,30px);border:1px solid rgba(101,255,155,.42);border-radius:9px;background:linear-gradient(135deg,rgba(10,32,55,.94),rgba(4,17,32,.96));box-shadow:0 20px 65px #0008,inset 0 0 35px rgba(101,255,155,.035)}
+.paper:before{content:"";position:absolute;inset:8px;border:1px solid rgba(101,255,155,.12);border-radius:5px;pointer-events:none}
+.page{display:none;position:relative;height:100%;overflow:hidden;animation:page-in .38s ease}
 .page.active{display:block}
-@keyframes page-in{from{opacity:0;transform:translateY(12px);filter:blur(5px)}to{opacity:1;transform:none;filter:blur(0)}}
-.page-head{border-bottom:1px solid rgba(131,181,225,.35);color:#8daac8}
-.page-head span:first-child{color:#ffad70}
-.page h2{
- color:#e9f3ff;font:800 clamp(25px,4.5vw,48px)/1.2 "Space Grotesk",sans-serif;
- letter-spacing:-1.7px;text-transform:uppercase;text-shadow:0 2px 0 #254563,0 9px 26px rgba(0,0,0,.35)
-}
-.page p{color:#b8cadd;font-weight:500;line-height:1.85}
-.page .lead{color:#e4effb;font-weight:700!important}
-.cover{min-height:550px}
-.cover h2{font-size:clamp(40px,7vw,76px);text-shadow:0 2px 0 #2c4c6a,0 0 28px rgba(89,170,238,.18)}
-.orange{color:#ff9a58}
-.sticker{
- background:linear-gradient(135deg,#ff9b55,#c95a24);color:#09182a;border:1px solid #ffc18d;
- border-radius:3px;font:800 9px/1.8 "Space Grotesk",sans-serif;letter-spacing:1.5px;
- box-shadow:0 8px 25px rgba(255,123,55,.18);transform:rotate(-1deg)
-}
-.slot{
- position:relative;display:grid;place-items:center;min-height:125px;aspect-ratio:4/3;overflow:hidden;
- border:1px solid rgba(119,174,225,.34);border-radius:6px;
- background:linear-gradient(145deg,rgba(17,48,78,.62),rgba(5,20,37,.7));color:#89a9c9;
- box-shadow:inset 0 1px rgba(255,255,255,.05)
-}
-.slot.big{min-height:260px;aspect-ratio:4/5}
+@keyframes page-in{from{opacity:.25;transform:translateX(22px)}to{opacity:1;transform:none}}
+.page-head{display:flex;justify-content:space-between;gap:10px;padding-bottom:8px;margin-bottom:14px;border-bottom:1px solid rgba(101,255,155,.35);color:#8daac8;font-size:8px;font-weight:800;letter-spacing:1.5px}
+.page-head span:first-child{color:var(--green)}
+.page h2{margin:0 0 12px;color:#eff7ff;font-size:clamp(22px,3.8vw,42px);font-weight:800;line-height:1.08;letter-spacing:-1.5px;text-transform:uppercase;text-shadow:0 0 22px rgba(101,255,155,.12)}
+.page p{color:#b9cadd;font-size:clamp(12px,1.35vw,16px);font-weight:500;line-height:1.55;margin:9px 0}
+.page .lead{color:#e6f1fc;font-weight:700;font-size:clamp(14px,1.7vw,19px)}
+.cover{height:calc(100% - 30px);display:grid;grid-template-columns:1fr .8fr;gap:clamp(12px,3vw,32px);align-items:center}
+.cover h2{font-size:clamp(38px,7vw,76px);line-height:.98}
+.orange{color:var(--orange)}
+.sticker{display:inline-block;padding:8px 11px;border:1px solid #ffc18d;border-radius:3px;background:linear-gradient(135deg,#ff9b55,#c95b28);color:#08172a;font-size:9px;font-weight:800;letter-spacing:1px}
+.columns{display:grid;grid-template-columns:1fr .8fr;gap:clamp(12px,3vw,30px);align-items:center}
+.quote{margin:14px 0;padding:12px 16px;border-left:3px solid var(--green);background:rgba(101,255,155,.07);color:#baffce;font-size:clamp(12px,1.5vw,17px);font-weight:800;line-height:1.45}
+.note{padding:10px 13px;border:1px solid rgba(101,255,155,.4);border-left:3px solid var(--green);background:rgba(101,255,155,.07);color:#c9f7d8;font-size:12px;font-weight:700;line-height:1.5}
+.images{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:8px;margin:12px 0}
+.slot{position:relative;display:grid;place-items:center;min-height:75px;aspect-ratio:4/3;overflow:hidden;border:1px solid rgba(101,255,155,.28);border-radius:5px;background:linear-gradient(145deg,#102e49,#07182a);color:#8daac8}
+.slot.big{min-height:0;height:min(48vh,390px);aspect-ratio:4/5}
 .slot.wide{grid-column:span 2;aspect-ratio:16/9}
-.slot img{
- position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;
- transform:scale(1.045);filter:saturate(.9) contrast(1.04);
- transition:opacity 1.25s ease,transform 2.2s cubic-bezier(.2,.7,.2,1),filter 1.2s ease
-}
-.slot img.loaded{opacity:1;transform:scale(1);filter:saturate(1.02) contrast(1.04)}
-.slot:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(130deg,rgba(71,156,228,.12),transparent 45%,rgba(255,132,66,.1));opacity:.8}
-.slot-label{position:relative;z-index:1;text-align:center;color:#9bb7d4;font:800 9px/1.8 "Space Grotesk",sans-serif;letter-spacing:1.5px;text-transform:uppercase}
-.slot-label b{color:#ffad70;font:800 22px "Space Grotesk",sans-serif;margin-bottom:8px}
+.slot img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:0;transition:opacity .6s}
+.slot img.loaded{opacity:1}
+.slot:after{content:"";position:absolute;inset:0;pointer-events:none;background:linear-gradient(130deg,rgba(101,255,155,.1),transparent 50%,rgba(255,132,66,.08))}
+.slot-label{position:relative;z-index:1;text-align:center;color:#a8c5dd;font-size:8px;font-weight:800;letter-spacing:1px;text-transform:uppercase}
+.slot-label b{display:block;margin-bottom:4px;color:var(--green);font-size:18px}
 .slot img.loaded~.slot-label{display:none}
-.columns{gap:30px}
-.quote{
- margin:26px 0;padding:20px 22px;border-left:3px solid #ff9552;
- background:linear-gradient(90deg,rgba(255,137,66,.11),rgba(9,30,52,.36));
- color:#ffbd8e;font:800 clamp(14px,2vw,19px)/1.7 "Space Grotesk",sans-serif;
- letter-spacing:.4px
-}
-.note{padding:15px 18px;background:rgba(54,133,195,.13);border:1px solid rgba(105,179,240,.4);border-left:3px solid #62b9ff;color:#c5def4;font-weight:700;line-height:1.7}
-.cta{
- display:inline-block;margin:12px 8px 0 0;padding:13px 17px;
- background:linear-gradient(135deg,#ff9b55,#c95b28);border:1px solid #ffc18d;border-radius:4px;
- box-shadow:0 8px 22px rgba(255,123,55,.18);color:#07172a;text-decoration:none;
- font:800 10px/1.8 "Space Grotesk",sans-serif;letter-spacing:1.2px;transition:transform .2s,filter .2s
-}
-.cta:hover{transform:translateY(-3px);filter:brightness(1.12)}
-.controls{gap:14px;padding:24px 0}
-.controls button{
- padding:12px 16px;border:1px solid rgba(109,178,239,.55);border-radius:4px;
- background:rgba(11,34,58,.85);color:#cde3f8;font:800 9px/1.8 "Space Grotesk",sans-serif;letter-spacing:1px;
- cursor:pointer;transition:.2s
-}
-.controls button:not(:disabled):hover{background:#1d5483;color:#fff;border-color:#7ec5ff}
-.controls button:disabled{opacity:.32}
-.progress{height:4px;background:rgba(132,166,198,.2);border-radius:9px;overflow:hidden}
-.progress span{background:linear-gradient(90deg,#4eafff,#ff9856);box-shadow:0 0 12px rgba(83,174,255,.5);transition:width .35s}
-.counter{color:#ffad70;font:800 9px "Space Grotesk",sans-serif;letter-spacing:1px}
-.index button{
- width:32px;height:32px;background:rgba(10,30,51,.8);color:#b9cee2;border:1px solid rgba(121,172,219,.28);
- border-radius:4px;font:800 9px "Space Grotesk",sans-serif;cursor:pointer;transition:.2s
-}
-.index button:hover{border-color:#6cbcff;color:#fff}
-.index button[aria-current=page]{background:#ff9652;color:#07172a;border-color:#ffb77f;box-shadow:0 0 16px rgba(255,145,76,.2)}
-footer{color:#7f9bb8}
-@keyframes glitch-a{
- 0%,88%,100%{transform:translate(2px,0);clip-path:inset(0 0 58% 0)}
- 89%{transform:translate(-5px,1px);clip-path:inset(12% 0 70% 0)}
- 91%{transform:translate(4px,-1px);clip-path:inset(30% 0 48% 0)}
- 93%{transform:translate(1px,0);clip-path:inset(0 0 58% 0)}
-}
-@keyframes glitch-b{
- 0%,82%,100%{transform:translate(-2px,0);clip-path:inset(55% 0 0 0)}
- 84%{transform:translate(5px,-1px);clip-path:inset(66% 0 8% 0)}
- 86%{transform:translate(-4px,1px);clip-path:inset(48% 0 22% 0)}
- 88%{transform:translate(-2px,0);clip-path:inset(55% 0 0 0)}
-}
-@keyframes title-flicker{0%,96%,100%{opacity:1}97%{opacity:.88}98%{opacity:1}99%{opacity:.94}}
+.cta{display:inline-block;margin:7px 7px 0 0;padding:9px 12px;border:1px solid #ffc18d;border-radius:3px;background:linear-gradient(135deg,#ff9b55,#c95b28);color:#07172a;text-decoration:none;font-size:9px;font-weight:800;letter-spacing:1px}
+.controls{height:47px;flex:0 0 47px;display:flex;align-items:center;justify-content:center;gap:12px}
+.controls button{padding:8px 13px;border:1px solid rgba(101,255,155,.55);border-radius:4px;background:#0b263d;color:#d9f7e3;font-size:9px;font-weight:800;letter-spacing:1px;cursor:pointer}
+.controls button:not(:disabled):hover{background:var(--green);color:#07172a}
+.controls button:disabled{opacity:.3;cursor:not-allowed}
+.progress{width:min(190px,22vw);height:4px;overflow:hidden;border-radius:8px;background:#284056}
+.progress span{display:block;height:100%;width:8.33%;background:linear-gradient(90deg,var(--green),var(--orange));transition:width .3s}
+.counter{min-width:54px;color:var(--green);font-size:9px;font-weight:800;letter-spacing:1px;text-align:center}
+.index{height:31px;flex:0 0 31px;display:flex;justify-content:center;align-items:center;gap:5px}
+.index button{width:25px;height:24px;border:1px solid rgba(101,255,155,.25);border-radius:3px;background:#0a2035;color:#a9bfd5;font-size:8px;font-weight:800;cursor:pointer}
+.index button[aria-current=page]{background:var(--green);border-color:var(--green);color:#061426}
+footer{display:none}
 @media(max-width:680px){
- .paper{min-height:0;padding:18px}.cover,.columns{grid-template-columns:1fr}.cover{min-height:0}
- .images{grid-template-columns:repeat(2,minmax(0,1fr));gap:9px}.slot{min-height:105px}.slot.wide{grid-column:span 2}
- .controls{gap:6px}.controls button{padding:10px 9px;font-size:8px}.progress{width:14vw}
- .counter{min-width:58px;font-size:8px}header h1{letter-spacing:-2px}
+ .top{height:42px;flex-basis:42px}.top a{font-size:10px}
+ header{padding:9px 10px 6px}.kicker{font-size:7px;letter-spacing:2px}header h1{font-size:30px}header p{max-width:420px;font-size:10px}.issue{font-size:7px}
+ .reader{width:calc(100% - 14px);margin-top:3px}.paper{padding:12px}.paper:before{inset:5px}
+ .page-head{font-size:7px;margin-bottom:10px;padding-bottom:6px}
+ .cover,.columns{grid-template-columns:1fr;gap:8px}.cover{height:calc(100% - 24px);align-content:center}.cover h2{font-size:clamp(36px,11vw,58px)}
+ .cover .slot.big{height:min(25vh,180px);aspect-ratio:16/9}
+ .page h2{font-size:clamp(20px,6vw,29px);margin-bottom:8px}.page p{font-size:11px;line-height:1.42;margin:6px 0}.page .lead{font-size:12px}
+ .columns .slot.big{height:clamp(100px,20vh,155px);aspect-ratio:16/9}
+ .quote{margin:8px 0;padding:8px 10px;font-size:11px}.images{gap:5px;margin:7px 0}.slot{min-height:48px}.slot.wide{grid-column:span 2}.slot-label{font-size:6px}.slot-label b{font-size:13px}
+ .note{padding:7px 9px;font-size:10px}.cta{padding:7px 9px;font-size:8px}
+ .controls{height:40px;flex-basis:40px;gap:6px}.controls button{padding:7px 9px;font-size:8px}.progress{width:14vw}.counter{font-size:8px;min-width:48px}
+ .index{height:25px;flex-basis:25px;gap:3px}.index button{width:21px;height:20px;font-size:7px}
 }
-@media(prefers-reduced-motion:reduce){
- *,*:before,*:after{animation:none!important;transition:none!important;scroll-behavior:auto!important}
-}
-
+@media(max-height:620px) and (min-width:681px){header{padding:5px 10px}header h1{font-size:30px}.reader{margin-top:2px}.page p{line-height:1.35}.page-head{margin-bottom:8px}.quote{margin:8px 0;padding:8px 12px}.images{margin:7px 0}.controls{height:37px;flex-basis:37px}.index{height:24px;flex-basis:24px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
 </style>
 </head>
 <body>
 <nav class="top"><a class="brand" href="index.html">FROGINALS</a><a href="index.html">← BACK TO MAIN PAGE</a></nav>
-<header><div class="kicker">THE CULTURE · THE ADVENTURE · THE LEGACY</div><h1>BOEDAW<br>MAGAZIN</h1><p>A playful field guide to the people, style, discoveries and ideas moving Doge culture forward. Made from the swamp, for the pack.</p><div class="issue">ISSUE 001 · FROGINALS FIELD EDITION</div></header>
-<main class="reader"><div class="paper" id="paper"></div>
+<header><div class="kicker">THE CULTURE · THE ADVENTURE · THE LEGACY</div><h1>BOEDAW MAGAZIN</h1><p>A cyberpunk field guide to Doge culture, discoveries and the FROGINALS universe.</p><div class="issue">ISSUE 001 · FROGINALS FIELD EDITION</div></header>
+<main class="reader" aria-label="BOEDAW MAGAZIN page reader"><div class="paper" id="paper"></div>
 <div class="controls"><button id="prev" disabled>← PREV</button><div class="progress"><span id="fill"></span></div><span class="counter" id="counter">01 / 12</span><button id="next">NEXT →</button></div><div class="index" id="index" aria-label="Jump to a page"></div></main>
-<footer>BOEDAW MAGAZIN · ISSUE 001 · A FROGINALS CULTURE PROJECT<br>60 numbered image slots · Add files 001.png–060.png to <b>magazine/images/</b>.</footer>
+<footer>BOEDAW MAGAZIN · ISSUE 001 · FROGINALS</footer>
 <script>
 const stories=[
 {act:"COVER · ISSUE 001",title:"BOEDAW MAGAZIN",lead:"A field guide to the culture that started as a joke, became a movement, and keeps finding new ways to surprise us.",body:"Inside: Doge origins, community legends, streetwear, the FROGINAL expedition, NFTs and the future of the pack.",quote:"MUCH CULTURE. VERY ADVENTURE.",labels:["COVER ART","THE DOGE WORLD","FROGINALS","ISSUE 001","THE PACK"]},
 {act:"ACT I · THE CULTURE",title:"IT'S MORE THAN A MEME.",lead:"Doge began with a familiar face and a very internet sense of humour. The community turned that simple spark into a language of its own.",body:"Humour, generosity, creativity and a shared sense of belonging helped Doge travel far beyond a screen. The best part has always been the people who keep the spirit moving.",quote:"A meme is a moment. A culture is what people build around it.",labels:["DOGE CULTURE","MEME HISTORY","INTERNET MOMENT","COMMUNITY ENERGY","THE ICON"]},
 {act:"ACT I · THE CULTURE",title:"THE PEOPLE ARE THE LEGEND.",lead:"Every movement has its characters: makers, collectors, artists, builders, jokers and the friends who bring one more friend along.",body:"Doge culture is shaped in conversations, fan art, meetups, posts, experiments and acts of community. There is no single uniform for the pack — just room to make something your own.",quote:"THE PACK RULE: bring good energy, make something, and leave the swamp better than you found it.",labels:["THE COMMUNITY","THE CREATORS","THE COLLECTORS","THE PACK","GOOD ENERGY"]},
 {act:"ACT I · THE CULTURE",title:"WEAR YOUR CULTURE.",lead:"Culture doesn't stay inside a timeline. It shows up in the things we make, wear, trade, collect and take into the real world.",body:"FROGINALS turns swamp energy into wearable identity: tees, artwork, collectible designs and playful pieces for people who want to rep the culture out loud. It's not just merch. It's a signal that says: you were here, you get the joke, and you're part of the story.",quote:"FROM THE TIMELINE TO THE STREET.",labels:["FROGINALS LOOKBOOK","T-SHIRT","MERCH DETAIL","STREET STYLE","THE DROP"],links:[["EXPLORE PRODUCTS","product.html"]]},
-{act:"ACT II · THE ADVENTURE",title:"WELCOME TO THE DOGE FRONTIER.",lead:"The internet is a big place. Every new tool, community and creative experiment opens another trail to explore.",body:"Some expeditions lead to new friendships. Others lead to a new design, a new project or a technical rabbit hole. The fun is in exploring — and sharing what we learn along the way.",quote:"PACK YOUR CURIOSITY. THE NEXT DISCOVERY IS OUT THERE.",labels:["THE FRONTIER","ON THE ROAD","NEW DISCOVERY","FIELD GEAR","THE HORIZON"]},
+{act:"ACT II · THE ADVENTURE",title:"WELCOME TO THE DOGE FRONTIER.",lead:"The internet is a big place. Every new tool, community and creative experiment opens another trail to explore.",body:"Some expeditions lead to new friendships. Others lead to a new design, a new project or a technical rabbit hole. The fun is in exploring — and sharing what we learn along the way.",quote:"PACK YOUR CURIOSITY. THE NEXT DISCOVERY IS OUT THERE.",labels:["THE FRONTIER","THE ROAD","NEW DISCOVERY","FIELD GEAR","THE HORIZON"]},
 {act:"ACT II · THE ADVENTURE",title:"THE FROGINAL EXPEDITION.",lead:"A frog, a Doge community and a map full of question marks. That's how an expedition starts.",body:"FROGINALS has been exploring ways to give its corner of Doge culture a home: building community spaces, testing tools, experimenting with digital identity and navigating the occasional swamp of DNS settings and blockchain details. Not every route is a straight line. We document the attempts, celebrate the discoveries and keep moving.",quote:"FIELD NOTES FROM THE SWAMP.",labels:["THE EXPEDITION","FIELD NOTES","THE SWAMP MAP","NEXT CHECKPOINT","THE JOURNEY"]},
 {act:"ACT II · THE ADVENTURE",title:"THE NFT REVOLUTION.",lead:"Digital collectibles gave artists and communities new ways to create, collect and connect with work that lives on-chain.",body:"NFTs are not magic and they are not a promise of profit. They are one format for linking a token to a digital item, creator or community record. Their meaning comes from the people and stories around them.",quote:"COLLECT FOR THE ART, THE STORY OR THE COMMUNITY — AND ALWAYS DO YOUR OWN RESEARCH.",labels:["DIGITAL COLLECTIBLES","ARTWORK","ON-CHAIN","THE CREATOR","COLLECTOR CULTURE"]},
 {act:"ACT II · THE ADVENTURE",title:"ENTER THE SWAMP.",lead:"The FROGINALS universe brings the pieces together: FROGINAL DOGS, FROGINALARMY, community missions, games, creative drops and the merch that lets the pack wear its colours.",body:"Explore the collection, join the army, take part in missions and find your corner of the swamp. Every member adds another little piece to the story.",quote:"ONE SWAMP. MANY LEGENDS.",labels:["FROGINAL DOGS","FROGINALARMY","SWAMP LIFE","COMMUNITY","MISSIONS"],links:[["MEET THE FROGINALARMY","froginalarmy.html"]]},
@@ -214,36 +102,15 @@ const stories=[
 {act:"THE NEXT CHAPTER",title:"THE NEXT GENERATION OF DOGE CULTURE.",lead:"The story is still being written. The next chapter belongs to the people who show up, make things, share ideas and bring the culture into tomorrow.",body:"Discover the FROGINALS products, meet the FROGINALARMY and join the expedition. Culture is created. Community keeps it alive. Let's make the next chapter legendary.",quote:"CULTURE IS CREATED. COMMUNITY KEEPS IT ALIVE.",labels:["THE NEXT CHAPTER","FROGINALS STYLE","THE PACK","THE FUTURE","YOUR STORY"],links:[["SHOP FROGINALS","product.html"],["JOIN THE PACK","froginalarmy.html"],["BACK TO FROGINALS","index.html"]]}
 ];
 const paper=document.getElementById("paper"),index=document.getElementById("index");
-stories.forEach((s,i)=>{
- const page=document.createElement("section");page.className="page"+(i===0?" active":"");
- const head=document.createElement("div");head.className="page-head";head.innerHTML="<span>"+s.act+"</span><span>"+String(i+1).padStart(2,"0")+" / 12</span>";page.append(head);
- if(i===0){
-  const cover=document.createElement("div");cover.className="cover";
-  const copy=document.createElement("div");copy.innerHTML='<div class="kicker">FROGINALS PRESENTS · ISSUE 001</div><h2>BOEDAW<br><span class="orange">MAGAZIN</span></h2><p class="lead">'+s.lead+'</p><p><span class="sticker">'+s.quote+'</span></p><p>'+s.body+'</p>';
-  cover.append(copy);const slot=makeSlot(i,0,s.labels[0],"big");cover.append(slot);page.append(cover);
- }else{
-  const h=document.createElement("h2");h.textContent=s.title;page.append(h);
-  const lead=document.createElement("p");lead.className="lead";lead.textContent=s.lead;page.append(lead);
-  const cols=document.createElement("div");cols.className="columns";
-  const text=document.createElement("div");const body=document.createElement("p");body.textContent=s.body;text.append(body);
-  if(i===3){const note=document.createElement("div");note.className="note";note.textContent="FROGINALS STREET DEPARTMENT · WEAR THE CULTURE.";text.append(note)}
-  if(i===10){const note=document.createElement("div");note.className="note";note.textContent="NFTs are one preservation tool, not the only one. Keep artwork, metadata and community records accessible too.";text.append(note)}
-  const big=makeSlot(i,0,s.labels[0],"big");cols.append(text,big);page.append(cols);
-  const quote=document.createElement("div");quote.className="quote";quote.textContent=s.quote;page.append(quote);
-  const grid=document.createElement("div");grid.className="images";
-  for(let n=1;n<5;n++)grid.append(makeSlot(i,n,s.labels[n],n===1?"wide":""));page.append(grid);
- }
- (s.links||[]).forEach(([label,url])=>{const a=document.createElement("a");a.className="cta";a.href=url;a.textContent=label+" ↗";page.append(a)});
- paper.append(page);
- const b=document.createElement("button");b.type="button";b.textContent=String(i+1).padStart(2,"0");b.setAttribute("aria-label","Go to page "+(i+1));b.addEventListener("click",()=>show(i));index.append(b);
-});
-function makeSlot(page,position,label,size){
- const number=String(page*5+position+1).padStart(3,"0"),slot=document.createElement("div");slot.className="slot "+(size||"");
- const img=document.createElement("img");img.src="magazine/images/"+number+".png";img.alt="FROGINALS magazine image "+number;img.loading="lazy";img.addEventListener("load",()=>img.classList.add("loaded"));img.addEventListener("error",()=>img.remove());
- const caption=document.createElement("span");caption.className="slot-label";caption.innerHTML="<b>"+number+"</b>"+label;slot.append(img,caption);return slot;
-}
+function makeSlot(page,position,label,size){const number=String(page*5+position+1).padStart(3,"0"),slot=document.createElement("div");slot.className="slot "+(size||"");const img=document.createElement("img");img.src="magazine/images/"+number+".png";img.alt="FROGINALS magazine image "+number;img.loading="lazy";img.addEventListener("load",()=>img.classList.add("loaded"));img.addEventListener("error",()=>img.remove());const caption=document.createElement("span");caption.className="slot-label";caption.innerHTML="<b>"+number+"</b>"+label;slot.append(img,caption);return slot}
+stories.forEach((s,i)=>{const page=document.createElement("section");page.className="page"+(i===0?" active":"");const head=document.createElement("div");head.className="page-head";head.innerHTML="<span>"+s.act+"</span><span>"+String(i+1).padStart(2,"0")+" / 12</span>";page.append(head);
+if(i===0){const cover=document.createElement("div");cover.className="cover";const copy=document.createElement("div");copy.innerHTML='<div class="kicker">FROGINALS PRESENTS · ISSUE 001</div><h2>BOEDAW<br><span class="orange">MAGAZIN</span></h2><p class="lead">'+s.lead+'</p><p><span class="sticker">'+s.quote+'</span></p><p>'+s.body+'</p>';cover.append(copy,makeSlot(i,0,s.labels[0],"big"));page.append(cover)}
+else{const h=document.createElement("h2");h.textContent=s.title;page.append(h);const lead=document.createElement("p");lead.className="lead";lead.textContent=s.lead;page.append(lead);const cols=document.createElement("div");cols.className="columns";const text=document.createElement("div");const body=document.createElement("p");body.textContent=s.body;text.append(body);if(i===3||i===10){const note=document.createElement("div");note.className="note";note.textContent=i===3?"FROGINALS STREET DEPARTMENT · WEAR THE CULTURE.":"NFTs are one preservation tool, not the only one. Keep artwork, metadata and community records accessible too.";text.append(note)}cols.append(text,makeSlot(i,0,s.labels[0],"big"));page.append(cols);const quote=document.createElement("div");quote.className="quote";quote.textContent=s.quote;page.append(quote);const grid=document.createElement("div");grid.className="images";for(let n=1;n<5;n++)grid.append(makeSlot(i,n,s.labels[n],n===1?"wide":""));page.append(grid)}
+(s.links||[]).forEach(([label,url])=>{const a=document.createElement("a");a.className="cta";a.href=url;a.textContent=label+" ↗";page.append(a)});paper.append(page);const b=document.createElement("button");b.type="button";b.textContent=String(i+1).padStart(2,"0");b.setAttribute("aria-label","Go to page "+(i+1));b.addEventListener("click",()=>show(i));index.append(b)});
 let current=0;const prev=document.getElementById("prev"),next=document.getElementById("next"),counter=document.getElementById("counter"),fill=document.getElementById("fill");
-function show(i){current=Math.max(0,Math.min(11,i));[...paper.children].forEach((p,n)=>p.classList.toggle("active",n===current));[...index.children].forEach((b,n)=>{if(n===current)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")});prev.disabled=current===0;next.disabled=current===11;counter.textContent=String(current+1).padStart(2,"0")+" / 12";fill.style.width=((current+1)/12*100)+"%"}
-prev.addEventListener("click",()=>show(current-1));next.addEventListener("click",()=>show(current+1));document.addEventListener("keydown",e=>{if(e.key==="ArrowLeft")show(current-1);if(e.key==="ArrowRight")show(current+1)});show(0);
+function show(i){current=Math.max(0,Math.min(stories.length-1,i));[...paper.children].forEach((p,n)=>p.classList.toggle("active",n===current));[...index.children].forEach((b,n)=>{if(n===current)b.setAttribute("aria-current","page");else b.removeAttribute("aria-current")});prev.disabled=current===0;next.disabled=current===stories.length-1;counter.textContent=String(current+1).padStart(2,"0")+" / "+String(stories.length).padStart(2,"0");fill.style.width=((current+1)/stories.length*100)+"%"}
+prev.addEventListener("click",()=>show(current-1));next.addEventListener("click",()=>show(current+1));document.addEventListener("keydown",e=>{if(e.key==="ArrowLeft")show(current-1);if(e.key==="ArrowRight")show(current+1)});
+let touchX=0,touchY=0;paper.addEventListener("touchstart",e=>{touchX=e.changedTouches[0].clientX;touchY=e.changedTouches[0].clientY},{passive:true});paper.addEventListener("touchend",e=>{const dx=e.changedTouches[0].clientX-touchX,dy=e.changedTouches[0].clientY-touchY;if(Math.abs(dx)>48&&Math.abs(dx)>Math.abs(dy)*1.25)show(current+(dx<0?1:-1))},{passive:true});
+let pointerX=null;paper.addEventListener("pointerdown",e=>{if(e.pointerType==="mouse")pointerX=e.clientX});paper.addEventListener("pointerup",e=>{if(pointerX!==null){const dx=e.clientX-pointerX;if(Math.abs(dx)>70)show(current+(dx<0?1:-1));pointerX=null}});show(0);
 </script>
 </body></html>
