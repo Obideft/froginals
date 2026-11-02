@@ -102,3 +102,31 @@ The new `welcome.html` page lets a Solana holder connect Phantom, sign a short-l
 The welcome flow is separate from GraveMint checkout: it does not receive a buyer email from GraveMint or rely on a GraveMint webhook. Buyers visit the welcome page after minting and prove current wallet ownership themselves. Robinhood Chain holders remain on the existing manual team-verification path.
 
 **Not live until configured:** the GitHub changes can deploy automatically through Vercel, but email sending will return a configuration error until the SQL migration and Resend/Vercel environment variables above are completed. Never commit API keys or service-role secrets.
+
+
+## Dual-chain Discord holder welcome flow
+
+The existing Discord OAuth and role-assignment flow now supports either:
+- **Solana:** the existing short-lived Phantom message signature and verified Helius DAS collection ownership check.
+- **Robinhood Chain:** EIP-191 message signature plus a read-only ERC-721 `balanceOf(address)` check on chain ID `4663`, against the configured FROGINAL DOGS collection contract.
+
+Both paths grant the same configured `DISCORD_HOLDER_ROLE_ID` and attempt a first-time Discord DM. The DM points holders to `#mission-briefing`, the FROGINALS community mission, and the OG Rewards dashboard. A private `froginalarmy_discord_welcomes` table prevents repeat welcomes. This is a DM workflow using the Discord REST API; it does not require a permanently running Gateway bot or privileged Gateway intents.
+
+### New setup before enabling
+
+1. Run `supabase/migrations/20261031100000_add_dual_chain_discord_welcome.sql` in Supabase SQL Editor. It adds the chain fields and private welcome-delivery status table.
+2. In Vercel Production and Preview as appropriate, configure:
+   - `FROGINAL_EVM_NFT_CONTRACT_ADDRESS=0x646C988463aa175956F59CC1f9Efa137CD0A9d7b`
+   - `ROBINHOOD_RPC_URL` — a production RPC endpoint for Robinhood Chain mainnet (chain ID 4663); Alchemy is recommended. Do not rely on the public RPC for production traffic.
+   - `DISCORD_MISSION_BRIEFING_CHANNEL_ID` — the Discord channel ID for the actual `#mission-briefing` channel, so the welcome DM can include a clickable deep link.
+3. Confirm `DISCORD_HOLDER_ROLE_ID` is the shared `🐸 FROGINAL HOLDER` role and the bot has Manage Roles with its highest role above the holder role.
+4. The holder must already be a member of the Discord guild. The bot creates a DM channel and sends the welcome after successful role assignment. No Gateway listener or Message Content intent is needed.
+5. Test the EVM signature and contract balance read on a known holder wallet before enabling the mainnet UI. The ownership check is read-only; it never requests a transaction signature or wallet secret.
+
+### Important eligibility boundary
+
+This Discord role is for **at least one FROGINAL DOGS NFT** on either supported chain. It is not the OG Rewards completion check. The 50 Recruitment Badge designs remain a separate collection/progress requirement and must be evaluated by the OG Rewards eligibility system, not by this holder-role verifier.
+
+### Welcome delivery behavior
+
+Welcome delivery is best-effort after the role is granted. A failed DM does not revoke the role or mark ownership invalid. Delivery state is stored as `pending`, `sent`, or `failed`; a later successful verification can retry a failed welcome, while a sent welcome is never sent again automatically. A pending delivery is not retried automatically to avoid duplicate DMs if Discord accepted a message but the network response was lost.
