@@ -13,7 +13,7 @@ export default async function handler(req, res) {
   const resource = String(req.query?.resource || "products");
   const endpoints = {
     products: "https://api.printful.com/sync/products",
-    variants: "https://api.printful.com/sync/products/483655251"
+    variants: `https://api.printful.com/sync/products/${encodeURIComponent(String(req.query?.product_id || "483655251"))}`
   };
   const endpoint = endpoints[resource];
   if (!endpoint) {
