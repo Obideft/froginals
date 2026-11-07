@@ -9,7 +9,13 @@ const VARIANTS = {
   "5586793345": { externalId: "6ad8a1ec107641", price: 17.00 },
   "5586793346": { externalId: "6ad8a1ec107656", price: 14.50 },
   "5586793347": { externalId: "6ad8a1ec107663", price: 17.00 },
-  "5586793348": { externalId: "6ad8a1ec107673", price: 22.00 }
+  "5586793348": { externalId: "6ad8a1ec107673", price: 22.00 },
+  "5626427516": { externalId: "6aef6be4297445", price: 23.50 },
+  "5626427517": { externalId: "6aef6be4297468", price: 26.00 },
+  "5626425606": { externalId: "6aef6b58463de5", price: 23.50 },
+  "5626425607": { externalId: "6aef6b58463e03", price: 26.00 },
+  "5626423150": { externalId: "6aef6aa183f419", price: 29.99 },
+  "5626423151": { externalId: "6aef6aa183f433", price: 29.99 }
 };
 
 function clean(value, max = 120) {
