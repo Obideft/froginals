@@ -34,6 +34,21 @@ export default async function handler(req, res) {
       });
     }
 
+    if (resource === "products" && Array.isArray(data.result)) {
+      const detailed = await Promise.all(data.result.map(async item => {
+        const detailResponse = await fetch("https://api.printful.com/sync/products/" + encodeURIComponent(String(item.id)), {
+          headers: { Authorization: `Bearer ${token}` }
+        });
+        if (!detailResponse.ok) {
+          console.error("Printful product detail failed:", item.id, detailResponse.status);
+          return { sync_product: item, sync_variants: [] };
+        }
+        const detail = await detailResponse.json();
+        return detail.result || { sync_product: item, sync_variants: [] };
+      }));
+      return res.status(200).json({ ...data, result: detailed });
+    }
+
     return res.status(200).json(data);
   } catch (error) {
     console.error("Printful catalogue request failed:", resource, error.message);
