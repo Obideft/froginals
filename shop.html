@@ -286,13 +286,4 @@ document.getElementById("sortProducts").addEventListener("change",event=>{
 loadCatalogue();
 </script>
 </body>
-</html>+price.toFixed(2)+'</span><a class="product-link" href="buy.html?product_id='+encodeURIComponent(sp.id)+'">BUY NOW ↗</a></div></div>';card.querySelector("h3").textContent=sp.name||"FROGINALS product";return card}
-async function loadCatalogue(){try{const response=await fetch("/api/printful-products?resource=products");const data=await response.json();if(!response.ok)throw Error(data.error||"Printful catalogue unavailable");const products=Array.isArray(data.result)?data.result:[];grid.innerHTML="";products.forEach(p=>{const card=makeCard(p);if(card){grid.appendChild(card);cards.push(card)}});if(!cards.length){grid.innerHTML='<div class="empty" style="display:block">No synced products found yet. In Printful, open each finished design and sync it to this store. It will appear here automatically.</div>'}applyFilter(active)}catch(error){grid.innerHTML='<div class="empty" style="display:block">Could not load the Printful catalogue. Please refresh the page or check the store connection.</div>';console.error("FROGINALS Printful catalogue:",error)}}
-filters.forEach(b=>b.addEventListener("click",()=>applyFilter(b.dataset.filter)));
-document.querySelectorAll("[data-jump]").forEach(a=>a.addEventListener("click",()=>applyFilter(a.dataset.jump)));
-document.querySelectorAll("[data-feature-filter]").forEach(a=>a.addEventListener("click",()=>applyFilter(a.dataset.featureFilter)));
-document.getElementById("sortProducts").addEventListener("change",e=>{if(e.target.value==="name"){cards.sort((a,b)=>a.dataset.name.localeCompare(b.dataset.name));cards.forEach(c=>grid.appendChild(c))}});
-loadCatalogue();
-</script>
-</body>
 </html>
