@@ -175,9 +175,115 @@ footer a{color:var(--yellow);text-decoration:none}
 <section class="newsletter"><div class="eyebrow">DON'T MISS THE NEXT DROP</div><h2>STAY IN THE SWAMP LOOP.</h2><p>Follow the FROGINALS community for new designs, merch announcements and upcoming drops.</p><a href="https://discord.gg/VZT9yENT2" target="_blank" rel="noopener">JOIN THE FROGINALS DISCORD ↗</a></section>
 <footer><div>🐸 FROGINALS MERCH STORE<br>GOOD MATES. GOOD VIBES.</div><div><a href="index.html">HOME</a> &nbsp;·&nbsp; <a href="product.html">GOOD MATE T-SHIRT</a> &nbsp;·&nbsp; <a href="https://discord.gg/VZT9yENT2" target="_blank" rel="noopener">DISCORD</a><br>Product previews marked coming soon are concepts, not available for purchase yet.</div></footer>
 <script>
-const grid=document.getElementById("productGrid"),filters=[...document.querySelectorAll(".filter")],empty=document.getElementById("emptyState");let cards=[],active="all";
-function applyFilter(value){active=value;filters.forEach(b=>b.classList.toggle("active",b.dataset.filter===value));let shown=0;cards.forEach(card=>{const visible=value==="all"||card.dataset.category===value;card.style.display=visible?"":"none";if(visible)shown++});empty.style.display=shown?"none":"block"}
-function makeCard(p){const sp=p.sync_product||p,vs=p.sync_variants||[],v=vs.find(x=>x.availability_status!=="out_of_stock")||vs[0];if(!v)return null;const category=/hoodie|sweatshirt|shirt|tee|t-shirt|tank|apparel/i.test(sp.name)?"apparel":/mug|cup|tumbler|bottle/i.test(sp.name)?"mugs":/sticker|decal/i.test(sp.name)?"stickers":"art";const image=sp.thumbnail_url||(v.files||[]).find(f=>f.type==="preview")?.preview_url||"";const price=Number(v.retail_price||v.price||0);const card=document.createElement("article");card.className="product-card";card.dataset.category=category;card.dataset.name=sp.name||"FROGINALS product";const img=image?'<img src="'+image+'" alt="'+(sp.name||"FROGINALS product").replace(/"/g,"&quot;")+'" loading="lazy">':'<span class="emoji">🐸</span>';card.innerHTML='<div class="product-image">'+img+'<span class="product-label">AVAILABLE NOW</span></div><div class="product-info"><div class="product-category">'+category.toUpperCase()+' / PRINTFUL</div><h3></h3><p class="product-desc">Made to order. Choose your available size and colour.</p><div class="product-bottom"><span class="product-price">From 
+const grid=document.getElementById("productGrid");
+const filters=[...document.querySelectorAll(".filter")];
+const empty=document.getElementById("emptyState");
+let cards=[];
+let active="all";
+
+function applyFilter(value){
+  active=value;
+  filters.forEach(button=>button.classList.toggle("active",button.dataset.filter===value));
+  let shown=0;
+  cards.forEach(card=>{
+    const visible=value==="all"||card.dataset.category===value;
+    card.style.display=visible?"":"none";
+    if(visible)shown++;
+  });
+  empty.style.display=shown?"none":"block";
+}
+
+function element(tag,className,textValue){
+  const node=document.createElement(tag);
+  if(className)node.className=className;
+  if(textValue!==undefined)node.textContent=textValue;
+  return node;
+}
+
+function makeCard(product){
+  const syncProduct=product.sync_product||product;
+  const variants=product.sync_variants||[];
+  const variant=variants.find(item=>item.availability_status==="active")||variants[0];
+  if(!variant)return null;
+
+  const name=syncProduct.name||"FROGINALS product";
+  const category=/hoodie|sweatshirt|shirt|tee|t-shirt|tank|apparel/i.test(name)?"apparel":
+    /mug|cup|tumbler|bottle/i.test(name)?"mugs":
+    /sticker|decal/i.test(name)?"stickers":"art";
+  const price=Number(variant.retail_price||0);
+  const preview=(variant.files||[]).find(file=>file.type==="preview");
+  const imageUrl=(preview&&(preview.preview_url||preview.thumbnail_url))||syncProduct.thumbnail_url||
+    ((variant.files||[]).find(file=>file.visible&&file.preview_url)||{}).preview_url||"";
+
+  const card=element("article","product-card");
+  card.dataset.category=category;
+  card.dataset.name=name;
+
+  const imageWrap=element("div","product-image");
+  const image=element("img");
+  image.alt=name+" shirt preview";
+  image.loading="lazy";
+  image.decoding="async";
+  image.src=imageUrl;
+  image.addEventListener("error",()=>{
+    image.remove();
+    imageWrap.appendChild(element("span","emoji","🐸"));
+  },{once:true});
+  imageWrap.appendChild(image);
+  imageWrap.appendChild(element("span","product-label","AVAILABLE NOW"));
+
+  const info=element("div","product-info");
+  info.appendChild(element("div","product-category",category.toUpperCase()+" / PRINTFUL"));
+  info.appendChild(element("h3","",name));
+  info.appendChild(element("p","product-desc","Made to order. Choose your available size and colour."));
+  const bottom=element("div","product-bottom");
+  bottom.appendChild(element("span","product-price","From $"+(Number.isFinite(price)?price.toFixed(2):"—")));
+  const link=element("a","product-link","BUY NOW ↗");
+  link.href="buy.html?product_id="+encodeURIComponent(syncProduct.id);
+  bottom.appendChild(link);
+  info.appendChild(bottom);
+  card.appendChild(imageWrap);
+  card.appendChild(info);
+  return card;
+}
+
+async function loadCatalogue(){
+  grid.innerHTML="";
+  empty.style.display="none";
+  grid.appendChild(element("div","empty","Loading FROGINALS designs from Printful…"));
+  try{
+    const response=await fetch("/api/printful-products?resource=products",{cache:"no-store"});
+    const data=await response.json();
+    if(!response.ok)throw new Error(data.error||"Printful catalogue unavailable");
+    const products=Array.isArray(data.result)?data.result:[];
+    grid.innerHTML="";
+    cards=[];
+    products.forEach(product=>{
+      const card=makeCard(product);
+      if(card){grid.appendChild(card);cards.push(card);}
+    });
+    if(!cards.length){
+      grid.appendChild(element("div","empty","No synced products found yet. Sync your finished designs in Printful and they will appear here."));
+      return;
+    }
+    applyFilter(active);
+  }catch(error){
+    console.error("FROGINALS catalogue error:",error);
+    grid.innerHTML="";
+    grid.appendChild(element("div","empty","We couldn't load the Printful catalogue. Please refresh in a moment."));
+  }
+}
+
+filters.forEach(button=>button.addEventListener("click",()=>applyFilter(button.dataset.filter)));
+document.querySelectorAll("[data-jump]").forEach(link=>link.addEventListener("click",()=>applyFilter(link.dataset.jump)));
+document.querySelectorAll("[data-feature-filter]").forEach(link=>link.addEventListener("click",()=>applyFilter(link.dataset.featureFilter)));
+document.getElementById("sortProducts").addEventListener("change",event=>{
+  if(event.target.value==="name"){
+    cards.sort((a,b)=>a.dataset.name.localeCompare(b.dataset.name));
+    cards.forEach(card=>grid.appendChild(card));
+  }
+});
+loadCatalogue();
 </script>
 </body>
 </html>+price.toFixed(2)+'</span><a class="product-link" href="buy.html?product_id='+encodeURIComponent(sp.id)+'">BUY NOW ↗</a></div></div>';card.querySelector("h3").textContent=sp.name||"FROGINALS product";return card}
