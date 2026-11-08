@@ -35,15 +35,15 @@ h1 span{color:var(--yellow)}
 @keyframes bob{50%{transform:translateY(-12px) rotate(3deg)}}
 .trustbar{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line);border-bottom:1px solid var(--line)}
 .trustbar div{padding:19px 12px;text-align:center;background:#0a1b30;color:#c3d3e6;font-size:11px;font-weight:800;letter-spacing:.5px}
-.swamp-drop{padding:38px 20px;background:linear-gradient(115deg,#102d25,#0a1b30 72%);border-bottom:1px solid rgba(255,212,71,.28)}
-.swamp-drop-inner{width:min(1180px,100%);margin:auto;display:grid;grid-template-columns:1.2fr .8fr;align-items:center;gap:25px;padding:28px clamp(20px,4vw,48px);border:1px solid rgba(255,212,71,.35);border-radius:16px;background:radial-gradient(ellipse at 85% 50%,rgba(83,255,137,.12),transparent 45%),rgba(3,14,21,.38)}
-.swamp-drop h2{font:clamp(20px,3.4vw,38px)/1.5 "Press Start 2P",monospace;letter-spacing:-1px;margin:10px 0 14px}
+.swamp-drop{position:relative;isolation:isolate;min-height:clamp(520px,66vw,760px);display:flex;align-items:center;overflow:hidden;padding:clamp(65px,8vw,105px) clamp(20px,7vw,100px);background:#071426;border-bottom:1px solid rgba(255,212,71,.28)}
+.swamp-drop-bg{position:absolute;z-index:-2;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 48%}
+.swamp-drop:before{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(90deg,rgba(4,13,20,.94) 0%,rgba(4,13,20,.78) 36%,rgba(4,13,20,.3) 72%,rgba(4,13,20,.08) 100%),linear-gradient(0deg,rgba(4,13,20,.3),transparent 55%)}
+.swamp-drop-inner{width:min(1180px,100%);margin:auto;display:block}
+.swamp-drop-copy{max-width:720px}
+.swamp-drop h2{font:clamp(20px,3.4vw,38px)/1.5 "Press Start 2P",monospace;letter-spacing:-1px;margin:10px 0 14px;text-shadow:3px 3px #000}
 .swamp-drop h2 span{color:var(--yellow)}
-.swamp-drop p{max-width:650px;color:#c5d8d0;line-height:1.8;font-size:14px;margin:0 0 20px}
-.swamp-drop-art{min-height:190px;position:relative;display:grid;place-items:center;border-radius:12px;background:#102b24;border:1px solid rgba(83,255,137,.25);overflow:hidden}.swamp-drop-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.9}.swamp-drop-art:after{content:"";position:absolute;inset:0;background:linear-gradient(90deg,rgba(7,20,38,.05),rgba(7,20,38,.2))}.swamp-drop-art small{z-index:1}
-.swamp-drop-art span{font-size:clamp(95px,13vw,150px);filter:drop-shadow(0 14px 14px rgba(0,0,0,.4))}
-.swamp-drop-art small{position:absolute;right:14px;top:14px;padding:9px;background:var(--yellow);color:#171717;font:8px/1.6 "Press Start 2P",monospace;transform:rotate(7deg)}
-@media(max-width:650px){.swamp-drop{padding:24px 15px}.swamp-drop-inner{grid-template-columns:1fr;padding:22px 17px}.swamp-drop-art{min-height:150px;grid-row:1}}
+.swamp-drop p{max-width:650px;color:#e0ebe5;line-height:1.8;font-size:14px;margin:0 0 20px;text-shadow:0 2px 10px rgba(0,0,0,.65)}
+@media(max-width:650px){.swamp-drop{min-height:560px;padding:55px 20px}.swamp-drop-bg{object-position:60% center}.swamp-drop:before{background:linear-gradient(90deg,rgba(4,13,20,.9),rgba(4,13,20,.58)),linear-gradient(0deg,rgba(4,13,20,.4),transparent)}}
 
 .trustbar b{color:var(--yellow);margin-right:6px}
 .section{width:min(1180px,calc(100% - 40px));margin:0 auto;padding:76px 0}
@@ -129,6 +129,7 @@ footer a{color:var(--yellow);text-decoration:none}
 </section>
 <div class="trustbar"><div><b>✦</b> PRINT-ON-DEMAND</div><div><b>✦</b> MADE WHEN ORDERED</div><div><b>✦</b> FROGINALS ORIGINALS</div><div><b>✦</b> WORLDWIDE STYLE</div></div>
 <section class="swamp-drop" aria-label="The FROGINAL Swamp Collection">
+  <img class="swamp-drop-bg" src="images/shop/shop-swamp-collection-banner.png" alt="" loading="lazy">
   <div class="swamp-drop-inner">
     <div class="swamp-drop-copy">
       <div class="eyebrow">THE NEW FROGINALS STREETWEAR LINE</div>
@@ -136,7 +137,6 @@ footer a{color:var(--yellow);text-decoration:none}
       <p><strong>Born in the swamp. Built different.</strong> Streetwear inspired by frog culture, internet memes and Dogecoin energy. Find your design and represent the FROGINAL ARMY.</p>
       <a class="btn btn-primary" href="#shop" data-jump="apparel">SHOP THE COLLECTION ↗</a>
     </div>
-    <div class="swamp-drop-art"><img src="images/shop/shop-swamp-collection-banner.png" alt="FROGINAL Swamp Collection campaign artwork" loading="lazy"><small>SWAMP<br>APPROVED</small></div>
   </div>
 </section>
 <section class="section" id="categories">
