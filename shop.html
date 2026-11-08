@@ -57,6 +57,17 @@ h1 span{color:var(--yellow)}
 .holder-kids .holder-note{display:inline-block;margin:0 0 22px;padding:10px 13px;border:1px solid rgba(255,212,71,.7);border-radius:6px;background:rgba(5,17,17,.68);color:var(--yellow);font:9px/1.8 "Press Start 2P",monospace}
 @media(max-width:650px){.holder-kids{min-height:560px;padding:55px 20px}.holder-kids-bg{object-position:60% center}.holder-kids:before{background:linear-gradient(90deg,rgba(3,14,14,.92),rgba(3,14,14,.62)),linear-gradient(0deg,rgba(3,14,14,.42),transparent)}}
 
+
+.drinkware-feature{position:relative;isolation:isolate;min-height:clamp(500px,62vw,700px);display:flex;align-items:center;overflow:hidden;padding:clamp(60px,8vw,100px) clamp(20px,7vw,100px);background:#241a12;border-top:3px solid var(--orange);border-bottom:3px solid var(--orange);color:#fff}
+.drinkware-feature-bg{position:absolute;z-index:-2;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 48%}
+.drinkware-feature:before{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(90deg,rgba(12,10,8,.94) 0%,rgba(12,10,8,.82) 38%,rgba(12,10,8,.3) 75%,rgba(12,10,8,.08) 100%),linear-gradient(0deg,rgba(12,10,8,.35),transparent 55%)}
+.drinkware-feature-inner{width:min(1180px,100%);margin:auto}
+.drinkware-feature-copy{max-width:720px}
+.drinkware-feature .eyebrow{color:var(--orange)}
+.drinkware-feature h2{font:clamp(20px,3.4vw,38px)/1.5 "Press Start 2P",monospace;letter-spacing:-1px;margin:10px 0 14px;text-shadow:3px 3px #000}
+.drinkware-feature p{max-width:650px;color:#f0e9df;line-height:1.8;font-size:14px;margin:0 0 20px;text-shadow:0 2px 10px rgba(0,0,0,.65)}
+@media(max-width:650px){.drinkware-feature{min-height:560px;padding:55px 20px}.drinkware-feature-bg{object-position:60% center}.drinkware-feature:before{background:linear-gradient(90deg,rgba(12,10,8,.92),rgba(12,10,8,.62)),linear-gradient(0deg,rgba(12,10,8,.42),transparent)}}
+
 .trustbar b{color:var(--yellow);margin-right:6px}
 .section{width:min(1180px,calc(100% - 40px));margin:0 auto;padding:76px 0}
 .section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:28px}
@@ -166,7 +177,17 @@ footer a{color:var(--yellow);text-decoration:none}
 <div class="product-grid" id="productGrid"><div class="empty" style="display:block">Loading FROGINALS designs from Printful…</div></div>
 <div class="empty" id="emptyState">No products in this category just yet. Check back soon, mate!</div>
 </section>
-<section class="feature-band"><div class="feature-inner"><div><div class="eyebrow" style="color:#171717">A LITTLE SOMETHING FOR YOUR DESK</div><h2>GOOD MORNINGS START IN THE SWAMP.</h2><p>Our drinkware collection is on the way. Expect frog-powered mugs, bold graphics and plenty of GM energy for your coffee breaks.</p><a class="btn" href="#shop" data-feature-filter="mugs">EXPLORE MUGS ↗</a></div><div class="feature-art">☕🐸</div></div></section>
+<section class="drinkware-feature" aria-label="FROGINALS drinkware collection">
+  <img class="drinkware-feature-bg" src="images/shop/shop-drinkware-banner.png" alt="" loading="lazy">
+  <div class="drinkware-feature-inner">
+    <div class="drinkware-feature-copy">
+      <div class="eyebrow">FROGINALS DRINKWARE COLLECTION</div>
+      <h2>GOOD MORNINGS<br><span style="color:var(--yellow)">START IN THE SWAMP.</span></h2>
+      <p>Our drinkware collection is on the way. Expect frog-powered mugs, bold graphics and plenty of GM energy for your coffee breaks.</p>
+      <a class="btn btn-primary" href="#shop" data-feature-filter="mugs">EXPLORE MUGS ↗</a>
+    </div>
+  </div>
+</section>
 <section class="section" id="collections">
 <div class="section-head"><div><div class="eyebrow">MORE THAN MERCH</div><h2>THE SWAMP COLLECTIONS</h2></div><p>Different corners of the FROGINALS universe, brought together in wearable and collectible designs.</p></div>
 <div class="collection-grid">
