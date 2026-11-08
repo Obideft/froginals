@@ -45,6 +45,18 @@ h1 span{color:var(--yellow)}
 .swamp-drop p{max-width:650px;color:#e0ebe5;line-height:1.8;font-size:14px;margin:0 0 20px;text-shadow:0 2px 10px rgba(0,0,0,.65)}
 @media(max-width:650px){.swamp-drop{min-height:560px;padding:55px 20px}.swamp-drop-bg{object-position:60% center}.swamp-drop:before{background:linear-gradient(90deg,rgba(4,13,20,.9),rgba(4,13,20,.58)),linear-gradient(0deg,rgba(4,13,20,.4),transparent)}}
 
+
+.holder-kids{position:relative;isolation:isolate;min-height:clamp(500px,62vw,700px);display:flex;align-items:center;overflow:hidden;padding:clamp(60px,8vw,100px) clamp(20px,7vw,100px);background:#102b25;border-top:3px solid var(--yellow);border-bottom:3px solid var(--yellow)}
+.holder-kids-bg{position:absolute;z-index:-2;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 45%}
+.holder-kids:before{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(90deg,rgba(3,14,14,.94) 0%,rgba(3,14,14,.82) 38%,rgba(3,14,14,.35) 75%,rgba(3,14,14,.15) 100%),linear-gradient(0deg,rgba(3,14,14,.35),transparent 55%)}
+.holder-kids-inner{width:min(1180px,100%);margin:auto}
+.holder-kids-copy{max-width:720px}
+.holder-kids h2{font:clamp(20px,3.4vw,38px)/1.5 "Press Start 2P",monospace;letter-spacing:-1px;margin:10px 0 14px;text-shadow:3px 3px #000}
+.holder-kids h2 span{color:var(--yellow)}
+.holder-kids p{max-width:650px;color:#e5f1e9;line-height:1.8;font-size:14px;margin:0 0 20px;text-shadow:0 2px 10px rgba(0,0,0,.65)}
+.holder-kids .holder-note{display:inline-block;margin:0 0 22px;padding:10px 13px;border:1px solid rgba(255,212,71,.7);border-radius:6px;background:rgba(5,17,17,.68);color:var(--yellow);font:9px/1.8 "Press Start 2P",monospace}
+@media(max-width:650px){.holder-kids{min-height:560px;padding:55px 20px}.holder-kids-bg{object-position:60% center}.holder-kids:before{background:linear-gradient(90deg,rgba(3,14,14,.92),rgba(3,14,14,.62)),linear-gradient(0deg,rgba(3,14,14,.42),transparent)}}
+
 .trustbar b{color:var(--yellow);margin-right:6px}
 .section{width:min(1180px,calc(100% - 40px));margin:0 auto;padding:76px 0}
 .section-head{display:flex;align-items:end;justify-content:space-between;gap:20px;margin-bottom:28px}
@@ -163,7 +175,18 @@ footer a{color:var(--yellow);text-decoration:none}
 <div class="collection"><img src="images/shop/shop-swamp-art-club-banner.png" alt="Swamp Art Club original frog artist and artwork banner" loading="lazy"><div class="collection-content"><div class="eyebrow">THE ARTIST'S CORNER</div><h3>SWAMP ART CLUB</h3><p>Character illustrations, collectible prints and visual stories from the FROGINALS world.</p><a href="#shop" data-jump="art">EXPLORE ART ↗</a></div></div>
 </div>
 </section>
-<section class="feature-band"><div class="feature-inner"><div class="feature-art">🐸🛹</div><div><div class="eyebrow" style="color:#171717">STICK WITH YOUR CREW</div><h2>SMALL STICKERS. BIG SWAMP ENERGY.</h2><p>Character decals and sticker packs are being prepared for the first merch drop. Get ready to decorate your laptop, bottle and battle station.</p><a class="btn" href="#shop" data-feature-filter="stickers">SEE STICKER IDEAS ↗</a></div></div></section>
+<section class="holder-kids" aria-label="FROGINALS DOGS holder-exclusive kids apparel">
+  <img class="holder-kids-bg" src="images/shop/shop-kids-holder-banner.png" alt="" loading="lazy">
+  <div class="holder-kids-inner">
+    <div class="holder-kids-copy">
+      <div class="eyebrow">A LITTLE SWAMP STYLE FOR THE NEXT GENERATION</div>
+      <h2>THE FROGINAL<br><span>MINI CREW.</span></h2>
+      <p><strong>Small sizes. Big FROGINAL energy.</strong> Discover an exclusive kidswear collection created for FROGINAL DOGS NFT holders and their little legends. Holder perks include a special discount on the collection.</p>
+      <div class="holder-note">FROGINAL DOGS HOLDERS ONLY · DISCOUNT ACCESS</div>
+      <a class="btn btn-primary" href="https://discord.gg/VZT9yENT2" target="_blank" rel="noopener">VERIFY YOUR NFT & UNLOCK YOUR CODE ↗</a>
+    </div>
+  </div>
+</section>
 <section class="section"><div class="story"><div class="story-art">🐸</div><div><div class="eyebrow">GOOD MATES. GOOD VIBES.</div><h2>MADE FOR THE SWAMP.</h2><p>FROGINALS is a community-first universe built around frogs, Dogecoin culture, creativity and good mates. This store brings that energy into everyday pieces: tees to wear, mugs to sip from, stickers to share and artwork to collect.</p><div class="story-points"><span>🐸 COMMUNITY INSPIRED</span><span>🎨 ORIGINAL ARTWORK</span><span>📦 PRINT-ON-DEMAND</span><span>💛 SWAMP APPROVED</span></div></div></div></section>
 <section class="newsletter"><div class="eyebrow">DON'T MISS THE NEXT DROP</div><h2>STAY IN THE SWAMP LOOP.</h2><p>Follow the FROGINALS community for new designs, merch announcements and upcoming drops.</p><a href="https://discord.gg/VZT9yENT2" target="_blank" rel="noopener">JOIN THE FROGINALS DISCORD ↗</a></section>
 <footer><div>🐸 FROGINALS MERCH STORE<br>GOOD MATES. GOOD VIBES.</div><div><a href="index.html">HOME</a> &nbsp;·&nbsp; <a href="product.html">GOOD MATE T-SHIRT</a> &nbsp;·&nbsp; <a href="https://discord.gg/VZT9yENT2" target="_blank" rel="noopener">DISCORD</a><br>Product previews marked coming soon are concepts, not available for purchase yet.</div></footer>
