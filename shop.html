@@ -14,8 +14,10 @@
 *{box-sizing:border-box}html{scroll-behavior:smooth;scroll-padding-top:90px}body{margin:0;background:var(--navy);color:#f3f7ff;font-family:"Space Grotesk",sans-serif}a{color:inherit}button{font:inherit;cursor:pointer}
 .topline{background:var(--orange);color:#171717;text-align:center;padding:9px 12px;font:9px/1.8 "Press Start 2P",monospace;letter-spacing:.2px}
 header{position:sticky;top:0;z-index:20;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:14px clamp(18px,5vw,70px);background:rgba(5,16,30,.94);border-bottom:1px solid var(--line);backdrop-filter:blur(16px)}
-.logo{display:flex;align-items:center;gap:12px;text-decoration:none;font:12px/1.7 "Press Start 2P",monospace;color:var(--yellow)}
-.logo-mark{display:grid;place-items:center;width:42px;height:42px;border-radius:12px;background:var(--orange);color:#171717;font-size:22px;border:2px solid #171717;box-shadow:3px 3px #171717}
+.logo-link{position:relative;display:block;align-self:stretch;width:clamp(110px,15vw,165px);min-width:90px;flex-shrink:0;text-decoration:none;z-index:7}
+.logo-image{position:absolute;display:block;width:175%;max-width:none;height:auto;left:0;top:2px;object-fit:contain;object-position:top left;transform-origin:top left;opacity:0;filter:drop-shadow(4px 5px 0 rgba(23,23,23,.2));will-change:transform}
+.logo-image.logo-settled{animation:logoSway 3.8s ease-in-out infinite}
+@keyframes logoSway{0%,100%{transform:translateX(-7px)}50%{transform:translateX(7px)}}
 nav{display:flex;align-items:center;gap:clamp(10px,2vw,25px)}nav a{text-decoration:none;color:#b8c8dc;font-size:12px;font-weight:800;letter-spacing:.5px}nav a:hover{color:var(--yellow)}
 .nav-cta{padding:11px 15px;border-radius:7px;background:var(--yellow);color:#171717;font:9px/1.6 "Press Start 2P",monospace;border:1px solid #171717;box-shadow:3px 3px #171717}
 .hero{position:relative;isolation:isolate;min-height:clamp(620px,76vh,860px);display:flex;align-items:center;overflow:hidden;padding:clamp(70px,9vw,120px) clamp(20px,7vw,100px);background:#071426;border-bottom:1px solid var(--line)}
@@ -130,14 +132,14 @@ h2{margin:8px 0 0;font:clamp(21px,3.3vw,35px)/1.5 "Press Start 2P",monospace;let
 footer{padding:32px clamp(20px,6vw,80px);background:#040d18;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;flex-wrap:wrap;color:#93a9c3;font-size:11px;line-height:1.8}
 footer a{color:var(--yellow);text-decoration:none}
 @media(max-width:900px){.hero-inner{grid-template-columns:1fr  .85fr}.category-grid,.product-grid{grid-template-columns:repeat(2,1fr)}.trustbar{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:650px){header{padding:12px 16px}.logo{font-size:9px}nav a:not(.nav-cta){display:none}.hero{min-height:auto;padding:55px 20px}.hero-inner{grid-template-columns:1fr}.hero-art{min-height:280px}.hero-art-card{max-width:370px}.section{padding:55px 0}.section-head{align-items:start;flex-direction:column}.category-grid{grid-template-columns:repeat(2,1fr);gap:10px}.category-card{min-height:175px}.category-card img{height:112px}.product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.product-info{padding:12px}.product-info h3{font-size:13px}.product-desc{font-size:10px}.product-bottom{align-items:flex-start;flex-direction:column}.product-link{width:100%;text-align:center}.feature-inner,.story{grid-template-columns:1fr}.feature-art{min-height:190px}.collection-grid{grid-template-columns:1fr}.collection{min-height:245px}.story-art{min-height:230px}.story-points{grid-template-columns:1fr 1fr}}
+@media(max-width:650px){header{padding:12px 16px}.logo-link{width:95px;min-width:75px}nav a:not(.nav-cta){display:none}.hero{min-height:auto;padding:55px 20px}.hero-inner{grid-template-columns:1fr}.hero-art{min-height:280px}.hero-art-card{max-width:370px}.section{padding:55px 0}.section-head{align-items:start;flex-direction:column}.category-grid{grid-template-columns:repeat(2,1fr);gap:10px}.category-card{min-height:175px}.category-card img{height:112px}.product-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.product-info{padding:12px}.product-info h3{font-size:13px}.product-desc{font-size:10px}.product-bottom{align-items:flex-start;flex-direction:column}.product-link{width:100%;text-align:center}.feature-inner,.story{grid-template-columns:1fr}.feature-art{min-height:190px}.collection-grid{grid-template-columns:1fr}.collection{min-height:245px}.story-art{min-height:230px}.story-points{grid-template-columns:1fr 1fr}}
 @media(max-width:360px){.category-grid,.product-grid{grid-template-columns:1fr}.product-bottom{flex-direction:row;align-items:center}.product-link{width:auto}}
 </style>
 </head>
 <body>
 <div class="topline">🐸 OFFICIAL FROGINALS MERCH • GOOD MATES. GOOD VIBES. • BUILT FOR THE SWAMP 🐸</div>
 <header>
-<a class="logo" href="index.html"><span class="logo-mark">🐸</span><span>FROGINALS<br>MERCH STORE</span></a>
+<a class="logo-link" href="index.html" aria-label="FROGINALS home"><img class="logo-image" id="navLogo" src="images/Log01.png" alt="FROGINALS logo" fetchpriority="high"></a>
 <nav aria-label="Store navigation"><a href="#categories">CATEGORIES</a><a href="#shop">SHOP ALL</a><a href="#collections">COLLECTIONS</a><a class="nav-cta" href="#shop">EXPLORE MERCH ↗</a></nav>
 </header>
 <section class="hero">
@@ -322,6 +324,16 @@ document.getElementById("sortProducts").addEventListener("change",event=>{
   }
 });
 loadCatalogue();
+
+// Match the animated FROGINALS logo used on the homepage.
+window.addEventListener("load",()=>{
+  const logo=document.getElementById("navLogo");
+  if(!logo)return;
+  logo.style.opacity="1";
+  if(!window.matchMedia("(prefers-reduced-motion: reduce)").matches){
+    logo.classList.add("logo-settled");
+  }
+});
 </script>
 </body>
 </html>
