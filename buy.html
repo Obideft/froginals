@@ -34,6 +34,19 @@ function optionValue(v,key){
     const found=Object.entries(opts).find(([k])=>k.toLowerCase().includes(key));
     if(found)return String(found[1]).trim();
   }
+  // Printful often stores colour and size in the variant name, e.g. Product / Black / L.
+  const parts=String(v&&v.name||"").split(/[\\/|]/).map(x=>x.trim()).filter(Boolean);
+  if(parts.length>=2){
+    if(key==="size"){
+      const candidate=parts[parts.length-1];
+      if(/^(2?XS|[2-5]?XL|S|M|L|XL|XXL|XXXL|XXXXL|One Size|OS|\\d+(?:oz|\\s*oz))$/i.test(candidate))return candidate;
+    }
+    if(key==="color"){
+      let candidate=parts[parts.length-2];
+      candidate=candidate.replace(/^.*\\s[-–—]\\s/,"").trim();
+      if(candidate&&!/^(size|color|colour)$/i.test(candidate))return candidate;
+    }
+  }
   return "";
 }
 function uniqueValues(key){
@@ -105,16 +118,16 @@ function renderGallery(){
   // Only use Printful's dedicated preview file for variant-specific imagery.
   // The default file is the flat print artwork, not a garment mockup.
   const files=Array.isArray(v.files)?v.files:[];
-  const previews=files.filter(f=>f&&String(f.type||"").toLowerCase()==="preview"&&f.visible!==false);
+  const previews=files.filter(f=>f&&String(f.type||"").toLowerCase()!=="default"&&f.visible!==false);
   const urls=[];
   previews.forEach(f=>{
-    const url=f.preview_url||f.thumbnail_url;
+    const url=f.preview_url||((String(f.type||"").toLowerCase()==="preview")?f.thumbnail_url:"");
     if(url&&!urls.some(x=>x.url===url))urls.push({url,alt:"Variant mockup"});
   });
-  // Keep a product-level mockup as a fallback, not as a replacement for
-  // variant-specific previews. This preserves colour-specific images where supplied.
+  // Never substitute another colour generic thumbnail for the selected variant.
+  // Use the product thumbnail only if this variant has no file records at all.
   const productThumb=product&&product.sync_product&&product.sync_product.thumbnail_url;
-  if(!urls.length&&productThumb)urls.push({url:productThumb,alt:"Product mockup"});
+  if(!urls.length&&!files.length&&productThumb)urls.push({url:productThumb,alt:"Product mockup"});
   const main=$("productImage"),thumbs=$("galleryThumbs");
   thumbs.innerHTML="";
   if(!urls.length){
@@ -151,7 +164,7 @@ async function loadProduct(){
     const d=await r.json();if(!r.ok)throw Error(d.error||"Could not load product.");
     product=d.result||{};
     const sp=product.sync_product||{};
-    variants=(product.sync_variants||[]).filter(v=>v.availability_status==="active");
+    variants=(product.sync_variants||[]).filter(v=>v&&v.id!=null&&(v.availability_status? v.availability_status==="active" : v.synced!==false));
     $("productName").textContent=sp.name||"FROGINALS PRODUCT";
     $("productDescription").textContent="Made to order by Printful. Choose from the available colours, sizes and product options below.";
     if(!variants.length)throw Error("No active variants found for this Printful product.");
