@@ -22,6 +22,22 @@ function clean(value, max = 120) {
   return typeof value === "string" ? value.trim().slice(0, max) : "";
 }
 
+async function getLivePrintfulVariant(variantId, token) {
+  const response = await fetch("https://api.printful.com/sync/variant/" + encodeURIComponent(variantId), {
+    headers: { Authorization: "Bearer " + token }
+  });
+  let data = {};
+  try { data = await response.json(); } catch (_) {}
+  const info = data.result && (data.result.sync_variant || data.result);
+  const externalId = info && info.external_id;
+  const price = Number(info && info.retail_price);
+  if (!response.ok || !info || !externalId || !Number.isFinite(price) || price <= 0 ||
+      info.availability_status !== "active") {
+    throw new Error("This Printful product option is unavailable for shipping.");
+  }
+  return { externalId: String(externalId), price };
+}
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
@@ -36,7 +52,7 @@ export default async function handler(req, res) {
   try {
     const body = req.body || {};
     const variantId = String(body.variantId || "");
-    const variant = VARIANTS[variantId];
+    let variant = VARIANTS[variantId];
     const quantity = Number(body.quantity || 1);
     const raw = body.recipient || {};
     const recipient = {
@@ -49,7 +65,13 @@ export default async function handler(req, res) {
       zip: clean(raw.zip, 20)
     };
 
-    if (!variant) return res.status(400).json({ error: "Invalid shirt variant." });
+    if (!variant) {
+      try {
+        variant = await getLivePrintfulVariant(variantId, token);
+      } catch (error) {
+        return res.status(400).json({ error: error.message || "Invalid or unavailable product option." });
+      }
+    }
     if (!Number.isInteger(quantity) || quantity < 1 || quantity > 5) {
       return res.status(400).json({ error: "Quantity must be between 1 and 5." });
     }
