@@ -22,6 +22,28 @@ function clean(value, max = 120) {
   return typeof value === "string" ? value.trim().slice(0, max) : "";
 }
 
+async function getLivePrintfulVariant(variantId) {
+  const token = process.env.PRINTFUL_API_KEY;
+  if (!token) throw new Error("PRINTFUL_API_KEY is not configured.");
+  const response = await fetch("https://api.printful.com/sync/variant/" + encodeURIComponent(variantId), {
+    headers: { Authorization: "Bearer " + token }
+  });
+  let data = {};
+  try { data = await response.json(); } catch (_) {}
+  const info = data.result && (data.result.sync_variant || data.result);
+  const externalId = info && info.external_id;
+  const price = Number(info && info.retail_price);
+  if (!response.ok || !info || !externalId || !Number.isFinite(price) || price <= 0 ||
+      info.availability_status !== "active") {
+    throw new Error("This Printful product option is unavailable for checkout.");
+  }
+  return {
+    name: info.name || (info.product && info.product.name) || ("FROGINALS product " + variantId),
+    externalId: String(externalId),
+    price
+  };
+}
+
 async function getPayPalToken() {
   const id = process.env.PAYPAL_CLIENT_ID;
   const secret = process.env.PAYPAL_CLIENT_SECRET;
@@ -49,7 +71,7 @@ export default async function handler(req, res) {
   try {
     const body = req.body || {};
     const variantId = String(body.variantId || "");
-    const variant = VARIANTS[variantId];
+    let variant = VARIANTS[variantId];
     const quantity = Number(body.quantity || 1);
     const shippingId = clean(body.shippingId, 40);
     const raw = body.recipient || {};
@@ -65,7 +87,13 @@ export default async function handler(req, res) {
     const email = clean(raw.email, 160);
     const phone = clean(raw.phone, 40);
 
-    if (!variant) return res.status(400).json({ error: "Invalid shirt variant." });
+    if (!variant) {
+      try {
+        variant = await getLivePrintfulVariant(variantId);
+      } catch (error) {
+        return res.status(400).json({ error: error.message || "Invalid or unavailable product option." });
+      }
+    }
     if (!Number.isInteger(quantity) || quantity < 1 || quantity > 5) {
       return res.status(400).json({ error: "Quantity must be between 1 and 5." });
     }
@@ -120,7 +148,7 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         intent: "CAPTURE",
         purchase_units: [{
-          custom_id: [variantId, quantity, encodeURIComponent(shippingId)].join(":"),
+          custom_id: [variantId, quantity, encodeURIComponent(shippingId), encodeURIComponent(variant.externalId)].join(":"),
           description: variant.name,
           amount: {
             currency_code: "USD",
