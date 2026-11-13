@@ -35,7 +35,31 @@ export default async function handler(req, res) {
     }
 
     if (resource === "products" && Array.isArray(data.result)) {
-      const detailed = await Promise.all(data.result.map(async item => {
+      // Fetch every page so the storefront does not silently omit products after page one.
+      const products = [...data.result];
+      const paging = data.paging || {};
+      const total = Number(paging.total || products.length);
+      const pageSize = Math.max(1, Number(paging.limit || products.length || 20));
+      let offset = Number(paging.offset || 0) + pageSize;
+
+      while (products.length < total && products.length < 500) {
+        const pageResponse = await fetch(
+          "https://api.printful.com/sync/products?offset=" + offset + "&limit=" + pageSize,
+          { headers: { Authorization: `Bearer ${token}` } }
+        );
+        if (!pageResponse.ok) {
+          console.error("Printful product catalogue pagination failed:", pageResponse.status);
+          break;
+        }
+        const page = await pageResponse.json();
+        const items = Array.isArray(page.result) ? page.result : [];
+        if (!items.length) break;
+        products.push(...items);
+        const pagePaging = page.paging || {};
+        offset = Number(pagePaging.offset || offset) + Number(pagePaging.limit || pageSize);
+      }
+
+      const detailed = await Promise.all(products.map(async item => {
         const detailResponse = await fetch("https://api.printful.com/sync/products/" + encodeURIComponent(String(item.id)), {
           headers: { Authorization: `Bearer ${token}` }
         });
@@ -46,7 +70,7 @@ export default async function handler(req, res) {
         const detail = await detailResponse.json();
         return detail.result || { sync_product: item, sync_variants: [] };
       }));
-      return res.status(200).json({ ...data, result: detailed });
+      return res.status(200).json({ ...data, result: detailed, catalogue_count: products.length });
     }
 
     return res.status(200).json(data);
