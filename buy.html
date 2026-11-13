@@ -102,25 +102,36 @@ function chooseVariant(){
 function renderGallery(){
   const v=selected();
   if(!v)return;
-  const files=Array.isArray(v.files)?v.files:[];
-  const candidates=files.filter(f=>f&&(f.preview_url||f.thumbnail_url))
-    .sort((a,b)=>(a.type==="preview"?-1:0)-(b.type==="preview"?-1:0));
-  const urls=[];
-  candidates.forEach(f=>{const url=f.preview_url||f.thumbnail_url;if(url&&!urls.some(x=>x.url===url))urls.push({url,alt:f.type||"Product view"})});
+  // Sync Variant files are the flat print artwork submitted to Printful,
+  // not garment mockups. Never display them as customer-facing product photos.
   const productThumb=product&&product.sync_product&&product.sync_product.thumbnail_url;
-  if(productThumb&&!urls.some(x=>x.url===productThumb))urls.push({url:productThumb,alt:"Product preview"});
+  const urls=productThumb?[{url:productThumb,alt:"Printful product mockup"}]:[];
   const main=$("productImage"),thumbs=$("galleryThumbs");
   thumbs.innerHTML="";
-  if(!urls.length){main.removeAttribute("src");main.alt="No Printful preview available for this option";$("imageCaption").textContent="Preview unavailable";return}
+  if(!urls.length){
+    main.removeAttribute("src");
+    main.alt="No product mockup available";
+    $("imageCaption").textContent="Product mockup unavailable";
+    return;
+  }
   function show(item,index){
-    main.src=item.url;main.alt=($("productName").textContent||"FROGINALS product")+" — "+item.alt;
+    main.src=item.url;
+    main.alt=($("productName").textContent||"FROGINALS product")+" — "+item.alt;
     $("imageCaption").textContent=variantLabel(v)+" · "+item.alt;
     [...thumbs.children].forEach((b,i)=>b.classList.toggle("active",i===index));
   }
   urls.forEach((item,index)=>{
-    const button=document.createElement("button");button.type="button";button.className="gallery-thumb";button.setAttribute("aria-label","View "+item.alt);
-    const image=document.createElement("img");image.src=item.url;image.alt="";image.loading="lazy";button.appendChild(image);
-    button.addEventListener("click",()=>show(item,index));thumbs.appendChild(button);
+    const button=document.createElement("button");
+    button.type="button";
+    button.className="gallery-thumb";
+    button.setAttribute("aria-label","View "+item.alt);
+    const image=document.createElement("img");
+    image.src=item.url;
+    image.alt="";
+    image.loading="lazy";
+    button.appendChild(image);
+    button.addEventListener("click",()=>show(item,index));
+    thumbs.appendChild(button);
   });
   show(urls[0],0);
 }
