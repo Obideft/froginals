@@ -18,6 +18,56 @@ const VARIANTS = {
   "5626423151": { name: "THE SWAMP LEGEND - 2XL", externalId: "6aef6aa183f433", price: 29.99 }
 };
 
+
+const FROGINAL_COLLECTION_ADDRESS = process.env.FROGINAL_COLLECTION_ADDRESS || "DEADY34TucemEebp6PJwmggAGDUmpSMoS4CcESKNBPRh";
+const GOOD_MATE_VARIANTS = new Set([
+  "5586793338","5586793339","5586793340","5586793341","5586793342",
+  "5586793343","5586793344","5586793345","5586793346","5586793347","5586793348"
+]);
+function isWalletAddress(value) {
+  if (typeof value !== "string" || value.length < 32 || value.length > 44) return false;
+  const alphabet = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
+  let n = 0n;
+  for (const ch of value) { const digit = alphabet.indexOf(ch); if (digit < 0) return false; n = n * 58n + BigInt(digit); }
+  let bytes = 0; while (n > 0n) { n >>= 8n; bytes++; }
+  for (const ch of value) { if (ch !== "1") break; bytes++; }
+  return bytes === 32;
+}
+async function countFroginalDogs(wallet) {
+  const apiKey = process.env.HELIUS_API_KEY;
+  if (!apiKey) throw new Error("NFT verification is not configured.");
+  let count = 0;
+  const maxPages = 10, pageSize = 1000;
+  for (let page = 1; page <= maxPages; page++) {
+    const response = await fetch("https://mainnet.helius-rpc.com/?api-key=" + encodeURIComponent(apiKey), {
+      method: "POST",
+      headers: { "Content-Type": "application/json", Accept: "application/json" },
+      body: JSON.stringify({
+        jsonrpc: "2.0", id: "froginals-good-mate-discount",
+        method: "getAssetsByOwner",
+        params: { ownerAddress: wallet, page, limit: pageSize,
+          displayOptions: { showFungible: false, showUnverifiedCollections: true, showCollectionMetadata: true } }
+      })
+    });
+    if (!response.ok) throw new Error("NFT ownership service is unavailable.");
+    const payload = await response.json();
+    const result = payload.result;
+    if (payload.error || !result) throw new Error("NFT ownership could not be verified.");
+    const items = Array.isArray(result.items) ? result.items : (Array.isArray(result) ? result : null);
+    if (!items) throw new Error("NFT ownership response was incomplete.");
+    for (const asset of items) {
+      const collection = (Array.isArray(asset?.grouping) ? asset.grouping : []).find(g => g?.group_key === "collection");
+      if (asset && asset.burnt !== true && asset.ownership?.owner === wallet &&
+          collection?.group_value === FROGINAL_COLLECTION_ADDRESS && collection?.verified === true) count++;
+    }
+    if (items.length < pageSize || (Number.isFinite(result.total) && page * pageSize >= result.total)) return count;
+  }
+  throw new Error("NFT ownership check reached its page limit; discount cannot be confirmed.");
+}
+function holderDiscount(count) {
+  return count >= 5 ? 0.20 : count >= 2 ? 0.15 : count >= 1 ? 0.10 : 0;
+}
+
 function clean(value, max = 120) {
   return typeof value === "string" ? value.trim().slice(0, max) : "";
 }
@@ -85,6 +135,7 @@ export default async function handler(req, res) {
       zip: clean(raw.zip, 20)
     };
     const email = clean(raw.email, 160);
+    const walletAddress = clean(body.wallet_address, 44);
     const phone = clean(raw.phone, 40);
 
     if (!variant) {
@@ -103,6 +154,17 @@ export default async function handler(req, res) {
     }
     if (["US", "CA", "AU"].includes(recipient.country_code) && !recipient.state_code) {
       return res.status(400).json({ error: "A state or province code is required for this destination." });
+    }
+
+    // Holder discounts apply only to the FROGINALS GOOD MATE shirt. Verify the wallet on the server.
+    let nftCount = 0;
+    let discountRate = 0;
+    if (walletAddress) {
+      if (!isWalletAddress(walletAddress)) return res.status(400).json({ error: "Reconnect a valid Solana wallet to verify your holder discount." });
+      if (GOOD_MATE_VARIANTS.has(variantId)) {
+        try { nftCount = await countFroginalDogs(walletAddress); discountRate = holderDiscount(nftCount); }
+        catch (error) { console.error("Holder discount verification failed:", error.message); return res.status(503).json({ error: "FROGINAL DOGS ownership could not be verified. Please try again or disconnect your wallet to checkout without a holder discount." }); }
+      }
     }
 
     // Requote on the server immediately before creating the payment.
@@ -136,8 +198,10 @@ export default async function handler(req, res) {
     }
 
     const itemTotal = variant.price * quantity;
+    const discountAmount = Number((itemTotal * discountRate).toFixed(2));
+    const discountedItemTotal = Number((itemTotal - discountAmount).toFixed(2));
     const shippingTotal = Number(selectedRate.rate);
-    const total = (itemTotal + shippingTotal).toFixed(2);
+    const total = (discountedItemTotal + shippingTotal).toFixed(2);
     const accessToken = await getPayPalToken();
     const paypalResponse = await fetch("https://api-m.paypal.com/v2/checkout/orders", {
       method: "POST",
@@ -154,7 +218,7 @@ export default async function handler(req, res) {
             currency_code: "USD",
             value: total,
             breakdown: {
-              item_total: { currency_code: "USD", value: itemTotal.toFixed(2) },
+              item_total: { currency_code: "USD", value: discountedItemTotal.toFixed(2) },
               shipping: { currency_code: "USD", value: shippingTotal.toFixed(2) }
             }
           },
@@ -182,6 +246,11 @@ export default async function handler(req, res) {
       id: paypalData.id,
       total,
       shipping: shippingTotal.toFixed(2),
+      subtotal: itemTotal.toFixed(2),
+      discount: discountAmount.toFixed(2),
+      discountRate,
+      nftCount,
+      discountedSubtotal: discountedItemTotal.toFixed(2),
       shippingName: selectedRate.name
     });
   } catch (error) {
