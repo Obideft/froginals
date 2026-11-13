@@ -115,25 +115,25 @@ function chooseVariant(){
 function renderGallery(){
   const v=selected();
   if(!v)return;
-  // Only use Printful's dedicated preview file for variant-specific imagery.
-  // The default file is the flat print artwork, not a garment mockup.
-  const files=Array.isArray(v.files)?v.files:[];
-  const previews=files.filter(f=>f&&String(f.type||"").toLowerCase()!=="default"&&f.visible!==false);
+
+  // IMPORTANT: variant.files are the uploaded print placements (front/back/
+  // labels), not garment mockups. Their preview_url shows the artwork itself.
+  // The actual garment mockup is supplied by Printful on variant.product.image.
   const urls=[];
-  previews.forEach(f=>{
-    const url=f.preview_url||((String(f.type||"").toLowerCase()==="preview")?f.thumbnail_url:"");
-    if(url&&!urls.some(x=>x.url===url))urls.push({url,alt:"Variant mockup"});
-  });
-  // Never substitute another colour generic thumbnail for the selected variant.
-  // Use the product thumbnail only if this variant has no file records at all.
+  const garmentImage=v.product&&v.product.image;
+  if(garmentImage)urls.push({url:garmentImage,alt:"Printful garment mockup"});
+
+  // A product-level thumbnail is only a last resort when the variant has no
+  // catalog mockup. Never show the uploaded print file as a mockup.
   const productThumb=product&&product.sync_product&&product.sync_product.thumbnail_url;
-  if(!urls.length&&!files.length&&productThumb)urls.push({url:productThumb,alt:"Product mockup"});
+  if(!urls.length&&productThumb)urls.push({url:productThumb,alt:"Product mockup"});
+
   const main=$("productImage"),thumbs=$("galleryThumbs");
   thumbs.innerHTML="";
   if(!urls.length){
     main.removeAttribute("src");
-    main.alt="No product mockup available";
-    $("imageCaption").textContent="No Printful mockup is available for this variant yet";
+    main.alt="No garment mockup available";
+    $("imageCaption").textContent="Printful has not supplied a garment mockup for this variant";
     return;
   }
   function show(item,index){
