@@ -64,10 +64,15 @@ export default async function handler(req, res) {
     const parts = String(unit.custom_id || "").split(":");
     const variantId = parts[0];
     const quantity = Number(parts[1]);
-    let shippingId;
-    try { shippingId = decodeURIComponent(parts.slice(2).join(":")); } catch (_) { shippingId = ""; }
-    const externalVariantId = VARIANTS[variantId];
-    if (!externalVariantId || !Number.isInteger(quantity) || quantity < 1 || quantity > 5 || !shippingId) {
+    let shippingId = "";
+    let externalVariantId = "";
+    try {
+      shippingId = decodeURIComponent(parts[2] || "");
+      externalVariantId = decodeURIComponent(parts[3] || "");
+    } catch (_) {}
+    externalVariantId = externalVariantId || VARIANTS[variantId] || "";
+    if ((!externalVariantId && !/^\d+$/.test(variantId)) ||
+        !Number.isInteger(quantity) || quantity < 1 || quantity > 5 || !shippingId) {
       return res.status(400).json({ error: "The paid order does not contain valid product details." });
     }
 
@@ -111,6 +116,19 @@ export default async function handler(req, res) {
     const printfulToken = process.env.PRINTFUL_API_KEY;
     if (!printfulToken) {
       return res.status(202).json({ status: "COMPLETED", fulfillment: "PENDING_CONFIGURATION", orderID });
+    }
+
+    if (!externalVariantId) {
+      const variantResponse = await fetch("https://api.printful.com/sync/variant/" + encodeURIComponent(variantId), {
+        headers: { Authorization: "Bearer " + printfulToken }
+      });
+      const variantData = await readJson(variantResponse);
+      const variantInfo = variantData.result && (variantData.result.sync_variant || variantData.result);
+      externalVariantId = variantInfo && variantInfo.external_id ? String(variantInfo.external_id) : "";
+      if (!variantResponse.ok || !externalVariantId) {
+        console.error("Printful variant lookup failed during fulfillment:", variantResponse.status, variantData);
+        return res.status(202).json({ status: "COMPLETED", fulfillment: "PENDING_RETRY", orderID });
+      }
     }
 
     const externalId = "paypal_" + orderID;
