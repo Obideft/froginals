@@ -20,7 +20,7 @@ const VARIANTS = {
 
 
 
-const crypto = require("crypto");
+import crypto from "node:crypto";
 function decodeBase58(value) {
   const alphabet = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
   let n = 0n;
@@ -35,7 +35,7 @@ function verifyHolderSignature(wallet, message, signature) {
   const expectedPrefix = "FROGINALS GOOD MATE HOLDER DISCOUNT\nDomain: froginals-nu.vercel.app\nWallet: " + wallet + "\nTimestamp: ";
   if (!message.startsWith(expectedPrefix)) return false;
   const timestampText = message.slice(expectedPrefix.length);
-  if (!/^\\d{13}$/.test(timestampText)) return false;
+  if (!/^\d{13}$/.test(timestampText)) return false;
   const timestamp = Number(timestampText);
   if (!Number.isSafeInteger(timestamp) || Math.abs(Date.now() - timestamp) > 5 * 60 * 1000) return false;
   try {
