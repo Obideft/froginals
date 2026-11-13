@@ -383,12 +383,9 @@ footer{margin-top:80px;padding:30px 20px;text-align:center;background:#050f1d;bo
 <main>
   <div class="product">
     <div class="image-panel">
-      <img
-        id="productImage"
-        src="https://files.cdn.printful.com/files/0b0/0b08c5c19e35dedabd3306fbd9dc14cf_preview.png"
-        alt="FROGINALS GOOD MATE shirt"
-        onerror="this.onerror=null;this.alt='FROGINALS shirt preview unavailable';this.style.minHeight='200px';"
-      >
+      <img id="productImage" alt="FROGINALS GOOD MATE shirt mockup">
+      <div class="gallery-thumbs" id="galleryThumbs" aria-label="Shirt mockup images"></div>
+      <div class="shipping-note" id="imageCaption">Official Printful product mockup</div>
     </div>
 
     <section>
@@ -476,29 +473,82 @@ footer{margin-top:80px;padding:30px 20px;text-align:center;background:#050f1d;bo
 </footer>
 
 <script>
-const variants={
- Black:{L:{id:"5586793338",externalId:"6ad8a1ec107593",price:14.50},"2XL":{id:"5586793339",externalId:"6ad8a1ec1075b7",price:17},"4XL":{id:"5586793340",externalId:"6ad8a1ec1075d1",price:22}},
- Orange:{L:{id:"5586793341",externalId:"6ad8a1ec1075f5",price:14.50},"2XL":{id:"5586793342",externalId:"6ad8a1ec107607",price:17},"4XL":{id:"5586793343",externalId:"6ad8a1ec107615",price:22}},
- Cornsilk:{L:{id:"5586793344",externalId:"6ad8a1ec107638",price:14.50},"2XL":{id:"5586793345",externalId:"6ad8a1ec107641",price:17}},
- White:{L:{id:"5586793346",externalId:"6ad8a1ec107656",price:14.50},"2XL":{id:"5586793347",externalId:"6ad8a1ec107663",price:17},"4XL":{id:"5586793348",externalId:"6ad8a1ec107673",price:22}}
-};
-let selectedColor="Black",selectedSize="L",shippingRates=[],paypalSdkPromise=null,paypalRenderedFor="";
+let variants=[],selectedColor="",selectedSize="",shippingRates=[],paypalSdkPromise=null,paypalRenderedFor="";
 const $=id=>document.getElementById(id);
 const priceEl=$("price"),variantEl=$("variantId"),colorEl=$("selectedColor"),sizeEl=$("selectedSize"),availabilityEl=$("availability"),quantityEl=$("quantity"),shippingResults=$("shippingResults"),shippingMethod=$("shippingMethod"),orderTotal=$("orderTotal"),paypalContainer=$("paypal-button-container"),noticeEl=$("checkoutNotice"),calculateButton=$("calculateShipping");
 function notice(message){noticeEl.textContent=message;noticeEl.classList.add("show")}
 function clearCheckout(){shippingRates=[];shippingResults.hidden=true;shippingMethod.innerHTML="";paypalContainer.innerHTML="";orderTotal.textContent="";paypalRenderedFor="";noticeEl.classList.remove("show")}
-function variant(){return variants[selectedColor][selectedSize]}
-function recipient(){return{name:$("shipName").value.trim(),email:$("shipEmail").value.trim(),address1:$("shipAddress1").value.trim(),address2:$("shipAddress2").value.trim(),city:$("shipCity").value.trim(),state_code:$("shipState").value.trim().toUpperCase(),zip:$("shipZip").value.trim(),country_code:$("shipCountry").value.trim().toUpperCase(),phone:$("shipPhone").value.trim()}}
+function variant(){return variants.find(v=>String(v.color)===selectedColor&&String(v.size)===selectedSize)||null}
+function renderGallery(){
+ const v=variant();if(!v)return;
+ const files=Array.isArray(v.files)?v.files:[];
+ // Only Printful's rendered preview mockups belong in the customer gallery.
+ // Ignore visible:false because Printful marks generated mockups that way.
+ const urls=[];
+ files.filter(f=>f&&String(f.type||"").toLowerCase()==="preview"&&(f.preview_url||f.thumbnail_url)).forEach(f=>{
+  const url=f.preview_url||f.thumbnail_url;
+  if(url&&!urls.some(x=>x.url===url)){
+   const filename=String(f.filename||"").toLowerCase();
+   const angle=filename.includes("back")?"Back":filename.includes("side")?"Side":filename.includes("front")?"Front":"Mockup";
+   urls.push({url,angle});
+  }
+ });
+ if(!urls.length&&v.product&&v.product.image)urls.push({url:v.product.image,angle:"Catalog garment photo"});
+ const main=$("productImage"),thumbs=$("galleryThumbs");
+ thumbs.innerHTML="";
+ if(!urls.length){main.removeAttribute("src");main.alt="No shirt mockup available";$("imageCaption").textContent="No garment image is available for this variant yet";return}
+ function show(item,index){
+  main.src=item.url;main.alt="FROGINALS GOOD MATE shirt — "+selectedColor+" — "+item.angle;
+  $("imageCaption").textContent=selectedColor+" / "+selectedSize+" · "+item.angle;
+  [...thumbs.children].forEach((button,i)=>button.classList.toggle("active",i===index));
+ }
+ urls.forEach((item,index)=>{
+  const button=document.createElement("button");button.type="button";button.className="gallery-thumb";
+  button.setAttribute("aria-label","View "+item.angle+" mockup "+(index+1));
+  const image=document.createElement("img");image.src=item.url;image.alt="";image.loading="lazy";
+  button.appendChild(image);button.addEventListener("click",()=>show(item,index));thumbs.appendChild(button);
+ });
+ show(urls[0],0);
+}
 function updateProduct(){
- const cv=variants[selectedColor];
+ const colorVariants=variants.filter(v=>String(v.color)===selectedColor);
+ if(!colorVariants.some(v=>String(v.size)===selectedSize))selectedSize=String(colorVariants[0]?.size||"");
  document.querySelectorAll(".color-option").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.color===selectedColor)));
- document.querySelectorAll(".size-option").forEach(b=>{b.disabled=!cv[b.dataset.size];b.setAttribute("aria-pressed",String(b.dataset.size===selectedSize))});
- if(!cv[selectedSize])selectedSize=Object.keys(cv)[0];
- document.querySelectorAll(".size-option").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.size===selectedSize)));
- priceEl.textContent="$"+(variant().price*Number(quantityEl.value)).toFixed(2)+" USD";
- variantEl.textContent=variant().id;colorEl.textContent=selectedColor;sizeEl.textContent=selectedSize;
- availabilityEl.textContent=selectedColor==="Cornsilk"?"Available sizes: L and 2XL.":"Available sizes: L, 2XL and 4XL.";
- clearCheckout();
+ document.querySelectorAll(".size-option").forEach(b=>{
+  const available=colorVariants.some(v=>String(v.size)===b.dataset.size);
+  b.disabled=!available;b.setAttribute("aria-pressed",String(b.dataset.size===selectedSize));
+ });
+ const current=variant();if(!current)return;
+ const unitPrice=Number(current.retail_price||current.price||0);
+ priceEl.textContent="$"+(unitPrice*Number(quantityEl.value)).toFixed(2)+" USD";
+ variantEl.textContent=current.id;colorEl.textContent=selectedColor;sizeEl.textContent=selectedSize;
+ availabilityEl.textContent="Available sizes: "+[...new Set(colorVariants.map(v=>String(v.size)))].join(", ")+".";
+ renderGallery();clearCheckout();
+}
+async function loadProduct(){
+ try{
+  const response=await fetch("/api/printful-products?resource=variants&product_id=483655251",{cache:"no-store"});
+  const data=await response.json();
+  if(!response.ok)throw new Error(data.error||"Could not load the GOOD MATE shirt variants.");
+  const result=data.result||{};
+  variants=(result.sync_variants||[]).filter(v=>v&&v.id!=null&&(v.availability_status?v.availability_status==="active":v.synced!==false));
+  if(!variants.length)throw new Error("No active GOOD MATE shirt variants are available.");
+  const colors=[...new Set(variants.map(v=>String(v.color||"")).filter(Boolean))];
+  const colorHost=$("colorOptions"),sizeHost=$("sizeOptions");
+  colorHost.innerHTML="";sizeHost.innerHTML="";
+  const swatches={"Black":"black","Orange":"orange","Cornsilk":"cornsilk","White":"white"};
+  colors.forEach(color=>{
+   const button=document.createElement("button");button.type="button";button.className="color-option";button.dataset.color=color;
+   const dot=document.createElement("span");dot.className="color-dot "+(swatches[color]||"");button.append(dot,document.createTextNode(color));
+   colorHost.appendChild(button);
+  });
+  const sizes=[...new Set(variants.map(v=>String(v.size||"")).filter(Boolean))];
+  sizes.forEach(size=>{const button=document.createElement("button");button.type="button";button.className="size-option";button.dataset.size=size;button.textContent=size;sizeHost.appendChild(button)});
+  selectedColor=colors.includes("Black")?"Black":colors[0];
+  const first=variants.find(v=>String(v.color)===selectedColor);
+  selectedSize=String(first?.size||"");
+  updateProduct();
+ }catch(error){notice(error.message||"Could not load the GOOD MATE shirt.");}
 }
 function updateTotal(){
  const r=shippingRates.find(x=>x.id===shippingMethod.value);if(!r)return;
@@ -557,7 +607,7 @@ $("sizeOptions").addEventListener("click",e=>{const b=e.target.closest("[data-si
 quantityEl.addEventListener("change",updateProduct);
 calculateButton.addEventListener("click",calcShipping);
 shippingMethod.addEventListener("change",()=>{paypalContainer.innerHTML="";paypalRenderedFor="";updateTotal();renderPayPal()});
-updateProduct();
+loadProduct();
 </script>
 </body>
 </html>
