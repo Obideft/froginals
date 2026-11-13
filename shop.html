@@ -243,14 +243,17 @@ function element(tag,className,textValue){
 function makeCard(product){
   const syncProduct=product.sync_product||product;
   const variants=product.sync_variants||[];
-  const variant=variants.find(item=>item.availability_status==="active")||variants[0];
+  const activeVariants=variants.filter(item=>item.availability_status==="active");
+  const variant=activeVariants[0]||variants[0];
   if(!variant)return null;
 
   const name=syncProduct.name||"FROGINALS product";
   const category=/hoodie|sweatshirt|shirt|tee|t-shirt|tank|apparel/i.test(name)?"apparel":
     /mug|cup|tumbler|bottle/i.test(name)?"mugs":
     /sticker|decal/i.test(name)?"stickers":"art";
-  const price=Number(variant.retail_price||0);
+  const prices=activeVariants.map(item=>Number(item.retail_price||0)).filter(value=>Number.isFinite(value)&&value>0);
+  const price=prices.length?Math.min(...prices):Number(variant.retail_price||0);
+  const optionCount=activeVariants.length||variants.length;
   const preview=(variant.files||[]).find(file=>file.type==="preview");
   const imageUrl=(preview&&(preview.preview_url||preview.thumbnail_url))||syncProduct.thumbnail_url||
     ((variant.files||[]).find(file=>file.visible&&file.preview_url)||{}).preview_url||"";
@@ -275,7 +278,7 @@ function makeCard(product){
   const info=element("div","product-info");
   info.appendChild(element("div","product-category",category.toUpperCase()+" / PRINTFUL"));
   info.appendChild(element("h3","",name));
-  info.appendChild(element("p","product-desc","Made to order. Choose your available size and colour."));
+  info.appendChild(element("p","product-desc",optionCount+" available options · Choose your colour, size or design on the product page."));
   const bottom=element("div","product-bottom");
   bottom.appendChild(element("span","product-price","From $"+(Number.isFinite(price)?price.toFixed(2):"—")));
   const link=element("a","product-link","BUY NOW ↗");
