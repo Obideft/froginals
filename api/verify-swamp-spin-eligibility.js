@@ -85,7 +85,8 @@ function isVerifiedCollectionAsset(asset, wallet) {
     collection?.verified === true;
 }
 
-async function findEligibleAsset(apiKey, wallet) {
+async function findEligibleAssets(apiKey, wallet) {
+  const matches = [];
   for (let page = 1; page <= MAX_PAGES; page++) {
     const result = await heliusRpc(apiKey, 'getAssetsByOwner', {
       ownerAddress: wallet,
@@ -101,10 +102,11 @@ async function findEligibleAsset(apiKey, wallet) {
       ? result.items
       : (Array.isArray(result) ? result : null);
     if (!items) throw new Error('Unexpected Helius DAS response shape');
-    const asset = items.find(item => isVerifiedCollectionAsset(item, wallet));
-    if (asset) return asset;
+    for (const item of items) {
+      if (isVerifiedCollectionAsset(item, wallet)) matches.push(item);
+    }
     if (items.length < PAGE_SIZE ||
-      (Number.isFinite(result.total) && page * PAGE_SIZE >= result.total)) return null;
+      (Number.isFinite(result.total) && page * PAGE_SIZE >= result.total)) return matches;
   }
   throw new Error('Wallet asset pagination limit reached; eligibility result is incomplete');
 }
@@ -155,17 +157,20 @@ module.exports = async function handler(req, res) {
   }
 
   try {
-    const asset = await findEligibleAsset(process.env.HELIUS_API_KEY, wallet);
+    const assets = await findEligibleAssets(process.env.HELIUS_API_KEY, wallet);
+    const asset = assets[0];
     if (!asset) {
       return send(res, 200, {
         success: true,
         eligible: false,
+        nft_count: 0,
         message: 'No currently owned NFT from the verified FROGINAL DOGS collection was found.'
       });
     }
     return send(res, 200, {
       success: true,
       eligible: true,
+      nft_count: assets.length,
       wallet_address: wallet,
       nft_mint: asset.id,
       nft_name: String(asset.content?.metadata?.name || asset.content?.metadata?.symbol || 'FROGINAL DOGS').slice(0, 160),
