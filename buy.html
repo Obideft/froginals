@@ -116,24 +116,42 @@ function renderGallery(){
   const v=selected();
   if(!v)return;
 
-  // IMPORTANT: variant.files are the uploaded print placements (front/back/
-  // labels), not garment mockups. Their preview_url shows the artwork itself.
-  // The actual garment mockup is supplied by Printful on variant.product.image.
-  const urls=[];
-  const garmentImage=v.product&&v.product.image;
-  if(garmentImage)urls.push({url:garmentImage,alt:"Printful garment mockup"});
+  // Printful Sync file mapping:
+  // - type "preview" = rendered product mockup (the image customers should see)
+  // - type "default" = main uploaded artwork
+  // - type "label_outside" (and other placements) = print artwork such as the back tag
+  // Do not use the visible flag: Printful marks generated preview mockups visible:false.
+  const files=Array.isArray(v.files)?v.files:[];
+  const mockupFiles=files.filter(f=>
+    f &&
+    String(f.type||"").toLowerCase()==="preview" &&
+    (f.preview_url||f.thumbnail_url)
+  );
 
-  // A product-level thumbnail is only a last resort when the variant has no
-  // catalog mockup. Never show the uploaded print file as a mockup.
-  const productThumb=product&&product.sync_product&&product.sync_product.thumbnail_url;
-  if(!urls.length&&productThumb)urls.push({url:productThumb,alt:"Product mockup"});
+  const urls=[];
+  mockupFiles.forEach(f=>{
+    const url=f.preview_url||f.thumbnail_url;
+    if(url&&!urls.some(x=>x.url===url)){
+      const filename=String(f.filename||"").toLowerCase();
+      const angle=filename.includes("back")?"Back":
+        filename.includes("side")?"Side":
+        filename.includes("front")?"Front":"Mockup";
+      urls.push({url,alt:angle});
+    }
+  });
+
+  // If Printful has no rendered mockup for this exact variant, use its
+  // colour-specific catalog garment photo rather than another variant's art.
+  if(!urls.length&&v.product&&v.product.image){
+    urls.push({url:v.product.image,alt:"Catalog garment photo (mockup unavailable)"});
+  }
 
   const main=$("productImage"),thumbs=$("galleryThumbs");
   thumbs.innerHTML="";
   if(!urls.length){
     main.removeAttribute("src");
     main.alt="No garment mockup available";
-    $("imageCaption").textContent="Printful has not supplied a garment mockup for this variant";
+    $("imageCaption").textContent="No garment image is available for this variant yet";
     return;
   }
   function show(item,index){
