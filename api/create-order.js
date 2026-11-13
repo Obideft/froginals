@@ -19,6 +19,35 @@ const VARIANTS = {
 };
 
 
+
+const crypto = require("crypto");
+function decodeBase58(value) {
+  const alphabet = "123456789ABCDEFGHJKLMNPQRSTUVWXYZabcdefghijkmnopqrstuvwxyz";
+  let n = 0n;
+  for (const ch of value) { const digit = alphabet.indexOf(ch); if (digit < 0) throw new Error("Invalid wallet address."); n = n * 58n + BigInt(digit); }
+  const bytes = [];
+  while (n > 0n) { bytes.unshift(Number(n & 255n)); n >>= 8n; }
+  for (const ch of value) { if (ch !== "1") break; bytes.unshift(0); }
+  return Buffer.from(bytes);
+}
+function verifyHolderSignature(wallet, message, signature) {
+  if (typeof message !== "string" || typeof signature !== "string" || signature.length > 256) return false;
+  const expectedPrefix = "FROGINALS GOOD MATE HOLDER DISCOUNT\nDomain: froginals-nu.vercel.app\nWallet: " + wallet + "\nTimestamp: ";
+  if (!message.startsWith(expectedPrefix)) return false;
+  const timestampText = message.slice(expectedPrefix.length);
+  if (!/^\\d{13}$/.test(timestampText)) return false;
+  const timestamp = Number(timestampText);
+  if (!Number.isSafeInteger(timestamp) || Math.abs(Date.now() - timestamp) > 5 * 60 * 1000) return false;
+  try {
+    const publicKey = decodeBase58(wallet);
+    const sig = Buffer.from(signature, "base64");
+    if (publicKey.length !== 32 || sig.length !== 64) return false;
+    const derPrefix = Buffer.from("302a300506032b6570032100", "hex");
+    const key = crypto.createPublicKey({ key: Buffer.concat([derPrefix, publicKey]), format: "der", type: "spki" });
+    return crypto.verify(null, Buffer.from(message, "utf8"), key, sig);
+  } catch (_) { return false; }
+}
+
 const FROGINAL_COLLECTION_ADDRESS = process.env.FROGINAL_COLLECTION_ADDRESS || "DEADY34TucemEebp6PJwmggAGDUmpSMoS4CcESKNBPRh";
 const GOOD_MATE_VARIANTS = new Set([
   "5586793338","5586793339","5586793340","5586793341","5586793342",
@@ -136,6 +165,8 @@ export default async function handler(req, res) {
     };
     const email = clean(raw.email, 160);
     const walletAddress = clean(body.wallet_address, 44);
+    const walletMessage = typeof body.wallet_message === "string" ? body.wallet_message : "";
+    const walletSignature = typeof body.wallet_signature === "string" ? body.wallet_signature : "";
     const phone = clean(raw.phone, 40);
 
     if (!variant) {
@@ -161,6 +192,7 @@ export default async function handler(req, res) {
     let discountRate = 0;
     if (walletAddress) {
       if (!isWalletAddress(walletAddress)) return res.status(400).json({ error: "Reconnect a valid Solana wallet to verify your holder discount." });
+      if (!verifyHolderSignature(walletAddress, walletMessage, walletSignature)) return res.status(401).json({ error: "Wallet signature is missing or expired. Reconnect your wallet and approve the holder verification message." });
       if (GOOD_MATE_VARIANTS.has(variantId)) {
         try { nftCount = await countFroginalDogs(walletAddress); discountRate = holderDiscount(nftCount); }
         catch (error) { console.error("Holder discount verification failed:", error.message); return res.status(503).json({ error: "FROGINAL DOGS ownership could not be verified. Please try again or disconnect your wallet to checkout without a holder discount." }); }
