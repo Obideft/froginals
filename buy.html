@@ -102,16 +102,25 @@ function chooseVariant(){
 function renderGallery(){
   const v=selected();
   if(!v)return;
-  // Sync Variant files are the flat print artwork submitted to Printful,
-  // not garment mockups. Never display them as customer-facing product photos.
+  // Only use Printful's dedicated preview file for variant-specific imagery.
+  // The default file is the flat print artwork, not a garment mockup.
+  const files=Array.isArray(v.files)?v.files:[];
+  const previews=files.filter(f=>f&&String(f.type||"").toLowerCase()==="preview"&&f.visible!==false);
+  const urls=[];
+  previews.forEach(f=>{
+    const url=f.preview_url||f.thumbnail_url;
+    if(url&&!urls.some(x=>x.url===url))urls.push({url,alt:"Variant mockup"});
+  });
+  // Keep a product-level mockup as a fallback, not as a replacement for
+  // variant-specific previews. This preserves colour-specific images where supplied.
   const productThumb=product&&product.sync_product&&product.sync_product.thumbnail_url;
-  const urls=productThumb?[{url:productThumb,alt:"Printful product mockup"}]:[];
+  if(!urls.length&&productThumb)urls.push({url:productThumb,alt:"Product mockup"});
   const main=$("productImage"),thumbs=$("galleryThumbs");
   thumbs.innerHTML="";
   if(!urls.length){
     main.removeAttribute("src");
     main.alt="No product mockup available";
-    $("imageCaption").textContent="Product mockup unavailable";
+    $("imageCaption").textContent="No Printful mockup is available for this variant yet";
     return;
   }
   function show(item,index){
@@ -124,7 +133,7 @@ function renderGallery(){
     const button=document.createElement("button");
     button.type="button";
     button.className="gallery-thumb";
-    button.setAttribute("aria-label","View "+item.alt);
+    button.setAttribute("aria-label","View "+item.alt+" "+(index+1));
     const image=document.createElement("img");
     image.src=item.url;
     image.alt="";
