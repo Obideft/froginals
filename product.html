@@ -376,8 +376,25 @@ footer{margin-top:80px;padding:30px 20px;text-align:center;background:#050f1d;bo
   'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
   })(window,document,'script','dataLayer','GTM-5J8L8FK3');</script>
   <!-- End Google Tag Manager -->
+<!-- Meta Pixel Code — FROGINALS -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
+s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '879534858555420');
+fbq('track', 'PageView');
+</script>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
+<noscript><img height="1" width="1" style="display:none" alt=""
+src="https://www.facebook.com/tr?id=879534858555420&ev=PageView&noscript=1"
+/></noscript>
+
   <!-- Google Tag Manager (noscript) -->
   <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5J8L8FK3"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -502,10 +519,18 @@ footer{margin-top:80px;padding:30px 20px;text-align:center;background:#050f1d;bo
 </footer>
 
 <script>
-let variants=[],selectedColor="",selectedSize="",shippingRates=[],paypalSdkPromise=null,paypalRenderedFor="",holderWallet="",holderNftCount=0,holderDiscountRate=0,holderVerifyBusy=false,holderWalletMessage="",holderWalletSignature="";
+let variants=[],selectedColor="",selectedSize="",shippingRates=[],paypalSdkPromise=null,paypalRenderedFor="",holderWallet="",holderNftCount=0,holderDiscountRate=0,holderVerifyBusy=false,holderWalletMessage="",holderWalletSignature="",activeCheckoutMeta=null,trackedPurchaseOrder="";
 const $=id=>document.getElementById(id);
 const priceEl=$("price"),variantEl=$("variantId"),colorEl=$("selectedColor"),sizeEl=$("selectedSize"),availabilityEl=$("availability"),quantityEl=$("quantity"),shippingResults=$("shippingResults"),shippingMethod=$("shippingMethod"),orderTotal=$("orderTotal"),paypalContainer=$("paypal-button-container"),noticeEl=$("checkoutNotice"),calculateButton=$("calculateShipping");
 function notice(message){noticeEl.textContent=message;noticeEl.classList.add("show")}
+function pixelTrack(name,params,options){if(typeof window.fbq==="function")window.fbq("track",name,params||{},options||{})}
+function productContentId(item){return String(item&&(item.external_id||item.externalId||item.id)||"")}
+let lastViewedVariantId="";
+function trackProductView(item){
+ const id=productContentId(item);if(!id||id===lastViewedVariantId)return;
+ lastViewedVariantId=id;
+ pixelTrack("ViewContent",{content_ids:[id],content_type:"product",content_name:"FROGINALS GOOD MATE Shirt",value:Number(item.retail_price||item.price||0),currency:"USD"});
+}
 function holderDiscountForCount(count){return count>=5?.20:count>=2?.15:count>=1?.10:0}
 function updateHolderDiscountUI(message){const status=$("holderDiscountStatus");if(!status)return;if(holderVerifyBusy){status.textContent="Checking verified FROGINAL DOGS ownership…";return}if(!holderWallet){status.textContent=message||"Wallet not connected — regular price applies.";return}if(holderDiscountRate>0&&holderWalletSignature){status.textContent=holderNftCount+" verified FROGINAL DOGS NFT"+(holderNftCount===1?"":"s")+" found · "+Math.round(holderDiscountRate*100)+"% OFF unlocked."}else if(holderNftCount>0){status.textContent=holderNftCount+" verified FROGINAL DOGS NFT"+(holderNftCount===1?"":"s")+" found. Approve the wallet signature to unlock your discount."}else{status.textContent=message||"Wallet connected, but no verified FROGINAL DOGS NFTs were found."}}
 async function verifyHolderWallet(wallet){holderWallet=wallet||"";holderWalletMessage="";holderWalletSignature="";holderNftCount=0;holderDiscountRate=0;holderVerifyBusy=!!wallet;updateHolderDiscountUI();paypalContainer.innerHTML="";paypalRenderedFor="";if(!wallet){updateTotal();return}try{const response=await fetch("/api/verify-swamp-spin-eligibility",{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify({wallet_address:wallet}),cache:"no-store"});const data=await response.json();if(!response.ok||data.success!==true)throw new Error(data.error||"Ownership verification is unavailable.");holderNftCount=Number(data.nft_count||0);holderDiscountRate=0;holderVerifyBusy=false;updateHolderDiscountUI();updateTotal()}catch(error){holderVerifyBusy=false;holderWallet="";holderNftCount=0;holderDiscountRate=0;updateHolderDiscountUI("Could not verify ownership. Reconnect or checkout at regular price.");updateTotal();console.warn("Holder discount check failed:",error.message)}}
@@ -553,6 +578,7 @@ function updateProduct(){
   b.disabled=!available;b.setAttribute("aria-pressed",String(b.dataset.size===selectedSize));
  });
  const current=variant();if(!current)return;
+ trackProductView(current);
  const unitPrice=Number(current.retail_price||current.price||0);
  priceEl.textContent="$"+(unitPrice*Number(quantityEl.value)).toFixed(2)+" USD";
  variantEl.textContent=current.id;colorEl.textContent=selectedColor;sizeEl.textContent=selectedSize;
@@ -623,12 +649,19 @@ async function renderPayPal(){
     const response=await fetch("/api/create-order",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({variantId:variant().id,quantity:Number(quantityEl.value),recipient:recipient(),shippingId:shippingMethod.value,wallet_address:holderWallet,wallet_message:holderWalletMessage,wallet_signature:holderWalletSignature})});
     const data=await response.json();if(!response.ok||!data.id){if(response.status===409){clearCheckout();notice("Printful shipping changed. Recalculate shipping before paying.")}throw new Error(data.error||"Could not create PayPal order.")}
     orderTotal.textContent="Shirt subtotal: $"+Number(data.subtotal||0).toFixed(2)+" USD"+(Number(data.discount)>0?"\nFROGINAL DOGS holder discount ("+Math.round(Number(data.discountRate)*100)+"%): -$"+Number(data.discount).toFixed(2)+" USD":"")+"\nDiscounted subtotal: $"+Number(data.discountedSubtotal||data.subtotal||0).toFixed(2)+" USD\nConfirmed shipping: $"+Number(data.shipping).toFixed(2)+" USD\nPayPal total: $"+Number(data.total).toFixed(2)+" USD";
+    activeCheckoutMeta={contentId:productContentId(variant()),contentName:"FROGINALS GOOD MATE Shirt",value:Number(data.total||0),quantity:Number(quantityEl.value)};
+    pixelTrack("InitiateCheckout",{content_ids:activeCheckoutMeta.contentId?[activeCheckoutMeta.contentId]:[],content_type:"product",content_name:activeCheckoutMeta.contentName,value:activeCheckoutMeta.value,currency:"USD",num_items:activeCheckoutMeta.quantity});
     return data.id;
    },
    onApprove:async data=>{
     notice("Payment approved. Confirming payment and sending your order to Printful…");
     const response=await fetch("/api/capture-order",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({orderID:data.orderID})});
     const result=await response.json();if(!response.ok&&response.status!==202)throw new Error(result.error||"Payment confirmation needs attention.");
+    if(result.orderID&&result.orderID!==trackedPurchaseOrder){
+     const meta=activeCheckoutMeta||{contentId:productContentId(variant()),contentName:"FROGINALS GOOD MATE Shirt",value:0,quantity:Number(quantityEl.value)};
+     pixelTrack("Purchase",{content_ids:meta.contentId?[meta.contentId]:[],content_type:"product",content_name:meta.contentName,value:meta.value,currency:"USD",num_items:meta.quantity},{eventID:"paypal_"+result.orderID});
+     trackedPurchaseOrder=result.orderID;
+    }
     if(result.fulfillment==="PENDING_RETRY"||result.fulfillment==="PENDING_CONFIGURATION"){notice("Your PayPal payment is complete, but Printful fulfillment needs attention. Contact FROGINALS support and provide PayPal order "+result.orderID+".");return}
     notice("Payment successful! 🐸 Your order has been sent to Printful. PayPal order: "+result.orderID+(result.printfulOrderID?" | Printful order: "+result.printfulOrderID:"")+".");
    },
