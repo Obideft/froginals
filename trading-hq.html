@@ -123,6 +123,7 @@ function renderLearningNotes(){
  el.innerHTML=notes.length?notes.map(t=>'<div style="padding:12px 0;border-bottom:1px solid #383838"><b style="color:'+(t.side==='BUY'?'#53ff89':'#ff6b6b')+'">'+escapeHtml(t.side)+' · '+escapeHtml(t.asset)+'</b><div style="font-size:11px;color:#999;margin:4px 0">'+escapeHtml((t.date||'').replace('T',' '))+' · '+escapeHtml(t.exchange||'Manual')+'</div><div style="color:#eee;line-height:1.6;font-size:13px">'+escapeHtml(t.reason)+'</div></div>').join(''):'No trade reasoning recorded yet. Add your thesis in the form above.';
 }
 \nfunction render(){
+ drawTradeChart();renderLearningNotes();
  const btc=trades.filter(t=>t.asset==='BTC'&&Number(t.quantity)>0);
  const qty=btc.reduce((s,t)=>s+(t.side==='BUY'?1:-1)*Number(t.quantity),0);
  const invested=trades.reduce((s,t)=>s+(t.side==='BUY'?1:-1)*Number(t.value||0),0);
