@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Your Cart | FROGINALS SWAMP STORE</title>
+<meta name="description" content="Review your FROGINALS merch, update quantities and checkout securely.">
+<meta name="theme-color" content="#071426">
+<style>
+:root{--navy:#071426;--navy2:#0c2038;--panel:#102945;--orange:#ff7900;--yellow:#ffd447;--cream:#fff1d6;--green:#53ff89;--blue:#398bff;--muted:#a8bad0;--line:rgba(153,190,230,.2)}
+*{box-sizing:border-box}body{margin:0;background:var(--navy);color:#f3f7ff;font-family:"Space Grotesk",Arial,sans-serif}button,input,select{font:inherit}button{cursor:pointer}
+.topline{padding:9px 16px;text-align:center;background:#091b30;color:var(--yellow);font-size:10px;font-weight:900;letter-spacing:1.2px}
+header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px max(20px,calc((100vw - 1120px)/2));background:#0b1d32;border-bottom:1px solid var(--line)}
+.brand{font-weight:1000;text-decoration:none;color:#fff;font-size:16px;letter-spacing:.5px}.brand span{color:var(--yellow)}
+.navlinks{display:flex;gap:10px;align-items:center;flex-wrap:wrap}.navlinks a{color:#eaf3ff;text-decoration:none;border:1px solid var(--line);padding:10px 12px;border-radius:5px;font-size:11px;font-weight:900}.navlinks a.active{background:var(--yellow);color:#171717;border-color:var(--yellow)}
+main{max-width:1120px;margin:42px auto;padding:0 20px 70px}.eyebrow{font-size:10px;letter-spacing:2px;color:#82b6ed;font-weight:900}.page-title{display:flex;justify-content:space-between;align-items:end;gap:18px;margin-bottom:25px}.page-title h1{font-size:clamp(30px,5vw,48px);line-height:1;margin:10px 0 0;text-transform:uppercase}.page-title p{color:var(--muted);margin:0;font-size:13px}
+.layout{display:grid;grid-template-columns:minmax(0,1.4fr) minmax(300px,.8fr);gap:22px;align-items:start}
+.panel{background:linear-gradient(150deg,#102945,#0b1d32);border:1px solid var(--line);border-radius:12px;padding:20px;box-shadow:0 16px 40px rgba(0,0,0,.15)}
+.panel h2{font-size:15px;margin:0 0 16px;text-transform:uppercase;letter-spacing:.5px}
+.cart-row{display:grid;grid-template-columns:104px minmax(0,1fr) auto;gap:15px;padding:16px 0;border-bottom:1px solid var(--line);align-items:center}.cart-row:first-child{padding-top:0}.cart-row:last-child{border-bottom:0;padding-bottom:0}
+.item-image{width:104px;aspect-ratio:1;background:#0a1a2b;border:1px solid var(--line);border-radius:8px;display:grid;place-items:center;overflow:hidden;color:var(--yellow);font-size:34px}.item-image img{width:100%;height:100%;object-fit:contain}
+.item-name{font-weight:900;font-size:14px;margin-bottom:6px}.item-option{color:var(--muted);font-size:11px;margin-bottom:8px}.item-price{font-weight:900;color:var(--yellow);font-size:13px}
+.item-controls{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.item-controls select{background:#071426;color:#fff;border:1px solid var(--line);border-radius:5px;padding:7px}.remove{background:transparent;color:#ff9c87;border:0;text-decoration:underline;font-size:11px;padding:6px}
+.line-total{font-weight:900;text-align:right;white-space:nowrap}.empty{padding:35px 10px;text-align:center;color:var(--muted)}.empty strong{display:block;color:#fff;font-size:17px;margin-bottom:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;border:0;border-radius:5px;padding:13px 16px;font-size:11px;font-weight:1000;letter-spacing:.5px;text-decoration:none}.btn-primary{background:var(--yellow);color:#171717}.btn-secondary{background:transparent;border:1px solid var(--line);color:#fff}
+.summary-line{display:flex;justify-content:space-between;gap:12px;padding:9px 0;color:var(--muted);font-size:13px}.summary-line strong{color:#fff}.summary-total{border-top:1px solid var(--line);margin-top:10px;padding-top:15px;font-size:16px;color:var(--yellow);font-weight:1000}
+.field{display:flex;flex-direction:column;gap:6px;margin-bottom:11px}.field label{font-size:10px;font-weight:900;color:#c8d8ec;text-transform:uppercase;letter-spacing:.5px}.field input{width:100%;background:#071426;color:#fff;border:1px solid var(--line);border-radius:5px;padding:11px;outline:none}.field input:focus,.field select:focus{border-color:var(--blue)}
+.address-grid{display:grid;grid-template-columns:1fr 1fr;gap:0 10px}.wide{grid-column:1/-1}
+.notice{display:none;margin:12px 0;padding:11px;border:1px solid rgba(255,212,71,.35);background:rgba(255,212,71,.08);border-radius:5px;color:#ffe7a0;font-size:12px;line-height:1.5}.notice.show{display:block}
+.shipping-results{display:none;margin-top:15px;padding-top:14px;border-top:1px solid var(--line)}.shipping-results.show{display:block}.shipping-results select{width:100%;background:#071426;color:#fff;border:1px solid var(--line);padding:11px;border-radius:5px}.total{white-space:pre-line;color:#dbe8f7;font-size:12px;line-height:1.7;margin:12px 0}
+.holder{padding:13px;border:1px solid rgba(83,255,137,.25);background:rgba(83,255,137,.06);border-radius:8px;margin:14px 0}.holder strong{display:block;font-size:12px;color:var(--green);margin-bottom:6px}.holder p{font-size:11px;color:var(--muted);line-height:1.5;margin:0 0 9px}.holder button{width:100%;padding:10px;border:1px solid var(--green);border-radius:5px;background:transparent;color:var(--green);font-size:10px;font-weight:900}
+footer{text-align:center;padding:22px;color:#7891ac;font-size:10px;border-top:1px solid var(--line)}
+@media(max-width:800px){.layout{grid-template-columns:1fr}.page-title{align-items:start;flex-direction:column}.cart-row{grid-template-columns:82px minmax(0,1fr) auto}.item-image{width:82px}}
+@media(max-width:480px){header{padding:13px 14px}.brand{font-size:13px}.navlinks a{padding:8px;font-size:9px}main{padding:0 13px 45px;margin:28px auto}.panel{padding:14px}.cart-row{grid-template-columns:68px minmax(0,1fr);gap:10px}.item-image{width:68px}.line-total{grid-column:2;text-align:left}.item-name{font-size:12px}.address-grid{grid-template-columns:1fr}.wide{grid-column:auto}}
+</style>
+<script>
+!function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init','879534858555420');fbq('track','PageView');
+</script>
+</head>
+<body>
+<noscript><img height="1" width="1" style="display:none" alt="" src="https://www.facebook.com/tr?id=879534858555420&ev=PageView&noscript=1"></noscript>
+<div class="topline">🐸 FROGINALS SWAMP STORE • GOOD MATES. GOOD VIBES. • BUILT FOR THE SWAMP 🐸</div>
+<header><a class="brand" href="shop.html">🐸 FROGINALS <span>SWAMP STORE</span></a><nav class="navlinks"><a href="shop.html">CONTINUE SHOPPING</a><a class="active" href="cart.html">YOUR CART <span id="headerCount">0</span></a></nav></header>
+<main>
+ <div class="page-title"><div><div class="eyebrow">YOUR SWAMP HAUL</div><h1>THE CART</h1></div><p id="cartIntro">Review your gear before checkout.</p></div>
+ <div class="layout">
+  <section class="panel"><h2>🛒 Your selected gear</h2><div id="cartItems"></div><div style="margin-top:18px"><a class="btn btn-secondary" href="shop.html">← KEEP SHOPPING</a></div></section>
+  <aside class="panel">
+   <h2>Order summary</h2><div class="summary-line"><span>Items (<span id="itemCount">0</span>)</span><strong id="subtotal">$0.00</strong></div>
+   <div class="summary-line"><span>FROGINAL DOGS holder discount</span><strong id="discount">—</strong></div>
+   <div class="summary-line"><span>Shipping</span><strong id="shippingPreview">Calculated next</strong></div>
+   <div class="summary-line summary-total"><span>Estimated total</span><span id="grandTotal">$0.00</span></div>
+   <div class="holder"><strong>🐸 FROGINAL DOGS HOLDER DISCOUNT</strong><p>Connect your wallet to verify FROGINAL DOGS ownership. The holder discount applies to eligible GOOD MATE shirts only.</p><button type="button" id="connectWallet">CONNECT & VERIFY WALLET</button><p id="holderStatus" style="margin:9px 0 0">Wallet not connected — regular prices apply.</p></div>
+   <h2 style="margin-top:20px">Shipping details</h2>
+   <div class="address-grid">
+    <div class="field wide"><label for="shipName">Full name *</label><input id="shipName" autocomplete="name"></div>
+    <div class="field wide"><label for="shipEmail">Email</label><input id="shipEmail" type="email" autocomplete="email"></div>
+    <div class="field wide"><label for="shipAddress1">Street address *</label><input id="shipAddress1" autocomplete="address-line1"></div>
+    <div class="field wide"><label for="shipAddress2">Apartment / suite</label><input id="shipAddress2" autocomplete="address-line2"></div>
+    <div class="field"><label for="shipCity">City *</label><input id="shipCity" autocomplete="address-level2"></div>
+    <div class="field"><label for="shipState">State / province</label><input id="shipState" autocomplete="address-level1"></div>
+    <div class="field"><label for="shipZip">Postal code</label><input id="shipZip" autocomplete="postal-code"></div>
+    <div class="field"><label for="shipCountry">Country code *</label><input id="shipCountry" maxlength="2" placeholder="US" autocomplete="country"></div>
+    <div class="field wide"><label for="shipPhone">Phone (optional)</label><input id="shipPhone" type="tel" autocomplete="tel"></div>
+   </div>
+   <button class="btn btn-primary" style="width:100%" id="calculateShipping">CALCULATE LIVE SHIPPING</button>
+   <div class="notice" id="notice" role="status" aria-live="polite"></div>
+   <div class="shipping-results" id="shippingResults"><div class="field"><label for="shippingMethod">Delivery method</label><select id="shippingMethod"></select></div><div class="total" id="orderTotal"></div><div id="paypal-button-container"></div></div>
+  </aside>
+ </div>
+</main>
+<footer>🐸 FROGINALS — GOOD MATES. GOOD VIBES. BUILT FOR THE SWAMP.</footer>
+<script>
+const CART_KEY="froginals_cart_v1";
+const GOOD_MATE_VARIANTS=new Set(["5586793338","5586793339","5586793340","5586793341","5586793342","5586793343","5586793344","5586793345","5586793346","5586793347","5586793348"]);
+const $=id=>document.getElementById(id);
+let cart=[],rates=[],paypalPromise=null,paypalFor="",holderWallet="",holderMessage="",holderSignature="",holderCount=0,holderRate=0,activeCheckoutMeta=null;
+function pixelTrack(name,params,options){if(typeof window.fbq==="function")window.fbq("track",name,params||{},options||{})}
+function note(message){$("notice").textContent=message;$("notice").classList.add("show")}
+function readCart(){try{const parsed=JSON.parse(localStorage.getItem(CART_KEY)||"[]");return Array.isArray(parsed)?parsed.filter(x=>x&&/^\d+$/.test(String(x.variantId))&&Number(x.quantity)>0):[]}catch(_){return[]}}
+function saveCart(){localStorage.setItem(CART_KEY,JSON.stringify(cart));$("headerCount").textContent=cart.reduce((n,x)=>n+Number(x.quantity||0),0)}
+function isDiscountable(item){return GOOD_MATE_VARIANTS.has(String(item.variantId))}
+function money(value){return "$"+Number(value||0).toFixed(2)}
+function calcAmounts(){let subtotal=0,discount=0;cart.forEach(item=>{const line=Number(item.price||0)*Number(item.quantity||1);subtotal+=line;if(isDiscountable(item))discount+=line*holderRate});return{subtotal,discount:Number(discount.toFixed(2)),total:Number((subtotal-discount).toFixed(2))}}
+function renderCart(){
+ const host=$("cartItems");host.innerHTML="";
+ if(!cart.length){host.innerHTML='<div class="empty"><strong>Your cart is still empty, mate.</strong>Find your next favourite FROGINALS piece in the swamp.<p><a class="btn btn-primary" href="shop.html">EXPLORE THE STORE</a></p></div>';$("cartIntro").textContent="Nothing in the cart yet.";$("itemCount").textContent="0";$("subtotal").textContent=money(0);$("discount").textContent="—";$("grandTotal").textContent=money(0);$("calculateShipping").disabled=true;$("shippingResults").classList.remove("show");saveCart();return}
+ $("calculateShipping").disabled=false;
+ cart.forEach((item,index)=>{
+  const row=document.createElement("article");row.className="cart-row";
+  const imageWrap=document.createElement("div");imageWrap.className="item-image";
+  if(item.image){const image=document.createElement("img");image.src=item.image;image.alt=item.name||"FROGINALS product";image.loading="lazy";image.onerror=()=>{image.remove();imageWrap.textContent="🐸"};imageWrap.appendChild(image)}else imageWrap.textContent="🐸";
+  const details=document.createElement("div");const name=document.createElement("div");name.className="item-name";name.textContent=item.name||"FROGINALS product";
+  const option=document.createElement("div");option.className="item-option";option.textContent=item.option||("Variant "+item.variantId);
+  const price=document.createElement("div");price.className="item-price";price.textContent=money(item.price)+" each";
+  const controls=document.createElement("div");controls.className="item-controls";
+  const quantity=document.createElement("select");quantity.setAttribute("aria-label","Quantity for "+name.textContent);
+  for(let q=1;q<=5;q++){const opt=document.createElement("option");opt.value=String(q);opt.textContent="Qty: "+q;opt.selected=q===Number(item.quantity);quantity.appendChild(opt)}
+  quantity.addEventListener("change",()=>{cart[index].quantity=Number(quantity.value);invalidateShipping();saveCart();renderCart()});
+  const remove=document.createElement("button");remove.className="remove";remove.type="button";remove.textContent="Remove";remove.addEventListener("click",()=>{cart.splice(index,1);invalidateShipping();saveCart();renderCart()});
+  controls.append(quantity,remove);details.append(name,option,price,controls);
+  const line=document.createElement("div");line.className="line-total";line.textContent=money(Number(item.price||0)*Number(item.quantity||1));
+  row.append(imageWrap,details,line);host.appendChild(row);
+ });
+ const count=cart.reduce((n,x)=>n+Number(x.quantity||0),0),amounts=calcAmounts();
+ $("cartIntro").textContent=count+" item"+(count===1?"":"s")+" ready for checkout.";
+ $("itemCount").textContent=String(count);$("subtotal").textContent=money(amounts.subtotal);$("discount").textContent=amounts.discount?("-"+money(amounts.discount)):"—";$("grandTotal").textContent=money(amounts.total);
+ $("shippingPreview").textContent=rates.length? "Choose delivery below":"Calculated next";
+ saveCart();
+}
+function invalidateShipping(){rates=[];paypalFor="";$("shippingResults").classList.remove("show");$("shippingMethod").innerHTML="";$("paypal-button-container").innerHTML="";$("orderTotal").textContent="";$("shippingPreview").textContent="Calculated next"}
+function recipient(){return{name:$("shipName").value.trim(),email:$("shipEmail").value.trim(),address1:$("shipAddress1").value.trim(),address2:$("shipAddress2").value.trim(),city:$("shipCity").value.trim(),state_code:$("shipState").value.trim().toUpperCase(),zip:$("shipZip").value.trim(),country_code:$("shipCountry").value.trim().toUpperCase(),phone:$("shipPhone").value.trim()}}
+async function connectWallet(){
+ const provider=window.phantom?.solana||window.solana;
+ if(!provider||typeof provider.connect!=="function"){note("Install or open Phantom to verify your FROGINAL DOGS holder discount.");return}
+ try{
+  const connected=await provider.connect();holderWallet=connected?.publicKey?.toString?.()||provider.publicKey?.toString?.();if(!holderWallet)throw Error("Wallet did not return a public address.");
+  const response=await fetch("/api/verify-swamp-spin-eligibility",{method:"POST",headers:{"Content-Type":"application/json","Accept":"application/json"},body:JSON.stringify({wallet_address:holderWallet}),cache:"no-store"});
+  const data=await response.json();if(!response.ok||data.success!==true)throw Error(data.error||"Ownership verification is unavailable.");
+  holderCount=Number(data.nft_count||0);holderRate=holderCount>=5?.20:holderCount>=2?.15:holderCount>=1?.10:0;
+  if(!holderRate){$("holderStatus").textContent="No eligible FROGINAL DOGS found. Regular price applies.";renderCart();return}
+  if(typeof provider.signMessage!=="function")throw Error("Your wallet does not support message signing. Use Phantom.");
+  holderMessage="FROGINALS GOOD MATE HOLDER DISCOUNT\nDomain: froginals-nu.vercel.app\nWallet: "+holderWallet+"\nTimestamp: "+Date.now();
+  const signed=await provider.signMessage(new TextEncoder().encode(holderMessage),"utf8");const sig=signed?.signature||signed;let binary="";for(const byte of sig||[])binary+=String.fromCharCode(byte);holderSignature=btoa(binary);
+  $("holderStatus").textContent=holderCount+" verified FROGINAL DOGS NFT"+(holderCount===1?"":"s")+" · "+Math.round(holderRate*100)+"% OFF eligible GOOD MATE shirts.";
+  invalidateShipping();renderCart();
+ }catch(error){holderWallet="";holderMessage="";holderSignature="";holderCount=0;holderRate=0;$("holderStatus").textContent=error.message||"Wallet verification cancelled.";note(error.message||"Wallet verification cancelled.");renderCart()}
+}
+async function calculateShipping(){
+ if(!cart.length){note("Your cart is empty.");return}
+ const r=recipient();if(!r.name||!r.address1||!r.city||!/^[A-Z]{2}$/.test(r.country_code)){note("Enter your name, street address, city and 2-letter country code (for example US, GB or MA).");return}
+ if(["US","CA","AU"].includes(r.country_code)&&!r.state_code){note("Enter your state or province code.");return}
+ const button=$("calculateShipping");button.disabled=true;button.textContent="CALCULATING PRINTFUL SHIPPING…";
+ try{
+  const response=await fetch("/api/printful-shipping-rates",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({items:cart.map(x=>({variantId:String(x.variantId),quantity:Number(x.quantity)})),recipient:r})});
+  const data=await response.json();if(!response.ok||!Array.isArray(data.rates))throw Error(data.error||"Shipping rates unavailable.");
+  rates=data.rates;$("shippingMethod").innerHTML="";
+  rates.forEach((rate,i)=>{const option=document.createElement("option");option.value=rate.id;option.textContent=rate.name+" — "+money(rate.rate);if(!i)option.selected=true;$("shippingMethod").appendChild(option)});
+  $("shippingResults").classList.add("show");$("shippingPreview").textContent="Choose delivery below";updateTotal();await renderPayPal();
+ }catch(error){note(error.message||"Could not calculate shipping.")}
+ finally{button.disabled=false;button.textContent="RECALCULATE LIVE SHIPPING"}
+}
+function updateTotal(){const rate=rates.find(x=>x.id===$("shippingMethod").value);if(!rate)return;const a=calcAmounts();$("orderTotal").textContent="Items: "+money(a.subtotal)+"\nHolder discount: -"+money(a.discount)+"\nDiscounted subtotal: "+money(a.total)+"\nLive shipping: "+money(rate.rate)+"\nEstimated total: "+money(a.total+Number(rate.rate));$("shippingPreview").textContent=money(rate.rate);$("grandTotal").textContent=money(a.total+Number(rate.rate))}
+async function loadPayPal(){if(window.paypal)return;if(paypalPromise)return paypalPromise;paypalPromise=(async()=>{const r=await fetch("/api/paypal-client-id");const d=await r.json();if(!r.ok||!d.clientId)throw Error(d.error||"PayPal is not configured.");await new Promise((resolve,reject)=>{const s=document.createElement("script");s.src="https://www.paypal.com/sdk/js?client-id="+encodeURIComponent(d.clientId)+"&currency=USD&intent=capture&components=buttons";s.onload=resolve;s.onerror=()=>reject(Error("PayPal could not load."));document.head.appendChild(s)})})();return paypalPromise}
+async function renderPayPal(){
+ const sid=$("shippingMethod").value;if(!sid||paypalFor===sid)return;
+ $("paypal-button-container").innerHTML="";paypalFor=sid;
+ try{await loadPayPal();await window.paypal.Buttons({style:{layout:"vertical",color:"gold",shape:"rect",label:"paypal"},
+  createOrder:async()=>{
+   const body={items:cart.map(x=>({variantId:String(x.variantId),quantity:Number(x.quantity)})),recipient:recipient(),shippingId:$("shippingMethod").value,wallet_address:holderWallet,wallet_message:holderMessage,wallet_signature:holderSignature};
+   const response=await fetch("/api/create-order",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify(body)});
+   const data=await response.json();if(!response.ok||!data.id)throw Error(data.error||"Could not create PayPal order.");
+   activeCheckoutMeta={contentIds:cart.map(x=>String(x.externalId||x.variantId)),contentNames:cart.map(x=>x.name),value:Number(data.total||0),quantity:cart.reduce((n,x)=>n+Number(x.quantity||0),0)};
+   pixelTrack("InitiateCheckout",{content_ids:activeCheckoutMeta.contentIds,content_type:"product",content_name:"FROGINALS cart",value:activeCheckoutMeta.value,currency:"USD",num_items:activeCheckoutMeta.quantity});
+   return data.id;
+  },
+  onApprove:async data=>{
+   note("Payment approved. Confirming payment and sending your cart to Printful…");
+   const response=await fetch("/api/capture-order",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({orderID:data.orderID})});
+   const result=await response.json();if(!response.ok&&response.status!==202)throw Error(result.error||"Payment confirmation needs attention.");
+   const meta=activeCheckoutMeta||{contentIds:cart.map(x=>String(x.externalId||x.variantId)),value:0,quantity:cart.length};
+   pixelTrack("Purchase",{content_ids:meta.contentIds,content_type:"product",content_name:"FROGINALS cart",value:meta.value,currency:"USD",num_items:meta.quantity},{eventID:"paypal_"+result.orderID});
+   cart=[];localStorage.removeItem(CART_KEY);saveCart();renderCart();invalidateShipping();
+   note(result.fulfillment==="PENDING_RETRY"||result.fulfillment==="PENDING_CONFIGURATION"?"Payment complete. Printful fulfillment needs attention; contact FROGINALS support with PayPal order "+result.orderID+".":"Payment successful! Your FROGINALS cart has been sent to Printful. Order: "+result.orderID+(result.printfulOrderID?" | Printful: "+result.printfulOrderID:""));
+  },
+  onCancel:()=>note("Checkout cancelled. No payment was taken."),
+  onError:error=>note(error?.message||"PayPal checkout error.")
+ }).render("#paypal-button-container")}catch(error){paypalFor="";note(error.message||"PayPal checkout could not load.")}
+}
+$("connectWallet").addEventListener("click",connectWallet);
+$("calculateShipping").addEventListener("click",calculateShipping);
+$("shippingMethod").addEventListener("change",()=>{paypalFor="";$("paypal-button-container").innerHTML="";updateTotal();renderPayPal()});
+cart=readCart();renderCart();
+</script>
+</body>
+</html>
