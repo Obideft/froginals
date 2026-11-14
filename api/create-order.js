@@ -141,6 +141,105 @@ async function getPayPalToken() {
   return data.access_token;
 }
 
+
+async function createCartPayPalOrder(body, res) {
+  const rawItems = body.items;
+  if (!Array.isArray(rawItems) || rawItems.length < 1 || rawItems.length > 5) return res.status(400).json({ error: "Your cart must contain between 1 and 5 different products." });
+  const shippingId = clean(body.shippingId, 40);
+  const raw = body.recipient || {};
+  const recipient = {
+    name: clean(raw.name, 100), address1: clean(raw.address1, 120), address2: clean(raw.address2, 120),
+    city: clean(raw.city, 80), state_code: clean(raw.state_code, 30).toUpperCase(),
+    country_code: clean(raw.country_code, 2).toUpperCase(), zip: clean(raw.zip, 20)
+  };
+  if (!shippingId || !recipient.name || !recipient.address1 || !recipient.city || !/^[A-Z]{2}$/.test(recipient.country_code)) return res.status(400).json({ error: "Complete your shipping address and select a shipping method." });
+  if (["US", "CA", "AU"].includes(recipient.country_code) && !recipient.state_code) return res.status(400).json({ error: "A state or province code is required for this destination." });
+
+  const items = [];
+  let totalQuantity = 0;
+  for (const rawItem of rawItems) {
+    const variantId = String(rawItem && rawItem.variantId || "");
+    const quantity = Number(rawItem && rawItem.quantity || 1);
+    if (!/^\d{1,20}$/.test(variantId) || !Number.isInteger(quantity) || quantity < 1 || quantity > 5) return res.status(400).json({ error: "A cart item has an invalid product option or quantity." });
+    totalQuantity += quantity;
+    if (totalQuantity > 10) return res.status(400).json({ error: "Your cart can contain up to 10 items in total." });
+    let variant = VARIANTS[variantId];
+    if (!variant) {
+      try { variant = await getLivePrintfulVariant(variantId); }
+      catch (error) { return res.status(400).json({ error: error.message || "A cart product is unavailable." }); }
+    }
+    items.push({ variantId, quantity, name: variant.name, externalId: String(variant.externalId), price: Number(variant.price) });
+  }
+
+  const walletAddress = clean(body.wallet_address, 44);
+  const walletMessage = typeof body.wallet_message === "string" ? body.wallet_message : "";
+  const walletSignature = typeof body.wallet_signature === "string" ? body.wallet_signature : "";
+  let nftCount = 0, discountRate = 0;
+  if (walletAddress) {
+    if (!isWalletAddress(walletAddress)) return res.status(400).json({ error: "Reconnect a valid Solana wallet to verify your holder discount." });
+    if (!verifyHolderSignature(walletAddress, walletMessage, walletSignature)) return res.status(401).json({ error: "Wallet signature is missing or expired. Reconnect your wallet and approve the holder verification message." });
+    if (items.some(item => GOOD_MATE_VARIANTS.has(item.variantId))) {
+      try { nftCount = await countFroginalDogs(walletAddress); discountRate = holderDiscount(nftCount); }
+      catch (error) { console.error("Holder discount verification failed:", error.message); return res.status(503).json({ error: "FROGINAL DOGS ownership could not be verified. Please try again or checkout without the holder discount." }); }
+    }
+  }
+
+  const printfulResponse = await fetch("https://api.printful.com/shipping/rates", {
+    method: "POST",
+    headers: { Authorization: "Bearer " + process.env.PRINTFUL_API_KEY, "Content-Type": "application/json" },
+    body: JSON.stringify({ recipient, items: items.map(item => ({ external_variant_id: item.externalId, quantity: item.quantity, value: item.price.toFixed(2) })), currency: "USD", locale: "en_US" })
+  });
+  const printfulData = await printfulResponse.json();
+  if (!printfulResponse.ok || !Array.isArray(printfulData.result)) {
+    console.error("Printful cart requote failed:", printfulResponse.status, printfulData);
+    return res.status(502).json({ error: "Shipping could not be reconfirmed. Please calculate shipping again." });
+  }
+  const selectedRate = printfulData.result.find(rate => String(rate.id) === shippingId && rate.currency === "USD" && Number.isFinite(Number(rate.rate)));
+  if (!selectedRate) return res.status(409).json({ error: "That shipping option has changed. Please calculate shipping again." });
+
+  let subtotal = 0, discountAmount = 0;
+  const paypalItems = items.map(item => {
+    const lineSubtotal = item.price * item.quantity;
+    const lineDiscount = GOOD_MATE_VARIANTS.has(item.variantId) ? Number((lineSubtotal * discountRate).toFixed(2)) : 0;
+    subtotal += lineSubtotal;
+    discountAmount += lineDiscount;
+    const unitPrice = Number((item.price * (1 - (GOOD_MATE_VARIANTS.has(item.variantId) ? discountRate : 0))).toFixed(2));
+    return { name: String(item.name || "FROGINALS product").slice(0, 127), quantity: String(item.quantity), unit_amount: { currency_code: "USD", value: unitPrice.toFixed(2) } };
+  });
+  discountAmount = Number(discountAmount.toFixed(2));
+  const discountedSubtotal = Number((subtotal - discountAmount).toFixed(2));
+  const shippingTotal = Number(selectedRate.rate);
+  const total = (discountedSubtotal + shippingTotal).toFixed(2);
+  const compactItems = items.map(item => item.variantId + "." + item.quantity).join(",");
+  const customId = "C1~" + compactItems + "~" + encodeURIComponent(shippingId);
+  if (customId.length > 127) return res.status(400).json({ error: "Your cart is too large to process. Remove an item and try again." });
+
+  const accessToken = await getPayPalToken();
+  const paypalResponse = await fetch("https://api-m.paypal.com/v2/checkout/orders", {
+    method: "POST", headers: { Authorization: "Bearer " + accessToken, "Content-Type": "application/json" },
+    body: JSON.stringify({ intent: "CAPTURE", purchase_units: [{
+      custom_id: customId, description: "FROGINALS cart — " + totalQuantity + " item(s)",
+      amount: { currency_code: "USD", value: total, breakdown: {
+        item_total: { currency_code: "USD", value: discountedSubtotal.toFixed(2) },
+        shipping: { currency_code: "USD", value: shippingTotal.toFixed(2) }
+      }},
+      items: paypalItems,
+      shipping: { name: { full_name: recipient.name }, address: {
+        address_line_1: recipient.address1, ...(recipient.address2 ? { address_line_2: recipient.address2 } : {}),
+        admin_area_2: recipient.city, ...(recipient.state_code ? { admin_area_1: recipient.state_code } : {}),
+        ...(recipient.zip ? { postal_code: recipient.zip } : {}), country_code: recipient.country_code
+      }}
+    }]})
+  });
+  const paypalData = await paypalResponse.json();
+  if (!paypalResponse.ok || !paypalData.id) {
+    console.error("PayPal LIVE cart create-order failed:", paypalData);
+    return res.status(502).json({ error: "PayPal could not create the payment. No charge was made." });
+  }
+  return res.status(200).json({ id: paypalData.id, total, shipping: shippingTotal.toFixed(2), subtotal: subtotal.toFixed(2),
+    discount: discountAmount.toFixed(2), discountRate, nftCount, discountedSubtotal: discountedSubtotal.toFixed(2), shippingName: selectedRate.name });
+}
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
@@ -149,6 +248,7 @@ export default async function handler(req, res) {
 
   try {
     const body = req.body || {};
+    if (Array.isArray(body.items)) return await createCartPayPalOrder(body, res);
     const variantId = String(body.variantId || "");
     let variant = VARIANTS[variantId];
     const quantity = Number(body.quantity || 1);
