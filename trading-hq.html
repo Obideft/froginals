@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#171717">
+<title>FROGINALS TRADING HQ</title>
+<meta name="description" content="Personal Bitcoin trade journal and FROGINALS trading research dashboard.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--orange:#ff7900;--yellow:#ffd447;--ink:#171717;--paper:#fff8e9;--muted:#a9a397;--green:#53ff89;--red:#ff6b6b;--line:#343434}
+*{box-sizing:border-box}body{margin:0;background:var(--ink);color:var(--paper);font-family:"Space Grotesk",sans-serif}button,input,select,textarea{font:inherit}a{color:inherit}.shell{width:min(1240px,calc(100% - 36px));margin:auto}.topbar{border-bottom:1px solid var(--line);background:#101010}.topbar-inner{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:18px}.brand{font:10px/1.8 "Press Start 2P",monospace;color:var(--yellow);text-decoration:none}.brand span{color:var(--orange)}.top-actions{display:flex;align-items:center;gap:12px}.status{font-size:12px;color:var(--green);font-weight:700}.back{font-size:12px;font-weight:800;text-decoration:none;color:#ddd}.hero{padding:42px 0 28px}.eyebrow{font:9px/1.8 "Press Start 2P",monospace;color:var(--orange)}h1{font:clamp(23px,5vw,42px)/1.5 "Press Start 2P",monospace;margin:12px 0;color:var(--yellow);text-shadow:4px 4px #000}.intro{max-width:700px;color:#c7c1b5;line-height:1.7;margin:0}.notice{margin:24px 0;padding:13px 16px;border:1px solid #5b4b27;border-left:4px solid var(--yellow);background:#282319;color:#e7d9ae;font-size:12px;line-height:1.65;border-radius:8px}.grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:13px;margin:20px 0}.panel,.metric{background:#202020;border:1px solid var(--line);border-radius:12px}.metric{padding:17px}.metric-label{font-size:10px;text-transform:uppercase;letter-spacing:1.1px;color:#aaa;margin-bottom:12px;font-weight:700}.metric-value{font-size:clamp(20px,3vw,29px);font-weight:800;letter-spacing:-1px}.metric-sub{font-size:11px;color:#999;margin-top:7px}.green{color:var(--green)}.orange{color:var(--orange)}.section-head{display:flex;align-items:center;justify-content:space-between;gap:14px;margin:30px 0 13px}.section-head h2{font:11px/1.8 "Press Start 2P",monospace;color:var(--yellow);margin:0}.muted{color:#999;font-size:12px}.two-col{display:grid;grid-template-columns:1.05fr .95fr;gap:14px}.panel{padding:19px}.panel h3{font-size:15px;margin:0 0 16px}.price-line{display:flex;align-items:end;justify-content:space-between;gap:12px}.price-big{font-size:32px;font-weight:800}.pill{font-size:10px;font-weight:800;padding:6px 9px;border-radius:20px;background:#26352a;color:var(--green)}.chart-wrap{height:145px;margin-top:18px;display:flex;align-items:center;justify-content:center;border:1px dashed #48433a;border-radius:8px;color:#8d877b;font-size:12px;text-align:center;padding:15px}.form-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}.field{display:flex;flex-direction:column;gap:6px}.field.full{grid-column:1/-1}.field label{font-size:11px;color:#bcb5a8;font-weight:700}.field input,.field select,.field textarea{width:100%;background:#131313;color:#fff;border:1px solid #4b4b4b;border-radius:7px;padding:11px 12px;outline:none}.field input:focus,.field select:focus,.field textarea:focus{border-color:var(--orange)}.field textarea{min-height:70px;resize:vertical}.btn{border:0;border-radius:7px;padding:11px 15px;background:var(--yellow);color:var(--ink);font-weight:800;cursor:pointer}.btn:hover{filter:brightness(1.08)}.btn.secondary{background:#333;color:#fff;border:1px solid #555}.btn.orange-btn{background:var(--orange)}.actions{display:flex;flex-wrap:wrap;gap:9px;margin-top:14px}.table-wrap{overflow:auto}table{width:100%;border-collapse:collapse;min-width:620px}th,td{text-align:left;padding:12px 10px;border-bottom:1px solid #383838;font-size:12px}th{color:#aaa;font-size:10px;text-transform:uppercase;letter-spacing:.7px}td strong{color:#fff}.empty{text-align:center;color:#9e978a;padding:25px}.agents{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.agent{padding:13px;background:#171717;border:1px solid #383838;border-radius:8px}.agent b{display:block;color:var(--yellow);font-size:11px;margin-bottom:6px}.agent span{font-size:11px;color:#aaa;line-height:1.5}.footer{padding:32px 0 50px;color:#777;font-size:11px;text-align:center}.smallprint{color:#817a6d;font-size:11px;line-height:1.6;margin-top:12px}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}.two-col{grid-template-columns:1fr}.agents{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.shell{width:min(100% - 24px,1240px)}.topbar-inner{min-height:65px}.brand{font-size:8px}.status{display:none}.hero{padding-top:30px}.grid{gap:8px}.metric{padding:13px}.metric-value{font-size:21px}.panel{padding:14px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.agents{grid-template-columns:1fr}.section-head h2{font-size:9px}}
+</style>
+</head>
+<body>
+<div class="topbar"><div class="shell topbar-inner"><a class="brand" href="index.html">FROGINALS <span>///</span> TRADING HQ</a><div class="top-actions"><span class="status">● LOCAL JOURNAL ACTIVE</span><a class="back" href="index.html">← MAIN SITE</a></div></div></div>
+<main class="shell">
+<section class="hero"><div class="eyebrow">PERSONAL MARKET OPERATIONS</div><h1>TRADING HQ</h1><p class="intro">Track your moves. Review your decisions. Build a cleaner trading history for the FROGINALS agent team. Binance is your first exchange.</p>
+<div class="notice"><b>PRIVATE-DATA NOTE:</b> This first version saves entries only in this browser on this device. It does not connect to your Binance account, and it is not protected by a login. Do not enter API keys or sensitive account credentials here. Cloud sync and secure sign-in must be added before using this across devices.</div></section>
+<section class="grid">
+<div class="metric"><div class="metric-label">BTC market price</div><div class="metric-value" id="btcPrice">Loading…</div><div class="metric-sub" id="priceStatus">Binance public ticker · BTC/USDT</div></div>
+<div class="metric"><div class="metric-label">Net invested</div><div class="metric-value" id="invested">$100.00</div><div class="metric-sub">Recorded buys minus sells</div></div>
+<div class="metric"><div class="metric-label">BTC held</div><div class="metric-value" id="btcHeld">—</div><div class="metric-sub">Only transactions with BTC quantity</div></div>
+<div class="metric"><div class="metric-label">Estimated BTC value</div><div class="metric-value" id="btcValue">—</div><div class="metric-sub">Calculated when quantity is known</div></div>
+</section>
+<div class="section-head"><h2>PORTFOLIO OVERVIEW</h2><span class="muted">Live public BTC/USDT quote</span></div>
+<section class="two-col">
+<div class="panel"><div class="price-line"><div><div class="metric-label">Bitcoin / USDT</div><div class="price-big" id="priceBig">—</div></div><span class="pill" id="marketBadge">MARKET FEED</span></div><div class="chart-wrap" id="chartNote">Live price snapshot. Historical chart integration can be added in the next stage.</div><div class="smallprint">Market price is indicative only and may differ from your Binance execution price, fees, or local currency conversion.</div></div>
+<div class="panel"><h3>FIRST RECORDED MOVE</h3><div class="metric-label">November 14, 2026 · Binance</div><div class="price-big green">$100.00</div><p class="muted">BTC purchase · Spot/futures type not confirmed yet</p><div class="smallprint">Your $100 purchase is preloaded as a journal note. Add the exact BTC quantity from your Binance order history to calculate holdings and performance accurately.</div></div>
+</section>
+<div class="section-head"><h2>ADD A TRANSACTION</h2><span class="muted">Manual entry · Binance</span></div>
+<section class="panel">
+<form id="tradeForm"><div class="form-grid">
+<div class="field"><label for="side">TRANSACTION TYPE</label><select id="side"><option value="BUY">BUY</option><option value="SELL">SELL</option></select></div>
+<div class="field"><label for="market">ASSET</label><select id="market"><option value="BTC">BTC / Bitcoin</option><option value="ETH">ETH / Ethereum</option><option value="DOGE">DOGE / Dogecoin</option><option value="PEPE">PEPE</option></select></div>
+<div class="field"><label for="quoteAmount">TOTAL VALUE (USD)</label><input id="quoteAmount" type="number" min="0" step="0.01" placeholder="e.g. 100"></div>
+<div class="field"><label for="quantity">QUANTITY (COIN)</label><input id="quantity" type="number" min="0" step="0.00000001" placeholder="Exact filled quantity"></div>
+<div class="field"><label for="executionPrice">EXECUTION PRICE (USD)</label><input id="executionPrice" type="number" min="0" step="0.01" placeholder="Price per coin"></div>
+<div class="field"><label for="tradeDate">DATE & TIME</label><input id="tradeDate" type="datetime-local" required></div>
+<div class="field"><label for="fee">FEE (USD)</label><input id="fee" type="number" min="0" step="0.0001" placeholder="Optional"></div>
+<div class="field"><label for="exchange">EXCHANGE</label><select id="exchange"><option>Binance</option><option>Other / Manual</option></select></div>
+<div class="field full"><label for="reason">WHY DID YOU MAKE THIS MOVE? (OPTIONAL)</label><textarea id="reason" placeholder="Your setup, thesis, market conditions, or what you want the agents to review…"></textarea></div>
+</div><div class="actions"><button class="btn orange-btn" type="submit">+ SAVE TRANSACTION</button><button class="btn secondary" type="reset">CLEAR FORM</button></div></form>
+</section>
+<div class="section-head"><h2>TRADE JOURNAL</h2><div class="actions" style="margin:0"><button class="btn secondary" id="exportCsv" type="button">EXPORT CSV</button><button class="btn secondary" id="clearJournal" type="button">CLEAR JOURNAL</button></div></div>
+<section class="panel"><div class="table-wrap"><table><thead><tr><th>Date</th><th>Side</th><th>Asset</th><th>Value</th><th>Quantity</th><th>Price</th><th>Exchange</th><th></th></tr></thead><tbody id="tradeRows"></tbody></table></div><div class="smallprint">The preloaded $100 entry is an amount-only record. It is not counted as confirmed BTC quantity until you edit/add the exact fill from Binance.</div></section>
+<div class="section-head"><h2>AI INTELLIGENCE ROOM</h2><span class="muted">Analysis workspace preview</span></div>
+<section class="panel"><h3>FROGINALS AGENT TEAM</h3><div class="agents">
+<div class="agent"><b>SWAMP SCOUT</b><span>Market research and macro context</span></div><div class="agent"><b>DEGEN WATCHER</b><span>Momentum, volatility and market signals</span></div><div class="agent"><b>RISK COMMANDER</b><span>Exposure, position sizing and downside review</span></div><div class="agent"><b>CHART MASTER</b><span>Technical levels and chart structure</span></div><div class="agent"><b>QUANT FROG</b><span>Trade statistics and pattern analysis</span></div><div class="agent"><b>COMMANDER FROG</b><span>Combines reports into a review brief</span></div>
+</div><p class="smallprint">These are dashboard roles, not active automated agents yet. This page currently stores your journal locally; agent analysis, secure database storage and Binance read-only sync are separate integration steps. Never grant withdrawal permissions to an exchange API key.</p></section>
+</main><footer class="footer shell">FROGINALS TRADING HQ · LOG THE MOVE. LEARN THE PATTERN. MANAGE THE RISK.</footer>
+<script>
+(function(){
+const KEY='froginalsTradingHQ.v1';
+const $=id=>document.getElementById(id);
+let trades=[];
+try{trades=JSON.parse(localStorage.getItem(KEY)||'[]')}catch(e){trades=[]}
+if(!Array.isArray(trades))trades=[];
+if(!trades.some(t=>t.seed==='first-btc-100')){
+ trades.unshift({id:'seed-first-btc-100',seed:'first-btc-100',side:'BUY',asset:'BTC',value:100,quantity:null,price:null,fee:0,date:'2026-11-14T09:00',exchange:'Binance',reason:'First BTC purchase recorded from user confirmation. Exact fill details still needed.'});
+}
+function save(){localStorage.setItem(KEY,JSON.stringify(trades));render()}
+function money(n){return Number.isFinite(n)?n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:2}):'—'}
+function render(){
+ const btc=trades.filter(t=>t.asset==='BTC'&&Number(t.quantity)>0);
+ const qty=btc.reduce((s,t)=>s+(t.side==='BUY'?1:-1)*Number(t.quantity),0);
+ const invested=trades.reduce((s,t)=>s+(t.side==='BUY'?1:-1)*Number(t.value||0),0);
+ $('invested').textContent=money(invested);
+ $('btcHeld').textContent=qty>0?qty.toFixed(8)+' BTC':'—';
+ $('btcValue').textContent=qty>0&&window.btcQuote?money(qty*window.btcQuote):'—';
+ $('tradeRows').innerHTML=trades.length?trades.map(t=>'<tr><td>'+escapeHtml((t.date||'').replace('T',' '))+'</td><td><strong class="'+(t.side==='BUY'?'green':'orange')+'">'+t.side+'</strong></td><td>'+escapeHtml(t.asset)+'</td><td>'+money(Number(t.value||0))+'</td><td>'+(Number(t.quantity)>0?Number(t.quantity).toFixed(8):'Pending')+'</td><td>'+(Number(t.price)>0?money(Number(t.price)):'—')+'</td><td>'+escapeHtml(t.exchange||'Manual')+'</td><td>'+(t.seed?'':'<button class="btn secondary" data-delete="'+t.id+'" type="button">Delete</button>')+'</td></tr>').join(''):'<tr><td colspan="8" class="empty">No transactions recorded yet.</td></tr>';
+}
+function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function localDate(){const d=new Date();d.setMinutes(d.getMinutes()-d.getTimezoneOffset());return d.toISOString().slice(0,16)}
+$('tradeDate').value=localDate();
+$('tradeForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const t={id:Date.now().toString(),side:$('side').value,asset:$('market').value,value:Number($('quoteAmount').value)||0,quantity:Number($('quantity').value)||null,price:Number($('executionPrice').value)||null,date:$('tradeDate').value,fee:Number($('fee').value)||0,exchange:$('exchange').value,reason:$('reason').value.trim()};
+ if(t.value<=0&&(!t.quantity||!t.price)){alert('Enter a total value, or enter both quantity and execution price.');return}
+ if(!t.value&&t.quantity&&t.price)t.value=t.quantity*t.price;
+ trades.push(t);save();e.target.reset();$('tradeDate').value=localDate();
+});
+$('tradeRows').addEventListener('click',e=>{const id=e.target.dataset.delete;if(!id)return;if(confirm('Delete this journal entry?')){trades=trades.filter(t=>t.id!==id);save()}});
+$('clearJournal').addEventListener('click',()=>{if(confirm('Clear all locally saved transactions, including the starter $100 note?')){trades=[];save()}});
+$('exportCsv').addEventListener('click',()=>{
+ const rows=[['date','side','asset','value_usd','quantity','execution_price_usd','fee_usd','exchange','reason'],...trades.map(t=>[t.date,t.side,t.asset,t.value,t.quantity??'',t.price??'',t.fee,t.exchange,t.reason||''])];
+ const csv=rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\n');
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='froginals-trading-journal.csv';a.click();URL.revokeObjectURL(a.href);
+});
+async function loadPrice(){
+ try{const r=await fetch('https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT');if(!r.ok)throw new Error('feed unavailable');const j=await r.json();const p=Number(j.price);if(!p)throw new Error('invalid quote');window.btcQuote=p;$('btcPrice').textContent=money(p);$('priceBig').textContent=money(p);$('priceStatus').textContent='Updated '+new Date().toLocaleTimeString();$('marketBadge').textContent='LIVE FEED';$('btcValue').textContent=(trades.filter(t=>t.asset==='BTC'&&Number(t.quantity)>0).reduce((s,t)=>s+(t.side==='BUY'?1:-1)*Number(t.quantity),0)>0)?money(trades.filter(t=>t.asset==='BTC'&&Number(t.quantity)>0).reduce((s,t)=>s+(t.side==='BUY'?1:-1)*Number(t.quantity),0)*p):'—';}
+ catch(e){$('btcPrice').textContent='Unavailable';$('priceBig').textContent='—';$('priceStatus').textContent='Could not reach Binance public feed';$('marketBadge').textContent='OFFLINE'}
+}
+render();loadPrice();setInterval(loadPrice,60000);
+})();
+</script>
+</body></html>
