@@ -368,6 +368,7 @@ footer{margin-top:80px;padding:30px 20px;text-align:center;background:#050f1d;bo
 .holder-discount .discount-tiers{display:flex;flex-wrap:wrap;align-items:stretch;gap:8px;margin-top:12px}
 .holder-discount .discount-tiers span{display:inline-flex;align-items:center;justify-content:center;padding:7px 9px;background:#fff;border:1px solid #17130f;border-radius:5px;color:#171717!important;font-size:11px;font-weight:800;line-height:1.4;white-space:nowrap}
 
+.cart-actions{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 22px}.cart-add{flex:1;min-width:180px;padding:14px 16px;background:#ffd447;color:#171717;border:3px solid #171717;box-shadow:4px 4px #171717;font-weight:1000;letter-spacing:.5px}.cart-add:hover{transform:translate(2px,2px);box-shadow:2px 2px #171717}.cart-view{display:inline-flex;align-items:center;justify-content:center;padding:12px 14px;border:3px solid #171717;color:#171717;text-decoration:none;font-size:12px;font-weight:900;background:#fff5df}@media(max-width:480px){.cart-actions{flex-direction:column}.cart-add,.cart-view{width:100%}}
 </style>
   <!-- Google Tag Manager -->
   <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
@@ -412,6 +413,7 @@ src="https://www.facebook.com/tr?id=879534858555420&ev=PageView&noscript=1"
   <nav class="header-actions" aria-label="Main navigation">
     <a class="products-tab" href="shop.html" aria-current="page">PRODUCTS</a>
     <a class="back-link" href="shop.html">← Back to store</a>
+    <a class="back-link" href="cart.html">🛒 CART</a>
   </nav>
 </header>
 
@@ -486,6 +488,7 @@ src="https://www.facebook.com/tr?id=879534858555420&ev=PageView&noscript=1"
           <option value="1">1 shirt</option><option value="2">2 shirts</option><option value="3">3 shirts</option><option value="4">4 shirts</option><option value="5">5 shirts</option>
         </select>
       </div>
+      <div class="cart-actions"><button class="cart-add" id="addToCartButton" type="button">🛒 ADD TO CART</button><a class="cart-view" href="cart.html">VIEW CART</a></div>
       <div class="checkout-panel">
         <h2>4. Shipping address</h2>
         <p class="shipping-note">Printful calculates live delivery rates for your destination and selected shirt.</p>
@@ -585,6 +588,21 @@ function updateProduct(){
  availabilityEl.textContent="Available sizes: "+[...new Set(colorVariants.map(v=>String(v.size)))].join(", ")+".";
  renderGallery();clearCheckout();
 }
+function addCurrentToCart(){
+ const current=variant();if(!current){notice("Choose an available shirt option first.");return}
+ const key="froginals_cart_v1";let items=[];try{items=JSON.parse(localStorage.getItem(key)||"[]");if(!Array.isArray(items))items=[]}catch(_){items=[]}
+ const variantId=String(current.id),quantity=Number(quantityEl.value),externalId=productContentId(current);
+ let existing=items.find(item=>String(item.variantId)===variantId);
+ if(existing)existing.quantity=Math.min(5,Number(existing.quantity||0)+quantity);
+ else items.push({variantId,externalId,productId:"483655251",name:"FROGINALS GOOD MATE Shirt",option:selectedColor+" / "+selectedSize,quantity:Math.min(5,quantity),price:Number(current.retail_price||current.price||0),image:$("productImage").src||""});
+ if(items.length>5){notice("Your cart can hold up to 5 different product options. Remove an item before adding another.");return}
+ try{localStorage.setItem(key,JSON.stringify(items))}catch(_){notice("Your browser could not save the cart. Check your storage settings.");return}
+ pixelTrack("AddToCart",{content_ids:externalId?[externalId]:[],content_type:"product",content_name:"FROGINALS GOOD MATE Shirt",value:Number(current.retail_price||current.price||0)*quantity,currency:"USD",num_items:quantity});
+ notice("Added to your swamp cart! 🐸 Your selected colour and size are saved.");
+ const button=$("addToCartButton");button.textContent="✓ ADDED TO CART";setTimeout(()=>{button.textContent="🛒 ADD TO CART"},1800);
+}
+$("addToCartButton").addEventListener("click",addCurrentToCart);
+
 async function loadProduct(){
  try{
   const response=await fetch("/api/printful-products?resource=variants&product_id=483655251",{cache:"no-store"});
@@ -675,6 +693,7 @@ $("sizeOptions").addEventListener("click",e=>{const b=e.target.closest("[data-si
 quantityEl.addEventListener("change",updateProduct);
 calculateButton.addEventListener("click",calcShipping);
 shippingMethod.addEventListener("change",()=>{paypalContainer.innerHTML="";paypalRenderedFor="";updateTotal();renderPayPal()});
+$("addToCartButton").addEventListener("click",addCurrentToCart);
 loadProduct();
 </script>
 </body>
