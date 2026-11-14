@@ -2,7 +2,24 @@
 <html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#071426"><title>Buy FROGINALS Merch</title><link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;600;700;800&display=swap" rel="stylesheet">
 <style>
 :root{--bg:#071426;--panel:#102945;--orange:#ff7900;--yellow:#ffd447;--muted:#a8bad0;--line:rgba(153,190,230,.2)}*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#f3f7ff;font-family:"Space Grotesk",sans-serif}.top{padding:12px 5%;background:#050f1d;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:center}.brand{font:10px/1.7 "Press Start 2P";color:var(--yellow);text-decoration:none}.top a:last-child{color:var(--yellow);font-weight:800;text-decoration:none}main{width:min(1100px,92%);margin:42px auto;display:grid;grid-template-columns:1fr 1fr;gap:36px}.visual,.panel{background:linear-gradient(145deg,#102945,#0b1d32);border:1px solid var(--line);border-radius:16px;padding:24px}.visual{display:grid;align-content:start;gap:15px}.visual img{width:100%;max-height:570px;object-fit:contain;border-radius:10px;background:#0a1b30}.visual .thumb{color:var(--muted);font-size:12px}.gallery-thumbs{display:flex;gap:9px;flex-wrap:wrap}.gallery-thumb{width:68px;height:68px;padding:4px;border:1px solid var(--line);border-radius:8px;background:#091a2c;cursor:pointer}.gallery-thumb.active{border:2px solid var(--yellow)}.gallery-thumb img{width:100%;height:100%;object-fit:contain}.option-row{display:grid;grid-template-columns:1fr 1fr;gap:12px}.option-row .field{margin:18px 0}.variant-note{font-size:11px;color:var(--muted);margin-top:7px}.eyebrow{font:9px/2 "Press Start 2P";color:var(--orange)}h1{font:clamp(20px,3vw,34px)/1.5 "Press Start 2P";margin:10px 0}p{color:var(--muted);line-height:1.7}.price{font-size:30px;font-weight:900;color:var(--yellow);margin:16px 0}.field{margin:18px 0}.field label{display:block;color:#c6d6e8;font-size:11px;font-weight:800;text-transform:uppercase;letter-spacing:.7px;margin-bottom:8px}.field select,.field input{width:100%;padding:13px;background:#08182a;color:white;border:1px solid var(--line);border-radius:7px;font:inherit}.grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}.action{width:100%;padding:15px;background:var(--orange);color:#171717;border:2px solid #171717;border-radius:7px;font:9px/1.7 "Press Start 2P";cursor:pointer}.action:disabled{opacity:.55;cursor:wait}.notice{display:none;padding:14px;margin-top:14px;border:1px solid rgba(255,212,71,.35);border-radius:8px;color:#ffe2a0;line-height:1.6;overflow-wrap:anywhere}.notice.show{display:block}.results{display:none;margin-top:16px}.results.show{display:block}.total{white-space:pre-line;padding:13px;background:#091a2c;border:1px solid var(--line);border-radius:8px;line-height:1.8;margin:12px 0}#paypal-button-container{margin-top:16px}.back{display:inline-block;margin-top:20px;color:var(--yellow);font-weight:800;text-decoration:none}@media(max-width:760px){main{grid-template-columns:1fr;margin:22px auto}.visual,.panel{padding:17px}}
-</style></head><body><header class="top"><a class="brand" href="shop.html">🐸 FROGINALS MERCH</a><a href="shop.html">← BACK TO STORE</a></header>
+</style><!-- Meta Pixel Code — FROGINALS -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;t.src=v;
+s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}
+(window,document,'script','https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '879534858555420');
+fbq('track', 'PageView');
+</script>
+<!-- End Meta Pixel Code -->
+</head><body>
+<noscript><img height="1" width="1" style="display:none" alt=""
+src="https://www.facebook.com/tr?id=879534858555420&ev=PageView&noscript=1"
+/></noscript>
+<header class="top"><a class="brand" href="shop.html">🐸 FROGINALS MERCH</a><a href="shop.html">← BACK TO STORE</a></header>
 <main><section class="visual"><img id="productImage" alt="FROGINALS product preview"><div class="gallery-thumbs" id="galleryThumbs" aria-label="Product images"></div><div class="thumb" id="imageCaption">Official Printful product preview</div></section><section class="panel"><div class="eyebrow">THE FROGINAL SWAMP COLLECTION</div><h1 id="productName">LOADING PRODUCT…</h1><p id="productDescription">Choose your available design option and size.</p><div class="price" id="price">—</div>
 <div id="variantControls"><div class="field"><label for="variant">Choose product option</label><select id="variant"><option>Loading available variants…</option></select></div></div><div class="field"><label for="quantity">Quantity</label><select id="quantity"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div>
 <h2 style="font-size:15px">Shipping details</h2><p>Printful calculates live shipping for your address and selected product.</p>
@@ -12,7 +29,7 @@
 const $=id=>document.getElementById(id);
 const params=new URLSearchParams(location.search);
 const productId=params.get("product_id");
-let product=null,variants=[],rates=[],paypalPromise=null,paypalFor="",selectedVariantId="";
+let product=null,variants=[],rates=[],paypalPromise=null,paypalFor="",selectedVariantId="",activeCheckoutMeta=null,trackedPurchaseOrder="",lastViewedVariantId="";
 const colorSelect=document.createElement("select");
 const sizeSelect=document.createElement("select");
 const variantSelect=document.createElement("select");
@@ -22,6 +39,14 @@ const fallbackField=document.createElement("div");
 let hasColor=false,hasSize=false;
 
 function note(t){$("notice").textContent=t;$("notice").classList.add("show")}
+function pixelTrack(name,params,options){if(typeof window.fbq==="function")window.fbq("track",name,params||{},options||{})}
+function productContentId(v){return String(v&&(v.external_id||v.externalId||v.id)||"")}
+function trackProductView(){
+  const v=selected();if(!v)return;
+  const id=productContentId(v);if(!id||id===lastViewedVariantId)return;
+  lastViewedVariantId=id;
+  pixelTrack("ViewContent",{content_ids:[id],content_type:"product",content_name:$("productName").textContent||"FROGINALS product",value:price(),currency:"USD"});
+}
 function selected(){return variants.find(v=>String(v.id)===String(selectedVariantId))||variants[0]||null}
 function price(){const v=selected();return v?Number(v.retail_price||v.price||0):0}
 function optionValue(v,key){
@@ -59,6 +84,7 @@ function resetCheckout(){
 function updatePrice(){
   const p=price()*Number($("quantity").value);
   $("price").textContent=p?"$"+p.toFixed(2)+" USD":"Price unavailable";
+  trackProductView();
   resetCheckout();
 }
 function recipient(){return{name:$("shipName").value.trim(),email:$("shipEmail").value.trim(),address1:$("shipAddress1").value.trim(),address2:$("shipAddress2").value.trim(),city:$("shipCity").value.trim(),state_code:$("shipState").value.trim().toUpperCase(),zip:$("shipZip").value.trim(),country_code:$("shipCountry").value.trim().toUpperCase(),phone:$("shipPhone").value.trim()}}
@@ -224,12 +250,20 @@ async function renderPayPal(){
         const r=await fetch("/api/create-order",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({variantId:v.id,quantity:Number($("quantity").value),recipient:recipient(),shippingId:$("shippingMethod").value})});
         const d=await r.json();if(!r.ok||!d.id)throw Error(d.error||"Could not create PayPal order.");
         $("total").textContent="Product subtotal: $"+(price()*Number($("quantity").value)).toFixed(2)+" USD\nConfirmed shipping: $"+Number(d.shipping).toFixed(2)+" USD\nPayPal total: $"+Number(d.total).toFixed(2)+" USD";
+        const v=selected();
+        activeCheckoutMeta={contentId:productContentId(v),contentName:$("productName").textContent||"FROGINALS product",value:Number(d.total||0),quantity:Number($("quantity").value)};
+        pixelTrack("InitiateCheckout",{content_ids:activeCheckoutMeta.contentId?[activeCheckoutMeta.contentId]:[],content_type:"product",content_name:activeCheckoutMeta.contentName,value:activeCheckoutMeta.value,currency:"USD",num_items:activeCheckoutMeta.quantity});
         return d.id;
       },
       onApprove:async data=>{
         note("Payment approved. Confirming payment and sending your order to Printful…");
         const r=await fetch("/api/capture-order",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({orderID:data.orderID})});
         const d=await r.json();if(!r.ok&&r.status!==202)throw Error(d.error||"Payment confirmation needs attention.");
+        if(d.orderID&&d.orderID!==trackedPurchaseOrder){
+          const meta=activeCheckoutMeta||{contentId:productContentId(selected()),contentName:$("productName").textContent||"FROGINALS product",value:0,quantity:Number($("quantity").value)};
+          pixelTrack("Purchase",{content_ids:meta.contentId?[meta.contentId]:[],content_type:"product",content_name:meta.contentName,value:meta.value,currency:"USD",num_items:meta.quantity},{eventID:"paypal_"+d.orderID});
+          trackedPurchaseOrder=d.orderID;
+        }
         if(d.fulfillment==="PENDING_RETRY"||d.fulfillment==="PENDING_CONFIGURATION"){note("Payment complete, but Printful fulfillment needs attention. Contact FROGINALS support with PayPal order "+d.orderID+".");return}
         note("Payment successful! 🐸 Your order has been sent to Printful. Order: "+d.orderID+(d.printfulOrderID?" | Printful: "+d.printfulOrderID:""));
       },
