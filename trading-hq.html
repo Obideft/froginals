@@ -31,6 +31,11 @@
 <div class="panel"><div class="price-line"><div><div class="metric-label">Bitcoin / USDT</div><div class="price-big" id="priceBig">—</div></div><span class="pill" id="marketBadge">MARKET FEED</span></div><div class="chart-wrap" id="chartNote">Live price snapshot. Historical chart integration can be added in the next stage.</div><div class="smallprint">Market price is indicative only and may differ from your Binance execution price, fees, or local currency conversion.</div></div>
 <div class="panel"><h3>FIRST RECORDED MOVE</h3><div class="metric-label">November 14, 2026 · Binance</div><div class="price-big green">$100.00</div><p class="muted">BTC purchase · Spot/futures type not confirmed yet</p><div class="smallprint">Your $100 purchase is preloaded as a journal note. Add the exact BTC quantity from your Binance order history to calculate holdings and performance accurately.</div></div>
 </section>
+
+<div class="section-head"><h2>BUY / SELL TIMELINE</h2><span class="muted"><span style="color:#53ff89">● BUY</span> &nbsp; <span style="color:#ff6b6b">● SELL</span></span></div>
+<section class="panel"><div class="chart-wrap" style="height:auto;min-height:250px;display:block;padding:12px"><canvas id="tradeChart" height="220" style="width:100%;height:220px;display:block"></canvas><div class="smallprint">Green dots mark buys; red dots mark sells. Each dot is positioned by transaction date and execution price.</div></div></section>
+<div class="section-head"><h2>AI LEARNING NOTES</h2><span class="muted">Your reasoning, organized for future agent reviews</span></div>
+<section class="panel"><div id="learningNotes" class="muted">Add a reason when recording a trade. Your notes will appear here for review.</div></section>
 <div class="section-head"><h2>ADD A TRANSACTION</h2><span class="muted">Manual entry · Binance</span></div>
 <section class="panel">
 <form id="tradeForm"><div class="form-grid">
@@ -64,7 +69,60 @@ if(!trades.some(t=>t.seed==='first-btc-100')){
 }
 function save(){localStorage.setItem(KEY,JSON.stringify(trades));render()}
 function money(n){return Number.isFinite(n)?n.toLocaleString('en-US',{style:'currency',currency:'USD',maximumFractionDigits:2}):'—'}
-function render(){
+
+function drawTradeChart(){
+ const canvas=$('tradeChart');if(!canvas)return;
+ const ctx=canvas.getContext('2d');const w=Math.max(300,canvas.getBoundingClientRect().width);const h=220;const dpr=window.devicePixelRatio||1;
+ canvas.width=w*dpr;canvas.height=h*dpr;ctx.setTransform(dpr,0,0,dpr,0,0);ctx.clearRect(0,0,w,h);
+ const pts=trades.filter(t=>t.date&&Number(t.price)>0).map(t=>({t,x:new Date(t.date).getTime(),y:Number(t.price)})).filter(p=>Number.isFinite(p.x)&&Number.isFinite(p.y));
+ if(!pts.length){ctx.fillStyle='#a9a397';ctx.font='12px Space Grotesk';ctx.textAlign='center';ctx.fillText('Add an execution price to a buy or sell to place its dot on the chart.',w/2,108);return}
+ const pad={l:65,r:18,t:22,b:35};const minX=Math.min(...pts.map(p=>p.x)),maxX=Math.max(...pts.map(p=>p.x));let minY=Math.min(...pts.map(p=>p.y)),maxY=Math.max(...pts.map(p=>p.y));if(minY===maxY){minY*=.99;maxY*=1.01}
+ const px=p=>pad.l+(p.x-minX)/Math.max(1,maxX-minX)*(w-pad.l-pad.r);
+ const py=p=>pad.t+(maxY-p.y)/(maxY-minY)*(h-pad.t-pad.b);
+ ctx.strokeStyle='#3b3b3b';ctx.lineWidth=1;ctx.fillStyle='#aaa';ctx.font='10px Space Grotesk';ctx.textAlign='right';
+ for(let i=0;i<4;i++){const yy=pad.t+i*(h-pad.t-pad.b)/3;ctx.beginPath();ctx.moveTo(pad.l,yy);ctx.lineTo(w-pad.r,yy);ctx.stroke();ctx.fillText('
+ const btc=trades.filter(t=>t.asset==='BTC'&&Number(t.quantity)>0);
+ const qty=btc.reduce((s,t)=>s+(t.side==='BUY'?1:-1)*Number(t.quantity),0);
+ const invested=trades.reduce((s,t)=>s+(t.side==='BUY'?1:-1)*Number(t.value||0),0);
+ $('invested').textContent=money(invested);
+ $('btcHeld').textContent=qty>0?qty.toFixed(8)+' BTC':'—';
+ $('btcValue').textContent=qty>0&&window.btcQuote?money(qty*window.btcQuote):'—';
+ $('tradeRows').innerHTML=trades.length?trades.map(t=>'<tr><td>'+escapeHtml((t.date||'').replace('T',' '))+'</td><td><strong class="'+(t.side==='BUY'?'green':'orange')+'">'+t.side+'</strong></td><td>'+escapeHtml(t.asset)+'</td><td>'+money(Number(t.value||0))+'</td><td>'+(Number(t.quantity)>0?Number(t.quantity).toFixed(8):'Pending')+'</td><td>'+(Number(t.price)>0?money(Number(t.price)):'—')+'</td><td>'+escapeHtml(t.exchange||'Manual')+'</td><td>'+(t.seed?'':'<button class="btn secondary" data-delete="'+t.id+'" type="button">Delete</button>')+'</td></tr>').join(''):'<tr><td colspan="8" class="empty">No transactions recorded yet.</td></tr>';
+}
+function escapeHtml(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function localDate(){const d=new Date();d.setMinutes(d.getMinutes()-d.getTimezoneOffset());return d.toISOString().slice(0,16)}
+$('tradeDate').value=localDate();
+$('tradeForm').addEventListener('submit',e=>{
+ e.preventDefault();
+ const t={id:Date.now().toString(),side:$('side').value,asset:$('market').value,value:Number($('quoteAmount').value)||0,quantity:Number($('quantity').value)||null,price:Number($('executionPrice').value)||null,date:$('tradeDate').value,fee:Number($('fee').value)||0,exchange:$('exchange').value,reason:$('reason').value.trim()};
+ if(t.value<=0&&(!t.quantity||!t.price)){alert('Enter a total value, or enter both quantity and execution price.');return}
+ if(!t.value&&t.quantity&&t.price)t.value=t.quantity*t.price;
+ trades.push(t);save();e.target.reset();$('tradeDate').value=localDate();
+});
+$('tradeRows').addEventListener('click',e=>{const id=e.target.dataset.delete;if(!id)return;if(confirm('Delete this journal entry?')){trades=trades.filter(t=>t.id!==id);save()}});
+$('clearJournal').addEventListener('click',()=>{if(confirm('Clear all locally saved transactions, including the starter $100 note?')){trades=[];save()}});
+$('exportCsv').addEventListener('click',()=>{
+ const rows=[['date','side','asset','value_usd','quantity','execution_price_usd','fee_usd','exchange','reason'],...trades.map(t=>[t.date,t.side,t.asset,t.value,t.quantity??'',t.price??'',t.fee,t.exchange,t.reason||''])];
+ const csv=rows.map(r=>r.map(v=>'"'+String(v??'').replace(/"/g,'""')+'"').join(',')).join('\n');
+ const a=document.createElement('a');a.href=URL.createObjectURL(new Blob([csv],{type:'text/csv'}));a.download='froginals-trading-journal.csv';a.click();URL.revokeObjectURL(a.href);
+});
+async function loadPrice(){
+ try{const r=await fetch('https://api.binance.com/api/v3/ticker/price?symbol=BTCUSDT');if(!r.ok)throw new Error('feed unavailable');const j=await r.json();const p=Number(j.price);if(!p)throw new Error('invalid quote');window.btcQuote=p;$('btcPrice').textContent=money(p);$('priceBig').textContent=money(p);$('priceStatus').textContent='Updated '+new Date().toLocaleTimeString();$('marketBadge').textContent='LIVE FEED';$('btcValue').textContent=(trades.filter(t=>t.asset==='BTC'&&Number(t.quantity)>0).reduce((s,t)=>s+(t.side==='BUY'?1:-1)*Number(t.quantity),0)>0)?money(trades.filter(t=>t.asset==='BTC'&&Number(t.quantity)>0).reduce((s,t)=>s+(t.side==='BUY'?1:-1)*Number(t.quantity),0)*p):'—';}
+ catch(e){$('btcPrice').textContent='Unavailable';$('priceBig').textContent='—';$('priceStatus').textContent='Could not reach Binance public feed';$('marketBadge').textContent='OFFLINE'}
+}
+render();loadPrice();setInterval(loadPrice,60000);window.addEventListener('resize',drawTradeChart);
+})();
+</script>
+</body></html>+(maxY-i*(maxY-minY)/3).toLocaleString('en-US',{maximumFractionDigits:2}),pad.l-8,yy+3)}
+ pts.sort((a,b)=>a.x-b.x).forEach(p=>{const xx=px(p),yy=py(p),buy=p.t.side==='BUY';ctx.beginPath();ctx.arc(xx,yy,6,0,Math.PI*2);ctx.fillStyle=buy?'#53ff89':'#ff6b6b';ctx.fill();ctx.lineWidth=2;ctx.strokeStyle='#171717';ctx.stroke();ctx.font='bold 10px Space Grotesk';ctx.textAlign='left';ctx.fillStyle=buy?'#53ff89':'#ff6b6b';ctx.fillText((buy?'BUY ':'SELL ')+new Date(p.x).toLocaleDateString(),Math.min(xx+9,w-95),Math.max(yy-10,12))});
+ ctx.textAlign='center';ctx.fillStyle='#aaa';ctx.fillText(new Date(minX).toLocaleDateString(),pad.l,h-10);if(maxX!==minX)ctx.fillText(new Date(maxX).toLocaleDateString(),w-pad.r,h-10);
+}
+function renderLearningNotes(){
+ const el=$('learningNotes');if(!el)return;
+ const notes=trades.filter(t=>String(t.reason||'').trim());
+ el.innerHTML=notes.length?notes.map(t=>'<div style="padding:12px 0;border-bottom:1px solid #383838"><b style="color:'+(t.side==='BUY'?'#53ff89':'#ff6b6b')+'">'+escapeHtml(t.side)+' · '+escapeHtml(t.asset)+'</b><div style="font-size:11px;color:#999;margin:4px 0">'+escapeHtml((t.date||'').replace('T',' '))+' · '+escapeHtml(t.exchange||'Manual')+'</div><div style="color:#eee;line-height:1.6;font-size:13px">'+escapeHtml(t.reason)+'</div></div>').join(''):'No trade reasoning recorded yet. Add your thesis in the form above.';
+}
+\nfunction render(){
  const btc=trades.filter(t=>t.asset==='BTC'&&Number(t.quantity)>0);
  const qty=btc.reduce((s,t)=>s+(t.side==='BUY'?1:-1)*Number(t.quantity),0);
  const invested=trades.reduce((s,t)=>s+(t.side==='BUY'?1:-1)*Number(t.value||0),0);
