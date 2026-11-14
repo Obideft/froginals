@@ -250,7 +250,6 @@ async function renderPayPal(){
         const r=await fetch("/api/create-order",{method:"POST",headers:{"Content-Type":"application/json"},body:JSON.stringify({variantId:v.id,quantity:Number($("quantity").value),recipient:recipient(),shippingId:$("shippingMethod").value})});
         const d=await r.json();if(!r.ok||!d.id)throw Error(d.error||"Could not create PayPal order.");
         $("total").textContent="Product subtotal: $"+(price()*Number($("quantity").value)).toFixed(2)+" USD\nConfirmed shipping: $"+Number(d.shipping).toFixed(2)+" USD\nPayPal total: $"+Number(d.total).toFixed(2)+" USD";
-        const v=selected();
         activeCheckoutMeta={contentId:productContentId(v),contentName:$("productName").textContent||"FROGINALS product",value:Number(d.total||0),quantity:Number($("quantity").value)};
         pixelTrack("InitiateCheckout",{content_ids:activeCheckoutMeta.contentId?[activeCheckoutMeta.contentId]:[],content_type:"product",content_name:activeCheckoutMeta.contentName,value:activeCheckoutMeta.value,currency:"USD",num_items:activeCheckoutMeta.quantity});
         return d.id;
