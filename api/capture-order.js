@@ -40,6 +40,21 @@ async function readJson(response) {
   try { return await response.json(); } catch (_) { return {}; }
 }
 
+
+async function resolveCapturedVariant(variantId) {
+  const known = VARIANTS[variantId];
+  if (known) return String(known);
+  const token = process.env.PRINTFUL_API_KEY;
+  if (!token) throw new Error("Printful fulfillment is not configured.");
+  const response = await fetch("https://api.printful.com/sync/variant/" + encodeURIComponent(variantId), {
+    headers: { Authorization: "Bearer " + token }
+  });
+  const data = await readJson(response);
+  const info = data.result && (data.result.sync_variant || data.result);
+  if (!response.ok || !info || !info.external_id) throw new Error("A paid cart item could not be matched to its Printful variant.");
+  return String(info.external_id);
+}
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
@@ -61,19 +76,39 @@ export default async function handler(req, res) {
     }
 
     const unit = order.purchase_units[0];
-    const parts = String(unit.custom_id || "").split(":");
-    const variantId = parts[0];
-    const quantity = Number(parts[1]);
+    const customId = String(unit.custom_id || "");
     let shippingId = "";
-    let externalVariantId = "";
-    try {
-      shippingId = decodeURIComponent(parts[2] || "");
-      externalVariantId = decodeURIComponent(parts[3] || "");
-    } catch (_) {}
-    externalVariantId = externalVariantId || VARIANTS[variantId] || "";
-    if ((!externalVariantId && !/^\d+$/.test(variantId)) ||
-        !Number.isInteger(quantity) || quantity < 1 || quantity > 5 || !shippingId) {
-      return res.status(400).json({ error: "The paid order does not contain valid product details." });
+    let fulfillmentItems = [];
+    if (customId.startsWith("C1~")) {
+      const pieces = customId.split("~");
+      if (pieces.length !== 3) return res.status(400).json({ error: "The paid cart does not contain valid product details." });
+      try { shippingId = decodeURIComponent(pieces[2]); } catch (_) {}
+      const encodedItems = pieces[1].split(",").filter(Boolean);
+      if (!shippingId || encodedItems.length < 1 || encodedItems.length > 5) return res.status(400).json({ error: "The paid cart details are incomplete." });
+      let totalQuantity = 0;
+      for (const entry of encodedItems) {
+        const match = /^(\d{1,20})\.(\d)$/.exec(entry);
+        if (!match) return res.status(400).json({ error: "A paid cart item has invalid details." });
+        const quantity = Number(match[2]);
+        totalQuantity += quantity;
+        if (quantity < 1 || quantity > 5 || totalQuantity > 10) return res.status(400).json({ error: "The paid cart quantity is invalid." });
+        try { fulfillmentItems.push({ external_variant_id: await resolveCapturedVariant(match[1]), quantity }); }
+        catch (error) { console.error("Paid cart variant resolution failed:", error.message); return res.status(202).json({ status: "COMPLETED", fulfillment: "PENDING_RETRY", orderID }); }
+      }
+    } else {
+      const parts = customId.split(":");
+      const variantId = parts[0];
+      const quantity = Number(parts[1]);
+      let externalVariantId = "";
+      try {
+        shippingId = decodeURIComponent(parts[2] || "");
+        externalVariantId = decodeURIComponent(parts[3] || "");
+      } catch (_) {}
+      externalVariantId = externalVariantId || VARIANTS[variantId] || "";
+      if ((!externalVariantId && !/^\d+$/.test(variantId)) || !Number.isInteger(quantity) || quantity < 1 || quantity > 5 || !shippingId) {
+        return res.status(400).json({ error: "The paid order does not contain valid product details." });
+      }
+      fulfillmentItems = [{ external_variant_id: externalVariantId, quantity }];
     }
 
     let capture = order;
@@ -166,7 +201,7 @@ export default async function handler(req, res) {
           ...(email ? { email } : {}),
           ...(phone ? { phone } : {})
         },
-        items: [{ external_variant_id: externalVariantId, quantity }]
+        items: fulfillmentItems
       };
 
       const createResponse = await fetch("https://api.printful.com/orders?confirm=true&update_existing=true", {
