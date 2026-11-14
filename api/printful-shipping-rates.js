@@ -38,6 +38,24 @@ async function getLivePrintfulVariant(variantId, token) {
   return { externalId: String(externalId), price };
 }
 
+
+async function getCartVariants(rawItems, token) {
+  if (!Array.isArray(rawItems) || rawItems.length < 1 || rawItems.length > 5) throw new Error("Your cart must contain between 1 and 5 different products.");
+  const items = [];
+  let totalQuantity = 0;
+  for (const raw of rawItems) {
+    const variantId = String(raw && raw.variantId || "");
+    const quantity = Number(raw && raw.quantity || 1);
+    if (!/^\d{1,20}$/.test(variantId) || !Number.isInteger(quantity) || quantity < 1 || quantity > 5) throw new Error("A cart item has an invalid product option or quantity.");
+    totalQuantity += quantity;
+    if (totalQuantity > 10) throw new Error("Your cart can contain up to 10 items in total.");
+    let variant = VARIANTS[variantId];
+    if (!variant) variant = await getLivePrintfulVariant(variantId, token);
+    items.push({ variantId, quantity, externalId: String(variant.externalId), price: Number(variant.price) });
+  }
+  return items;
+}
+
 export default async function handler(req, res) {
   if (req.method !== "POST") {
     res.setHeader("Allow", "POST");
@@ -51,6 +69,35 @@ export default async function handler(req, res) {
 
   try {
     const body = req.body || {};
+    if (Array.isArray(body.items)) {
+      const raw = body.recipient || {};
+      const recipient = {
+        name: clean(raw.name, 100), address1: clean(raw.address1, 120),
+        address2: clean(raw.address2, 120), city: clean(raw.city, 80),
+        state_code: clean(raw.state_code, 30).toUpperCase(),
+        country_code: clean(raw.country_code, 2).toUpperCase(), zip: clean(raw.zip, 20)
+      };
+      if (!recipient.name || !recipient.address1 || !recipient.city || !/^[A-Z]{2}$/.test(recipient.country_code)) return res.status(400).json({ error: "Enter your name, street address, city and 2-letter country code." });
+      if (["US", "CA", "AU"].includes(recipient.country_code) && !recipient.state_code) return res.status(400).json({ error: "A state or province code is required for this destination." });
+      let cartItems;
+      try { cartItems = await getCartVariants(body.items, token); }
+      catch (error) { return res.status(400).json({ error: error.message || "Your cart contains an unavailable product." }); }
+      const response = await fetch("https://api.printful.com/shipping/rates", {
+        method: "POST", headers: { Authorization: "Bearer " + token, "Content-Type": "application/json" },
+        body: JSON.stringify({ recipient, items: cartItems.map(item => ({ external_variant_id: item.externalId, quantity: item.quantity, value: item.price.toFixed(2) })), currency: "USD", locale: "en_US" })
+      });
+      const data = await response.json();
+      if (!response.ok || !Array.isArray(data.result)) {
+        console.error("Printful cart shipping-rate error:", response.status, data);
+        return res.status(502).json({ error: "Printful could not calculate shipping for your cart and address." });
+      }
+      const rates = data.result.filter(rate => rate && rate.id && Number.isFinite(Number(rate.rate)) && rate.currency === "USD").map(rate => ({
+        id: String(rate.id), name: String(rate.name || rate.id), rate: Number(rate.rate).toFixed(2), currency: "USD",
+        minDeliveryDays: rate.minDeliveryDays || null, maxDeliveryDays: rate.maxDeliveryDays || null
+      }));
+      if (!rates.length) return res.status(422).json({ error: "No USD shipping options are available for this destination." });
+      return res.status(200).json({ rates });
+    }
     const variantId = String(body.variantId || "");
     let variant = VARIANTS[variantId];
     const quantity = Number(body.quantity || 1);
