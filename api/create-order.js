@@ -223,7 +223,6 @@ async function createCartPayPalOrder(body, res) {
         item_total: { currency_code: "USD", value: discountedSubtotal.toFixed(2) },
         shipping: { currency_code: "USD", value: shippingTotal.toFixed(2) }
       }},
-      items: paypalItems,
       shipping: { name: { full_name: recipient.name }, address: {
         address_line_1: recipient.address1, ...(recipient.address2 ? { address_line_2: recipient.address2 } : {}),
         admin_area_2: recipient.city, ...(recipient.state_code ? { admin_area_1: recipient.state_code } : {}),
