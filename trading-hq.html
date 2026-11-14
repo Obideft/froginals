@@ -40,7 +40,7 @@
 <section class="panel">
 <form id="tradeForm"><div class="form-grid">
 <div class="field"><label for="side">TRANSACTION TYPE</label><select id="side"><option value="BUY">BUY</option><option value="SELL">SELL</option></select></div>
-<div class="field"><label for="market">ASSET</label><select id="market"><option value="BTC">BTC / Bitcoin</option><option value="ETH">ETH / Ethereum</option><option value="DOGE">DOGE / Dogecoin</option><option value="PEPE">PEPE</option></select></div>
+<div class="field"><label for="market">ASSET</label><select id="market"><option value="BTC">BTC / Bitcoin</option><option value="ETH">ETH / Ethereum</option><option value="DOGE">DOGE / Dogecoin</option><option value="PEPE">PEPE</option><option value="NVDA">NVDA / NVIDIA</option></select></div>
 <div class="field"><label for="quoteAmount">TOTAL VALUE (USD)</label><input id="quoteAmount" type="number" min="0" step="0.01" placeholder="e.g. 100"></div>
 <div class="field"><label for="quantity">QUANTITY (COIN)</label><input id="quantity" type="number" min="0" step="0.00000001" placeholder="Exact filled quantity"></div>
 <div class="field"><label for="executionPrice">EXECUTION PRICE (USD)</label><input id="executionPrice" type="number" min="0" step="0.01" placeholder="Price per coin"></div>
@@ -120,7 +120,7 @@ render();loadPrice();setInterval(loadPrice,60000);window.addEventListener('resiz
 function renderLearningNotes(){
  const el=$('learningNotes');if(!el)return;
  const notes=trades.filter(t=>String(t.reason||'').trim());
- el.innerHTML=notes.length?notes.map(t=>'<div style="padding:12px 0;border-bottom:1px solid #383838"><b style="color:'+(t.side==='BUY'?'#53ff89':'#ff6b6b')+'">'+escapeHtml(t.side)+' · '+escapeHtml(t.asset)+'</b><div style="font-size:11px;color:#999;margin:4px 0">'+escapeHtml((t.date||'').replace('T',' '))+' · '+escapeHtml(t.exchange||'Manual')+'</div><div style="color:#eee;line-height:1.6;font-size:13px">'+escapeHtml(t.reason)+'</div></div>').join(''):'No trade reasoning recorded yet. Add your thesis in the form above.';
+ el.innerHTML=notes.length?notes.map(t=>'<details style="margin:10px 0;background:#171717;border:1px solid #383838;border-radius:10px;overflow:hidden"><summary style="cursor:pointer;list-style:none;padding:13px;display:flex;align-items:center;gap:10px"><span style="font-size:18px">🗨</span><span style="flex:1"><b style="color:'+(t.side==='BUY'?'#53ff89':'#ff6b6b')+'">'+escapeHtml(t.side)+' · '+escapeHtml(t.asset)+'</b><span style="display:block;font-size:11px;color:#999;margin-top:4px">'+escapeHtml((t.date||'').replace('T',' '))+' · '+escapeHtml(t.exchange||'Manual')+'</span></span><span style="font-size:11px;color:#ffd447">EXPAND ＋</span></summary><div style="padding:0 14px 14px 42px;color:#eee;line-height:1.7;font-size:13px;white-space:pre-wrap">'+escapeHtml(t.reason)+'</div></details>').join(''):'No trade reasoning recorded yet. Add your thesis in the form above.';
 }
 \nfunction render(){
  drawTradeChart();renderLearningNotes();
