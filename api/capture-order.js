@@ -92,8 +92,7 @@ export default async function handler(req, res) {
         const quantity = Number(match[2]);
         totalQuantity += quantity;
         if (quantity < 1 || quantity > 5 || totalQuantity > 10) return res.status(400).json({ error: "The paid cart quantity is invalid." });
-        try { fulfillmentItems.push({ external_variant_id: await resolveCapturedVariant(match[1]), quantity }); }
-        catch (error) { console.error("Paid cart variant resolution failed:", error.message); return res.status(202).json({ status: "COMPLETED", fulfillment: "PENDING_RETRY", orderID }); }
+        fulfillmentItems.push({ variantId: match[1], quantity });
       }
     } else {
       const parts = customId.split(":");
@@ -108,7 +107,7 @@ export default async function handler(req, res) {
       if ((!externalVariantId && !/^\d+$/.test(variantId)) || !Number.isInteger(quantity) || quantity < 1 || quantity > 5 || !shippingId) {
         return res.status(400).json({ error: "The paid order does not contain valid product details." });
       }
-      fulfillmentItems = [{ external_variant_id: externalVariantId, quantity }];
+      fulfillmentItems = [{ variantId, external_variant_id: externalVariantId, quantity }];
     }
 
     let capture = order;
@@ -153,17 +152,15 @@ export default async function handler(req, res) {
       return res.status(202).json({ status: "COMPLETED", fulfillment: "PENDING_CONFIGURATION", orderID });
     }
 
-    if (!externalVariantId) {
-      const variantResponse = await fetch("https://api.printful.com/sync/variant/" + encodeURIComponent(variantId), {
-        headers: { Authorization: "Bearer " + printfulToken }
-      });
-      const variantData = await readJson(variantResponse);
-      const variantInfo = variantData.result && (variantData.result.sync_variant || variantData.result);
-      externalVariantId = variantInfo && variantInfo.external_id ? String(variantInfo.external_id) : "";
-      if (!variantResponse.ok || !externalVariantId) {
-        console.error("Printful variant lookup failed during fulfillment:", variantResponse.status, variantData);
-        return res.status(202).json({ status: "COMPLETED", fulfillment: "PENDING_RETRY", orderID });
+    const printfulItems = [];
+    try {
+      for (const item of fulfillmentItems) {
+        const externalVariantId = item.external_variant_id || await resolveCapturedVariant(item.variantId);
+        printfulItems.push({ external_variant_id: externalVariantId, quantity: item.quantity });
       }
+    } catch (error) {
+      console.error("Paid cart variant resolution failed:", error.message);
+      return res.status(202).json({ status: "COMPLETED", fulfillment: "PENDING_RETRY", orderID });
     }
 
     const externalId = "paypal_" + orderID;
@@ -201,7 +198,7 @@ export default async function handler(req, res) {
           ...(email ? { email } : {}),
           ...(phone ? { phone } : {})
         },
-        items: fulfillmentItems
+        items: printfulItems
       };
 
       const createResponse = await fetch("https://api.printful.com/orders?confirm=true&update_existing=true", {
