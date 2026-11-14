@@ -198,13 +198,11 @@ async function createCartPayPalOrder(body, res) {
   if (!selectedRate) return res.status(409).json({ error: "That shipping option has changed. Please calculate shipping again." });
 
   let subtotal = 0, discountAmount = 0;
-  const paypalItems = items.map(item => {
+  items.forEach(item => {
     const lineSubtotal = item.price * item.quantity;
     const lineDiscount = GOOD_MATE_VARIANTS.has(item.variantId) ? Number((lineSubtotal * discountRate).toFixed(2)) : 0;
     subtotal += lineSubtotal;
     discountAmount += lineDiscount;
-    const unitPrice = Number((item.price * (1 - (GOOD_MATE_VARIANTS.has(item.variantId) ? discountRate : 0))).toFixed(2));
-    return { name: String(item.name || "FROGINALS product").slice(0, 127), quantity: String(item.quantity), unit_amount: { currency_code: "USD", value: unitPrice.toFixed(2) } };
   });
   discountAmount = Number(discountAmount.toFixed(2));
   const discountedSubtotal = Number((subtotal - discountAmount).toFixed(2));
