@@ -157,7 +157,7 @@ src="https://www.facebook.com/tr?id=879534858555420&ev=PageView&noscript=1"
 <div class="topline">🐸 OFFICIAL FROGINALS MERCH • GOOD MATES. GOOD VIBES. • BUILT FOR THE SWAMP 🐸</div>
 <header>
 <a class="logo-link" href="index.html" aria-label="FROGINALS home"><img class="logo-image" id="navLogo" src="images/shop/FROGINAL-STORE-LOGO.png" alt="FROGINAL STORE logo" fetchpriority="high"></a>
-<nav aria-label="Store navigation"><a href="#categories">CATEGORIES</a><a href="#shop">SHOP ALL</a><a href="#collections">COLLECTIONS</a><a class="nav-cta" href="#shop">EXPLORE MERCH ↗</a></nav>
+<nav aria-label="Store navigation"><a href="#categories">CATEGORIES</a><a href="#shop">SHOP ALL</a><a href="#collections">COLLECTIONS</a><a class="nav-cta" href="#shop">EXPLORE MERCH ↗</a><a class="nav-cta" href="cart.html">🛒 CART <span id="shopCartCount">0</span></a></nav>
 </header>
 <section class="hero">
 <img class="hero-bg" src="images/shop/shop-hero-banner.png" alt="" fetchpriority="high">
@@ -232,6 +232,8 @@ src="https://www.facebook.com/tr?id=879534858555420&ev=PageView&noscript=1"
 <section class="newsletter"><div class="eyebrow">DON'T MISS THE NEXT DROP</div><h2>STAY IN THE SWAMP LOOP.</h2><p>Follow the FROGINALS community for new designs, merch announcements and upcoming drops.</p><a href="https://discord.gg/VZT9yENT2" target="_blank" rel="noopener">JOIN THE FROGINALS DISCORD ↗</a></section>
 <footer><div>🐸 FROGINALS MERCH STORE<br>GOOD MATES. GOOD VIBES.</div><div><a href="index.html">HOME</a> &nbsp;·&nbsp; <a href="product.html">GOOD MATE T-SHIRT</a> &nbsp;·&nbsp; <a href="https://discord.gg/VZT9yENT2" target="_blank" rel="noopener">DISCORD</a><br>Product previews marked coming soon are concepts, not available for purchase yet.</div></footer>
 <script>
+function updateShopCartCount(){try{const items=JSON.parse(localStorage.getItem("froginals_cart_v1")||"[]");document.getElementById("shopCartCount").textContent=Array.isArray(items)?items.reduce((n,item)=>n+Number(item.quantity||0),0):0}catch(_){document.getElementById("shopCartCount").textContent="0"}}
+window.addEventListener("storage",updateShopCartCount);updateShopCartCount();
 const grid=document.getElementById("productGrid");
 const filters=[...document.querySelectorAll(".filter")];
 const empty=document.getElementById("emptyState");
