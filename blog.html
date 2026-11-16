@@ -1,181 +1,107 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en-US">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#ff7900">
-  <title>FROGINAL DOGS: More Than a Meme | FROGINALS</title>
-  <meta name="description" content="Discover FROGINALS and FROGINAL DOGS: a community inspired by Dogecoin, internet meme culture, and digital collectibles.">
-  <meta name="robots" content="index, follow, max-image-preview:large">
-  <link rel="canonical" href="https://froginals-nu.vercel.app/blog.html">
-  <link rel="alternate" hreflang="en-US" href="https://froginals-nu.vercel.app/blog.html">
-  <link rel="alternate" hreflang="x-default" href="https://froginals-nu.vercel.app/blog.html">
-  <meta property="og:type" content="article">
-  <meta property="og:locale" content="en_US">
-  <meta property="og:site_name" content="FROGINALS">
-  <meta property="og:title" content="FROGINAL DOGS: More Than a Meme">
-  <meta property="og:description" content="Explore the FROGINALS universe, where Dogecoin culture, internet humor, and community come together.">
-  <meta property="og:url" content="https://froginals-nu.vercel.app/blog.html">
-  <meta property="og:image" content="https://froginals-nu.vercel.app/images/Log01.png">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="FROGINAL DOGS: More Than a Meme">
-  <meta name="twitter:description" content="Discover the FROGINALS universe and its community inspired by Dogecoin culture.">
-  <meta name="twitter:image" content="https://froginals-nu.vercel.app/images/Log01.png">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-  <style>
-    :root{--orange:#ff7900;--ink:#171717;--cream:#fff1d6;--yellow:#ffd447;--green:#c3ff53;--paper:#fffaf0}
-    *{box-sizing:border-box}
-    html{scroll-behavior:smooth}
-    body{margin:0;background:var(--orange);color:var(--ink);font-family:"Space Grotesk",sans-serif}
-    a{color:inherit}
-    .topbar{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:14px clamp(18px,5vw,72px);border-bottom:3px solid var(--ink)}
-    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;font:10px/1.8 "Press Start 2P",monospace}
-    .brand img{width:66px;height:66px;object-fit:contain}
-    .top-links{display:flex;align-items:center;gap:10px;flex-wrap:wrap;justify-content:flex-end}
-    .pixel-link{display:inline-flex;align-items:center;justify-content:center;padding:10px 12px;border:3px solid var(--ink);background:var(--yellow);box-shadow:3px 3px var(--ink);font:8px/1.7 "Press Start 2P",monospace;text-decoration:none}
-    .pixel-link:hover{background:var(--green);transform:translate(2px,2px);box-shadow:1px 1px var(--ink)}
-    .hero{padding:clamp(42px,8vw,92px) 20px 48px;text-align:center;background-image:radial-gradient(#ff9d2e 2px,transparent 2px);background-size:22px 22px}
-    .eyebrow,.tag{font:9px/1.9 "Press Start 2P",monospace}
-    h1{max-width:1050px;margin:22px auto;font:clamp(27px,6.2vw,68px)/1.35 "Press Start 2P",monospace;letter-spacing:-2px;text-shadow:4px 4px var(--cream),7px 7px var(--ink);overflow-wrap:anywhere}
-    .hero p{max-width:760px;margin:0 auto;font-size:clamp(17px,2.5vw,22px);font-weight:700;line-height:1.75}
-    .hero-meta{display:flex;justify-content:center;gap:10px;flex-wrap:wrap;margin-top:25px}
-    .tag{display:inline-block;padding:8px 10px;background:var(--cream);border:2px solid var(--ink);font-size:8px}
-    .layout{display:grid;grid-template-columns:minmax(0,760px) 250px;gap:28px;align-items:start;width:min(1100px,calc(100% - 36px));margin:0 auto 70px}
-    article,.side-card{background:var(--paper);border:3px solid var(--ink);box-shadow:7px 7px var(--ink)}
-    article{padding:clamp(22px,5vw,54px);font-size:17px;line-height:1.9}
-    article p{margin:0 0 20px}
-    article h2{margin:42px 0 15px;font:clamp(15px,2.4vw,21px)/1.8 "Press Start 2P",monospace}
-    article h3{margin:28px 0 10px;font-size:21px;line-height:1.4}
-    article a{font-weight:800;text-decoration-thickness:2px;text-underline-offset:3px}
-    .lead{font-size:19px;font-weight:700}
-    .callout{margin:28px 0;padding:20px;border:3px solid var(--ink);background:#fff0bd;font-weight:700}
-    .toc{padding:20px;background:#fff1d6;border:2px dashed var(--ink);margin:28px 0}
-    .toc strong{font:9px/1.8 "Press Start 2P",monospace}
-    .toc ul{margin:12px 0 0;padding-left:22px}
-    .toc li{margin:7px 0}
-    .side{display:grid;gap:18px;position:sticky;top:18px}
-    .side-card{padding:20px}
-    .side-card h2{margin:0 0 12px;font:10px/1.8 "Press Start 2P",monospace}
-    .side-card p{font-size:14px;line-height:1.7}
-    .side-card .pixel-link{width:100%;margin-top:8px;text-align:center}
-    .disclaimer{padding:16px;background:#eee;border-left:5px solid var(--ink);font-size:13px;line-height:1.7}
-    .article-end{margin-top:36px;padding-top:25px;border-top:3px dashed #aaa}
-    .cta{display:inline-block;margin:8px 8px 8px 0;padding:14px 16px;border:3px solid var(--ink);background:var(--green);box-shadow:4px 4px var(--ink);font:9px/1.8 "Press Start 2P",monospace;text-decoration:none}
-    .cta:hover{transform:translate(2px,2px);box-shadow:2px 2px var(--ink)}
-    footer{display:flex;justify-content:space-between;gap:15px;flex-wrap:wrap;padding:24px clamp(18px,5vw,72px);background:var(--ink);color:var(--cream);font:8px/1.9 "Press Start 2P",monospace}
-    @media(max-width:850px){.layout{grid-template-columns:1fr}.side{position:static;grid-template-columns:repeat(2,minmax(0,1fr))}}
-    @media(max-width:560px){.topbar{align-items:flex-start}.brand span{display:none}.brand img{width:54px;height:54px}.top-links{gap:7px}.pixel-link{font-size:7px;padding:8px}.side{grid-template-columns:1fr}article{padding:22px 18px;font-size:16px}article h2{margin-top:34px}}
-    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
-  </style>
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"BlogPosting",
-    "mainEntityOfPage":{"@type":"WebPage","@id":"https://froginals-nu.vercel.app/blog.html"},
-    "headline":"FROGINAL DOGS: More Than a Meme — A Community Inspired by Dogecoin",
-    "description":"Discover FROGINALS and FROGINAL DOGS: a community inspired by Dogecoin, meme culture, and digital collectibles.",
-    "image":"https://froginals-nu.vercel.app/images/Log01.png",
-    "datePublished":"2026-11-03",
-    "dateModified":"2026-11-03",
-    "inLanguage":"en-US",
-    "author":{"@type":"Organization","name":"FROGINALS","url":"https://froginals-nu.vercel.app/"},
-    "publisher":{"@type":"Organization","name":"FROGINALS","url":"https://froginals-nu.vercel.app/","logo":{"@type":"ImageObject","url":"https://froginals-nu.vercel.app/images/Log01.png"}},
-    "keywords":["FROGINALS","FROGINAL DOGS","Dogecoin","NFT","meme culture","crypto community"]
-  }
-  </script>
-  <!-- Google Tag Manager -->
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-5J8L8FK3');</script>
-  <!-- End Google Tag Manager -->
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#ff7900">
+<title>FROGINALS Blog | Stories, Guides & Swamp Culture</title>
+<meta name="description" content="Explore the FROGINALS blog for educational stories, beginner-friendly guides, community updates, creative projects and the world of FROGINALS.">
+<meta name="robots" content="index,follow,max-image-preview:large">
+<link rel="canonical" href="https://froginals-nu.vercel.app/blog.html">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="FROGINALS">
+<meta property="og:title" content="FROGINALS Blog | Stories, Guides & Swamp Culture">
+<meta property="og:description" content="Stories, educational guides and creative discoveries from the FROGINALS universe.">
+<meta property="og:url" content="https://froginals-nu.vercel.app/blog.html">
+<meta property="og:image" content="https://froginals-nu.vercel.app/images/Log01.png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="FROGINALS Blog">
+<meta name="twitter:description" content="Stories, educational guides and creative discoveries from the FROGINALS universe.">
+<meta name="twitter:image" content="https://froginals-nu.vercel.app/images/Log01.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{--orange:#ff7900;--orange-dark:#e96700;--ink:#171717;--muted:#686868;--line:#e9e5df;--paper:#fff;--soft:#fff7ef;--yellow:#ffd447}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:#fff;color:var(--ink);font-family:"Space Grotesk",sans-serif}
+a{color:inherit}
+.site-header{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 clamp(18px,5vw,72px);border-bottom:1px solid var(--line);background:#fff}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;font-weight:800;letter-spacing:.08em}
+.brand img{width:48px;height:48px;object-fit:contain}
+.nav{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+.nav a{padding:10px 14px;border-radius:7px;text-decoration:none;font-size:13px;font-weight:800}
+.nav a:hover{background:var(--soft);color:var(--orange-dark)}
+.nav .nav-cta{background:var(--orange);color:#fff}
+.hero{padding:54px 20px 44px;text-align:center;background:linear-gradient(180deg,#fff8f1 0%,#fff 100%)}
+.kicker{color:var(--orange-dark);font-size:11px;font-weight:800;letter-spacing:.19em;text-transform:uppercase}
+.hero h1{margin:13px 0 12px;font-size:clamp(36px,6vw,66px);line-height:1.04;letter-spacing:-.055em}
+.hero p{max-width:680px;margin:0 auto;color:#555;font-size:clamp(16px,2vw,19px);line-height:1.7}
+.hero-rule{width:64px;height:5px;margin:23px auto 0;border-radius:8px;background:var(--orange)}
+.page-shell{display:grid;grid-template-columns:160px minmax(0,760px) 160px;gap:28px;align-items:start;width:min(1180px,calc(100% - 40px));margin:34px auto 80px}
+.ad-rail{position:sticky;top:18px;min-height:600px;display:flex;justify-content:center}
+.ad-slot{width:160px;height:600px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;border:1px dashed #d9d2ca;border-radius:8px;background:#fffdfa;color:#aaa;text-align:center}
+.ad-slot strong{font-size:10px;letter-spacing:.16em}
+.ad-slot span{font-size:11px}
+.content{min-width:0}
+.section-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin:0 0 20px;padding-bottom:14px;border-bottom:2px solid var(--ink)}
+.section-head h2{margin:0;font-size:22px;letter-spacing:-.04em}
+.section-head span{color:var(--orange-dark);font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.featured{display:grid;grid-template-columns:1fr 1fr;overflow:hidden;border:1px solid var(--line);border-radius:14px;background:#fff;box-shadow:0 10px 30px rgba(23,23,23,.06);text-decoration:none;transition:transform .2s,box-shadow .2s}
+.featured:hover{transform:translateY(-3px);box-shadow:0 16px 36px rgba(23,23,23,.1)}
+.feature-art{min-height:300px;display:grid;place-items:center;padding:28px;background:radial-gradient(circle at 25% 20%,#ffe0c2,transparent 35%),linear-gradient(135deg,#fff3e7,#ffd8b2)}
+.feature-art img{width:min(78%,250px);height:230px;object-fit:contain;filter:drop-shadow(0 12px 14px rgba(0,0,0,.12))}
+.feature-copy{display:flex;flex-direction:column;justify-content:center;align-items:flex-start;padding:clamp(22px,4vw,36px)}
+.category{display:inline-flex;padding:6px 9px;border-radius:4px;background:#fff0e2;color:#b84d00;font-size:10px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}
+.feature-copy h3{margin:16px 0 10px;font-size:clamp(24px,3vw,34px);line-height:1.12;letter-spacing:-.045em}
+.feature-copy p{margin:0;color:#626262;font-size:15px;line-height:1.7}
+.read-link{display:inline-flex;align-items:center;gap:8px;margin-top:22px;color:var(--orange-dark);font-size:13px;font-weight:800}
+.post-meta{display:flex;gap:12px;flex-wrap:wrap;margin-top:16px;color:#858585;font-size:11px;font-weight:700}
+.topics{display:flex;gap:8px;flex-wrap:wrap;margin:28px 0 36px}
+.topic{padding:8px 11px;border:1px solid var(--line);border-radius:99px;background:#fff;color:#555;font-size:11px;font-weight:700}
+.empty-note{margin-top:30px;padding:20px;border-radius:10px;background:var(--soft);color:#686868;font-size:13px;line-height:1.7}
+.newsletter{margin-top:28px;padding:24px;border-radius:12px;background:#171717;color:#fff}
+.newsletter strong{display:block;font-size:18px}
+.newsletter p{margin:8px 0 0;color:#d5d5d5;font-size:13px;line-height:1.7}
+footer{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:25px clamp(18px,5vw,72px);background:#171717;color:#fff;font-size:12px}
+footer a{color:#ffd447;text-decoration:none}
+@media(max-width:1050px){.page-shell{grid-template-columns:minmax(0,760px);justify-content:center}.ad-rail{display:none}}
+@media(max-width:650px){.site-header{height:auto;min-height:66px;padding:10px 16px}.brand img{width:40px;height:40px}.nav a{padding:8px 9px;font-size:11px}.hero{padding:42px 18px 34px}.page-shell{width:calc(100% - 28px);margin:24px auto 55px}.featured{grid-template-columns:1fr}.feature-art{min-height:190px}.feature-art img{height:155px}.feature-copy{padding:22px}.section-head h2{font-size:19px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{transition:none!important}}
+</style>
 </head>
 <body>
-  <!-- Google Tag Manager (noscript) -->
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5J8L8FK3"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  <!-- End Google Tag Manager (noscript) -->
-  <header class="topbar">
-    <a class="brand" href="index.html" aria-label="FROGINALS home"><img src="images/Log01.png" alt="FROGINALS logo"><span>GOOD FROGS.<br>GOOD DOGE.</span></a>
-    <nav class="top-links" aria-label="Main navigation">
-      <a class="pixel-link" href="index.html">HOME</a>
-      <a class="pixel-link" href="froginalarmy.html">FROGINALARMY</a>
-      <a class="pixel-link" href="froginal-theses.html">WHITEPAPER</a>
-    </nav>
-  </header>
-
-  <section class="hero">
-    <div class="eyebrow">FROGINALS JOURNAL · CULTURE & COMMUNITY</div>
-    <h1>FROGINAL DOGS: MORE THAN A MEME</h1>
-    <p>A community inspired by Dogecoin, internet humor, and the energy of digital collectibles.</p>
-    <div class="hero-meta"><span class="tag">DOGECOIN CULTURE</span><span class="tag">FROGINAL DOGS</span><span class="tag">5-MINUTE READ</span></div>
-  </section>
-
-  <main class="layout">
-    <article>
-      <p class="lead">Memes make people laugh, bring communities together, and travel across the internet. Some projects build an entire world around that culture. FROGINALS embraces that spirit with a community-driven universe celebrating frog characters, Dogecoin culture, and online creativity.</p>
-
-      <nav class="toc" aria-label="Article contents">
-        <strong>IN THIS ARTICLE</strong>
-        <ul>
-          <li><a href="#culture">Meme Culture and the Spirit of Dogecoin</a></li>
-          <li><a href="#froginals">What Is FROGINALS?</a></li>
-          <li><a href="#collectibles">Digital Collectibles and NFTs</a></li>
-          <li><a href="#community">A Community That Takes Part</a></li>
-          <li><a href="#discover">How to Explore the FROGINALS Universe</a></li>
-        </ul>
-      </nav>
-
-      <h2 id="culture">Meme Culture and the Spirit of Dogecoin</h2>
-      <p>Meme culture has become a language of its own on the internet. An image, a phrase, or a character can become a shared symbol for thousands of people. Humor, inside references, and community participation bring these online worlds to life.</p>
-      <p><a href="https://dogecoin.com/" target="_blank" rel="noopener noreferrer">Dogecoin</a> is one of the best-known examples of internet culture meeting cryptocurrency. Born from a meme, Dogecoin developed a recognizable identity and a community known for humor and a shared sense of fun. FROGINALS draws on some of that energy while building its own world of frogs and dogs.</p>
-
-      <h2 id="froginals">What Is FROGINALS?</h2>
-      <p>FROGINALS is a community-driven universe built around frog characters, the FROGINAL DOGS identity, and a shared appreciation for Dogecoin culture. The project brings together its main website, the FROGINALARMY community, original visual creations, digital collectible experiences, and community activities.</p>
-      <p>The FROGINALS name brings together personality, creativity, and meme culture. The goal is to give members a world to explore, share their creations, and take part in project activities. Like any online community, its strength comes from meaningful conversations, transparency, and genuine member participation.</p>
-      <div class="callout">The idea behind FROGINALS: keep the humor of meme culture, encourage creativity, and build a space where the community can be part of the journey.</div>
-
-      <h2 id="collectibles">Digital Collectibles and NFTs</h2>
-      <p>An NFT, or non-fungible token, is a digital asset recorded on a blockchain. It can represent a digital collectible, a piece of art, or an item connected to an online experience. Its metadata may describe the collectible’s name, image, and attributes.</p>
-      <p>Within the FROGINAL DOGS universe, digital collectibles are part of a broader collecting experience and community identity. They can let participants show their connection to the project and explore its different experiences. Before making a purchase, always verify official project information, the collection address, sale terms, and transaction fees.</p>
-      <p>An NFT does not guarantee financial returns, liquidity, or future benefits. Prices can be highly volatile, and blockchain transactions are generally irreversible. Do your own research and never spend more than you can afford to lose.</p>
-
-      <h2 id="community">A Community That Takes Part</h2>
-      <p>A meme-inspired project is about more than images or tokens. Conversations, member-created art, shared ideas, and community events help define its character. FROGINALARMY is one place where members can explore the project identity and follow its activities.</p>
-      <p>There are many ways to participate: share a creation, join a conversation, explore website updates, or take part in initiatives announced through official channels. Always verify important information — including announcements, access requirements, and any potential rewards — through the project’s official sources.</p>
-
-      <h2 id="discover">How to Explore the FROGINALS Universe</h2>
-      <p>To get started, explore the <a href="index.html">official FROGINALS website</a> and discover the different parts of the universe. The <a href="froginalarmy.html">FROGINALARMY</a> introduces the community space dedicated to FROGINAL DOGS. You can also read the <a href="froginal-theses.html">whitepaper</a> to learn more about the project vision and the information published by the team.</p>
-      <p>To connect with the community, visit the <a href="https://t.me/froginaldogs" target="_blank" rel="noopener noreferrer">official FROGINAL DOGS Telegram channel</a>. Take a moment to verify links, and be cautious of accounts asking for your recovery phrase, private keys, or an unexpected payment.</p>
-
-      <div class="article-end">
-        <h2>WELCOME TO THE FROGINALS SWAMP</h2>
-        <p>Internet culture evolves because people bring it to life. If frogs, Dogecoin, and digital collectibles are your thing, discover the project, explore its creations, and join the conversation with curiosity.</p>
-        <a class="cta" href="froginalarmy.html">EXPLORE FROGINALARMY ↗</a>
-        <a class="cta" href="https://t.me/froginaldogs" target="_blank" rel="noopener noreferrer">JOIN TELEGRAM ↗</a>
-      </div>
-      <p class="disclaimer"><strong>Important note:</strong> FROGINALS is presented here in a community and cultural context. Cryptocurrencies and NFTs involve risk. This article is for informational purposes only and is not financial advice, a promise of returns, or a guarantee of utility.</p>
-    </article>
-
-    <aside class="side" aria-label="Explore FROGINALS">
-      <section class="side-card">
-        <h2>EXPLORE THE PROJECT</h2>
-        <p>Discover the different ways to enter the FROGINALS universe.</p>
-        <a class="pixel-link" href="index.html">OFFICIAL WEBSITE ↗</a>
-        <a class="pixel-link" href="froginalarmy.html">FROGINALARMY ↗</a>
-        <a class="pixel-link" href="froginal-theses.html">WHITEPAPER ↗</a>
-      </section>
-      <section class="side-card">
-        <h2>STAY CONNECTED</h2>
-        <p>Follow community conversations and announcements on the official Telegram channel.</p>
-        <a class="pixel-link" href="https://t.me/froginaldogs" target="_blank" rel="noopener noreferrer">TELEGRAM ↗</a>
-      </section>
-    </aside>
-  </main>
-
-  <footer><span>FROGINALS © 2026</span><span>GOOD FROGS. GOOD DOGE. 🐸</span><a href="index.html">BACK TO HOME ↗</a></footer>
+<header class="site-header">
+<a class="brand" href="index.html" aria-label="FROGINALS home"><img src="images/Log01.png" alt="FROGINALS logo"><span>FROGINALS</span></a>
+<nav class="nav" aria-label="Main navigation"><a href="index.html">HOME</a><a href="froginalarmy.html">COMMUNITY</a><a class="nav-cta" href="blog.html" aria-current="page">BLOG</a></nav>
+</header>
+<section class="hero">
+<div class="kicker">The FROGINALS Journal</div>
+<h1>Stories from the swamp.</h1>
+<p>Educational stories, beginner-friendly guides, creative discoveries and community updates from the FROGINALS universe.</p>
+<div class="hero-rule"></div>
+</section>
+<main class="page-shell">
+<aside class="ad-rail" aria-label="Left advertising space"><div class="ad-slot" data-ad-slot="blog-left"><strong>AD SPACE</strong><span>160 × 600</span><span>Left rail</span></div></aside>
+<section class="content" aria-labelledby="latest-heading">
+<div class="section-head"><h2 id="latest-heading">Latest from FROGINALS</h2><span>Read · Learn · Explore</span></div>
+<a class="featured" href="blog-little-nft-collector.html">
+<div class="feature-art"><img src="images/Log01.png" alt="FROGINALS frog character logo" loading="lazy"></div>
+<div class="feature-copy">
+<span class="category">Educational story</span>
+<h3>The Little NFT Collector Who Discovered FROGINAL DOGS</h3>
+<p>Meet Lily, an eight-year-old fictional character whose curiosity leads her to explore digital collectibles, NFTs, Dogecoin and the technology behind Doginals—with a trusted adult by her side.</p>
+<span class="read-link">Read the story <span aria-hidden="true">→</span></span>
+<div class="post-meta"><span>FROGINALS EDITORIAL</span><span>8 MIN READ</span><span>EDUCATION</span></div>
+</div>
+</a>
+<div class="topics" aria-label="Blog topics"><span class="topic">FROGINALS STORIES</span><span class="topic">EDUCATION</span><span class="topic">NFT BASICS</span><span class="topic">COMMUNITY</span><span class="topic">CREATIVITY</span></div>
+<div class="empty-note"><strong>More stories are on the way.</strong><br>We're building this journal one useful story at a time. Check back for new FROGINALS explainers, character stories and behind-the-scenes articles.</div>
+<div class="newsletter"><strong>Stay curious. Stay froginal.</strong><p>Explore the <a href="index.html">FROGINALS website</a> and join the community for project news, creative drops and new educational content.</p></div>
+</section>
+<aside class="ad-rail" aria-label="Right advertising space"><div class="ad-slot" data-ad-slot="blog-right"><strong>AD SPACE</strong><span>160 × 600</span><span>Right rail</span></div></aside>
+</main>
+<footer><span>© FROGINALS · GOOD FROGS. GOOD DOGE.</span><span><a href="index.html">Home</a> · <a href="blog.html">Journal</a> · <a href="https://x.com/froginaldogs" target="_blank" rel="noopener noreferrer">Follow on X</a></span></footer>
 </body>
 </html>
