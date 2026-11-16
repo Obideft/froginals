@@ -152,6 +152,20 @@ h1{font-size:clamp(17px,2.4vw,27px);line-height:1.35;margin:7px 0}
 @media(max-width:760px){.pillar{--depth:12px;width:clamp(36px,9vw,62px)}.pillar-side{right:calc(var(--depth)*-1);width:var(--depth)}.pillar-top{right:calc(var(--depth)*-1);top:calc(var(--depth)*-1);height:var(--depth)}.pillar-base{right:calc(var(--depth)*-1)}}
 @media(max-width:500px){.pillar{--depth:9px;width:clamp(29px,8vw,42px)}.pillar-side{right:calc(var(--depth)*-1);width:var(--depth)}.pillar-top{right:calc(var(--depth)*-1);top:calc(var(--depth)*-1);height:var(--depth)}.pillar-base{right:calc(var(--depth)*-1)}}
 
+
+/* Left-aligned portfolio bars leave a clear expansion lane for future assets. */
+@media(min-width:761px){
+ .diagram{
+   justify-content:flex-start;
+   gap:clamp(18px,2.4vw,30px);
+   padding-left:clamp(24px,4vw,54px);
+   padding-right:clamp(24px,4vw,54px);
+ }
+ .pillar-wrap{
+   flex:0 0 clamp(112px,13vw,150px);
+   max-width:150px;
+ }
+}
 </style>
 </head>
 <body>
