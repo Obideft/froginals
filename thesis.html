@@ -142,6 +142,16 @@ h1{font-size:clamp(17px,2.4vw,27px);line-height:1.35;margin:7px 0}
  .pillar-wrap{height:100%}
 }
 
+
+/* Refined prism geometry: consistent front, side and top faces. */
+.pillar{--depth:14px;width:clamp(42px,6.5vw,76px);transform-style:preserve-3d}
+.pillar-front{border-radius:5px 0 0 5px;background:linear-gradient(90deg,var(--deep) 0%,var(--accent) 20%,var(--pale) 52%,var(--accent) 82%,var(--deep) 100%);box-shadow:inset 3px 0 7px #ffffff70,inset -3px 0 7px #00000012,inset 0 -9px 12px #00000014}
+.pillar-side{top:0;right:calc(var(--depth)*-1);width:var(--depth);height:100%;transform:none;transform-origin:initial;background:linear-gradient(90deg,var(--deep),color-mix(in srgb,var(--deep) 72%,#171717));clip-path:polygon(0 0,100% var(--depth),100% calc(100% - var(--depth)),0 100%);border-radius:0 3px 3px 0;filter:none}
+.pillar-top{top:calc(var(--depth)*-1);left:0;right:calc(var(--depth)*-1);height:var(--depth);transform:none;transform-origin:initial;background:linear-gradient(110deg,var(--pale),var(--accent) 58%,var(--deep));clip-path:polygon(0 100%,var(--depth) 0,100% 0,calc(100% - var(--depth)) 100%);border:0;border-radius:0;box-shadow:inset 0 2px 4px #ffffffa8}
+.pillar-base{bottom:-10px;left:0;right:calc(var(--depth)*-1);height:10px;transform:none;border-radius:0;clip-path:polygon(0 0,100% 0,calc(100% - var(--depth)) 100%,0 100%);background:linear-gradient(90deg,var(--deep),var(--accent),var(--deep));box-shadow:0 5px 8px #00000018}
+@media(max-width:760px){.pillar{--depth:12px;width:clamp(36px,9vw,62px)}.pillar-side{right:calc(var(--depth)*-1);width:var(--depth)}.pillar-top{right:calc(var(--depth)*-1);top:calc(var(--depth)*-1);height:var(--depth)}.pillar-base{right:calc(var(--depth)*-1)}}
+@media(max-width:500px){.pillar{--depth:9px;width:clamp(29px,8vw,42px)}.pillar-side{right:calc(var(--depth)*-1);width:var(--depth)}.pillar-top{right:calc(var(--depth)*-1);top:calc(var(--depth)*-1);height:var(--depth)}.pillar-base{right:calc(var(--depth)*-1)}}
+
 </style>
 </head>
 <body>
