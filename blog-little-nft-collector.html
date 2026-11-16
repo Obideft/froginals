@@ -27,9 +27,9 @@
 html{scroll-behavior:smooth;scroll-padding-top:20px}
 body{margin:0;background:#fff;color:var(--ink);font-family:"Space Grotesk",sans-serif}
 a{color:var(--orange-dark);text-decoration-thickness:1px;text-underline-offset:3px}
-.site-header{height:76px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:0 clamp(18px,5vw,72px);border-bottom:1px solid var(--line);background:#fff}
-.brand{display:flex;align-items:center;gap:10px;color:var(--ink);text-decoration:none;font-weight:800;letter-spacing:.08em}
-.brand img{width:48px;height:48px;object-fit:contain}
+.site-header{height:auto;min-height:82px;display:flex;align-items:center;justify-content:space-between;gap:20px;padding:18px 6%;border-bottom:3px solid #171717;background:#fff;position:relative;z-index:5;overflow:visible}
+.brand{position:relative;display:block;align-self:stretch;width:clamp(110px,15vw,165px);min-width:90px;flex-shrink:0;text-decoration:none;z-index:7}
+.brand img{position:absolute;display:block;width:175%;max-width:none;height:auto;left:0;top:2px;object-fit:contain;object-position:top left;filter:drop-shadow(4px 5px 0 rgba(23,23,23,.2))}
 .nav{display:flex;gap:10px;align-items:center}
 .nav a{padding:10px 14px;border-radius:7px;color:var(--ink);text-decoration:none;font-size:13px;font-weight:800}
 .nav a:hover{background:var(--soft);color:var(--orange-dark)}
@@ -69,7 +69,7 @@ article h3{margin:25px 0 9px;font-size:19px}
 footer{display:flex;justify-content:space-between;gap:14px;flex-wrap:wrap;padding:25px clamp(18px,5vw,72px);background:#171717;color:#fff;font-size:12px}
 footer a{color:#ffd447;text-decoration:none}
 @media(max-width:1050px){.page-shell{grid-template-columns:minmax(0,760px);justify-content:center}.ad-rail{display:none}}
-@media(max-width:650px){.site-header{height:auto;min-height:66px;padding:10px 16px}.brand img{width:40px;height:40px}.nav a{padding:8px 9px;font-size:11px}.article-hero{padding:30px 17px 25px}.page-shell{width:calc(100% - 26px);margin:20px auto 55px}article{padding:23px 18px;font-size:16px}.lead{font-size:17px}article h2{margin-top:32px}}
+@media(max-width:650px){.site-header{height:auto;min-height:82px;padding:12px 16px}.brand{width:clamp(90px,24vw,125px);min-width:90px}.brand img{width:175%;height:auto}.nav a{padding:8px 9px;font-size:11px}.article-hero{padding:30px 17px 25px}.page-shell{width:calc(100% - 26px);margin:20px auto 55px}article{padding:23px 18px;font-size:16px}.lead{font-size:17px}article h2{margin-top:32px}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
 </style>
 <script type="application/ld+json">
@@ -95,7 +95,7 @@ footer a{color:#ffd447;text-decoration:none}
 <body>
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5J8L8FK3" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 <header class="site-header">
-<a class="brand" href="index.html"><img src="images/Log01.png" alt="FROGINALS logo"><span>FROGINALS</span></a>
+<a class="brand" href="index.html" aria-label="FROGINALS home"><img src="images/Log01.png" alt="FROGINALS logo"></a>
 <nav class="nav" aria-label="Main navigation"><a href="index.html">HOME</a><a href="blog.html">ALL STORIES</a><a class="nav-cta" href="froginalarmy.html">COMMUNITY</a></nav>
 </header>
 <section class="article-hero">
