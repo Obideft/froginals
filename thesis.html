@@ -202,3 +202,50 @@ h1{font-size:clamp(17px,2.4vw,27px);line-height:1.35;margin:7px 0}
 <div class="note"><b>PORTFOLIO NOTE:</b> These are personal investment theses, not verified market signals or financial advice. BTC and ZEC are recorded at $100 each; SOL is recorded as 1 SOL at an approximate $70 cost basis. The ~$270 total reflects recorded investment amounts, not current market value. Exact fills, fees and missing purchase dates can be added when confirmed.</div>
 </main><footer class="footer">FROGINALS · THINK IN THESES. TRACK THE MOVES. LEARN THE PATTERN.</footer>
 </body></html>
+
+/* Actual flat portfolio bar chart: compact left cluster, open expansion space. */
+.diagram{
+  justify-content:flex-start;
+  align-items:flex-end;
+  gap:clamp(12px,2vw,22px);
+  padding-left:clamp(18px,3vw,38px);
+  padding-right:clamp(18px,3vw,38px);
+  overflow:hidden;
+}
+.pillar-wrap{
+  flex:0 0 clamp(88px,10vw,118px);
+  max-width:118px;
+}
+.pillar{
+  width:clamp(44px,5vw,62px);
+  filter:drop-shadow(0 12px 12px #00000016);
+  transform:none;
+}
+.pillar-front{
+  border-radius:12px 12px 5px 5px;
+  background:linear-gradient(90deg,var(--deep),var(--accent) 24%,var(--pale) 52%,var(--accent) 82%,var(--deep));
+  box-shadow:inset 4px 0 8px #ffffff55,inset -4px 0 8px #00000012,inset 0 -10px 16px #00000018;
+}
+.pillar-front:before{
+  inset:0;
+  background:linear-gradient(115deg,#ffffff38 0%,transparent 34%,#0000000a 70%,#ffffff20 100%);
+  opacity:1;
+}
+.pillar-side,.pillar-top,.pillar-base{display:none}
+.pillar-label{font-size:11px;letter-spacing:1px}
+.pillar-wrap:hover .pillar,.pillar-wrap:focus .pillar,.pillar-wrap:focus-within .pillar{
+  transform:translateY(-8px);
+  filter:drop-shadow(0 18px 14px #00000020);
+}
+.coin-badge{z-index:5}
+@media(max-width:760px){
+  .diagram{justify-content:flex-start;gap:clamp(8px,2vw,14px);padding-left:12px;padding-right:12px}
+  .pillar-wrap{flex:0 0 clamp(78px,20vw,104px);max-width:104px}
+  .pillar{width:clamp(40px,8vw,54px)}
+}
+@media(max-width:500px){
+  .diagram{gap:7px;padding-left:8px;padding-right:8px}
+  .pillar-wrap{flex:0 0 clamp(72px,21vw,84px);max-width:84px}
+  .pillar{width:clamp(36px,10vw,44px)}
+  .pillar-label{font-size:8px;letter-spacing:.4px}
+}
