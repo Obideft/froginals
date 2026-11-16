@@ -49,6 +49,99 @@ header{border-bottom:1px solid #eee}.nav{height:70px;display:flex;align-items:ce
 @media(max-width:760px){.diagram{justify-content:flex-start;gap:12px;padding:155px 18px 48px;min-height:650px}.portfolio-core{top:18px}.pillar-wrap{height:390px;flex-basis:clamp(170px,42vw,220px)}.pillar{width:70%;height:190px}.pillar-wrap.zec .pillar{height:225px}.pillar-wrap.sol .pillar{height:205px}.coin-badge{width:78px;height:78px;top:18px;border-width:5px}.coin-badge.btc{font-size:43px}.coin-badge.zec{font-size:33px}.sol-mark{width:38px;gap:4px}.sol-mark i{height:7px}.pillar-side{right:-22px;width:23px}.pillar-top{right:-22px}.pillar-base{right:-26px}.pillar-name{font-size:14px;bottom:-52px}.pillar-meta{font-size:9px;bottom:-70px}.thesis-pop{width:min(290px,88vw);bottom:calc(var(--height) + 90px);padding:14px}.thesis-pop p{font-size:11px}.hover-hint{top:104px;font-size:8px}.history-grid{grid-template-columns:1fr}}
 @media(max-width:500px){.shell{width:calc(100% - 22px)}.nav{height:62px}.brand{font-size:8px}.navlink{font-size:10px;padding:8px 10px}.hero{padding-top:38px}.intro{font-size:13px}.diagram-heading{margin-top:34px;align-items:start;flex-direction:column}.diagram{justify-content:flex-start;gap:8px;padding:145px 14px 42px;min-height:570px}.portfolio-core{top:16px;padding:13px 18px 14px}.portfolio-core small{font-size:8px}.portfolio-core strong{font-size:48px}.portfolio-core span{font-size:9px}.pillar-wrap{height:340px;flex-basis:165px}.pillar{width:67%;height:160px}.pillar-wrap.zec .pillar{height:190px}.pillar-wrap.sol .pillar{height:175px}.coin-badge{width:65px;height:65px;top:20px}.coin-badge.btc{font-size:35px}.coin-badge.zec{font-size:27px}.sol-mark{width:31px;gap:3px}.sol-mark i{height:6px}.pillar-side{right:-17px;width:18px}.pillar-top{right:-17px;height:27px;top:-14px}.pillar-base{right:-21px;height:18px;bottom:-16px}.pillar-label{font-size:11px;letter-spacing:1px}.pillar-name{font-size:12px;bottom:-44px}.pillar-meta{font-size:8px;bottom:-60px}.hover-hint{top:88px;font-size:7px}.thesis-pop{bottom:calc(var(--height) + 80px);width:min(260px,92vw);padding:12px}.thesis-pop h3{font-size:14px}.thesis-pop p{font-size:10px;line-height:1.55}.thesis-pop .pop-holding{font-size:9px}.history{padding:14px}.history-head{align-items:start;flex-direction:column}}
 @media(hover:none){.hover-hint{opacity:.75}.pillar-wrap:active .thesis-pop,.pillar-wrap:focus .thesis-pop{opacity:1;transform:translate(-50%,0) scale(1);pointer-events:auto}}
+
+/* Compact single-screen layout: slim pillars, no page or diagram scrolling. */
+html,body{width:100%;height:100%;min-height:0;overflow:hidden}
+body{display:flex;flex-direction:column}
+header{flex:0 0 58px}
+.nav{height:58px}
+main.shell{flex:1;min-height:0;display:flex;flex-direction:column;justify-content:flex-start;padding-bottom:12px}
+.hero{flex:0 0 auto;padding:14px 0 8px}
+.eyebrow{font-size:8px}
+h1{font-size:clamp(17px,2.4vw,27px);line-height:1.35;margin:7px 0}
+.intro{font-size:12px;line-height:1.45}
+.diagram-heading{flex:0 0 auto;margin:8px 0 6px;align-items:center}
+.diagram-heading h2{font-size:9px}
+.diagram-heading span{font-size:9px}
+.diagram{flex:1;min-height:0;height:auto;max-height:none;overflow:visible;display:flex;align-items:flex-end;justify-content:space-evenly;gap:clamp(10px,4vw,48px);padding:112px clamp(12px,4vw,48px) 42px;border-radius:20px}
+.portfolio-core{top:10px;width:min(350px,calc(100% - 28px));padding:9px 18px 10px;border-radius:16px}
+.portfolio-core small{font-size:8px;letter-spacing:1.5px}
+.portfolio-core strong{font-size:clamp(38px,5.5vw,56px);margin:0;letter-spacing:-2px}
+.portfolio-core span{font-size:9px}
+.pillar-wrap{height:100%;min-height:0;flex:1 1 0;max-width:190px;--height:42%;align-items:flex-end}
+.pillar-wrap.zec{--height:52%}
+.pillar-wrap.sol{--height:47%}
+.pillar{width:clamp(42px,6.5vw,76px);height:var(--height);filter:drop-shadow(8px 12px 9px #00000016)}
+.pillar-front{border-radius:7px 7px 4px 4px;box-shadow:inset 3px 0 6px #ffffff65,inset -4px 0 7px #00000016,inset 0 -8px 10px #00000016}
+.pillar-front:before{background:repeating-linear-gradient(180deg,#ffffff00 0 28px,#ffffff24 29px,#ffffff00 31px)}
+.pillar-side{right:-12px;width:13px;border-radius:0 5px 4px 0}
+.pillar-top{right:-12px;top:-9px;height:18px;border-radius:5px 4px 2px 2px}
+.pillar-base{bottom:-11px;left:-5px;right:-15px;height:13px}
+.pillar-label{font-size:10px;letter-spacing:1px}
+.coin-badge{width:clamp(48px,6vw,66px);height:clamp(48px,6vw,66px);top:5px;border-width:4px;box-shadow:0 8px 16px #00000018,inset 0 2px 4px #ffffffb5,inset 0 -4px 7px #00000025}
+.coin-badge.btc{font-size:34px}
+.coin-badge.zec{font-size:28px}
+.sol-mark{width:30px;gap:3px}
+.sol-mark i{height:6px}
+.pillar-name{bottom:-34px;font-size:13px}
+.pillar-meta{bottom:-51px;font-size:8px;white-space:nowrap}
+.hover-hint{top:76px;font-size:8px}
+.thesis-pop{width:min(290px,80vw);bottom:calc(var(--height) + 88px);padding:13px 14px}
+.thesis-pop h3{font-size:14px}
+.thesis-pop p{font-size:11px;line-height:1.55}
+.thesis-pop .pop-holding{font-size:9px;margin-top:8px}
+.history,.note,.footer{display:none!important}
+@media(max-width:760px){
+ header{flex-basis:52px}.nav{height:52px}
+ main.shell{padding-bottom:10px}
+ .hero{padding:10px 0 6px}
+ h1{font-size:clamp(15px,4vw,22px);margin:5px 0}
+ .intro{font-size:10px;max-width:520px}
+ .diagram-heading{margin:6px 0}
+ .diagram{gap:clamp(8px,3vw,22px);padding:100px 10px 38px}
+ .pillar-wrap{max-width:150px}
+ .pillar{width:clamp(36px,9vw,62px)}
+ .pillar-name{font-size:11px;bottom:-30px}
+ .pillar-meta{font-size:7px;bottom:-45px}
+ .thesis-pop{width:min(250px,76vw);bottom:calc(var(--height) + 80px);padding:11px}
+ .thesis-pop p{font-size:10px}
+ .hover-hint{font-size:7px;top:68px}
+}
+@media(max-width:500px){
+ .shell{width:calc(100% - 18px)}
+ .brand{font-size:7px}.navlink{font-size:9px;padding:7px 9px}
+ .eyebrow{font-size:6px}
+ h1{font-size:15px;letter-spacing:-.5px}
+ .intro{font-size:9px;line-height:1.35}
+ .diagram-heading h2{font-size:7px}
+ .diagram-heading span{font-size:7px}
+ .diagram{padding:91px 5px 35px;gap:5px;border-radius:14px}
+ .portfolio-core{top:8px;padding:8px 12px;width:calc(100% - 24px)}
+ .portfolio-core small{font-size:7px}
+ .portfolio-core strong{font-size:38px}
+ .portfolio-core span{font-size:7px}
+ .pillar-wrap{max-width:none}
+ .pillar{width:clamp(29px,8vw,42px)}
+ .coin-badge{width:43px;height:43px;top:8px;border-width:3px}
+ .coin-badge.btc{font-size:25px}.coin-badge.zec{font-size:21px}
+ .sol-mark{width:23px;gap:2px}.sol-mark i{height:4px}
+ .pillar-label{font-size:8px;letter-spacing:.5px}
+ .pillar-name{font-size:9px;bottom:-26px}
+ .pillar-meta{font-size:6px;bottom:-39px}
+ .hover-hint{font-size:6px;top:57px}
+ .thesis-pop{width:min(225px,74vw);bottom:calc(var(--height) + 72px);padding:9px}
+ .thesis-pop h3{font-size:12px;margin-bottom:5px}
+ .thesis-pop p{font-size:9px;line-height:1.45}
+ .thesis-pop .pop-kicker,.thesis-pop .pop-holding{font-size:7px}
+}
+@media(max-height:650px){
+ .hero{padding-top:6px}.intro{display:none}
+ .diagram{padding-top:88px}
+ .portfolio-core{padding:6px 14px}
+ .portfolio-core strong{font-size:36px}
+ .pillar-wrap{height:100%}
+}
+
 </style>
 </head>
 <body>
