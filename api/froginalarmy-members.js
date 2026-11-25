@@ -94,8 +94,10 @@ async function listGiveawayEntries(req, res) {
   }
   const configuredKey = process.env.GIVEAWAY_ADMIN_KEY || '';
   const suppliedKey = String(req.headers['x-admin-key'] || '');
-  if (configuredKey.length < 24 || suppliedKey.length !== configuredKey.length ||
-      !crypto.timingSafeEqual(Buffer.from(suppliedKey), Buffer.from(configuredKey))) {
+  const suppliedBytes = Buffer.from(suppliedKey);
+  const configuredBytes = Buffer.from(configuredKey);
+  if (configuredBytes.length < 24 || suppliedBytes.length !== configuredBytes.length ||
+      !crypto.timingSafeEqual(suppliedBytes, configuredBytes)) {
     return res.status(401).json({ success: false, error: 'Admin authentication failed.' });
   }
   if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
