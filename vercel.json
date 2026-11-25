@@ -11,6 +11,10 @@
     {
       "source": "/api/printful-variants",
       "destination": "/api/printful-products?resource=variants"
+    },
+    {
+      "source": "/api/giveaway-entry",
+      "destination": "/api/froginalarmy-members?action=giveaway-entry"
     }
   ]
 }
