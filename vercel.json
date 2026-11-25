@@ -15,6 +15,10 @@
     {
       "source": "/api/giveaway-entry",
       "destination": "/api/froginalarmy-members?action=giveaway-entry"
+    },
+    {
+      "source": "/api/giveaway-admin-list",
+      "destination": "/api/froginalarmy-members?action=giveaway-admin-list"
     }
   ]
 }
