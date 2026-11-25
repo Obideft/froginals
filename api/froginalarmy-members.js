@@ -18,7 +18,7 @@ function giveawayRateLimited(req) {
 
 function normalizeGiveawayAnswer(value) {
   return String(value || '').toLowerCase().normalize('NFKD')
-    .replace(/[\\u0300-\\u036f]/g, '').replace(/[^a-z0-9]+/g, ' ').trim();
+    .replace(/[^a-z0-9]+/g, ' ').trim();
 }
 
 async function submitGiveawayEntry(req, res) {
@@ -52,7 +52,8 @@ async function submitGiveawayEntry(req, res) {
   }
 
   try {
-    const endpoint = process.env.SUPABASE_URL.replace(/\\/$/, '') + '/rest/v1/froginal_dogs_giveaway_entries';
+    const baseUrl = process.env.SUPABASE_URL.endsWith('/') ? process.env.SUPABASE_URL.slice(0, -1) : process.env.SUPABASE_URL;
+    const endpoint = baseUrl + '/rest/v1/froginal_dogs_giveaway_entries';
     const response = await fetch(endpoint, {
       method: 'POST',
       headers: {
