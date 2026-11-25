@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#171717">
+<title>FROGINALS GIVEAWAY ADMIN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=Space+Grotesk:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box}body{margin:0;background:#171717;color:#fff1d6;font-family:"Space Grotesk",sans-serif}
+header{padding:22px clamp(16px,4vw,48px);border-bottom:4px solid #ff7900;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font:11px/1.8 "Press Start 2P",monospace;color:#ffd447}a{color:#ffd447}
+main{width:min(1200px,calc(100% - 28px));margin:34px auto 70px}
+h1{font:clamp(18px,4vw,30px)/1.6 "Press Start 2P",monospace;color:#ff7900}
+.sub{color:#d8cbb8;line-height:1.6}
+.panel{padding:clamp(16px,3vw,28px);margin:22px 0;border:2px solid #51483c;border-radius:12px;background:#24211e}
+label{display:block;font-weight:800;margin-bottom:8px}input{width:100%;max-width:520px;padding:13px;border:2px solid #ffd447;border-radius:6px;background:#171717;color:white;font:600 16px "Space Grotesk",sans-serif}
+button{padding:12px 16px;border:2px solid #171717;border-radius:5px;background:#ffd447;color:#171717;font:10px/1.8 "Press Start 2P",monospace;cursor:pointer}
+button:disabled{opacity:.5;cursor:wait}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}
+.status{min-height:24px;color:#ffd447;font-weight:700}.stats{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0}
+.stat{padding:14px 18px;background:#ffd447;color:#171717;border-radius:8px;font-weight:800}.stat strong{display:block;font:22px "Press Start 2P",monospace;margin-bottom:8px}
+.tools{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:20px 0}.tools input{max-width:360px}
+.table-wrap{overflow:auto;border:1px solid #51483c;border-radius:8px}table{width:100%;border-collapse:collapse;min-width:760px;background:#24211e}th,td{padding:12px;text-align:left;border-bottom:1px solid #51483c;vertical-align:top;line-height:1.5}th{background:#332d26;color:#ffd447;font-size:12px}td{font-size:13px;overflow-wrap:anywhere}.wallet{font-family:monospace;max-width:260px}.empty{padding:24px;text-align:center;color:#d8cbb8}
+.hidden{display:none!important}.muted{color:#b9aa96;font-size:12px}
+</style></head>
+<body>
+<header><div class="brand">FROGINALS<br>GIVEAWAY HQ</div><a href="/giveaway.html">View public giveaway page ↗</a></header>
+<main>
+<h1>GIVEAWAY ENTRIES</h1>
+<p class="sub">Private admin area · Solana wallets · X handles · Quiz answers</p>
+<section class="panel" id="loginPanel">
+<label for="adminKey">Admin password</label><input id="adminKey" type="password" autocomplete="current-password" placeholder="Enter your giveaway admin key">
+<div class="actions"><button id="loginBtn">UNLOCK DASHBOARD</button></div>
+<p class="status" id="loginStatus" role="status"></p>
+<p class="muted">Your admin key is kept only in this browser tab and is never stored in the giveaway database.</p>
+</section>
+<section id="dashboard" class="hidden">
+<div class="stats"><div class="stat"><strong id="entryCount">0</strong>Total entries</div><div class="stat"><strong id="walletCount">0</strong>Unique wallets</div></div>
+<div class="tools"><input id="search" type="search" placeholder="Search wallet or X username"><button id="refreshBtn">REFRESH</button><button id="csvBtn">EXPORT CSV</button><button id="lockBtn">LOCK</button></div>
+<p class="status" id="dashStatus" role="status"></p>
+<div class="table-wrap"><table><thead><tr><th>ENTRY</th><th>SOLANA WALLET</th><th>X USERNAME</th><th>QUIZ ANSWER</th><th>SUBMITTED</th></tr></thead><tbody id="entriesBody"><tr><td colspan="5" class="empty">No entries loaded.</td></tr></tbody></table></div>
+<p class="muted">Showing up to 1,000 most recent entries. Keep this page private; wallet addresses and handles are entrant data.</p>
+</section>
+</main>
+<script>
+(()=> {
+ const keyInput=document.getElementById('adminKey'), loginPanel=document.getElementById('loginPanel'), dashboard=document.getElementById('dashboard');
+ const loginStatus=document.getElementById('loginStatus'), dashStatus=document.getElementById('dashStatus'), body=document.getElementById('entriesBody');
+ let adminKey='', allEntries=[];
+ const escapeHtml=value=>String(value??'').replace(/[&<>"']/g,ch=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+ function lock(){adminKey='';allEntries=[];dashboard.classList.add('hidden');loginPanel.classList.remove('hidden');keyInput.value='';body.innerHTML='<tr><td colspan="5" class="empty">Dashboard locked.</td></tr>';dashStatus.textContent='';}
+ function render(){
+  const q=document.getElementById('search').value.trim().toLowerCase();
+  const rows=allEntries.filter(e=>String(e.wallet_address||'').toLowerCase().includes(q)||String(e.x_username||'').toLowerCase().includes(q));
+  document.getElementById('entryCount').textContent=allEntries.length;
+  document.getElementById('walletCount').textContent=new Set(allEntries.map(e=>e.wallet_address)).size;
+  body.innerHTML=rows.length?rows.map(e=>'<tr><td>#'+escapeHtml(e.id)+'</td><td class="wallet">'+escapeHtml(e.wallet_address)+'</td><td>'+escapeHtml('@'+String(e.x_username||'').replace(/^@/,''))+'</td><td>'+escapeHtml(e.quiz_answer)+'</td><td>'+escapeHtml(e.created_at?new Date(e.created_at).toLocaleString():'—')+'</td></tr>').join(''):'<tr><td colspan="5" class="empty">No matching entries.</td></tr>';
+ }
+ async function load(){
+  dashStatus.textContent='Loading entries…';document.getElementById('refreshBtn').disabled=true;
+  try{
+   const response=await fetch('/api/giveaway-admin-list',{headers:{'x-admin-key':adminKey,'Accept':'application/json'},cache:'no-store'});
+   const data=await response.json().catch(()=>({}));
+   if(response.status===401){lock();loginStatus.textContent='Admin key not accepted.';return;}
+   if(!response.ok||!data.success)throw new Error(data.error||'Could not load entries.');
+   allEntries=Array.isArray(data.entries)?data.entries:[];render();dashStatus.textContent='Loaded '+allEntries.length+' entries.';
+  }catch(error){dashStatus.textContent=error.message;}
+  finally{document.getElementById('refreshBtn').disabled=false;}
+ }
+ document.getElementById('loginBtn').addEventListener('click',async()=>{adminKey=keyInput.value; if(!adminKey){loginStatus.textContent='Enter your admin key.';return;} await load();if(adminKey){loginPanel.classList.add('hidden');dashboard.classList.remove('hidden');}});
+ keyInput.addEventListener('keydown',e=>{if(e.key==='Enter')document.getElementById('loginBtn').click();});
+ document.getElementById('refreshBtn').addEventListener('click',load);
+ document.getElementById('lockBtn').addEventListener('click',lock);
+ document.getElementById('search').addEventListener('input',render);
+ document.getElementById('csvBtn').addEventListener('click',()=>{
+  const headers=['id','wallet_address','x_username','quiz_answer','created_at'];
+  const quote=v=>'"'+String(v??'').replace(/"/g,'""')+'"';
+  const csv=[headers.join(','),...allEntries.map(e=>headers.map(k=>quote(e[k])).join(','))].join('\r\n');
+  const blob=new Blob([csv],{type:'text/csv;charset=utf-8;'}),url=URL.createObjectURL(blob),a=document.createElement('a');
+  a.href=url;a.download='froginal-dogs-giveaway-entries.csv';a.click();URL.revokeObjectURL(url);
+ });
+})();
+</script></body></html>
