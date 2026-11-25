@@ -39,7 +39,7 @@ module.exports = async function handler(req, res) {
   const handle = rawHandle.replace(/^@/, '');
   const answer = typeof req.body?.quiz_answer === 'string' ? req.body.quiz_answer.trim() : '';
 
-  if (!/^[DA][1-9A-HJ-NP-Za-km-z]{25,34}$/.test(wallet)) {
+  if (!/^[D9][1-9A-HJ-NP-Za-km-z]{25,34}$/.test(wallet)) {
     return send(res, 400, { success: false, error: 'Enter a valid Dogecoin mainnet receiving address.' });
   }
   if (!/^[A-Za-z0-9_]{1,15}$/.test(handle)) {
