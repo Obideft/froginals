@@ -1,5 +1,8 @@
 'use strict';
 
+const crypto = require('crypto');
+const { isSolanaPublicKey } = require('../lib/discord-auth');
+
 const giveawayAttempts = new Map();
 const GIVEAWAY_WINDOW_MS = 60_000;
 const GIVEAWAY_MAX_ATTEMPTS = 5;
@@ -35,8 +38,8 @@ async function submitGiveawayEntry(req, res) {
   const handle = rawHandle.replace(/^@/, '');
   const answer = typeof req.body?.quiz_answer === 'string' ? req.body.quiz_answer.trim() : '';
 
-  if (!/^[D9][1-9A-HJ-NP-Za-km-z]{25,34}$/.test(wallet)) {
-    return res.status(400).json({ success: false, error: 'Enter a valid Dogecoin mainnet receiving address.' });
+  if (!isSolanaPublicKey(wallet)) {
+    return res.status(400).json({ success: false, error: 'Enter a valid Solana mainnet wallet address.' });
   }
   if (!/^[A-Za-z0-9_]{1,15}$/.test(handle)) {
     return res.status(400).json({ success: false, error: 'Enter a valid X username (up to 15 letters, numbers or underscores).' });
@@ -84,8 +87,44 @@ async function submitGiveawayEntry(req, res) {
   }
 }
 
+async function listGiveawayEntries(req, res) {
+  if (req.method !== 'GET') {
+    res.setHeader('Allow', 'GET');
+    return res.status(405).json({ success: false, error: 'Method not allowed.' });
+  }
+  const configuredKey = process.env.GIVEAWAY_ADMIN_KEY || '';
+  const suppliedKey = String(req.headers['x-admin-key'] || '');
+  if (configuredKey.length < 24 || suppliedKey.length !== configuredKey.length ||
+      !crypto.timingSafeEqual(Buffer.from(suppliedKey), Buffer.from(configuredKey))) {
+    return res.status(401).json({ success: false, error: 'Admin authentication failed.' });
+  }
+  if (!process.env.SUPABASE_URL || !process.env.SUPABASE_SERVICE_ROLE_KEY) {
+    return res.status(503).json({ success: false, error: 'Giveaway database is not configured.' });
+  }
+  try {
+    const endpoint = process.env.SUPABASE_URL.replace(/\\/$/, '') +
+      '/rest/v1/froginal_dogs_giveaway_entries?select=id,wallet_address,x_username,quiz_answer,created_at&order=created_at.desc&limit=1000';
+    const response = await fetch(endpoint, {
+      headers: {
+        apikey: process.env.SUPABASE_SERVICE_ROLE_KEY,
+        Authorization: 'Bearer ' + process.env.SUPABASE_SERVICE_ROLE_KEY,
+        Accept: 'application/json'
+      },
+      signal: AbortSignal.timeout(12000)
+    });
+    if (!response.ok) throw new Error('Supabase HTTP ' + response.status);
+    const entries = await response.json();
+    if (!Array.isArray(entries)) throw new Error('Unexpected database response');
+    return res.status(200).json({ success: true, count: entries.length, entries });
+  } catch (error) {
+    console.error('Giveaway admin list failed:', error.message);
+    return res.status(502).json({ success: false, error: 'Could not load giveaway entries. Check the database migration and try again.' });
+  }
+}
+
 module.exports = async function handler(req, res) {
   if (req.query?.action === 'giveaway-entry') return submitGiveawayEntry(req, res);
+  if (req.query?.action === 'giveaway-admin-list') return listGiveawayEntries(req, res);
   res.setHeader('Content-Type', 'application/json; charset=utf-8');
   res.setHeader('Cache-Control', 'no-store');
   if (req.method !== 'GET') { res.setHeader('Allow', 'GET'); return res.status(405).json({ success: false, error: 'Method not allowed.' }); }
