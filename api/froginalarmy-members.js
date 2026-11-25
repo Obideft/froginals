@@ -104,7 +104,7 @@ async function listGiveawayEntries(req, res) {
     return res.status(503).json({ success: false, error: 'Giveaway database is not configured.' });
   }
   try {
-    const endpoint = process.env.SUPABASE_URL.replace(/\\/$/, '') +
+    const endpoint = process.env.SUPABASE_URL.replace(/\/$/, '') +
       '/rest/v1/froginal_dogs_giveaway_entries?select=id,wallet_address,x_username,quiz_answer,created_at&order=created_at.desc&limit=1000';
     const response = await fetch(endpoint, {
       headers: {
