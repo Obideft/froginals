@@ -1,12 +1,12 @@
 # FROGINALS X Strategy — DEGEN MODE
 
-**Strategy version:** 1.0  
-**Documented:** 2026-11-11  
+**Strategy version:** 1.1  
+**Documented:** 2026-11-26  
 **Status:** Active strategy reference  
 **Primary channel:** FROGINALS X account  
 **Planner:** FROGINALS X Tweet Scheduler  
 **Planning cadence:** Rolling 7-day plan  
-**Draft target:** 42 posts per week (6 daily slots)  
+**Draft target:** 49 posts per week (7 daily slots: 4 regular posts + 3 community polls)  
 **Publishing mode:** Manual approval; drafts are not automatically published
 
 ---
@@ -71,15 +71,44 @@ Share relevant project moments, community updates, characters, merchandise, coll
 ## 5. Weekly planner operating model
 
 - Build a rolling seven-day schedule.
-- Target **6 draft slots per day**, or **42 drafts across seven days**.
-- Start the refreshed schedule on **November 11, 2026**.
-- The planner should show the strategy description prominently at the top in a yellow-highlighted strategy panel, consistent with the requested planner design.
-- Populate the complete planning window with varied posts across the content pillars.
-- Treat the 42-post target as a draft/planning capacity, not permission to auto-publish.
+- Target **7 draft slots per day**, or **49 drafts across seven days**: **4 regular posts + 3 community poll-style posts**.
+- The three daily community polls are a permanent engagement pillar, not occasional extras.
+- Schedule the community polls at **09:00, 17:30 and 19:30 UTC** each day.
+- Use the four remaining daily slots for varied regular posts across the content pillars, using the scheduler's configured times.
+- The planner's weekly generator should create 49 drafts: 28 regular posts and 21 community polls.
+- The planner should show the strategy description prominently at the top in its highlighted strategy panel.
+- Treat the 49-post target as draft/planning capacity, not permission to auto-publish.
 - Every item remains subject to manual review and approval before it is posted.
 - Do not claim a draft is live or published unless the platform confirms publication.
 
-**Timing note:** The strategy brief establishes six daily slots but does not define exact clock times or a timezone. Use the scheduler's configured slot times; do not invent or silently change them.
+**Timing note:** The community poll times above are fixed in UTC. Use the scheduler's configured times for the four regular daily posts; do not invent or silently change them.
+
+### Community Pulse — 3 polls every day
+
+The purpose is to make the audience part of the FROGINALS journey: learn what followers know, what they value, what they want next, and how the project is perceived as it grows.
+
+**Daily poll slots**
+- **09:00 UTC — Morning pulse:** quick, accessible question to invite followers into the conversation.
+- **17:30 UTC — Afternoon pulse:** explore opinions about the collection, website, store, content, creative work, or community experience.
+- **19:30 UTC — Evening pulse:** ask what the community wants next, what should improve, or what deserves attention.
+
+**Rotate question themes**
+- How long people have followed FROGINALS and how they discovered the project.
+- What FROGINALS DOGS means to them: NFT collection, community, culture, creative Web3 project, or a mix.
+- Favourite parts of the ecosystem: DOGS collection, website and shop, Discord, videos, giveaways, or creative projects.
+- What is clear, confusing, missing, or most exciting about the project.
+- Which content, features, events, rewards, or community initiatives should come next.
+- Feedback on the brand journey and how the community can help shape priorities.
+
+**Poll-writing rules**
+- Use a clear, specific question with **A/B/C/D** answer choices.
+- Invite people to reply with a letter and, where useful, explain why.
+- Keep the tone playful, welcoming, and genuinely curious; never pressure people to respond.
+- Make each poll easy to answer without requiring prior project knowledge.
+- Vary topics and wording; do not repeat the same question with minor edits.
+- These are **reply-based question posts**, not native X Polls. Never describe them as native polls.
+- Treat responses as qualitative feedback. Summarize patterns honestly and use them to inform future content and project priorities; do not exaggerate the results or claim they represent every holder or follower.
+
 
 ## 6. Draft construction checklist
 
@@ -133,8 +162,8 @@ Use real platform data only. Do not invent targets, results, or performance numb
 1. Read this strategy document before generating a new weekly plan.
 2. Review recent posts and replies to avoid repeating jokes or topics.
 3. Check current crypto conversations and verify any time-sensitive facts.
-4. Draft up to 42 varied posts across the six content pillars.
-5. Spread the posts across the scheduler's six configured daily slots.
+4. Draft 28 varied regular posts across the six content pillars, plus 21 daily Community Pulse question posts.
+5. Spread the 28 regular posts across the scheduler's four configured daily slots and schedule the three daily Community Pulse posts at 09:00, 17:30 and 19:30 UTC.
 6. Review the complete seven-day schedule for variety, quality, accuracy, and repetition.
 7. Keep all items in draft/pending-approval status until a human approves them.
 8. Publish only through the approved workflow.
@@ -148,8 +177,8 @@ This file is the durable reference for the FROGINALS X DEGEN MODE strategy as do
 To recreate the planner from scratch:
 - Restore the **DEGEN MODE** strategy headline and description.
 - Recreate a seven-day planning window beginning on the requested start date.
-- Use six daily slots (42 weekly draft slots).
-- Populate the slots with original drafts guided by the six content pillars.
+- Use seven daily slots (49 weekly draft slots): four regular posts and three Community Pulse polls per day.
+- Populate the four regular slots with original drafts guided by the six content pillars. Populate the three poll slots with fresh A/B/C/D reply-based questions.
 - Preserve the scheduler's configured times and timezone unless the owner explicitly changes them.
 - Keep manual approval enabled.
 - Preserve published history and never treat drafts as published posts.
@@ -163,4 +192,5 @@ When refining the strategy:
 
 ## 12. Change log
 
+- **2026-11-26 — v1.1:** Added the daily Community Pulse system: three reply-based A/B/C/D question posts at 09:00, 17:30 and 19:30 UTC. Updated the weekly planner target to 49 drafts (28 regular posts + 21 polls) and documented poll themes, writing rules, and the feedback loop.
 - **2026-11-11 — v1.0:** Documented the FROGINALS X DEGEN MODE strategy: degen humor, crypto sarcasm, frog culture, community-first engagement, six content pillars, six daily draft slots, 42 weekly drafts, and manual approval.
