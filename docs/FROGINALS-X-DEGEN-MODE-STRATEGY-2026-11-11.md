@@ -1,6 +1,6 @@
 # FROGINALS X Strategy — DEGEN MODE
 
-**Strategy version:** 1.1  
+**Strategy version:** 1.2  
 **Documented:** 2026-11-26  
 **Status:** Active strategy reference  
 **Primary channel:** FROGINALS X account  
@@ -109,6 +109,16 @@ The purpose is to make the audience part of the FROGINALS journey: learn what fo
 - These are **reply-based question posts**, not native X Polls. Never describe them as native polls.
 - Treat responses as qualitative feedback. Summarize patterns honestly and use them to inform future content and project priorities; do not exaggerate the results or claim they represent every holder or follower.
 
+**New planner workflow — Generate Community Polls**
+- The X planner includes a dedicated **📊 GENERATE COMMUNITY POLLS · 21** action for creating the weekly Community Pulse batch.
+- The generator prepares **21 question-post drafts**: three daily prompts across seven days, using the established 09:00, 17:30 and 19:30 UTC slots.
+- Its question bank actively invites followers to help shape the FROGINALS journey. Ask what first brought them to the project, what they think of the work completed so far, which milestones deserve recognition, what they would like to see explained, what needs improving, and what should be built next.
+- Include questions about the real FROGINALS ecosystem and its progress: the FROGINAL DOGS collection, mascot and artwork, website, merch store, Discord/community, videos, games and tools. Do not imply a feature is finished or available unless verified.
+- Ask for useful, specific feedback—not just votes. Encourage people to share their story, explain their choice, suggest priorities, or volunteer ideas and creative contributions.
+- Keep the wording welcoming to newcomers as well as existing followers. Do not assume everyone knows the project's history.
+- The generator checks for an existing matching question on the same scheduled date and skips duplicates rather than intentionally adding a second copy.
+- Generating drafts is not publishing. Review each prompt for accuracy, relevance and repetition before approval. Existing planner history must remain intact.
+
 
 ## 6. Draft construction checklist
 
@@ -163,7 +173,7 @@ Use real platform data only. Do not invent targets, results, or performance numb
 2. Review recent posts and replies to avoid repeating jokes or topics.
 3. Check current crypto conversations and verify any time-sensitive facts.
 4. Draft 28 varied regular posts across the six content pillars, plus 21 daily Community Pulse question posts.
-5. Spread the 28 regular posts across the scheduler's four configured daily slots and schedule the three daily Community Pulse posts at 09:00, 17:30 and 19:30 UTC.
+5. Use the planner's weekly regular-post generator for 28 varied posts and the **GENERATE COMMUNITY POLLS · 21** action for 21 Community Pulse question drafts. Keep the three daily poll slots at 09:00, 17:30 and 19:30 UTC.
 6. Review the complete seven-day schedule for variety, quality, accuracy, and repetition.
 7. Keep all items in draft/pending-approval status until a human approves them.
 8. Publish only through the approved workflow.
