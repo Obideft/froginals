@@ -1,7 +1,7 @@
 # FROGINALS X Strategy — DEGEN MODE
 
-**Strategy version:** 1.2  
-**Documented:** 2026-11-26  
+**Strategy version:** 1.3  
+**Documented:** 2026-11-27  
 **Status:** Active strategy reference  
 **Primary channel:** FROGINALS X account  
 **Planner:** FROGINALS X Tweet Scheduler  
@@ -13,7 +13,7 @@
 
 ## 1. Strategy in one sentence
 
-Run FROGINALS X in **DEGEN MODE**: combine degen humor, crypto sarcasm, frog culture, and real community energy to earn replies and build a recognizable voice—not to sound like a corporate marketing account.
+Run FROGINALS X in **DEGEN MODE**: combine degen humor, crypto sarcasm, frog culture, and real community energy with a value-first builder mindset. Educate people about what is being built, demonstrate progress through action, and let delivered value—not empty hype or vanity metrics—earn attention and trust.
 
 ## 2. Primary objectives
 
@@ -67,6 +67,21 @@ Ask playful questions, invite opinions, reply to relevant conversations, and hig
 Share relevant project moments, community updates, characters, merchandise, collectibles, or ecosystem developments.
 
 **Execution:** Keep these occasional, specific, and natural. Lead with something interesting to the audience; do not make the feed repetitive promotion.
+
+### G. Real value, education, and builder principles
+Show what it means to build something real in Web3. Explain what FROGINALS is building, why decisions are being made, how parts of the ecosystem work, what has changed, and what the community can learn or contribute. Treat education as part of building—not as a sales pitch or a request for permission.
+
+**Core belief:** Value is not established by promising it. It is established by delivering something useful, entertaining, meaningful, or worth returning to. Aim to make the delivered experience stronger than the expectation created by the message. When people consistently recognize genuine value, they naturally gravitate toward the work and choose to stay involved.
+
+**Execution principles:**
+- Show, don't just tell: use real progress, working features, examples, decisions, lessons, and transparent updates.
+- Lead by example. Let actions and consistency support the words.
+- Educate without talking down to people. Explain unfamiliar ideas clearly and welcome honest questions.
+- Focus on value people can actually experience: useful information, creative work, entertainment, tools, access, community, or meaningful participation.
+- Distinguish delivered value from planned value. Label ideas, experiments, work in progress, and completed features accurately.
+- Do not confuse attention with trust, or reach with community. Blue checkmarks and follower counts are not proof of quality, credibility, or impact.
+- Discuss principles firmly without insulting people who are new, disagree, or have less context. Invite people to learn rather than framing them as inferior.
+- Avoid claims that people have no choice or must follow. The goal is to earn genuine interest through value, not pressure or manipulation.
 
 ## 5. Weekly planner operating model
 
@@ -132,7 +147,9 @@ For every planned tweet:
 6. Check that the post sounds like FROGINALS DEGEN MODE—not generic crypto copy.
 7. Check factual statements against reliable, current information.
 8. Remove repetitive wording, unnecessary filler, and forced project promotion.
-9. Save as a draft for manual review.
+9. Ask whether the post communicates or demonstrates real value, rather than merely promising it.
+10. If it discusses FROGINALS progress, separate what exists now from what is planned or still being built.
+11. Save as a draft for manual review.
 
 ## 7. Engagement priorities
 
@@ -147,6 +164,10 @@ For every planned tweet:
 
 - No corporate marketing voice.
 - No repetitive FROGINALS promotion.
+- No empty value promises presented as delivered outcomes.
+- No treating blue checkmarks, follower counts, likes, or impressions as proof of trust, quality, or real community.
+- No pressure tactics, forced loyalty, or claims that people have no choice but to support or follow.
+- No talking down to newcomers or insulting people for lacking knowledge; educate clearly and respectfully.
 - No invented news, fabricated quotes, fake metrics, or made-up community activity.
 - No unsupported financial promises, guaranteed returns, or misleading trading claims.
 - Do not frame humor or speculation as verified fact.
@@ -165,14 +186,14 @@ Review performance using evidence available from the account and scheduler. Focu
 - Repeated themes that are becoming stale.
 - Draft-to-approval and approval-to-publication status.
 
-Use real platform data only. Do not invent targets, results, or performance numbers. Refine the next weekly plan based on observed audience response while preserving the core DEGEN MODE identity.
+Use real platform data only. Do not invent targets, results, or performance numbers. Treat metrics as signals, not as a substitute for trust or delivered value. Review qualitative replies and feedback alongside quantitative engagement: are people learning something, finding the work useful or entertaining, returning voluntarily, and contributing meaningfully? Refine the next weekly plan based on observed audience response while preserving the core DEGEN MODE identity.
 
 ## 10. Repeatable weekly workflow
 
 1. Read this strategy document before generating a new weekly plan.
 2. Review recent posts and replies to avoid repeating jokes or topics.
 3. Check current crypto conversations and verify any time-sensitive facts.
-4. Draft 28 varied regular posts across the six content pillars, plus 21 daily Community Pulse question posts.
+4. Draft 28 varied regular posts across the seven content pillars, including value-led education, real progress, builder principles, and honest project explanations, plus 21 daily Community Pulse question posts.
 5. Use the planner's weekly regular-post generator for 28 varied posts and the **GENERATE COMMUNITY POLLS · 21** action for 21 Community Pulse question drafts. Keep the three daily poll slots at 09:00, 17:30 and 19:30 UTC.
 6. Review the complete seven-day schedule for variety, quality, accuracy, and repetition.
 7. Keep all items in draft/pending-approval status until a human approves them.
@@ -202,5 +223,7 @@ When refining the strategy:
 
 ## 12. Change log
 
+- **2026-11-27 — v1.3:** Added a value-first builder direction: demonstrate value through delivery, educate the audience, lead by example, distinguish shipped work from promises, and treat vanity metrics as weak signals rather than proof of trust or community. Added respectful education and anti-pressure rules.
+- **2026-11-26 — v1.2:** Clarified the strategy version and documented the existing Community Pulse operating model.
 - **2026-11-26 — v1.1:** Added the daily Community Pulse system: three reply-based A/B/C/D question posts at 09:00, 17:30 and 19:30 UTC. Updated the weekly planner target to 49 drafts (28 regular posts + 21 polls) and documented poll themes, writing rules, and the feedback loop.
 - **2026-11-11 — v1.0:** Documented the FROGINALS X DEGEN MODE strategy: degen humor, crypto sarcasm, frog culture, community-first engagement, six content pillars, six daily draft slots, 42 weekly drafts, and manual approval.
